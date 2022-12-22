@@ -1,0 +1,28 @@
+.inte-Image__Image {
+  width: 100%;
+  height: 100%;
+}
+.inte-Image--circle {
+  border-radius: 50%;
+}
+.inte-Image--normal {
+  border-radius: var(--radius-rounded-4);
+}
+.inte-Image__black--white {
+  filter: grayscale(100%);
+}
+.inte-Image--object__cover {
+  object-fit: cover;
+}
+.inte-Image--object__fill {
+  object-fit: fill;
+}
+.inte-Image--object__contain {
+  object-fit: contain;
+}
+.inte-Image--object__none {
+  object-fit: none;
+}
+.inte-Image--object__scale-down {
+  object-fit: scale-down;
+}

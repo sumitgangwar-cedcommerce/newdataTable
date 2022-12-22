@@ -1,0 +1,11 @@
+  /*Page Footer*/
+  .inte-pageFooter {
+    position: absolute;
+    bottom: 0;
+    padding: 1.2rem;
+    right: 0;
+    left: 0;
+    transition: 300ms all linear;
+    text-align: center;
+    font-size: 1.4rem;
+}

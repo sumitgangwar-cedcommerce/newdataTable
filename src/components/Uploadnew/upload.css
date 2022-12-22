@@ -1,0 +1,10 @@
+.inte-Upload .ant-upload-list-text-container {
+    padding: 1.6rem;
+    border: 0.1rem solid var(--inte-G50);
+    margin-top: 1.6rem;
+    background-color: var(--inte-G20);
+    border-radius: var(--radius-rounded-4);
+}
+.inte-Upload .ant-upload-list-text-container .ant-upload-list-item {
+    margin: 0;
+}

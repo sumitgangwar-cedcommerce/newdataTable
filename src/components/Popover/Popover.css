@@ -1,0 +1,66 @@
+/*Popover*/
+.popover-parent {
+  display: inline-block;
+  position: relative;
+}
+.inte__Popover-Wrapper {
+  background-color: var(--inte-G0);
+  border-radius: var(--radius-rounded-4);
+  max-width: 35rem;
+  z-index: 99999;
+  padding: 1.2rem;
+  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.15);
+  transform-origin: top center;
+  -webkit-animation-name: popoverAnimation;
+  animation-name: popoverAnimation;
+  -webkit-animation-duration: 0.1s;
+  animation-duration: 0.1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  max-height: 25rem;
+  overflow: auto;
+}
+.inte__Popover-Wrapper--Fake {
+  animation: unset!important;
+}
+.inte__Popover-Wrapper--Element {
+  right: 0;
+  top: calc(100% + 5px);
+}
+.inte__Popover {
+  padding: 0;
+  list-style: none;
+}
+.popover-parent .inte__Popover-Wrapper.popover-bottom {
+  top: calc(100% + 10px);
+  right: 0;
+}
+.inte__Popover-item:last-child a {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+/*Popover End*/
+@keyframes popoverAnimation {
+  100% {
+    -webkit-transform: scale(1, 1);
+    transform: scale(1);
+    opacity: 1;
+  }
+  0% {
+    -webkit-transform: scale(0.95, 0.95);
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+}
+@-webkit-keyframes popoverAnimation {
+  100% {
+    -webkit-transform: scale(1, 1);
+    transform: scale(1);
+    opacity: 1;
+  }
+  0% {
+    -webkit-transform: scale(0.95, 0.95);
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+}

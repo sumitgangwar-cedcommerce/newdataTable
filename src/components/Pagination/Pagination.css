@@ -1,0 +1,62 @@
+/*Pagination*/
+.inte-Pagination{
+  font-size: 1.4rem;
+}
+.inte-Pagination .inte-btn .inte__text {
+  display: flex;
+}
+.inte-Pagination  button {
+  padding: 0.4rem 0.6rem!important;
+  width: 3rem;
+}
+.inte-Pagination .inte-btnExtraNarrow {
+  padding: 0.8rem 1rem;
+  height: 4.2rem;
+}
+.inte-Pagination .inte-formElement {
+  min-width: 6rem;
+  text-align: center;
+  max-width: 10rem;
+  width: auto;
+}
+.inte-Pagination--Simple .inte-formElementTextfield {
+  min-width: unset;
+  border: 0;
+  padding: 0;
+  width: 2rem !important;
+  max-width: unset;
+  box-shadow: unset;
+  pointer-events: none;
+}
+.inte-Pagination .inte-formElement.inte-formElementTextfield {
+  min-width: unset;
+  max-width: unset;
+}
+.inte-Pagination-perPage--Sorter .inte-select ul {
+  min-width: unset;
+  width: auto;
+  padding:0;
+}
+.inte-Pagination-perPage--Sorter .inte-select ul li h3 {
+  margin: 0;
+}
+.inte-Pagination--PageCount input {
+  width: 5rem !important;
+}
+.inte-Pagination--perPage ul {
+  padding: 0;
+  text-align: center;
+}
+.inte-Pagination--perPage ul li{
+  border-radius: 0;
+}
+.inte__Select--Selected .inte-select-placeholder {
+  color: var(--inte-G800);
+}
+@media screen and (max-width:550px){
+  .inte-Pagination:not(.inte-Pagination--Simple) > div >div:first-child>div >div:first-child ,
+  .inte-Pagination:not(.inte-Pagination--Simple) > div >div >div >div:last-child > span {
+    display: none;
+}
+}
+/*Pagination end*/

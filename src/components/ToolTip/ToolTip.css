@@ -1,0 +1,221 @@
+.inte__ToolTip {
+  position: relative;
+  display: inline-flex;
+}
+.inte__ToolTip-trigger {
+  display: inline-flex;
+}
+
+.inte__ToolTip-bubble .inte__text {
+  color: var(--inte-G10);
+  font-size: 1.2rem;
+}
+.inte__tooltip:hover:after {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+  border-radius: var(--radius-rounded-4);
+  color: var(--inte-G0);
+  content: attr(title);
+  margin: -8.2rem auto 0;
+  font-size: 1.6rem;
+  padding: 1.3rem;
+  width: 22rem;
+}
+
+.inte__tooltip:hover:before {
+  border: solid;
+  border-width: 1.2rem 0.6rem 0 0.6rem;
+  content: "";
+  left: 45%;
+  bottom: 3rem;
+  position: absolute;
+}
+.inte__ToolTip-bubble {
+  min-width: 30rem;
+  max-width: 30rem;
+  position: absolute;
+  z-index: 10;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  /* transition: 300ms all linear; */
+}
+/* inte__ToolTip-bubble inte__ToolTip-bottom tooltip-fade-enter tooltip-fade-enter-active */
+.inte__ToolTip-message {
+  border-radius: var(--radius-rounded-4);
+  color: var(--inte-G10);
+  font-size: 1.2rem;
+  line-height: 1.6;
+  padding: 0.6rem 0.8rem;
+  text-align: left;
+  word-break: break-word;
+}
+.inte__ToolTip-dark .inte__ToolTip-message {
+  background: var(--inte-G1000);
+}
+.inte__ToolTip-light .inte__ToolTip-message {
+  background: var(--inte-G0);
+}
+.inte__ToolTip-bubble::after {
+  content: "";
+  position: absolute;
+}
+
+.inte__ToolTip-top,
+.tooltip-top::after {
+  bottom: 100%;
+  left: 50%;
+  padding-bottom: 0.9rem;
+  transform: translateX(-50%);
+}
+.inte__ToolTip-top::after,
+.tooltip-top::after {
+  border-left: 0.5rem solid transparent;
+  border-right: 0.5rem solid transparent;
+  border-top: 0.5rem solid var(--inte-G1000);
+  bottom: 0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.inte__ToolTip-light.inte__ToolTip-bottom::after {
+  border-bottom: 0.5rem solid var(--inte-G0);
+}
+.inte__ToolTip-light.inte__ToolTip-top::after {
+  border-top: 0.5rem solid var(--inte-G0);
+}
+.inte__ToolTip-light.inte__ToolTip-left::after {
+  border-left: 0.5rem solid var(--inte-G0);
+}
+.inte__ToolTip-light.inte__ToolTip-right::after {
+  border-right: 0.5rem solid var(--inte-G0);
+}
+.inte__ToolTip-light .inte__ToolTip-message {
+  color: var(--inte-G450);
+}
+.inte__Tooltip-bubble-Portal.inte__ToolTip-light.tooltip-bottom::after {
+  border-bottom: 0.5rem solid var(--inte-G0);
+}
+.inte__Tooltip-bubble-Portal.inte__ToolTip-light.tooltip-top::after {
+  border-top: 0.5rem solid var(--inte-G0);
+}
+.tooltip-top::after {
+  bottom: -1.4rem;
+}
+.inte__ToolTip-bottom {
+  top: 100%;
+  left: 50%;
+  padding-top: 0.9rem;
+  transform: translateX(-50%);
+}
+
+.inte__ToolTip-bottom::after,
+.tooltip-bottom::after {
+  border-left: 0.5rem solid transparent;
+  border-right: 0.5rem solid transparent;
+  border-bottom: 0.5rem solid var(--inte-G1000);
+  top: 0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.tooltip-bottom.inte__Tooltip-bubble-Portal {
+  padding-top: 0.9rem;
+}
+.tooltip-bottom::after {
+  top: 0.5rem;
+}
+.inte__ToolTip-left {
+  top: 50%;
+  right: 100%;
+  padding-right: 0.9rem;
+  transform: translateY(-50%);
+  justify-content: flex-end;
+}
+.inte__ToolTip-left::after {
+  border-left: 0.5rem solid var(--inte-G1000);
+  border-top: 0.5rem solid transparent;
+  border-bottom: 0.5rem solid transparent;
+  top: 50%;
+  right: 0.5rem;
+  transform: translateY(-50%);
+}
+.inte__ToolTip-right {
+  top: 50%;
+  left: 100%;
+  padding-left: 0.9rem;
+  transform: translateY(-50%);
+  justify-content: flex-start;
+}
+.inte__ToolTip-right::after {
+  border-right: 0.5rem solid var(--inte-G1000);
+  border-top: 0.5rem solid transparent;
+  border-bottom: 0.5rem solid transparent;
+  top: 50%;
+  left: 0.5rem;
+  transform: translateY(-50%);
+}
+.inte__ToolTip-top,
+.inte__ToolTip-bottom,
+.inte__ToolTip-left,
+.inte__ToolTip-right,
+.tooltip-bottom,
+.tooltip-top{
+  -webkit-animation-name: tooltipTopBottom;
+  animation-name: tooltipTopBottom;
+  -webkit-animation-duration: 0.1s;
+  animation-duration: 0.1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  transform-origin: left top;
+}
+.inte__ToolTip-left,
+.inte__ToolTip-right{
+  -webkit-animation-name: tooltipLeftRight;
+  animation-name: tooltipLeftRight;
+  transform-origin: right top;
+}
+.inte__ToolTip-right{
+  transform-origin: left top;
+}
+@keyframes tooltipTopBottom {
+  100% {
+    -webkit-transform: scale(1,1) translateX(-50%);
+    transform: scale(1) translateX(-50%);
+  }
+  0% {
+    -webkit-transform: scale(0.95,0.95) translateX(-50%);
+    transform: scale(0.95) translateX(-50%);
+  }
+}
+@-webkit-keyframes tooltipTopBottom {
+  100% {
+    -webkit-transform: scale(1,1) translateX(-50%);
+    transform: scale(1) translateX(-50%);
+  }
+  0% {
+    -webkit-transform: scale(0.95,0.95) translateX(-50%);
+    transform: scale(0.95) translateX(-50%);
+  }
+}
+
+@keyframes tooltipLeftRight {
+  100% {
+    -webkit-transform: scale(1,1) translateY(-50%);
+    transform: scale(1) translateY(-50%);
+  }
+  0% {
+    -webkit-transform: scale(0.95,0.95) translateY(-50%);
+    transform: scale(0.95) translateY(-50%);
+  }
+}
+@-webkit-keyframes tooltipLeftRight {
+  100% {
+    -webkit-transform: scale(1,1) translateY(-50%);
+    transform: scale(1) translateY(-50%);
+  }
+  0% {
+    -webkit-transform: scale(0.95,0.95) translateY(-50%);
+    transform: scale(0.95) translateY(-50%);
+  }
+}

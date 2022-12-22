@@ -1,0 +1,9 @@
+.inte--BreadCrumbs {
+  display: inline-block;
+}
+.inte--BreadCrumbs svg {
+  display: flex;
+}
+.inte--BreadCrumbs button.inte-btn.inte-btn-disable {
+  cursor: auto;
+}

@@ -1,0 +1,74 @@
+
+
+/*Layout*/
+.inte-Layout.inte-Layout__Primary-Secondary {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: 0 0 0 -2rem;
+}
+.inte-Layout__Primary {
+  max-width: 70%;
+  width: 100%;
+}
+.inte-Layout__Secondary {
+  max-width: 30%;
+  width: 100%;
+}
+.inte-Layout__Primary-Secondary > * {
+  padding: 0 0 0 2rem;
+}
+.inte-Layout + .inte-Layout {
+  padding-top: 4rem;
+}
+.inte-Layout--full {
+  width: 100%;
+}
+@media screen and (max-width: 992px) {
+  .inte-Layout.inte-Layout__Primary-Secondary {
+    flex-wrap: wrap;
+  }
+  .inte-Layout__Primary,
+  .inte-Layout__Secondary,
+  .inte__analystics--Layout-primary,
+  .inte__analystics--Layout-secondary {
+    max-width: 100%;
+  }
+  .inte-Layout__Secondary {
+    margin-top: 2rem;
+  }
+  .inte-Layout__Primary-Secondary > * {
+    padding: 0 0 0 2.0rem;
+  }
+  .inte-Layout + .inte-Layout {
+    padding-top: 1.6rem;
+  }
+  .inte-Layout--full{
+    width:100%
+  }
+  .inte__Topbar ~ .inte__Main .inte-Layout__Secondary {
+    top: 8rem;
+  }
+  .inte__Topbar
+    ~ .inte__Main
+    .inte-pageHeader--fixed
+    ~ div
+    .inte-Layout__Secondary {
+    top: 15rem;
+  }
+}
+
+/* DARK THEME */
+[data-theme="dark"]
+  .inte__reverseNavigation
+  .inte-btn__icon.inte-btn__icon--round
+  svg {
+  stroke: unset;
+}
+[data-theme="dark"]
+  .inte__reverseNavigation
+  .inte-btn__icon.inte-btn__icon--round
+  svg
+  path {
+  fill: var(--action-color);
+}

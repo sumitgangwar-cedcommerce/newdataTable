@@ -1,0 +1,89 @@
+/*Notifications*/
+.inte-notification {
+    padding:1.2rem 1.6rem;
+    position: relative;
+    border-bottom: 0.1rem solid var(--inte-G42);
+  }
+  .inte-notification:last-child {
+    border: 0;
+}
+  .inte-notification__icon svg {
+    display: flex;
+}
+.inte-notification__SubHeading {
+  color: var(--inte-G450);
+  line-height: 2rem;
+}
+.inte-notification__Description {
+  line-height: 1.6rem;
+  color: var(--inte-G90)!important;
+}
+.inte-notification--Destroy {
+  position: absolute;
+  right: 1.6rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.inte-notification--Destroy > span {
+  transition: 300ms all linear;
+  border: 1px solid transparent;
+}
+.inte-notification--Destroy > span:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.inte-notification--Destroy > span:active {
+  background-color: rgba(0,0,0,0.2);
+}
+.inte-notification__hasAction .inte-notification__content {
+  margin-right: 1.2rem;
+}
+  .inte-notification__hasAction {
+    padding-right: 5.4rem;
+  }
+  .inte-notification__content{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  .inte-notification__text {
+    flex-grow: 1;
+    color: var(--form-element-color);
+  }
+  .inte-notification__hasIcon .inte-notification__text {
+    padding-left: 1.2rem;
+}
+.inte-notification__text h3 {
+  color: var(--inte-G800);
+}
+  .inte-notification__action {
+    margin-top: 2rem;
+    text-align: right;
+  }
+  .inte-notification__CircleIcon {
+    min-height: 10px;
+    min-width: 10px;
+    border-radius: 50%;
+    margin-right: 1.6rem;
+    box-shadow: 0 0 0 5px rgb(0 0 0 / 8%);
+}
+.inte-notification__hasCircleIcon {
+  align-items: baseline;
+}
+.inte-notification.inte-notification--success .inte-notification__CircleIcon {
+  background-color: var(--inte-GR150);
+}
+.inte-notification.inte-notification--warning .inte-notification__CircleIcon {
+  background-color: var(--inte-Y400);
+}
+.inte-notification.inte-notification--danger .inte-notification__CircleIcon {
+  background-color: var(--inte-R150);
+}
+.inte-notification.inte-notification--info .inte-notification__CircleIcon {
+  background-color: var(--inte-P500);
+}
+/*Notifications End*/
+
+/* DARK MODE */
+[data-theme="dark"] .inte-notification {
+  filter: brightness(0.8);
+}

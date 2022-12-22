@@ -1,0 +1,202 @@
+.inte-Onboard__Wrapper {
+  min-height: 100vh;
+  background-color: var(--inte-G0);
+  font-family: "Averta-CY" !important;
+}
+.inte-Onboard__Wrapper--Inner {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  background-color: var(--inte-G0);
+  background-image: none;
+}
+.inte-Onboard__Left {
+  width: 40%;
+  background-color: none;
+  min-height: 100vh;
+}
+.inte-Onboard__Right {
+  width: 60%;
+  background-color: none;
+  right: 0;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding-bottom: 9rem;
+}
+.inte-card--default[class*="inte-Onboard__LeftCard--"] {
+  border-radius: 0;
+  padding: 4.2rem 6.8rem;
+  border: 0;
+  height: 100%;
+}
+.inte-card--default.inte-Onboard__LeftCard--Dark {
+  background-color: var(--inte-BL300);
+}
+.inte-card--default.inte-Onboard__LeftCard--Dark >div {
+  max-width: 49.6rem;
+  margin: 0 auto;
+  width: 100%;
+}
+.inte-card--default.inte-Onboard__LeftCard--Light {
+  background-color: var(--inte-P25);
+}
+.inte-card.inte-card--default.inte-Onboard__RightCard--Light {
+  max-width: 50rem;
+}
+.inte-card--default[class*="inte-Onboard__LeftCard--"] > div,
+.inte-card--default[class*="inte-Onboard__LeftCard--"] > div > div,
+.inte-card--default[class*="inte-Onboard__LeftCard--"] > div > div > div {
+  height: 100%;
+}
+.inte-card--default.inte-Onboard__LeftCard--Dark h3,
+.inte-card--default.inte-Onboard__LeftCard--Dark h1 {
+  color: var(--inte-G0) !important;
+}
+.inte-card--default.inte-Onboard__LeftCard--Light h3,
+.inte-card--default.inte-Onboard__LeftCard--Light h1 {
+  color: var(--inte-G800) !important;
+}
+.inte-Login__Carousel {
+  border: 0;
+  border-radius: var(--radius-rounded-4);
+  padding: 2.4rem;
+}
+.inte-card--default.inte-Onboard__LeftCard--Dark .inte-Login__Carousel {
+  background: rgba(255, 255, 255, 0.05);
+}
+.inte-card--default.inte-Onboard__LeftCard--Light .inte-Login__Carousel {
+  background: rgba(231, 233, 246, 1);
+}
+hr {
+  border-top: 1px solid rgba(236, 237, 238, 1);
+}
+.fs-16 {
+  font-size: 1.6rem;
+}
+.fs-18 {
+  font-size: 1.8rem;
+}
+.fs-22 {
+  font-size: 2.2rem !important;
+}
+.fs-30 {
+  font-size: 3rem !important;
+}
+.fs-40 {
+  font-size: 4rem !important;
+}
+.mt-80 {
+  margin-top: 8rem !important;
+}
+.mb-80 {
+  margin-bottom: 8rem !important;
+}
+.mt-110 {
+  margin-top: 10rem !important;
+}
+.mb-28 {
+  margin-bottom: 2.8rem !important;
+}
+.my-24 {
+  margin-top: 2.4rem !important;
+  margin-bottom: 2.4rem !important;
+}
+.mb-24 {
+  margin-bottom: 2.4rem !important;
+}
+.mt-44 {
+  margin-top: 4.4rem !important;
+}
+.mt-24 {
+  margin-top: 2.4rem !important;
+}
+.mb-44 {
+  margin-bottom: 4.4rem !important;
+}
+.ml-36 {
+  margin-left: 3.6rem;
+}
+.align-right {
+  text-align: right;
+}
+[class*="inte-Onboard__LeftCard--"] .inte-Carousel .slick-dots li button {
+  height: 0.6rem;
+  border-radius: var(--radius-rounded-4);
+  transition: 300ms all linear;
+  margin: 0 0.25rem;
+}
+.inte_Onboard--Footer {
+  position: absolute;
+  bottom: 1.6rem;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding: 0 2rem;
+}
+[class*="inte-Onboard__LeftCard--"]
+  .inte-Carousel
+  .slick-dots
+  li.slick-active
+  button {
+  width: 2.7rem;
+}
+.inte-Onboard__LeftCard--Dark
+  .inte-Carousel
+  .slick-dots
+  li.slick-active
+  button {
+  background-color: rgba(250, 250, 251, 1);
+}
+.inte-Onboard__LeftCard--Dark .inte-Carousel .slick-dots li button {
+  background-color: rgba(250, 250, 251, 0.35);
+}
+.inte-Onboard__LeftCard--Light
+  .inte-Carousel
+  .slick-dots
+  li.slick-active
+  button {
+  background-color: rgba(28, 36, 51, 1);
+}
+.inte-Onboard__LeftCard--Light .inte-Carousel .slick-dots li button {
+  background-color: rgba(94, 94, 94, 0.35);
+}
+@media screen and (max-width: 1200px) {
+  .inte-card--default[class*="inte-Onboard__LeftCard--"] {
+    padding: 4.2rem 3.8rem;
+  }
+}
+@media screen and (max-width: 991px) {
+  .inte-Onboard__Wrapper--Inner {
+    flex-direction: column;
+    background: #2b2e32;
+  }
+  .inte-Onboard__Left,
+  .inte-Onboard__Right {
+    width: 100%;
+    min-height: unset;
+  }
+  .inte-Onboard__Wrapper {
+    padding: 0;
+  }
+  .inte-card--default[class*="inte-Onboard__LeftCard--"] {
+    border-radius: 0;
+  }
+  .inte-Onboard__Right {
+    border-top-left-radius: 0.8rem;
+    border-top-right-radius: 0.8rem;
+    background: #ffffff;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .inte-card--default[class*="inte-Onboard__LeftCard--"] {
+    padding: 3.2rem 2rem;
+  }
+  .inte-card.inte-card--default.inte-Onboard__RightCard--Light {
+    padding: 0;
+  }
+}

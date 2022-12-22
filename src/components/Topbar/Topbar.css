@@ -1,0 +1,147 @@
+.inte__Avatar {
+  border-radius: 50%;
+  height: 4.4rem;
+  width: 4.4rem;
+  overflow: hidden;
+  margin-right: 1rem;
+  border: 0.1rem solid var(--color-pageBorder);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.2rem;
+  background-color: var(--inte-G20);
+}
+.inte__Avatar img {
+  border-radius: 50%;
+  overflow: hidden;
+  height: auto;
+}
+.inte__accountsWrapper .inte__Popover-Wrapper {
+  right: 0;
+  top: 6rem;
+  border: 1px solid var(--border-layout);
+}
+.inte-darkMode {
+  background-color: var(--inte-G800);
+  height: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 4rem;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 0.1rem solid var(--color-pageBorder);
+}
+.inte__accountName {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  cursor: pointer;
+  flex-direction: column;
+}
+.inte__user {
+  font-weight: var(--weight-normal);
+  font-size: 1.5rem;
+  color: var(--btn-text-seconday-color);
+  max-width: 200px;
+  white-space: pre;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: normal;
+}
+.inte__userUrl {
+  line-height: normal;
+}
+.inte__Topbar {
+  position: fixed;
+  left: 0;
+  padding: 1rem 2rem 1rem 8rem;
+  right: 0;
+  background-color: var(--inte-G20);
+  z-index: 99999;
+  height: 7.2rem;
+  border-bottom: 0.1rem solid var(--inte-G42);
+  transition: 300ms all linear;
+  display: flex;
+  align-items: center;
+}
+.inte__Topbar > .inte-flex > .inte-flex__item:first-child {
+  margin-left: 7rem;
+}
+.inte__accountsWrapper,
+.inte__Accounts {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.inte__Accounts {
+  cursor: pointer;
+}
+.inte__Topbar--Inner {
+  display: flex;
+  justify-content: space-between;
+  flex-grow: 1;
+  align-items: center;
+}
+.inte__Topbar-Connect--Right {
+  display: flex;
+  gap: 1.2rem;
+  align-items: center;
+}
+.inte__Accounts-Avatar {
+  margin-right: 1.2rem;
+}
+.inte__Accounts-Avatar .inte--Avatar {
+  height: 4rem !important;
+  width: 4rem !important;
+}
+@media screen and (max-width: 768px) {
+  .inte__Topbar {
+    left: 0;
+    box-shadow: 0 4px 0.3rem -0.3rem #0000001a;
+    z-index: 99999;
+    padding: 1rem 1.5rem 1rem 7.5rem;
+  }
+  .inte__Accounts-Avatar {
+    margin-right: 0;
+  }
+  .inte__accountName {
+    display: none;
+  }
+}
+.inte__Icon--Light {
+  animation: spin 5s infinite linear;
+}
+@-ms-keyframes spin {
+  from {
+    -ms-transform: rotate(0deg);
+  }
+  to {
+    -ms-transform: rotate(360deg);
+  }
+}
+@-moz-keyframes spin {
+  from {
+    -moz-transform: rotate(0deg);
+  }
+  to {
+    -moz-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

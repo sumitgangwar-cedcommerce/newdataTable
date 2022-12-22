@@ -1,0 +1,132 @@
+.inte__stepwizard .ant-steps-item-tail::after {
+    content: "";
+    width: calc(100% + 20px);
+    height: 0.4rem;
+    background: var(--inte-G42) !important;
+    position: absolute;
+    right: 0;
+    display: block !important;
+    left: 50%;
+    top: 0.8rem;
+}
+.inte__stepwizard .ant-steps-label-vertical .ant-steps-item-tail {
+  margin-left: auto;
+  bottom: 13px;
+  top: auto;
+}
+.inte__stepwizard .ant-steps-label-vertical .ant-steps-item {
+    margin: 0 15px;
+}
+.inte__stepwizard .ant-steps-item:last-child {
+  flex: 1;
+}
+.inte__stepwizard .ant-steps-item-container {
+  text-align: center;
+  padding-top: 4.5rem;
+}
+.inte__stepwizard .ant-steps-label-vertical .ant-steps-item-content {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    left: 0;
+    right: 0;
+    text-align: center;
+    margin: 0 auto;
+}
+.inte__stepwizard .ant-steps-item:last-child > .ant-steps-item-container > .ant-steps-item-tail {
+  display: block;
+}
+.inte__stepwizard .ant-steps-item:first-child .ant-steps-item-tail::before,
+.inte__stepwizard .ant-steps-item:last-child .ant-steps-item-tail::after,
+.inte__stepwizard .ant-steps-item-wait .ant-steps-icon {
+  display: none !important;
+}
+.inte__stepwizard .ant-steps-label-vertical .ant-steps-item-icon {
+  margin-left: 0;
+  position: relative;
+  z-index: 1;
+  width: 2rem;
+  height: 2rem;
+  background: var(--inte-G42);
+  border-color: var(--inte-G42);
+}
+ .inte__stepwizard .ant-steps-item-finish .ant-steps-item-icon,
+.inte__stepwizard
+  .ant-steps-item-finish
+  .ant-steps-item-icon
+  > .ant-steps-icon
+  .ant-steps-icon-dot {
+  background: var(--inte-GR300) !important;
+  border-color: transparent;
+}
+.inte__stepwizard .ant-steps-item-active,
+.inte__stepwizard .ant-steps-icon {
+  color: var(--inte-G0) !important;
+}
+.inte__stepwizard
+  .ant-steps-item-finish
+  > .ant-steps-item-container
+  > .ant-steps-item-content
+  > .ant-steps-item-title::after,
+.inte__stepwizard
+  .ant-steps-item-finish
+  > .ant-steps-item-container
+  > .ant-steps-item-tail::after {
+  background-color: var(--inte-GR300) !important;
+}
+.inte__stepwizard .ant-steps-icon {
+  position: relative;
+  top: -0.85rem !important;
+  font-size: 1rem;
+}
+.inte__stepwizard .ant-steps-item-title {
+  font-size: 1.4rem;
+  line-height: normal;
+}
+.inte__stepwizard .ant-steps-item-finish .ant-steps-item-title,
+.inte__stepwizard .ant-steps-item-process .ant-steps-item-title {
+  font-weight: 600;
+}
+.inte__stepwizard .ant-steps-item-process > .ant-steps-item-container > .ant-steps-item-icon {
+  background: var(--inte-B90);
+  border-color: var(--inte-B90);
+}
+.inte__stepwizard .ant-steps-item-error .ant-steps-item-icon {
+  background-color: var(--inte-R350);
+}
+.inte__stepwizard .ant-steps-item-process.ant-steps-item-active .ant-steps-item-tail:before {
+  content: "";
+  height: 0.4rem;
+  width: 100%;
+  position: absolute;
+  left: -50%;
+  background: linear-gradient(
+    270deg,
+    #1570ef -4.38%,
+    #097685 60.66%,
+    #027a48 98.18%
+  );
+  top: 0.8rem;
+}
+.inte__stepwizard .ant-steps-finish-icon svg {
+  display: none !important;
+}
+.inte__stepwizard .ant-steps-finish-icon {
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCAxNSAxNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMS45ODYxIDMuNjM4ODZDMTIuMjU0NiAzLjkwNzM1IDEyLjI1NDYgNC4zNDI2NSAxMS45ODYxIDQuNjExMTRMNi40ODYxNCAxMC4xMTExQzYuMjE3NjUgMTAuMzc5NiA1Ljc4MjM1IDEwLjM3OTYgNS41MTM4NiAxMC4xMTExTDIuNzYzODYgNy4zNjExNEMyLjQ5NTM4IDcuMDkyNjUgMi40OTUzOCA2LjY1NzM1IDIuNzYzODYgNi4zODg4NkMzLjAzMjM1IDYuMTIwMzggMy40Njc2NSA2LjEyMDM4IDMuNzM2MTQgNi4zODg4Nkw2IDguNjUyNzNMMTEuMDEzOSAzLjYzODg2QzExLjI4MjQgMy4zNzAzOCAxMS43MTc3IDMuMzcwMzggMTEuOTg2MSAzLjYzODg2WiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+Cg==");
+  height: 1.3rem;
+  width: 1.3rem;
+  background-position: -1px 1px;
+}
+@media only screen and (max-width: 650px) {
+  .ant-steps-label-vertical .ant-steps-item-content {
+    display: none;
+  }
+  .ant-steps-label-vertical
+    .ant-steps-item.ant-steps-item-active
+    .ant-steps-item-content {
+    display: block;
+  }
+  .inte__stepwizard--Completed .ant-steps-item-container {
+    padding-top: 0;
+  }
+}

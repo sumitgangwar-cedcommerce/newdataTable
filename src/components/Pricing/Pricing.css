@@ -1,0 +1,16 @@
+.inte-Pricing-Page ul.inte-tabsWrap {
+        justify-content: center;
+        border-bottom: 0.1rem solid var(--inte-G42);
+    }
+.footer_bottom{
+        display: flex;
+        flex-direction: column;
+}
+.footer_bottom .inte-card__Footer{
+   margin-top: auto !important;
+}
+.footer_bottom > .inte-card__Body,
+.footer_bottom > .inte-card__Body >div,
+.footer_bottom > .inte-card__Body >div >div {
+        height: 100%;
+    }

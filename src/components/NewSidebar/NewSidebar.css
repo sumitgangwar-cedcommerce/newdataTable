@@ -1,0 +1,480 @@
+.inte__Sidebar--Sticky .inte__Topbar {
+  box-shadow: 1rem 0 1rem 0.1rem rgba(0, 0, 0, 0.2);
+}
+/*Sidebar Styling*/
+.inte__Sidebar {
+  position: fixed;
+  left: 0;
+  max-width: 6.9rem;
+  width: 100%;
+  padding: 7rem 0 0;
+  background-color: var(--inte-G0);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  z-index: 9999;
+  border-right: 0.1rem solid var(--inte-G42);
+  transition: 300ms all linear;
+}
+.inte__Sidebar--expanded .inte__Sidebar,
+.inte__Sidebar--hovered .inte__Sidebar {
+  max-width: 25rem;
+}
+.inte__Sidebar--toggle {
+  position: fixed;
+  top: 1.6rem;
+  left: 2rem;
+  cursor: pointer;
+  height: 4rem;
+  width: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2.5rem;
+  z-index: 99999;
+  background-color: var(--inte-G800);
+}
+.inte--logoWrapper {
+  position: fixed;
+  top: 1.6rem;
+  left: 2rem;
+  transform: unset;
+  z-index: 99999;
+}
+.inte__Sidebar--toggle svg {
+  transition: 300ms all linear;
+}
+.inte__Sidebar--expanded .inte__Sidebar--toggle svg,
+.inte__Sidebar--hovered .inte__Sidebar--toggle svg {
+  transform: rotateY(180deg);
+}
+.inte__SidebarItems {
+  overflow: hidden;
+  padding: 0;
+  height: calc(100vh - 7rem);
+  overflow-y: auto;
+  transition: 300ms all linear;
+  padding-top: 1.8rem;
+}
+.inte__SidebarItems::-webkit-scrollbar {
+  display: none;
+}
+.inte__Sidebar ul {
+  padding: 0;
+  list-style: none;
+}
+.inte__SidebarItems > ul > li {
+  margin: 0 1.2rem 1.2rem 1.2rem;
+}
+.inte__Sidebar .inte__SidebarItems > ul + ul {
+  padding-top: 2rem;
+  position: relative;
+  margin-top: 0;
+}
+.inte__SidebarItems > ul:first-child {
+  margin-bottom: 0;
+  padding-bottom: 2rem;
+}
+/* .inte__Sidebar .inte__SidebarItems > ul + ul::after {
+  position: absolute;
+  content: "";
+  height: 0.1rem;
+  background-color: var(--inte-G42);
+  left: 0;
+  top: 0;
+  transition: 300ms all linear;
+  right: 0;
+} */
+.inte__Menus {
+  position: relative;
+  display: flex;
+  align-content: center;
+  padding: 0.8rem 1.2rem;
+  cursor: pointer;
+}
+.inte__menuItem {
+  opacity: 0;
+  visibility: hidden;
+  transition: 300ms all linear;
+  padding: 0.2rem 0.5rem;
+  border-radius: 1rem;
+  color: var(--inte-G800);
+  font-size: 1.4rem;
+  padding-left: 1rem;
+  white-space: pre;
+}
+.inte__Menus--hasChild > ul {
+  opacity: 0;
+  visibility: hidden;
+  height: 0;
+  transition: 300ms all linear;
+  padding-left: 1.4rem;
+}
+.inte__Menus--hasChild > ul li {
+  width: 100%;
+}
+.inte__Menus--hasChild > ul span.inte__menuItem {
+  padding-left: 1.8rem;
+  padding-right: 1.5rem;
+}
+.inte__Menus--hasChild > ul span.inte__menuArrow {
+  right: 1.9rem !important;
+}
+.inte__Sidebar--expanded .inte__Menus--active.inte__Menus--hasChild > ul,
+.inte__Sidebar--hovered .inte__Menus--active.inte__Menus--hasChild > ul {
+  opacity: 1;
+  visibility: visible;
+  height: auto;
+}
+.inte__menuArrow {
+  position: absolute;
+  right: 1.2rem;
+  top: 1.6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: 300ms all linear;
+  transform: rotate(180deg);
+}
+.inte__menuArrow path {
+  transition: 300ms all linear;
+}
+.inte__Menus--active > .inte__Menus > .inte__menuArrow {
+  transform: rotate(0deg);
+}
+.inte__Sidebar--expanded .inte__menuArrow,
+.inte__Sidebar--hovered .inte__menuArrow {
+  opacity: 1;
+  visibility: visible;
+}
+.inte__Sidebar--expanded
+  .inte__Menus--hasChild.inte__Menus--active
+  > .inte__Menus
+  > .inte__menuArrow
+  svg
+  path,
+.inte__Sidebar--expanded
+  .inte__Menus--hasChild
+  > .inte__Menus:hover
+  > .inte__menuArrow
+  svg
+  path,
+.inte__Sidebar--hovered
+  .inte__Menus--hasChild.inte__Menus--active
+  > .inte__Menus
+  > .inte__menuArrow
+  svg
+  path,
+.inte__Sidebar--hovered
+  .inte__Menus--hasChild
+  > .inte__Menus:hover
+  > .inte__menuArrow
+  svg
+  path {
+  stroke: var(--inte-P1000);
+}
+.inte__Menus--active > a .inte__menuItem {
+  color: var(--inte-P900);
+}
+.inte__SidebarItems > ul > li.inte__Menus--active > a:after {
+  content: "";
+  width: 0.4rem;
+  height: 100%;
+  background-color: rgb(37, 8, 128);
+  background-color: var(--inte-P1000);
+  left: -1.2rem;
+  position: absolute;
+  top: 0;
+  border-top-right-radius: 0.4rem;
+  border-bottom-right-radius: 0.4rem;
+}
+.inte__Menus--active > a .inte__menuIcon svg path,
+.inte__Menus--active > a .inte__menuIcon svg line,
+.inte__Menus--active > a .inte__menuIcon svg ellipse,
+.inte__Menus--active > a .inte__menuIcon svg polyline,
+.inte__Menus--active > a .inte__menuIcon svg rect {
+  stroke: var(--inte-P1000);
+}
+.inte__menuIcon svg path,
+.inte__menuIcon svg line,
+.inte__menuIcon svg ellipse,
+.inte__menuIcon svg polyline {
+  stroke: var(--inte-G800);
+  transition: 300ms all linear;
+}
+.inte__Menus:hover .inte__menuItem {
+  color: var(--inte-P900);
+}
+.inte__Menus:hover .inte__menuIcon svg path,
+.inte__Menus:hover .inte__menuIcon svg line,
+.inte__Menus:hover .inte__menuIcon svg ellipse,
+.inte__Menus:hover .inte__menuIcon svg polyline,
+.inte__Menus:hover .inte__menuIcon svg rect {
+  stroke: var(--inte-P1000);
+}
+.inte__Sidebar--expanded .inte__menuItem,
+.inte__Sidebar--hovered .inte__menuItem {
+  opacity: 1;
+  visibility: visible;
+  padding-left: 1.5rem;
+}
+.inte__menuIcon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.inte__Sidebar--expanded .inte__Menus--active .inte__menuIcon:after,
+.inte__Sidebar--hovered .inte__Menus--active .inte__menuIcon:after {
+  content: unset;
+}
+/*Sidebar Styling end*/
+
+@media screen and (max-width: 991px) {
+  .inte__Sidebar {
+    position: fixed;
+    top: 0;
+    max-width: 25rem;
+    bottom: 0;
+    z-index: 999999;
+    transition: 300ms all ease-in-out;
+    transform: translateX(calc(-100% - 2rem));
+    padding-top: 1.8rem;
+  }
+  .inte__Sidebar--Active .inte__menuArrow {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 300ms;
+  }
+  .inte--logoWrapper-Mobile img {
+    width: 12rem;
+  }
+  .inte__Sidebar--Active .inte__Menus--active.inte__Menus--hasChild > ul {
+    opacity: 1;
+    visibility: visible;
+    height: auto;
+  }
+  .inte--logoWrapper {
+    left: 7rem;
+  }
+  .inte__Sidebar--Active {
+    transform: translateX(0);
+    padding-top: 1.2rem;
+  }
+  .inte__Sidebar.inte__Sidebar--hasLogo {
+    padding-top: 0 !important;
+  }
+  .inte__Toggle {
+    position: fixed;
+    top: 1.6rem;
+    left: 1.6rem;
+    cursor: pointer;
+    z-index: 99999;
+    height: 4rem;
+    width: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    transition: 300ms all ease-in-out;
+  }
+  .inte__Toggle > button {
+    background-color: var(--inte-G0) !important;
+  }
+  /* .inte__Toggle.inte__toggle--Active {
+      z-index: 1;
+    } */
+  .inte-AnnouncementBar ~ .inte__Toggle {
+    top: 5.6rem;
+  }
+
+  .inte__SidebarItems {
+    overflow-y: auto;
+    height: 100%;
+    padding: 0 !important;
+    margin: 0;
+  }
+
+  .inte__Menus::before {
+    width: unset;
+    left: 0.8rem;
+    right: -0.6rem;
+    height: 7.5rem;
+    top: 0;
+    transform: unset;
+  }
+  .inte__Menus--active .inte__menuItem {
+    font-weight: var(--weight-bold);
+  }
+  .inte__menuItem {
+    position: relative;
+    opacity: 1;
+    visibility: visible;
+    padding-left: 1.2rem !important;
+  }
+  .inte__Toggle {
+    display: inline-flex !important;
+  }
+  .inte-Mobile--show {
+    display: block;
+  }
+  .inte-Mobile--hide {
+    display: none !important;
+  }
+  /* .inte__Sidebar.inte__Sidebar--Active:after {
+    position: fixed;
+    left: 250px;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    content: "";
+    background-color: rgba(33, 43, 54, 0.4);
+    width: 500%;
+    height: 100%;
+    backdrop-filter: blur(1px);
+  } */
+  .inte__Sidebar--Header {
+    padding: 1.2rem 1.2rem 1.2rem 1.2rem;
+    border-bottom: 0.1rem solid var(--inte-G30);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: var(--inte-G0);
+  }
+  .inte__Sidebar--hasLogo ul:nth-child(2) {
+    padding-top: 1.2rem;
+  }
+  .inte__Toggle--Mobile:only-child {
+    margin-left: auto;
+  }
+  .inte__Toggle--Mobile button {
+    height: 40px;
+    width: 40px;
+  }
+  .inte__Toggle--Mobile button:hover {
+    background-color: var(--inte-G30);
+  }
+}
+
+/* DARK THEME */
+[data-theme="dark"]
+  .inte__Menus--active
+  > .inte__Menus
+  > .inte__menuIcon:after {
+  background-color: unset;
+}
+[data-theme="dark"] .inte__Menus--active > a .inte__menuIcon svg path,
+[data-theme="dark"] .inte__Menus--active > a .inte__menuIcon svg line,
+[data-theme="dark"] .inte__Menus--active > a .inte__menuIcon svg ellipse,
+[data-theme="dark"] .inte__Menus--active > a .inte__menuIcon svg polyline,
+[data-theme="dark"] .inte__Menus--active > a .inte__menuIcon svg rect,
+[data-theme="dark"] .inte__Menus:hover .inte__menuIcon svg path,
+[data-theme="dark"] .inte__Menus:hover .inte__menuIcon svg line,
+[data-theme="dark"] .inte__Menus:hover .inte__menuIcon svg ellipse,
+[data-theme="dark"] .inte__Menus:hover .inte__menuIcon svg polyline,
+[data-theme="dark"] .inte__Menus:hover .inte__menuIcon svg rect {
+  stroke: var(--action-color);
+}
+[data-theme="dark"]
+  .inte__Sidebar--expanded
+  .inte__SidebarItems
+  > ul
+  > .inte__Menus--active
+  > a.inte__Menus,
+[data-theme="dark"]
+  .inte__Sidebar--hovered
+  .inte__SidebarItems
+  > ul
+  > .inte__Menus--active
+  > a.inte__Menus {
+  background-color: var(--main-bg-color);
+}
+[data-theme="dark"] .inte__Menus--active > a .inte__menuItem,
+[data-theme="dark"] .inte__Menus:hover .inte__menuItem {
+  color: var(--link-color-dark);
+}
+[data-theme="dark"]
+  .inte__Sidebar--expanded
+  .inte__Menus--hasChild.inte__Menus--active
+  > .inte__Menus
+  > .inte__menuArrow
+  svg
+  path,
+[data-theme="dark"]
+  .inte__Sidebar--expanded
+  .inte__Menus--hasChild
+  > .inte__Menus:hover
+  > .inte__menuArrow
+  svg
+  path,
+[data-theme="dark"]
+  .inte__Sidebar--hovered
+  .inte__Menus--hasChild.inte__Menus--active
+  > .inte__Menus
+  > .inte__menuArrow
+  svg
+  path,
+[data-theme="dark"]
+  .inte__Sidebar--hovered
+  .inte__Menus--hasChild
+  > .inte__Menus:hover
+  > .inte__menuArrow
+  svg
+  path {
+  stroke: var(--action-color);
+}
+
+/* inte__Menus-DropdownActive  */
+.inte__Menus--actives a::after {
+  content: "" !important;
+}
+.inte__Menus-DropdownActive a::after {
+  content: unset !important;
+}
+/* OutSideclick */
+.inte__Sidebar--OutSideClick {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  width: 100%;
+  z-index: 99999;
+  background-color: var(--p-backdrop, rgba(33, 43, 54, 0.4));
+  backdrop-filter: blur(1px);
+  -webkit-animation-name: AnimationBackdrop;
+  animation-name: AnimationBackdrop;
+  -webkit-animation-duration: 0.1s;
+  animation-duration: 0.1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  transform-origin: top center;
+}
+.inte__Sidebar.inte__Sidebar--Active:after {
+  content: unset;
+}
+
+@keyframes AnimationBackdrop {
+  100% {
+    -webkit-opacity: 1;
+    opacity: 1;
+  }
+  0% {
+    -webkit-opacity: 0;
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes AnimationBackdrop {
+  100% {
+    -webkit-opacity: 1;
+    opacity: 1;
+  }
+  0% {
+    -webkit-opacity: 0;
+    opacity: 0;
+  }
+}

@@ -1,0 +1,59 @@
+
+.inte-wrapper, body {
+    background-color: var(--inte-G20);
+  }
+.inte-Page--Full {
+	position: fixed;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	background-color: var(--inte-G20);
+	z-index: 999999;
+	display: flex;
+	justify-content: center;
+  align-items: center;
+  padding: 10rem;
+}
+.inte.inte-wrapper {
+  display: flex;
+  position: relative;
+}
+.inte__Main {
+	padding: 2.4rem 2.4rem 7.5rem 2.4rem;
+	width: calc(100% - 6.9rem);
+	margin-left: auto;
+  transition: 300ms all linear;
+  position: relative;
+  min-height: 100vh;
+}
+.inte__Main-Inner--LayoutBoxed{
+  max-width: 1440px!important;
+  margin: 0 auto;
+}
+.inte__Sidebar--expanded .inte__Main {
+  width: calc(100% - 25rem);
+}
+.inte-wrapper--full .inte__Main {
+  padding-left: 2.4rem;
+  width: 100%;
+}
+@media screen and (max-width: 991px) {
+  .inte__Main {
+    width: 100%!important;
+  }
+  .inte-Page--Full {
+    padding: 1.5rem;
+  }
+  .inte__Topbar ~ .inte__Main {
+    padding: 10.2rem 2rem 7.5rem 2rem;
+}
+}
+@media screen and (max-width: 480px) {
+  .inte__Main {
+    padding: 9rem 0 7rem 0 !important;
+  }
+  .inte-AnnouncementBar ~ .inte__Main {
+    padding-top: 13rem !important;
+  }
+}

@@ -1,0 +1,87 @@
+.inte-btn--Dropdown {
+  position: relative;
+  display: inline-block;
+}
+ul.inte-btn--Dropdown__Popover {
+  position: absolute;
+  width: 23rem;
+  list-style: none;
+  text-align: left;
+  padding: 0.8rem;
+  margin: 0;
+  background-color: var(--inte-G0);
+  top: calc(100% + 8px);
+  right: 0;
+  transition: 100ms all linear;
+  border-radius: var(--radius-rounded-4);
+  max-height: 280px;
+  overflow: auto;
+  overflow-x: hidden;
+  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.15);
+  animation-name: ButtonDropdownAnimation;
+  -webkit-animation-duration: 0.1s;
+  animation-duration: 0.1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  transform-origin: top center;
+}
+.inte-btn--Dropdown li button {
+  display: block;
+  padding: 0.8rem;
+  width: 100%;
+  text-align: left;
+  color: var(--inte-G450);
+}
+.inte-btn--Dropdown .inte-btn.inte-btn--Outlined svg {
+  stroke: #2a2a2a;
+}
+.inte-btn--Dropdown li button:hover {
+  background-color: var(--inte-G30);
+  color: var(--G800);
+}
+ul.inte-btn--Dropdown__Popover .inte-btn.inte-btn--hasIcon {
+  justify-content: flex-start;
+  align-items: center;
+}
+.inte-btn--Dropdown .inte-btn--Secondary .inte-btn__icon svg path,
+.inte-btn--Dropdown .inte-plain-dark-btn .inte-btn__icon svg path {
+  fill: #333;
+  stroke: #333;
+}
+.inte-btn--Dropdown .inte-btn--Outlined .inte-btn__icon svg path {
+  fill: #0b0a1f;
+  stroke: #0b0a1f;
+}
+.inte-btn--Dropdown span.inte-btn__icon {
+  transition: 200ms all linear;
+}
+.inte-btn--Dropdown.inte-btn--Dropdown-Open > button span.inte-btn__icon {
+  transform: rotate(-180deg);
+}
+.inte-btn--Dropdown li button span.inte__text {
+  font-size: 1.4rem !important;
+  display: block;
+  margin-top: 0;
+  line-height: 1.429;
+}
+@keyframes ButtonDropdownAnimation {
+  100% {
+    -webkit-transform: scale(1, 1);
+    transform: scale(1);
+  }
+  0% {
+    -webkit-transform: scale(0.95, 0.95);
+    transform: scale(0.95);
+  }
+}
+
+@-webkit-keyframes ButtonDropdownAnimation {
+  100% {
+    -webkit-transform: scale(1, 1);
+    transform: scale(1);
+  }
+  0% {
+    -webkit-transform: scale(0.95, 0.95);
+    transform: scale(0.95);
+  }
+}

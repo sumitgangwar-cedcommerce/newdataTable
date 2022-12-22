@@ -1,0 +1,94 @@
+.inte--DatePicker .ant-picker {
+    padding: 0.8rem 1.2rem;
+    border-radius: var(--radius-rounded-4);
+    width: 100%;
+    border: 0.1rem solid var(--inte-G50);
+    box-shadow: unset;
+}
+.ant-picker-dropdown {
+    z-index: 9999999;
+}
+.inte--DatePicker .ant-picker.ant-picker-focused {
+    box-shadow: 0 0 0 1px var(--inte-P900);
+    border-color: var(--inte-P900);
+}
+.inte--DatePicker .anticon svg {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+}
+.inte--DatePicker .ant-picker-suffix {
+    margin-left: 0;
+    margin-right: 0.4rem;
+    order: 1;
+}
+.inte--DatePicker .ant-picker-input > input {
+    order: 2;
+}
+.ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner,
+.ant-picker-cell-in-view.ant-picker-cell-range-start .ant-picker-cell-inner,
+.ant-picker-cell-in-view.ant-picker-cell-range-end .ant-picker-cell-inner,
+.ant-picker-week-panel-row-selected td,
+.ant-picker-week-panel-row-selected:hover td {
+    background: var(--inte-P900);
+}
+.ant-picker-cell-in-view.ant-picker-cell-today .ant-picker-cell-inner::before {
+    border: 1px solid var(--inte-P900);
+    border-radius: var(--radius-rounded-4);
+}
+.ant-picker-today-btn {
+    color: var(--inte-B80);
+}
+.ant-picker-today-btn:hover {
+    color: var(--inte-B100);
+}
+.ant-picker-today-btn:active {
+    color: var(--inte-B300);
+}
+.ant-picker-header-view button:hover{
+    color: var(--inte-B100);
+}
+.ant-picker-cell .ant-picker-cell-inner {
+    min-width: 2.8rem;
+    height: 2.8rem;
+    line-height: 2.8rem;
+    border-radius: var(--radius-rounded-4);
+}
+.ant-picker-cell:hover:not(.ant-picker-cell-in-view) .ant-picker-cell-inner,
+.ant-picker-cell:hover:not(.ant-picker-cell-selected):not(.ant-picker-cell-range-start):not(.ant-picker-cell-range-end):not(.ant-picker-cell-range-hover-start):not(.ant-picker-cell-range-hover-end) .ant-picker-cell-inner {
+    background: var(--inte-G30);
+}
+.ant-btn-primary{
+    background: var(--inte-P900)!important;
+    border-color: var(--inte-P900)!important;
+}
+/* Control States */
+.inte--DatePicker .inte-formElement--Success .ant-picker {
+    border: 1px solid var(--inte-GR300) !important;
+}
+.inte--DatePicker .inte-formElement--Success .ant-picker-focused {
+    box-shadow: 0px 0px 0px 4px var(--inte-GR50);
+}
+
+.inte--DatePicker .inte-formElement--Error .ant-picker {
+    border: 1px solid var(--inte-R150) !important;
+}
+.inte--DatePicker .inte-formElement--Error .ant-picker-focused {
+    box-shadow: 0px 0px 0px 4px rgb(251 234 233)!important;
+}
+
+.inte--DatePicker .inte-formElement--Warning .ant-picker {
+    border: 1px solid var(--inte-Y300) !important;
+}
+.inte--DatePicker .inte-formElement--Warning .ant-picker-focused {
+    box-shadow: 0px 0px 0px 4px var(--inte-Y50);
+}
+.inte--DatePicker__thick .ant-picker {
+    height: 4.4rem;
+}
+.inte--DatePicker__thin .ant-picker {
+    height: 3.8rem;
+}
+.ant-picker-dropdown {
+    z-index: 9999999;
+}

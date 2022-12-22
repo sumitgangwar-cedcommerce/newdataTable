@@ -1,0 +1,181 @@
+html {
+  scroll-behavior: smooth;
+}
+div#anchor--ounce-button--scroller {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 250px;
+}
+#anchor--ounce-button--scroller .docs-story {
+  padding: 10px;
+}
+div#anchor--ounce-button--scroller .css-11xgcgt {
+  display: none;
+}
+.story-scroller ul {
+  margin: 0;
+  padding-left: 2rem;
+}
+.story-scroller ul li {
+  list-style: disc !important;
+  color: var(--inte-P900);
+  font-size: 1.6rem;
+}
+.sbdocs.sbdocs-wrapper .sbdocs-content {
+  position: relative;
+}
+.sbdocs.sbdocs-wrapper .inte--Badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+div[id$="--documentation"] .sbdocs.sbdocs-preview.css-tmvzag,
+div[id$="--documentation"] .sbdocs.sbdocs-preview.css-tmvzag > div.docs-story {
+  border: unset;
+  background: unset !important;
+  padding: 1rem;
+}
+div[id$="--documentation"] .css-11xgcgt {
+  display: none;
+}
+.story-documentation-section {
+  border-bottom: 0.1rem solid #dddddd;
+}
+.active + .story-documentation-section-data {
+  padding: 1rem;
+}
+.story-documentation-section + .story-documentation-section {
+  margin-top: 1rem;
+}
+.story-documentation-section-data {
+  padding: 0 1rem;
+  overflow: hidden;
+  transition: 300ms all linear;
+}
+.story-documentation-section:last-child {
+  border-bottom: unset;
+}
+.story-documentation-section h3 {
+  position: relative;
+  cursor: pointer;
+  color: var(--inte-P900);
+  font-size: 1.8rem;
+  border-radius: var(--radius-rounded-5);
+  transition: 100ms all linear;
+}
+.story-documentation-section h3:hover,
+.story-documentation-section h3.active {
+  background-color: var(--inte-P30);
+}
+.story-documentation-section span.story-documentation-heading-arrow {
+  position: absolute;
+  right: 1rem;
+  transition: 300ms all linear;
+}
+.story-documentation-section span.down {
+  transform: rotate(180deg);
+}
+.story-container {
+  background-color: #dddddd;
+}
+/* Does and Donts */
+.story-DoesDonts {
+  display: flex;
+  width: 100%;
+  gap: 1rem;
+  padding-bottom: 4rem;
+}
+.story-DoesDonts > div {
+  flex-grow: 1;
+  background-color: var(--inte-G30);
+  padding: 2rem;
+  border-radius: var(--radius-rounded-8);
+  position: relative;
+}
+.story-does {
+  border-bottom: 0.4rem solid rgba(19, 234, 0, 1);
+}
+.story-does:after,
+.story-donts:after {
+  position: absolute;
+  bottom: -45px;
+  left: 0;
+  font-size: 18px;
+}
+.story-does:after {
+  content: "Does";
+  color: rgba(19, 234, 0, 1);
+}
+.story-donts:after {
+  content: "Dont's";
+  color: rgba(231, 22, 14, 1);
+}
+.story-donts {
+  border-bottom: 0.4rem solid rgba(231, 22, 14, 1);
+}
+.py-15 {
+  padding: 1.5rem 0 !important;
+}
+.p-10 {
+  padding: 1rem !important;
+}
+
+/* Color Documentation */
+.story-color-documentation {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.6rem;
+  margin-bottom: 2.6rem;
+}
+.story-color-documentation h3 {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+.story-color-items {
+  flex-basis: 20rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  flex-grow: 1;
+  border: 0.1rem solid #e7e7e7;
+  border-radius: var(--radius-rounded-6);
+  max-width: 21.7rem;
+}
+.story-color-aria {
+  height: 12rem;
+  width: 100%;
+  border-radius: var(--radius-rounded-6);
+}
+.story-colorCodeWrapper > div {
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-rounded-6);
+  transition: 100ms all linear;
+}
+.story-colorCodeWrapper > div:hover {
+  background-color: var(--inte-P20);
+}
+.story-colorCodeWrapper > div .inte-flex__item:nth-child(2) {
+  opacity: 0;
+  visibility: hidden;
+  transition: 100ms all linear;
+}
+.story-colorCodeWrapper > div:hover .inte-flex__item:nth-child(2) {
+  opacity: 1;
+  visibility: visible;
+}
+.story-color-box {
+  position: relative;
+}
+.story-color-box h3 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: unset;
+  transform: translate(-50% ,-50%);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-stroke: 1px #dddddd;
+  font-size: 4rem;
+  cursor: default;
+}

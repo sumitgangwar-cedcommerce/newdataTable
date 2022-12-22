@@ -1,0 +1,175 @@
+/* Slick Dots Alignment */
+.inte-Carousel .slick-dots {
+  position: absolute;
+  bottom: unset;
+  display: block;
+  width: unset;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-align: center;
+}
+.inte-Carousel .slick-dots li {
+  position: relative;
+  display: inline-block;
+  width: unset;
+  height: unset;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.inte-Carousel .slick-dots li button {
+  font-size: 0;
+  line-height: 0;
+  display: block;
+  width: 1.2rem;
+  height: 1.2rem;
+  padding: 0;
+  cursor: pointer;
+  color: transparent;
+  border: 0;
+  outline: none;
+  background: var(--inte-G40);
+  margin: 0 0.6rem;
+  border-radius: 50%;
+}
+.inte-Carousel .slick-dots li.slick-active button {
+  background: var(--inte-P900);
+}
+.slick-dots li button:before{
+content:unset;
+}
+.slickdot_bottomCenter .slick-dots {
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0.7rem;
+  width:100%;
+}
+.slickdot_bottomRight .slick-dots {
+  right: 0;
+  bottom:.7rem;
+}
+.slickdot_bottomLeft .slick-dots {
+  left: 0;
+  bottom:.7rem;
+}
+.inte-Carousel .slickdot_topLeft .slick-dots {
+  top: 0;
+}
+.inte-Carousel .slickdot_topRight .slick-dots {
+  top: 0;
+  right: 0;
+  left: unset;
+  bottom: unset;
+  width: auto;
+}
+
+/* arrow alignment */
+.inte-Carousel .slickarrow_bottomRight,
+.inte-Carousel .slickarrow_bottomLeft,
+.inte-Carousel .slickarrow_bottomCenter,
+.inte-Carousel .slickdot_bottomRight,
+.inte-Carousel .slickdot_bottomLeft,
+.inte-Carousel .slickdot_bottomCenter {
+  padding-bottom: 4rem;
+}
+.inte-Carousel .slickarrow_topLeft,
+.inte-Carousel .slickarrow_topRight,
+.inte-Carousel .slickdot_topRight,
+.inte-Carousel .slickdot_topLeft{
+  padding-top:4rem;
+}
+.inte-Carousel .slick-disabled{
+  opacity:0.5;
+  cursor: not-allowed;
+}
+.inte-Carousel .slick-prev:before,
+.inte-Carousel .slick-next:before {
+  content: '';
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItY2hldnJvbi1sZWZ0Ij48cG9seWxpbmUgcG9pbnRzPSIxNSAxOCA5IDEyIDE1IDYiPjwvcG9seWxpbmU+PC9zdmc+);
+  height: 20px;
+  width: 20px;
+  display: block;
+  margin: 0;
+  background-position: 3px -2px;
+  background-size: 25px;
+}
+.inte-Carousel .slick-next:before {
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItY2hldnJvbi1yaWdodCI+PHBvbHlsaW5lIHBvaW50cz0iOSAxOCAxNSAxMiA5IDYiPjwvcG9seWxpbmU+PC9zdmc+)
+}
+.inte-Carousel .slick-arrow {
+  width: 3.4rem;
+  height: 3.4rem;
+  border: 0.1rem solid var(--inte-G50);
+  border-radius: var(--radius-rounded-4);
+  top: unset;
+  transform: unset;
+  background-color: transparent;
+  color:var(--inte-G800);
+}
+.inte-Carousel .slickarrow_topLeft .slick-arrow,
+.inte-Carousel .slickarrow_topRight .slick-arrow{
+  position: absolute;
+  top:0;
+  left:4rem;
+  z-index: 999;
+}
+.inte-Carousel .slickarrow_topLeft .slick-arrow:first-child{
+  left:0rem;
+}
+.inte-Carousel .slickarrow_topRight .slick-arrow{
+  right:0;
+  left:unset;
+}
+.inte-Carousel .slickarrow_topRight .slick-arrow:first-child{
+  right:4rem;
+  left:unset;
+}
+
+.slickarrow_bottomRight .slick-arrow:first-child {
+  right: 4rem!important;
+  left:unset;
+}
+.inte-Carousel .slickarrow_bottomRight .slick-arrow,
+.inte-Carousel .slickarrow_bottomLeft .slick-arrow,
+.inte-Carousel .slickarrow_bottomCenter .slick-arrow  {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+}
+.inte-Carousel .slickarrow_bottomLeft .slick-arrow {
+  right: unset;
+  left:4rem;
+}
+.inte-Carousel .slickarrow_bottomLeft .slick-arrow:first-child {
+  left: 0;
+  right:unset;
+}
+.inte-Carousel .slickarrow_bottomCenter .slick-arrow {
+  left: calc(50% + 0px);
+  right: unset;
+}
+.inte-Carousel .slickarrow_bottomCenter .slick-arrow:first-child {
+  left: calc(50% - 40px);
+}
+
+/* Arrow and Dots combined */
+.slickdot_bottomCenter.slickarrow_bottomCenter {
+  padding-bottom: 7rem;
+}
+.slickdot_topRight.slickarrow_topRight .slick-dots {
+  right: 8rem;
+}
+.slickdot_topLeft.slickarrow_topLeft .slick-dots {
+  left: 8rem;
+}
+.slickdot_bottomRight.slickarrow_bottomRight .slick-dots {
+  right: 8rem;
+}
+.slickdot_bottomCenter.slickarrow_bottomCenter .slick-dots {
+  bottom: 4.5rem;
+}
+.slickarrow_bottomLeft.slickdot_bottomLeft .slick-dots {
+  left: 8rem;
+}

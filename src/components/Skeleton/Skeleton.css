@@ -1,0 +1,48 @@
+/*Skeleton*/
+.inte__skeletonWrapper {
+    animation:skeletonAnimate .8s linear infinite alternate;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    will-change: opacity;
+  }
+  .inte__Skeleton--Text {
+    height: .8rem;
+    position: relative;
+  }
+  .inte__Skeleton--Text + .inte__Skeleton--Text {
+    margin-top: 1rem;
+}
+  .inte__Skeleton--Text::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: block;
+      background-color: var(--inte-G30);
+      border-radius: var(--radius-rounded-4);
+  }
+  [data-theme="dark"] .inte__Skeleton--Text::after {
+    background-color: var(--inte-G20);
+}
+  .inte__Skeleton--Text:last-child:not(:first-child) {
+      width: 80%;
+  }
+  @keyframes skeletonAnimate {
+    0% {
+     opacity:.6
+    }
+    to {
+     opacity:.9
+    }
+   }
+   @-webkit-keyframes skeletonAnimate {
+    0% {
+     opacity:.6
+    }
+    to {
+     opacity:.9
+    }
+   }
+  /*Skeleton end*/

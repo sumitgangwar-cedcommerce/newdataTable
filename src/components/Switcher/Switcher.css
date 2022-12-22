@@ -1,0 +1,53 @@
+.inte__Switcher--Wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+.inte--switcher[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+  .inte--switcher {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+  }
+  .inte--switcher:focus {
+    outline: 0;
+  }
+  
+  .inte--switcher {
+    height: 1.8rem;
+    width: 3.6rem;
+    border-radius: var(--radius-rounded-4);
+    display: inline-block;
+    position: relative;
+    margin: 0;
+    transition: all 0.2s ease;
+    background-color: var(--inte-G30);
+    overflow: hidden;
+}
+.inte--switcher:after {
+  content: "";
+  position: absolute;
+  top: 0.1rem;
+  left: 0.1rem;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: var(--radius-rounded-4);
+  background: var(--inte-G0);
+  box-shadow: 0.5px 0.5px 8px rgba(0, 0, 0, 0.25);
+  transition: all 0.2s cubic-bezier(0.5, 0.1, 0.75, 1.35);
+}
+
+.inte--switcher:checked {
+  background: var(--inte-B300);
+}
+.inte--switcher:checked:after {
+  background: var(--inte-B300);
+  transform: translatex(1.8rem);
+  background-color: var(--inte-G0);
+  box-shadow: -0.5px 0.5px 8px rgba(0, 0, 0, 0.5);
+}

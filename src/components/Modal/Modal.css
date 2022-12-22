@@ -1,0 +1,226 @@
+/*Modal*/
+.inte-Modal-Dialog__Container {
+  position: fixed;
+  z-index: 9999999;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.inte-Modal-Dialog__Modal {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-height: calc(100vh - 6rem);
+  background: var(--inte-G0);
+  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.15);
+  position: relative;
+  z-index: 9999999;
+}
+.inte-Modal-Header {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding: 1.2rem 1.6rem;
+  border-bottom: 0.1rem solid var(--inte-G42);
+  position: relative;
+  z-index: 1;
+}
+.inte-Modal-Header__Title {
+  word-wrap: break-word;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  flex: 1 1;
+}
+.inte-Modal-Header__Title h3 {
+  line-height: 2.4rem;
+  font-size: 1.6rem;
+}
+.inte-Modal-Header button {
+  padding: 0.4rem;
+  min-height: unset;
+}
+.inte-Modal-Header button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.inte-Modal-Header button:active {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.inte-Modal-Header button svg path {
+  fill: var(--dark-color);
+}
+
+.inte-Modal__BodyWrapper {
+  display: flex;
+  flex-grow: 1;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  min-height: 10rem;
+}
+.inte-Modal__Body {
+  width: 100%;
+}
+.inte-Scrollable--vertical {
+  overflow-y: auto;
+}
+.inte-Scrollable {
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+}
+.inte-Modal-Section {
+  flex: 0 0 auto;
+  padding: 1.2rem 1.6rem;
+}
+.inte-Modal-Footer {
+  display: flex;
+  align-self: flex-end;
+  align-items: center;
+  width: 100%;
+  padding: 1.2rem 1.6rem;
+  border-top: 0.1rem solid var(--color-pageBorder);
+  position: relative;
+  z-index: 1;
+}
+.inte-Modal-Footer__FooterContent {
+  width: 100%;
+}
+.inte-Backdrop {
+  position: fixed;
+  z-index: 518;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  background-color: var(--p-backdrop, rgba(33, 43, 54, 0.4));
+  opacity: 1;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  will-change: opacity;
+  -webkit-animation-name: ModalAnimationBackdrop;
+  animation-name: ModalAnimationBackdrop;
+  -webkit-animation-duration: 0.1s;
+  animation-duration: 0.1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  transform-origin: top center;
+}
+.inte-Modal__Wrapper .inte-Backdrop {
+  z-index: 999999;
+  backdrop-filter: blur(1px);
+}
+@media screen and (min-width: 40.0625em) {
+  .inte-Modal-Dialog {
+    padding: 0 1.5rem;
+  }
+  .inte-Modal-Dialog__Container {
+    justify-content: center;
+  }
+  .inte-Modal-Dialog__Modal {
+    position: relative;
+    margin: 0 auto;
+    border-radius: 0.6rem;
+    -webkit-animation-name: ModalAnimation;
+    animation-name: ModalAnimation;
+    -webkit-animation-duration: 0.1s;
+    animation-duration: 0.1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-transform-origin: top center;
+    transform-origin: top center;
+  }
+  .inte-Modal-Dialog--Medium {
+    max-width: 60rem;
+  }
+  .inte-Modal-Dialog--Small {
+    max-width: 45rem;
+  }
+  .inte-Modal-Footer {
+    display: flex;
+    align-self: flex-end;
+    align-items: center;
+    width: 100%;
+    padding: 1.2rem 1.6rem;
+    border-top: 0.1rem solid var(--inte-G42);
+    position: relative;
+    z-index: 1;
+  }
+  .inte-Modal-Footer__FooterContent {
+    width: 100%;
+  }
+  .inte-Modal-Dialog--Large {
+    max-width: 90rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .inte-Modal-Footer,
+  .inte-Modal-Header {
+    padding: 1rem;
+  }
+  .inte-Modal-Section {
+    padding: 1rem;
+  }
+}
+/*Modal end*/
+@keyframes ModalAnimation {
+  100% {
+    margin-top: 0;
+    -webkit-transform: scale(1,1);
+    transform: scale(1);
+    -webkit-opacity: 1;
+    opacity: 1;
+  }
+  0% {
+    margin-top: -10px;
+
+    -webkit-transform: scale(0.9,0.9);
+    transform: scale(0.9);
+    -webkit-opacity: 0;
+    opacity: 0;
+  }
+}
+@-webkit-keyframes ModalAnimation {
+  100% {
+    margin-top: 0;
+    -webkit-transform: scale(1,1);
+    transform: scale(1);
+    -webkit-opacity: 1;
+    opacity: 1;
+  }
+  0% {
+    margin-top: -10px;
+    -webkit-transform: scale(0.9,0.9);
+    transform: scale(0.9);
+    -webkit-opacity: 0;
+    opacity: 0;
+  }
+}
+@keyframes ModalAnimationBackdrop {
+  100% {
+    -webkit-opacity: 1;
+    opacity: 1;
+  }
+  0% {
+    -webkit-opacity: 0;
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes ModalAnimationBackdrop {
+  100% {
+    -webkit-opacity: 1;
+    opacity: 1;
+  }
+  0% {
+    -webkit-opacity: 0;
+    opacity: 0;
+  }
+}

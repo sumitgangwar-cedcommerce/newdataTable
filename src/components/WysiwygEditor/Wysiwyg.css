@@ -1,0 +1,11 @@
+.inte-Wysisyg .rdw-editor-main {
+    height: 100%;
+    overflow: auto;
+    box-sizing: border-box;
+    border: 1px solid var(--border-layout);
+    border-top: 0;
+    padding: 0 1.2rem;
+}
+.inte-Wysisyg .rdw-editor-toolbar {
+    margin: 0;
+}

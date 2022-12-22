@@ -1,0 +1,71 @@
+/*Page Header*/
+.inte-pageHeader {
+  padding-bottom: 1.6rem;
+  padding-top: 3.2rem;
+}
+.inte-PageHeader--hasMetadata {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+.inte-pageHeader--Description {
+  color: var(--inte-G450) !important;
+  font-size: 1.8rem;
+  line-height: 2.8rem;
+}
+.inte-PageHeader-Title-Action-Wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.6rem;
+}
+.inte__has--pageHeaderDescription .inte-PageHeader-Title-Action-Wrapper {
+  margin-bottom: 0.8rem;
+}
+.inte-PageHeader--Title-And-Reversenavigation {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+.inte__has--reverseNavigation .inte-PageHeader--Description {
+  padding-left: 5.2rem;
+}
+.inte__reverseNavigation button {
+  height: 3.6rem;
+  width: 3.6rem;
+  min-height: 2.6rem;
+}
+.inte-PageHeader--Description p {
+  color: var(--inte-G300) !important;
+}
+.inte-pageHeader--Title h1 {
+  color: var(--inte-G500) !important;
+}
+.inte-AnnouncementBar ~ .inte__Main .inte-pageHeader--fixed {
+  top: 11.2rem;
+}
+.inte-pageHeader--fixed {
+  top: 7.2rem;
+  position: sticky;
+  background-color: var(--inte-G20);
+  z-index: 999;
+}
+.inte__Topbar ~ .inte__Main {
+  padding: 7.2rem 3.2rem 7.5rem 3.2rem;
+}
+
+@media screen and (max-width: 768px) {
+  .inte-PageHeader-ActionMobile {
+    margin-top: 1.2rem;
+  }
+  .inte__has--reverseNavigation .inte-PageHeader-ActionMobile {
+    padding-left: 5.2rem;
+  }
+}
+
+@media screen and (max-width:480px){
+  .inte-pageHeader {
+    padding-left: 1.6rem;
+    padding-right: 1.6rem;
+}
+}

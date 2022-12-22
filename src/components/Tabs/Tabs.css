@@ -1,0 +1,148 @@
+/*Tabs*/
+.inte-tabsWrap {
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0 0 2rem;
+  overflow: auto;
+  margin-top: 0;
+  position: relative;
+}
+.inte-tabsWrap .inte__item {
+  cursor: pointer;
+  padding: 0 0.8rem;
+}
+.inte-tabsWrap a {
+  display: flex !important;
+  flex-direction: row;
+  align-items: center;
+}
+.inteTab--Status {
+  margin-left: 0.8rem;
+}
+.inte-tabsWrap a:hover {
+  border-bottom-color: var(--inte-P40);
+  color: var(--inte-G800);
+}
+.inte-tabsWrap a,
+.inte-tabsWrap .inteTab--text {
+  padding: 0 0.8rem 0.8rem 0.8rem;
+  color: var(--link-color-dark);
+  text-decoration: none;
+  display: inline-block;
+  outline: unset;
+  border-bottom: 0.2rem solid transparent;
+}
+.inte-tabsWrap .inteTab--text span {
+  font-size: 1.4rem;
+  font-weight: var(--weight-normal);
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+  white-space: pre;
+}
+.inte-Tabs--vertical .inte-tabsWrap .inteTab--text span {
+  white-space: normal;
+}
+.inte-Tabs--Animate2 .inte-AnimateBar {
+  height: 100%;
+  border-radius: var(--radius-rounded-4);
+  opacity: 0.12;
+}
+.inte-Tabs--Animate2 .inte__item a:hover {
+  border-bottom: unset;
+  background-color: rgb(67 27 188 / 4%);
+  border-radius: var(--radius-rounded-4);
+}
+.inte-Tabs--Animate2 .inte-tabsWrap a {
+  padding-top: 0.8rem;
+  border: 0;
+}
+.inte-tabsWrap .inte--Badge-content span,
+.inte-Tabs--horizontal .inteTab--text span {
+  white-space: pre;
+}
+.inte-TabIcon {
+  width: 2rem;
+  height: 2rem;
+}
+.inteTab--Status .inte--status {
+  padding: 0.4rem 1rem;
+}
+.inte-tabsWrap .inte__item--active a {
+  border-bottom: 0.2rem solid var(--inte-P1100) !important;
+  font-weight: var(--weight-bold);
+  color: var(--inte-P900);
+}
+.inte-Tabs--vertical {
+  display: flex;
+  align-items: flex-start;
+}
+.inte-Tabs--vertical .inte-tabsWrap--Items {
+  width: 100%;
+  max-width: 26rem;
+  background-color: var(--inte-G0);
+  border-radius: var(--radius-rounded-4);
+  margin: 0 2rem 0 0;
+}
+.inte-Tabs--vertical .inte-tabsWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0;
+  max-height: 100vh;
+}
+.inte-Tabs--vertical .inte__item .inteTab--text {
+  padding: 1.2rem 0.8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.inte-Tabs--vertical .inte__item {
+  width: 100%;
+  padding: 0;
+}
+.inte-tabsWrap--Content {
+  width: 100%;
+}
+ul.inte-tabsWrap li {
+  position: relative;
+}
+.inte__item--ActiveAnimate span.inteTab__TabContent {
+  color: var(--inte-P900);
+}
+.inte-AnimateBar {
+  position: absolute;
+  display: block;
+  bottom: 0px;
+  height: 0.25rem;
+  background-color: var(--inte-P900);
+  transition-duration: 300ms;
+  transition-property: left;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+/* .inte-Tabs--Animate1 .inte__item--ActiveAnimate:first-child:after {
+  position: absolute;
+  content: "";
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background-color: var(--inte-P900);
+  z-index: 1;
+}
+.inte-Tabs--Animate2 .inte__item--ActiveAnimate:first-child:after {
+  position: absolute;
+  content: "";
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  border-radius: var(--radius-rounded-4);
+  opacity: 0.12;
+  background-color: var(--inte-P900);
+  z-index: 1;
+} */
+/*Tabs End*/

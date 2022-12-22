@@ -1,0 +1,60 @@
+.init-LoginSimple__Wrapper {
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTc4IiBoZWlnaHQ9IjEwMDAiIHZpZXdCb3g9IjAgMCA1NzggMTAwMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTMwOS42MDIgNDg3LjgwOEw1NjEuMDcxIDIzNC44NEwyNDcuMzQ0IC04MC4zNDY3TC0xMzIuMzAyIDMwMC43NDNMLTM0MC4yMzIgNTA4LjY4NEwyNDIuMDU1IDEwOTQuODVMNTc3LjM0OCA3NTcuNTU5TDMwOS42MDIgNDg3LjgwOFpNLTIxMy4yNzcgNTA5LjA5M0wyNDYuOTM4IDQ3LjM2NTNMNDMzLjMwMiAyMzQuODRMMjQ1LjcxNyA0MjMuNTQzTDE3Mi40NzMgMzQ5Ljg2M0wxMDguOTk1IDQxMy43MTlMMTgyLjIzOSA0ODcuMzk5TDIwLjY5NiA2NDkuOTA0TDg0LjE3MzkgNzEzLjc2TDI0NS43MTcgNTUxLjI1NUw0NDkuOTg1IDc1Ni43NEwyNDIuMDU1IDk2Ny4xMzdMLTIxMy4yNzcgNTA5LjA5M1oiIGZpbGw9InVybCgjcGFpbnQwX2xpbmVhcl8yNzNfMjIxKSIgZmlsbC1vcGFjaXR5PSIwLjAzIi8+CjxkZWZzPgo8bGluZWFyR3JhZGllbnQgaWQ9InBhaW50MF9saW5lYXJfMjczXzIyMSIgeDE9Ii0zNDAuNDMyIiB5MT0iNTA3LjI1IiB4Mj0iNTc3LjQ1NSIgeTI9IjUwNy4yNSIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgo8c3RvcCBzdG9wLWNvbG9yPSIjNDEzQkJDIi8+CjxzdG9wIG9mZnNldD0iMC40NyIgc3RvcC1jb2xvcj0iIzM4MzM2NSIvPgo8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMwQTBBMEEiLz4KPC9saW5lYXJHcmFkaWVudD4KPC9kZWZzPgo8L3N2Zz4K");
+  background-position: 0 0;
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  padding-bottom: 9rem;
+  position: relative;
+}
+.init-LoginSimple {
+  max-width: 450px;
+  margin: 3rem auto;
+  width: 100%;
+  padding: 6rem 1.2rem;
+}
+
+.inte-LoginSimple__Footer {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.dropdown {
+  border: none !important;
+}
+.init-LoginSimple--fields {
+  margin-top: 4rem;
+}
+
+.init-LoginSimple--logoContent {
+  display: flex;
+  justify-content: center;
+}
+.init-LoginSimple--logo {
+  height: 60px;
+  width: 60px;
+  background-color: #f5f6f6;
+  border-radius: 50%;
+  margin-right: 2rem;
+}
+.ForgotPassword--button {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.2rem;
+}
+.login-horizontal--line {
+  border-top: 1px solid #cecece;
+}
+.registration-button,
+.registration {
+  display: flex;
+  align-items: center;
+}
+.registration-button > h3 {
+  margin-right: 0.5rem !important;
+}
+.registration > button {
+  margin-right: 0.5rem;
+}

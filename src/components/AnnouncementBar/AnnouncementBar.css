@@ -1,0 +1,116 @@
+.inte-AnnouncementBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-right: 1.2rem;
+  padding-left: 1.2rem;
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+  height: 4rem;
+}
+.inte-AnnouncementBar__content h3 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.inte-AnnouncmentBar--Close {
+  padding-right: 4.8rem;
+}
+.inte-AnnouncementBar + .inte__Topbar {
+  top: 4rem;
+}
+
+.inte-AnnouncementBar ~ .inte--logoWrapper {
+  top: 5.6rem;
+}
+.inte-AnnouncementBar + .inte__Topbar ~ .inte__Main {
+  padding-top: 11.2rem;
+}
+.inte-AnnouncementBar ~ .inte__Main {
+  padding-top: 9rem;
+}
+.inte-AnnouncementBar ~ .inte__Sidebar--toggle {
+  top: 5.6rem;
+}
+.inte-Announcement--success {
+    background-color: var(--inte-GR40);
+    border-bottom: 0.1rem solid var(--inte-GR65);
+}
+.inte-Announcement--danger {
+  background-color: var(--inte-R30);
+  border-bottom: 0.1rem solid var(--inte-R50);
+}
+.inte-Announcement--warning {
+    background-color: var(--inte-Y50);
+    border-bottom: 0.1rem solid var(--inte-Y70);
+}
+.inte-Announcement--info {
+    background-color: var(--inte-P30);
+    border-bottom: 0.1rem solid var(--inte-P40);
+}
+
+.inte-Announcement--center {
+  text-align: center;
+}
+.inte-Announcement--right {
+  text-align: right;
+}
+
+.inte-AnnouncementBar__action {
+  position: absolute;
+  right: 1.2rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.inte-AnnouncementBar__action button {
+  background-color: unset;
+  border: 0;
+  display: flex;
+  justify-content: center;
+  border-radius: var(--radius-rounded-4);
+  cursor: pointer;
+  transition: 300ms all linear;
+  padding: 0.4rem;
+}
+.inte-AnnouncementBar__action button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+@media screen and (max-width: 768px) {
+  .inte-AnnouncementBar__content .inte__text {
+    font-size: 1.3rem !important;
+    line-height: 1.8rem !important;
+  }
+  .inte-AnnouncementBar ~ .inte__Sidebar{
+    top:0;
+  }
+}
+@media screen and (max-width: 480px) {
+  .inte-AnnouncementBar__content .inte__text {
+    font-size: 1.2rem !important;
+  }
+}
+@media screen and (min-width:992px){
+  .inte-AnnouncementBar ~ .inte__Sidebar {
+  top: 4rem;
+}
+.inte-AnnouncementBar ~ .inte__Sidebar.inte__Sidebar--Active {
+  top: 0;
+}
+}
+/* @media screen and (min-width:992px) and (orientation: landscape){
+  .inte__Sidebar{
+    transition: unset!important;
+  }
+}
+@media screen and (max-width:991px) and (orientation: portrait){
+  .inte__Sidebar{
+    transition: unset!important;
+  }
+} */
+
+

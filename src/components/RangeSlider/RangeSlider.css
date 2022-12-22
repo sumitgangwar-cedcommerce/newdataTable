@@ -1,0 +1,8 @@
+.vertical-slider{
+    height: 300px;
+}
+.vertical-slider > div,
+.vertical-slider > div >div,
+.vertical-slider > div > div > div{
+    height: 100%;
+}

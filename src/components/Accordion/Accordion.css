@@ -1,0 +1,93 @@
+/*Collapsible*/
+.inte__accordion {
+  background-color: var(--inte-G20);
+  border-radius: var(--radius-rounded-4);
+  padding: 1.6rem;
+}
+.inte__accordion + .inte__accordion {
+  margin-top: 1.2rem;
+}
+.inte__Accordion--Bordered + .inte__accordion {
+  margin-top: 0;
+}
+.inte__Accordion--Bordered {
+  border-radius: 0;
+  border-bottom: 0.1rem solid var(--inte-G42);
+  background-color: var(--inte-G0);
+  padding: 1.6rem 0;
+}
+.inte__Accordion--Bordered.inte__accordion--active .inte__accordionBody {
+  padding: 0.8rem 0 0 3rem;
+}
+.inte__Accordion--Bordered + .inte__Accordion--Bordered:last-child {
+  border: 0;
+}
+.inte__accordionHeader {
+  cursor: pointer;
+  position: relative;
+}
+.inte__accordionHeader .inte__cardTitle h3 {
+  color: var(--inte-G800);
+  font-size: 1.4rem;
+  font-weight: var(--weight-bold);
+  margin: 0;
+  letter-spacing: normal;
+  line-height: 2rem;
+}
+.inte__accordionHeader .inte-flex__item svg {
+  display: flex;
+  display:-webkit-flex;
+  -webkit-box-orient: horizontal;
+  align-self: center;
+  margin-right: 1.2rem;
+}
+.inte__accordionHeader.inte__accordion--IconRight .inte-flex__item svg {
+  margin-left: 1.2rem;
+  margin-right: 0;
+}
+  .inte__accordion--active .inte__accordionHeader .inte__cardTitle h3 {
+    color: var(--inte-P900);
+}
+
+.inte__accordionBody {
+  height: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: padding-top 0.2s ease-out;
+  overflow: hidden;
+  padding-left: 3rem;
+}
+.inte__accordion--IconRight + .inte__accordionBody {
+  padding-left: 0 !important;
+}
+.inte__accordionBody.inte__accordion--active {
+  opacity: 1;
+  visibility: visible;
+  height: auto;
+  overflow: inherit;
+  padding-top: 0.8rem;
+}
+.inte__accordionBody > * {
+  word-break: break-word;
+}
+.inte-FilterSheet--BodyAccordion .inte__accordionBody > div {
+  padding: 0;
+  margin: 0;
+}
+/*Collapsible end*/
+
+@media screen and (max-width: 768px) {
+  .inte__accordionHeader .inte-flex__item:nth-child(2) img {
+    width: 3rem;
+  }
+}
+[data-theme="dark"]
+  .inte__accordionHeader
+  .inte-flex__item:nth-child(2)
+  > svg
+  path {
+  fill: var(--action-color);
+}
+[data-theme="dark"] .inte__accordionHeader {
+  background-color: var(--border-layout);
+}

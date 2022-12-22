@@ -1,0 +1,8 @@
+.inte--Avatar__Zoom {
+  transition: 300ms all linear;
+  cursor: pointer;
+}
+.inte--Avatar__Zoom:hover {
+  transition: 300ms all linear;
+  transform: scale(1.2);
+}

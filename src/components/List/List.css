@@ -1,0 +1,11 @@
+.inte__List {
+    padding-left: 4rem;
+    margin: 0;
+}
+.inte__List li {
+    padding-bottom: 0.8rem;
+    list-style-type: inherit;
+}
+.inte__List--WithImage li {
+    list-style: unset;
+}

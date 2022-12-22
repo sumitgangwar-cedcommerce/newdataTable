@@ -1,0 +1,13 @@
+.inte__dot {
+	background-color: var(--inte-G40);
+	border-radius: 50%;
+	display: block;
+	height: 1.7rem;
+	width: 1.7rem;
+  }
+  .inte__dot--active{
+	background-color: var(--inte-P900);
+  }
+  .inte__dot--complete{
+	background-color:var(--inte-GR300);
+  }

@@ -1,0 +1,83 @@
+/*Tags and Swatches*/
+.inte--Tag {
+  padding: 0.4rem 0.8rem;
+  text-align: center;
+  border-radius: var(--radius-rounded-4);
+  font-size: 1.4rem;
+  font-weight: var(--weight-normal);
+  display: inline-flex;
+  transition: 300ms all linear;
+  background-color: var(--inte-G30);
+  color: var(--inte-G800);
+  min-height: 2.8rem;
+  align-items: center;
+}
+.inte--Tag__Dismissible {
+  display: flex;
+  align-items: center;
+}
+.inte--Tag__Dismissible button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.inte--Tag__Dismissible button {
+  background-color: var(--inte-G40);
+  border: 0;
+  display: flex;
+  justify-content: center;
+  border-radius: var(--radius-rounded-4);
+  cursor: pointer;
+  transition: 300ms all linear;
+  padding: 0.2rem;
+  margin-left: 0.4rem;
+}
+.inte--TagNarrow .inte--Tag-content span {
+  font-size: 1.2rem;
+  line-height: 1;
+  font-weight: 400;
+  display: flex;
+}
+.inte--Tag-content span {
+  font-size: 1.2rem;
+}
+.inte--Tag-content *,
+.inte--Tag-content {
+  line-height: 1;
+}
+.inte--TagNarrow {
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--radius-rounded-4);
+}
+.inte--Tag--Popover-Wrapper {
+  display: flex;
+  align-items: center;
+  margin-left: 0.4rem;
+}
+.inte--Tag-hasPopover ~ .inte__Popover-Wrapper--Element {
+  right: unset;
+  left: 0;
+}
+.inte--Tag-ActivePopover {
+  background-color: var(--inte-G42);
+}
+.inte--Tag-hasPopover {
+  cursor: pointer;
+}
+.inte--Tag-Count {
+  padding: 0.2rem 0.4rem;
+  line-height: normal;
+  background-color: var(--inte-G600);
+  display: block;
+  color: var(--inte-G0);
+  border-radius: var(--radius-rounded-4);
+  font-size: 1.1rem;
+  margin-right: 1.2rem;
+}
+.inte--Tag__Dismissible .inte--Tag--Popover-Wrapper {
+  margin-right: 1.2rem;
+}
+/*Tags and Swatches end*/
+
+/* DARK MODE */
+[data-theme="dark"] .inte--Tag {
+  opacity: 0.7;
+}
