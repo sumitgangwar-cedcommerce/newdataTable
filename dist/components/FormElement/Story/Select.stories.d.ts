@@ -20,6 +20,5 @@ export declare const DisableSelect: any;
 export declare const SelectLoading: any;
 export declare const SelectPopoverPosition: any;
 export declare const SearchEnableSelect: any;
-export declare const LabelInLineSelect: any;
 export declare const SelectWithHelpTextAndIcon: any;
 export declare const SelectWithHelpTextAndWithoutIcon: any;

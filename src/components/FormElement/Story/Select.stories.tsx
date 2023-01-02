@@ -66,17 +66,17 @@ export default {
       },
       defaultValue: false,
     },
+    multiSelect: {
+      control: {
+        type: "boolean",
+      },
+      defaultValue: false,
+    },
     position: {
       control: {
         type: "radio",
         options: ["top", "bottom"],
       },
-    },
-    labelInLine: {
-      control: {
-        type: "boolean",
-      },
-      defaultValue: false,
     },
     helpIcon: {
       description: "Add any desired custom Icon beside help text",
@@ -155,7 +155,6 @@ const Template: Story<SelectI> = ({ ...rest }) => {
         {...rest}
         value={value1}
         name={rest.name}
-        labelInLine={rest.labelInLine}
         position="top"
         popoverContainer="body"
         required={rest.required}
@@ -183,7 +182,6 @@ const Group: Story<SelectI> = ({ ...rest }) => {
         value={value1}
         popoverContainer={rest.popoverContainer}
         name={rest.name}
-        labelInLine={rest.labelInLine}
         onChange={(e) => {
           onSelectChange(e);
         }}
@@ -392,47 +390,6 @@ SearchEnableSelect.decorators = [
           // dropDownheight={200}
           name={"Select"}
           searchEable
-          onChange={(e) => {
-            onSelectChange(e);
-          }}
-          helpIcon={
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="#c3c3c3"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <circle cx="11" cy="11" r="8"></circle>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg>
-          }
-        />
-      </Card>
-    );
-  },
-];
-//Labelinline
-export const LabelInLineSelect: any = Template.bind({});
-LabelInLineSelect.decorators = [
-  () => {
-    const [value1, setValue] = useState("");
-    function onSelectChange(val: string) {
-      setValue(val);
-    }
-    return (
-      <Card>
-        <Select
-          options={options}
-          onblur={() => {}}
-          value={value1}
-          // dropDownheight={200}
-          name={"Select Label"}
-          labelInLine
           onChange={(e) => {
             onSelectChange(e);
           }}

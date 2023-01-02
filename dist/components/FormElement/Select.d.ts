@@ -1,7 +1,7 @@
 import React from "react";
 import "../../styles.module.css";
 import "./FormElement.css";
-declare function Select({ thickness, options, onChange, value, selectHelp, name, placeholder, disabled, searchEable, labelInLine, loading, ellipsis, helpIcon, controlStates, position, popoverContainer, required, customClass, ...props }: SelectI): JSX.Element;
+declare function Select({ thickness, options, onChange, value, selectHelp, name, placeholder, disabled, searchEable, loading, ellipsis, helpIcon, controlStates, position, popoverContainer, required, customClass, ...props }: SelectI): JSX.Element;
 export declare const getScrollParent: (node: any) => any;
 export declare type SelectI = {
     options?: Array<ObjI>;
@@ -16,13 +16,13 @@ export declare type SelectI = {
     controlStates?: "Sucess" | "Warning" | "Error" | any;
     disabled?: boolean;
     searchEable?: boolean;
-    labelInLine?: boolean;
     loading?: boolean;
     ellipsis?: boolean;
     position?: "top" | "bottom";
     popoverContainer?: "body" | "element";
     required?: boolean;
     customClass?: string;
+    multiSelect?: boolean;
 };
 interface ObjI extends GroupI {
     label: string | React.ReactNode;

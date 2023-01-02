@@ -2,8 +2,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import { createPortal } from "react-dom";
-import { TextStyles, TextField } from "..";
-import { ChevronDown, Search } from "react-feather";
+import { TextStyles, TextField ,Tag } from "..";
+import { ChevronDown } from "react-feather";
 import "../../styles.module.css";
 import "./FormElement.css";
 
@@ -17,7 +17,6 @@ function Select({
   placeholder = "Select",
   disabled = false,
   searchEable = false,
-  labelInLine = false,
   loading = false,
   ellipsis = true,
   helpIcon,
@@ -31,8 +30,13 @@ function Select({
   const [displayMenu, setdisplayMenu] = useState(false);
   const [id] = useState(() => "-" + Math.floor(Math.random() * 1000));
   const [searchValue, updateSearch] = useState("");
-  const myRef: any = useRef();
-  const myReff: any = useRef();
+  const [setClick, setClicked] = useState<any>([]);
+  const myRef = useRef<any>();
+  const myReff= useRef<any>();
+  const listRef =useRef<any>();
+  useEffect(() =>{
+    console.log(listRef.current)
+  },[]);
   const parentRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (parentRef && parentRef.current) {
@@ -109,17 +113,20 @@ function Select({
     setdisplayMenu(!displayMenu);
   }
   function MoldGroupOptions(group: ObjI[]) {
-    return group.filter(itWillSearchForYou).map((option) => {
+    return group.filter(itWillSearchForYou).map((option,index) => {
       return (
         <li
+          ref={listRef}
           key={option.value}
           value={option.value}
           onClick={(event) => {
             onChange(option.value, option);
-            setdisplayMenu(false);
+            {props.multiSelect ? setdisplayMenu(true):setdisplayMenu(false)}
             updateSearch("");
+            setClicked(index)
             event.stopPropagation();
           }}
+          className={setClick === index  ? "hello" :""}
           id={"ced-li-componenet" + id}
         >
           <TextStyles textcolor="light">{option.label}</TextStyles>
@@ -149,17 +156,18 @@ function Select({
               ? "inte-Select__Select--Item inte-Select__Select--ItemGrouped"
               : "inte-Select__Select--Item"
           }
-          onClick={() => {
-            onChange(option.value, option);
-            setdisplayMenu(false);
+          onClick={(e) => {
+            // onChange(option.value, option);
+            e.stopPropagation();
+            {props.multiSelect ? setdisplayMenu(true):setdisplayMenu(true)}
             updateSearch("");
           }}
           key={option.value}
           id={"ced-li-componenet" + id}
           value={option.value}
         >
-          <TextStyles textcolor="light">{option.label}</TextStyles>
-          {option.group ? <ol>{MoldGroupOptions(option.group)}</ol> : null}
+          <TextStyles utility="inte-Select__Select--ItemHeading" textcolor="light">{option.label}</TextStyles>
+          {option.group ? <ol className="inte-Select__Select--ItemGroupItem">{MoldGroupOptions(option.group)}</ol> : null}
         </li>
       );
     });
@@ -181,19 +189,18 @@ function Select({
     });
     return valueNew;
   };
+ 
 
   const renderSearch = () => {
     return (
-      <li
-        className="inte-select-options-search"
-        id={"ced-li-componenet" + id}
+      <div
+        className="inte-formElement-Search"
         onClick={(e) => {
           e.stopPropagation();
+          showDropdownMenu();
         }}
       >
         <TextField
-          prefix={<Search size={20} />}
-          placeHolder="Search"
           value={searchValue}
           autoFocus={true}
           onChange={(e) => {
@@ -201,10 +208,9 @@ function Select({
             !reg.test(e) && updateSearch(e);
           }}
         />
-      </li>
+      </div>
     );
   };
-
 
   const positionObjectMemo = useMemo(() => {
     return myRef.current?.getBoundingClientRect()
@@ -224,7 +230,7 @@ function Select({
         class: x,
         style: {
           left: positionObject.left,
-          top: positionObject.top - portalHeight - 1,
+          top: positionObject.top - portalHeight - 3,
         },
       };
     } else {
@@ -232,7 +238,7 @@ function Select({
       return {
         class: x,
         style: {
-          top: positionObject.top + positionObject.height + 1,
+          top: positionObject.top + positionObject.height + 3,
           left: positionObject.left,
         },
       };
@@ -255,23 +261,9 @@ function Select({
       <ul
         style={{ maxHeight: 250 + "px" }}
         aria-label="inte-select-options"
-        className={`${
-          searchEable
-            ? "inte__Search-Enabled inte-select-options"
-            : "inte-select-options"
-        }`}
+        className={"inte-select-options"}
       >
-        {searchEable && renderSearch()}
-        {searchEable ? (
-          <li
-            className="inte-search--options"
-            style={searchEable && { maxHeight: 250 + "px" }}
-          >
-            <ul>{moldOptions()}</ul>
-          </li>
-        ) : (
-          moldOptions()
-        )}
+        {moldOptions()}
       </ul>
     </div>
   );
@@ -287,7 +279,6 @@ function Select({
           : "inte-select-options"
       }`}
     >
-      {searchEable && renderSearch()}
       {searchEable ? (
         <li className="inte-search--options">
           <ul>{moldOptions()}</ul>
@@ -345,11 +336,15 @@ function Select({
         aria-expanded={displayMenu ? "true" : "false"}
         data-ellipsis={ellipsis ? "inte--ellipsis" : "inte--Noellipsis"}
         className={`inte-formElement--Wrap ${controlStatesVal}  ${eleThickness} ${
-          labelInLine ? "inte__LabelInline" : ""
-        } ${displayMenu ? "inte-formElement--Focus" : ""}`}
+          displayMenu ? "inte-formElement--Focus" : ""
+        }`}
       >
-        {name && !labelInLine ? (
-          <TextStyles utility={required ? "inte--Required inte-Label--Text" : "inte-Label--Text"}>
+        {name ? (
+          <TextStyles
+            utility={
+              required ? "inte--Required inte-Label--Text" : "inte-Label--Text"
+            }
+          >
             {name}
           </TextStyles>
         ) : null}
@@ -365,16 +360,15 @@ function Select({
             onBlur={onblur}
             style={{ opacity: disabled || loading ? "0.6" : "1" }}
             id={"ced-select-componenet" + id}
-            className={`inte-formElement inte-select  ${elePosition} ${disabled ? "inte-select--Disabled" : ""}`}
+            className={`inte-formElement inte-select  ${elePosition} ${
+              disabled ? "inte-select--Disabled" : ""
+            }`}
           >
             <>
-              {name && labelInLine ? (
-                <TextStyles utility={`m-0`}>{name}</TextStyles>
-              ) : null}
-
               <span className="inte__Select--Selected">
-                {checkSelectedID()}
+                {props.multiSelect ? <Tag destroy={()=> alert("destryed")} children={checkSelectedID()} /> : <>{checkSelectedID()}</>}
               </span>
+              {searchEable && renderSearch()}
               <div className="inte-formElemet__Arrow">
                 <ChevronDown
                   size={20}
@@ -399,20 +393,9 @@ function Select({
                 <ul
                   style={{ maxHeight: 250 + "px" }}
                   aria-label="inte-select-options"
-                  className={`${
-                    searchEable
-                      ? "inte__Search-Enabled inte-select-options"
-                      : "inte-select-options"
-                  }`}
+                  className={`inte-select-options`}
                 >
-                  {searchEable && renderSearch()}
-                  {searchEable ? (
-                    <li className="inte-search--options">
-                      <ul>{moldOptions()}</ul>
-                    </li>
-                  ) : (
-                    moldOptions()
-                  )}
+                  {moldOptions()}
                 </ul>
               </div>
             ) : popoverContainer == "body" ? (
@@ -484,13 +467,13 @@ export type SelectI = {
   controlStates?: "Sucess" | "Warning" | "Error" | any;
   disabled?: boolean;
   searchEable?: boolean;
-  labelInLine?: boolean;
   loading?: boolean;
   ellipsis?: boolean;
   position?: "top" | "bottom";
   popoverContainer?: "body" | "element";
   required?: boolean;
   customClass?: string;
+  multiSelect?:boolean;
 };
 
 interface ObjI extends GroupI {

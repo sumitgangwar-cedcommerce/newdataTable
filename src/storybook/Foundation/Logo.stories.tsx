@@ -1,10 +1,10 @@
 import React from "react";
-import Card from "../../../components/Card/Card";
+// import Card from "../../../components/Card/Card";
 import "../../storybook.css";
-import { Logo } from "../Logo/Logo";
+import { Logo } from "./Logo"
 
 export default {
-  title: "Foundation/Logo/Logo",
+  title: "Foundation/Logo",
   component: Logo,
   parameters: {
     docs: {},
@@ -13,9 +13,7 @@ export default {
 
 const Template = ({}) => {
   return (
-    <Card>
-
-    </Card>
+    <Logo />
   );
 };
 export const Primary: any = Template.bind({});

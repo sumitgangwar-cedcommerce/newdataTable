@@ -31908,8 +31908,8 @@ visibility: visible;
 .inte-select--Disabled {
   cursor: not-allowed;
 }
-.inte-formElement--Error .inte-form__itemHelp{
-  animation: movehelp 0.5s cubic-bezier(.36,.07,.19,.97) both;;
+.inte-formElement--Error .inte-form__itemHelp {
+  animation: movehelp 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
 }
 .inte-form__itemHelp {
   font-size: 1.6rem;
@@ -32175,26 +32175,17 @@ h3 + .inte-formElementTextfield ~ .inte-clear {
 /* Textfield CSS End Here*/
 
 /* Select CSS Component  */
-.inte-select li.inte-search--options .inte-Select__Select--ItemGrouped > h3 {
-  margin: 0 !important;
-  padding: 0 0 1.2rem 0;
-}
+
 .inte-select h3 ~ .inte-loading {
   top: 2.1rem;
-}
-.inte-search--options > ul > li {
-  padding: 0 0.8rem 0.8rem;
-}
-.inte-search--options > ul > li:first-child {
-  padding-top: 0.8rem;
 }
 .inte-select > ul,
 .inte-formElementDropdown {
   list-style-type: none;
   margin: 0;
-  padding: 0.8rem;
+  padding: 1.2em;
   right: 0;
-  top: calc(100% + 2px);
+  top: calc(100% + 4px);
   left: 0;
   background-color: var(--inte-G0);
   position: absolute;
@@ -32212,10 +32203,6 @@ h3 + .inte-formElementTextfield ~ .inte-clear {
 .inte-Select__Select--Item:not(.inte-Select__Select--ItemGrouped) {
   padding: 0.8rem;
 }
-.inte-select > ul li.inte-search--options {
-  max-height: 200px;
-  overflow: auto;
-}
 .inte-select ul ol {
   list-style-type: none;
   margin: 0;
@@ -32227,7 +32214,6 @@ h3 + .inte-formElementTextfield ~ .inte-clear {
   font-weight: var(--weight-bold);
   border-radius: 10px;
   z-index: 1;
-  margin-top: 0.4rem;
 }
 .inte-select li,
 .inte-formElementDropdown li {
@@ -32238,24 +32224,21 @@ h3 + .inte-formElementTextfield ~ .inte-clear {
 .inte-select li li {
   border-bottom: none;
   font-size: 1.4rem;
-  padding: 0.8rem;
-}
-.inte-Select__Select--ItemGrouped {
-  padding: 0 0.8rem 0.8rem;
+  padding: 1.2rem 0.8rem 1.2rem;
 }
 .inte-select-options ol li:hover {
-  background-color: var(--inte-G30);
+  background-color: var(--inte-P20);
 }
-.inte-select .inte__Search-Enabled {
-  max-height: unset !important;
-  overflow: visible;
+.inte-select-options ol li:active {
+  background-color: var(--inte-P30);
 }
 .inte-Select__Select--ItemGrouped > h3 {
-  border-bottom: 0.1rem solid var(--inte-G42);
   color: var(--inte-G800) !important;
   cursor: default;
-  padding: 0 0 1.2rem 0;
+  padding: 0;
   margin-bottom: 0 !important;
+  padding: 1.2rem 0.8rem;
+  font-weight: var(--weight-bolder) !important;
 }
 .inte-select li:last-child {
   border-bottom: none;
@@ -32283,7 +32266,7 @@ h3 + .inte-formElementTextfield ~ .inte-clear {
   color: var(--inte-G800);
 }
 .inte-formElemet__Arrow svg {
-  transform:rotate(0deg);
+  transform: rotate(0deg);
   transition: 200ms all linear;
   transform-origin: center;
 }
@@ -32552,12 +32535,6 @@ h3 + .inte-formElementTextfield ~ .inte-clear {
   margin-right: 8px !important;
   line-height: 2.2rem;
 }
-.inte__LabelInline .inte-select > h3 {
-  white-space: pre;
-  margin-bottom: 0 !important;
-  color: var(--inte-G300) !important;
-}
-
 /*Choice List*/
 .inte-Select__ChoiceList {
   flex-direction: column;
@@ -32628,19 +32605,6 @@ ul.inte-choiceList--options {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.inte-select-options-search {
-  position: sticky;
-  top: 0;
-  z-index: 1;
-  background-color: var(--inte-G0) !important;
-}
-.inte-select-options-search .inte-formElement {
-  border-radius: 0;
-  border: 0 !important;
-  box-shadow: unset !important;
-  height: auto !important;
-  background-color: var(--inte-G20);
-}
 .inte-formElement {
   transition: 100ms box-shadow linear;
 }
@@ -32663,13 +32627,7 @@ ul.inte-choiceList--options {
 }
 .inte-select.inte-select--Fixed {
   padding: 0 !important;
-  /* opacity: 0;
-  visibility: hidden; */
 }
-/* .inte-select.inte-select--Fixed.inte-select--Fixed-Active {
-  opacity: 1;
-  visibility: visible;
-} */
 .inte-select.inte-select--Fixed:after {
   content: unset;
 }
@@ -32681,6 +32639,18 @@ ul.inte-choiceList--options {
   cursor: pointer;
   color: var(--inte-G450);
 }
+.inte-formElement-Search {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+.inte-formElement-Search .inte-formElement.inte-formElementTextfield {
+  border: 0!important;
+  height: 4.2rem!important;
+  box-shadow: unset!important;
+  background-color: transparent!important;
+
+}
 /* Animations */
 @keyframes spin {
   0% {
@@ -32691,19 +32661,24 @@ ul.inte-choiceList--options {
   }
 }
 @keyframes movehelp {
-  10%, 90% {
+  10%,
+  90% {
     transform: translate3d(-2px, 0, 0);
   }
-  
-  20%, 80% {
+
+  20%,
+  80% {
     transform: translate3d(2px, 0, 0);
   }
 
-  30%, 50%, 70% {
+  30%,
+  50%,
+  70% {
     transform: translate3d(-6px, 0, 0);
   }
 
-  40%, 60% {
+  40%,
+  60% {
     transform: translate3d(6px, 0, 0);
   }
 }

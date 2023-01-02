@@ -35344,12 +35344,17 @@ var TextArea = function (_a) {
 };
 
 function Select(_a) {
-    var _b = _a.thickness, thickness = _b === void 0 ? "thick" : _b, _c = _a.options, options = _c === void 0 ? [] : _c, _d = _a.onChange, onChange = _d === void 0 ? function () { return null; } : _d, _e = _a.value, value = _e === void 0 ? "" : _e, selectHelp = _a.selectHelp, _f = _a.name, name = _f === void 0 ? "" : _f, _g = _a.placeholder, placeholder = _g === void 0 ? "Select" : _g, _h = _a.disabled, disabled = _h === void 0 ? false : _h, _j = _a.searchEable, searchEable = _j === void 0 ? false : _j, _k = _a.labelInLine, labelInLine = _k === void 0 ? false : _k, _l = _a.loading, loading = _l === void 0 ? false : _l, _m = _a.ellipsis, ellipsis = _m === void 0 ? true : _m, helpIcon = _a.helpIcon, controlStates = _a.controlStates, _o = _a.position, position = _o === void 0 ? "bottom" : _o, _p = _a.popoverContainer, popoverContainer = _p === void 0 ? "body" : _p, _q = _a.required, required = _q === void 0 ? false : _q, _r = _a.customClass, customClass = _r === void 0 ? "" : _r, props = tslib.__rest(_a, ["thickness", "options", "onChange", "value", "selectHelp", "name", "placeholder", "disabled", "searchEable", "labelInLine", "loading", "ellipsis", "helpIcon", "controlStates", "position", "popoverContainer", "required", "customClass"]);
-    var _s = React.useState(false), displayMenu = _s[0], setdisplayMenu = _s[1];
+    var _b = _a.thickness, thickness = _b === void 0 ? "thick" : _b, _c = _a.options, options = _c === void 0 ? [] : _c, _d = _a.onChange, onChange = _d === void 0 ? function () { return null; } : _d, _e = _a.value, value = _e === void 0 ? "" : _e, selectHelp = _a.selectHelp, _f = _a.name, name = _f === void 0 ? "" : _f, _g = _a.placeholder, placeholder = _g === void 0 ? "Select" : _g, _h = _a.disabled, disabled = _h === void 0 ? false : _h, _j = _a.searchEable, searchEable = _j === void 0 ? false : _j, _k = _a.loading, loading = _k === void 0 ? false : _k, _l = _a.ellipsis, ellipsis = _l === void 0 ? true : _l, helpIcon = _a.helpIcon, controlStates = _a.controlStates, _m = _a.position, position = _m === void 0 ? "bottom" : _m, _o = _a.popoverContainer, popoverContainer = _o === void 0 ? "body" : _o, _p = _a.required, required = _p === void 0 ? false : _p, _q = _a.customClass, customClass = _q === void 0 ? "" : _q, props = tslib.__rest(_a, ["thickness", "options", "onChange", "value", "selectHelp", "name", "placeholder", "disabled", "searchEable", "loading", "ellipsis", "helpIcon", "controlStates", "position", "popoverContainer", "required", "customClass"]);
+    var _r = React.useState(false), displayMenu = _r[0], setdisplayMenu = _r[1];
     var id = React.useState(function () { return "-" + Math.floor(Math.random() * 1000); })[0];
-    var _t = React.useState(""), searchValue = _t[0], updateSearch = _t[1];
+    var _s = React.useState(""), searchValue = _s[0], updateSearch = _s[1];
+    var _t = React.useState([]), setClick = _t[0], setClicked = _t[1];
     var myRef = React.useRef();
     var myReff = React.useRef();
+    var listRef = React.useRef();
+    React.useEffect(function () {
+        console.log(listRef.current);
+    }, []);
     var parentRef = React.useRef(null);
     React.useEffect(function () {
         if (parentRef && parentRef.current) {
@@ -35418,13 +35423,16 @@ function Select(_a) {
         setdisplayMenu(!displayMenu);
     }
     function MoldGroupOptions(group) {
-        return group.filter(itWillSearchForYou).map(function (option) {
-            return (React__default["default"].createElement("li", { key: option.value, value: option.value, onClick: function (event) {
+        return group.filter(itWillSearchForYou).map(function (option, index) {
+            return (React__default["default"].createElement("li", { ref: listRef, key: option.value, value: option.value, onClick: function (event) {
                     onChange(option.value, option);
-                    setdisplayMenu(false);
+                    {
+                        props.multiSelect ? setdisplayMenu(true) : setdisplayMenu(false);
+                    }
                     updateSearch("");
+                    setClicked(index);
                     event.stopPropagation();
-                }, id: "ced-li-componenet" + id },
+                }, className: setClick === index ? "hello" : "", id: "ced-li-componenet" + id },
                 React__default["default"].createElement(TextStyles, { textcolor: "light" }, option.label)));
         });
     }
@@ -35444,13 +35452,16 @@ function Select(_a) {
         return options.filter(itWillSearchForYou).map(function (option) {
             return (React__default["default"].createElement("li", { className: option.group
                     ? "inte-Select__Select--Item inte-Select__Select--ItemGrouped"
-                    : "inte-Select__Select--Item", onClick: function () {
-                    onChange(option.value, option);
-                    setdisplayMenu(false);
+                    : "inte-Select__Select--Item", onClick: function (e) {
+                    // onChange(option.value, option);
+                    e.stopPropagation();
+                    {
+                        props.multiSelect ? setdisplayMenu(true) : setdisplayMenu(true);
+                    }
                     updateSearch("");
                 }, key: option.value, id: "ced-li-componenet" + id, value: option.value },
-                React__default["default"].createElement(TextStyles, { textcolor: "light" }, option.label),
-                option.group ? React__default["default"].createElement("ol", null, MoldGroupOptions(option.group)) : null));
+                React__default["default"].createElement(TextStyles, { utility: "inte-Select__Select--ItemHeading", textcolor: "light" }, option.label),
+                option.group ? React__default["default"].createElement("ol", { className: "inte-Select__Select--ItemGroupItem" }, MoldGroupOptions(option.group)) : null));
         });
     }
     var eleThickness = getThickness();
@@ -35469,10 +35480,11 @@ function Select(_a) {
         return valueNew;
     };
     var renderSearch = function () {
-        return (React__default["default"].createElement("li", { className: "inte-select-options-search", id: "ced-li-componenet" + id, onClick: function (e) {
+        return (React__default["default"].createElement("div", { className: "inte-formElement-Search", onClick: function (e) {
                 e.stopPropagation();
+                showDropdownMenu();
             } },
-            React__default["default"].createElement(TextField, { prefix: React__default["default"].createElement(reactFeather.Search, { size: 20 }), placeHolder: "Search", value: searchValue, autoFocus: true, onChange: function (e) {
+            React__default["default"].createElement(TextField, { value: searchValue, autoFocus: true, onChange: function (e) {
                     var reg = /[!@#$%^*()+\-=\[\]{};':"\\|<>\?]/g;
                     !reg.test(e) && updateSearch(e);
                 } })));
@@ -35495,7 +35507,7 @@ function Select(_a) {
                 class: x,
                 style: {
                     left: positionObject.left,
-                    top: positionObject.top - portalHeight - 1,
+                    top: positionObject.top - portalHeight - 3,
                 },
             };
         }
@@ -35504,7 +35516,7 @@ function Select(_a) {
             return {
                 class: x,
                 style: {
-                    top: positionObject.top + positionObject.height + 1,
+                    top: positionObject.top + positionObject.height + 3,
                     left: positionObject.left,
                 },
             };
@@ -35512,18 +35524,11 @@ function Select(_a) {
     }
     var pp = dyPos();
     var ulEle = (React__default["default"].createElement("div", { ref: myReff, className: "inte-select inte-select--Fixed ".concat(pp.class, " ").concat(customClass), id: "inte-select" + id, style: tslib.__assign(tslib.__assign({ width: positionObject.width, position: "fixed" }, pp.style), { zIndex: 9999999 }) },
-        React__default["default"].createElement("ul", { style: { maxHeight: 250 + "px" }, "aria-label": "inte-select-options", className: "".concat(searchEable
-                ? "inte__Search-Enabled inte-select-options"
-                : "inte-select-options") },
-            searchEable && renderSearch(),
-            searchEable ? (React__default["default"].createElement("li", { className: "inte-search--options", style: searchEable && { maxHeight: 250 + "px" } },
-                React__default["default"].createElement("ul", null, moldOptions()))) : (moldOptions()))));
+        React__default["default"].createElement("ul", { style: { maxHeight: 250 + "px" }, "aria-label": "inte-select-options", className: "inte-select-options" }, moldOptions())));
     var ulElel = (React__default["default"].createElement("ul", { style: { maxHeight: 250 + "px" }, id: "inte-select" + id, "aria-label": "inte-select-options", className: "".concat(searchEable
             ? "inte__Search-Enabled inte-select-options"
-            : "inte-select-options") },
-        searchEable && renderSearch(),
-        searchEable ? (React__default["default"].createElement("li", { className: "inte-search--options" },
-            React__default["default"].createElement("ul", null, moldOptions()))) : (moldOptions())));
+            : "inte-select-options") }, searchEable ? (React__default["default"].createElement("li", { className: "inte-search--options" },
+        React__default["default"].createElement("ul", null, moldOptions()))) : (moldOptions())));
     React.useEffect(function () {
         setdisplayMenu(false);
         logit();
@@ -35560,8 +35565,8 @@ function Select(_a) {
         };
     });
     return (React__default["default"].createElement(React__default["default"].Fragment, null,
-        React__default["default"].createElement("div", { "aria-expanded": displayMenu ? "true" : "false", "data-ellipsis": ellipsis ? "inte--ellipsis" : "inte--Noellipsis", className: "inte-formElement--Wrap ".concat(controlStatesVal, "  ").concat(eleThickness, " ").concat(labelInLine ? "inte__LabelInline" : "", " ").concat(displayMenu ? "inte-formElement--Focus" : "") },
-            name && !labelInLine ? (React__default["default"].createElement(TextStyles, { utility: required ? "inte--Required inte-Label--Text" : "inte-Label--Text" }, name)) : null,
+        React__default["default"].createElement("div", { "aria-expanded": displayMenu ? "true" : "false", "data-ellipsis": ellipsis ? "inte--ellipsis" : "inte--Noellipsis", className: "inte-formElement--Wrap ".concat(controlStatesVal, "  ").concat(eleThickness, " ").concat(displayMenu ? "inte-formElement--Focus" : "") },
+            name ? (React__default["default"].createElement(TextStyles, { utility: required ? "inte--Required inte-Label--Text" : "inte-Label--Text" }, name)) : null,
             React__default["default"].createElement("div", { className: "inte-formElemet--Inner" },
                 React__default["default"].createElement("div", { ref: myRef, onClick: function () {
                         if (disabled || loading)
@@ -35571,8 +35576,8 @@ function Select(_a) {
                         logit();
                     }, onBlur: onblur, style: { opacity: disabled || loading ? "0.6" : "1" }, id: "ced-select-componenet" + id, className: "inte-formElement inte-select  ".concat(elePosition, " ").concat(disabled ? "inte-select--Disabled" : "") },
                     React__default["default"].createElement(React__default["default"].Fragment, null,
-                        name && labelInLine ? (React__default["default"].createElement(TextStyles, { utility: "m-0" }, name)) : null,
-                        React__default["default"].createElement("span", { className: "inte__Select--Selected" }, checkSelectedID()),
+                        React__default["default"].createElement("span", { className: "inte__Select--Selected" }, props.multiSelect ? React__default["default"].createElement(Tag, { destroy: function () { return alert("destryed"); }, children: checkSelectedID() }) : React__default["default"].createElement(React__default["default"].Fragment, null, checkSelectedID())),
+                        searchEable && renderSearch(),
                         React__default["default"].createElement("div", { className: "inte-formElemet__Arrow" },
                             React__default["default"].createElement(reactFeather.ChevronDown, { size: 20, strokeWidth: 2.5, color: "currentColor" }))),
                     !displayMenu ? (React__default["default"].createElement("div", { ref: myReff, className: "inte-select inte-select--Fixed inte-select--Fake", id: "inte-select" + id, style: {
@@ -35582,12 +35587,7 @@ function Select(_a) {
                             visibility: "hidden",
                             opacity: 0,
                         } },
-                        React__default["default"].createElement("ul", { style: { maxHeight: 250 + "px" }, "aria-label": "inte-select-options", className: "".concat(searchEable
-                                ? "inte__Search-Enabled inte-select-options"
-                                : "inte-select-options") },
-                            searchEable && renderSearch(),
-                            searchEable ? (React__default["default"].createElement("li", { className: "inte-search--options" },
-                                React__default["default"].createElement("ul", null, moldOptions()))) : (moldOptions())))) : popoverContainer == "body" ? (reactDom_1(ulEle, document.body)) : (ulElel),
+                        React__default["default"].createElement("ul", { style: { maxHeight: 250 + "px" }, "aria-label": "inte-select-options", className: "inte-select-options" }, moldOptions()))) : popoverContainer == "body" ? (reactDom_1(ulEle, document.body)) : (ulElel),
                     loading ? React__default["default"].createElement("div", { className: "inte-loading" }) : null)),
             selectHelp && (React__default["default"].createElement("span", { className: "inte-form__itemHelp ".concat(helpIcon && "inte-form__itemHelp--HasHelpIcon") },
                 helpIcon && React__default["default"].createElement("span", { style: { display: "flex" } }, helpIcon),

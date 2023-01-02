@@ -57,7 +57,7 @@ const GrandFather = [
   },
 ];
 
-const Accordion = ({ title, children, index }) => {
+const Accordion = ({ title, children, index }:any) => {
   const [isOpen, setOpen] = React.useState(false);
   return (
     <React.Fragment>
