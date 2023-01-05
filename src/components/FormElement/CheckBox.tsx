@@ -1,4 +1,4 @@
-import React, { useState ,useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./FormElement.css";
 
 const CheckBox: React.FC<CheckBoxI> = ({
@@ -9,6 +9,22 @@ const CheckBox: React.FC<CheckBoxI> = ({
 }: CheckBoxI) => {
   const [id] = useState(() => "-" + Math.floor(Math.random() * 1000));
   const [checked, toggleChecked] = useState(false);
+
+  const checkBoxRef = useRef<HTMLInputElement>(null)
+
+  useEffect(()=>{
+    if(checkBoxRef.current){
+      if(props.indeterminate) {
+        checkBoxRef.current.indeterminate = true;
+      }
+      else checkBoxRef.current.indeterminate = false;
+    }
+  },[props.indeterminate])
+
+  useEffect(()=>{
+    toggleChecked(props.checked || false)
+  },[props.checked])
+
   return (
     <label
       htmlFor={`inte__checkbox-${id}`}
@@ -19,19 +35,20 @@ const CheckBox: React.FC<CheckBoxI> = ({
       }
     >
       <div onClick={() => {
-        {props.disabled ? void(0) : onClick();}
+        { props.disabled ? void (0) : onClick(); }
       }}>
         <input
+          ref={checkBoxRef}
           disabled={props.disabled}
           id={`inte__checkbox-${id}`}
           type="checkbox"
           name={props.name}
           onClick={() => {
-            {props.disabled ? void(0) : toggleChecked(!checked)}
-            
+            { props.disabled ? void (0) : toggleChecked(!checked) }
+
           }}
           checked={checked}
-          className={`inte-formElement inte__checkoxFake ${props.error ? "inte-form__checkbox--Error":""}`}
+          className={`inte-formElement inte__checkoxFake ${props.error ? "inte-form__checkbox--Error" : ""}`}
         />
         <span className={"inte__checkboxWrap"}>
           <span className={"inte__checkbox"} />
@@ -51,11 +68,12 @@ const CheckBox: React.FC<CheckBoxI> = ({
     </label>
   );
 };
-CheckBox.defaultProps = {
-  labelVal: "label",
-};
+// CheckBox.defaultProps = {
+//   labelVal: "label",
+// };
 export interface CheckBoxI {
   checked?: boolean;
+  indeterminate?: boolean;
   onClick?: () => void | string;
   labelVal?: string;
   id?: string;

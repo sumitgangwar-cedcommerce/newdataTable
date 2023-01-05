@@ -1,0 +1,50 @@
+.inte-Grid--wrapper {
+    overflow: auto;
+    position: relative;
+    border: 1px solid #D7D9DB;
+    background: #fff;
+  }
+  
+  .inte-Grid {
+    width: 100%;
+    text-align: left;
+    font-family: inter;
+    font-size: 14px;
+    line-height: 20px;
+    border-collapse: collapse;
+  }
+  
+  .inte-Grid__Header .inte-Grid__Cell{
+    font-weight: 600;
+  }
+  
+  .inte-Grid__Cell {
+    padding: 16px;
+    border-bottom: 1px solid #D7D9DB;
+  }
+  
+  .inte-Grid__Cell {
+    z-index: 1;
+  }
+  
+  .inte-Grid--HeaderFixed th {
+    position: sticky;
+    top:0px;
+    z-index:3;
+    box-shadow: 1px 0 10px 2px #0D0D0D;
+    background: #fff;
+  }
+  
+  .inte-Grid__Cell--Fixedleft {
+    position: sticky;
+    left:0px;
+    z-index:2;
+    background: #fff;
+  }
+  
+  .inte-Grid__Cell--Fixedright {
+    position: sticky;
+    right:0px;
+    z-index:2;
+    background: #fff;
+  }
