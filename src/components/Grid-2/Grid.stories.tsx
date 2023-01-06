@@ -35,7 +35,8 @@ export default {
     scrollY : {
       control:{
         type:'number'
-      }
+      },
+      defaultValue:400,
     }
   }
 };
@@ -47,7 +48,7 @@ const columns = [
     key: 'name',
     width: 100,
     align: 'center',
-    fixed:'left',
+    // fixed:'Left',
   },
   {
     title: 'Status',
@@ -119,29 +120,7 @@ const dataSource = [
     'daily-budget': '$150',
     'spend': '$999',
     'sales': '$0',
-    action: <ActionList
-    activator={<Button icon={<ChevronDown />}  onClick={() => {}} type="primary">ActionList</Button>}
-    direction="left"
-    onClose={function noRefCheck() {}}
-    sections={[
-      {
-        items: [
-          {
-            content: 'Action 1',
-            onClick: function noRefCheck() {}
-          },
-          {
-            content: 'Action 1',
-            onClick: function noRefCheck() {}
-          },
-          {
-            content: 'Action 1',
-            onClick: function noRefCheck() {}
-          }
-        ]
-      }
-    ]}
-  />
+    action:'...'
   },
   {
     key: '2',
