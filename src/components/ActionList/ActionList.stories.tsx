@@ -7,7 +7,7 @@ import { Card } from "../Card";
 import { FlexChild, FlexLayout } from "../FlexLayout";
 
 export default {
-  title: "Components/ActionList",
+  title: "Components/Actions/ActionList",
   component: ActionList,
   argTypes: {
     sections: {
@@ -125,7 +125,6 @@ const Template = ({ ...rest }) => {
                   onClick={toggleActive}
                   icon={active ? <ChevronUp /> : <ChevronDown />}
                   iconAlign="right"
-                  iconRound={false}
                 >
                   {rest.ActionList}
                 </Button>
@@ -134,9 +133,10 @@ const Template = ({ ...rest }) => {
               popoverContainer={rest.popoverContainer}
               sections={[
                 {
-                  title: "Action List With",
+                  title: "Action List With title Only",
                   items: [
                     {
+                      destructive:true,
                       content: rest.ActionListContent,
                       description: false,
                       onClick: () => alert("Hello 1"),
@@ -237,31 +237,9 @@ const Template = ({ ...rest }) => {
                     },
                   ],
                 },
-                {
-                  title:
-                    "Action List With Prefix icon , Suffix icon and Content",
-                  items: [
-                    {
-                      content: rest.ActionListContent,
-                      description:
-                        "Lorem Ipsumm dollar imset gona fine touch for well eing",
-                      prefixIcon: activity,
-                      suffixIcon: activity,
-                      onClick: () => alert("Hello 1"),
-                    },
-                    {
-                      content: rest.ActionListContent,
-                      description:
-                        "Lorem Ipsumm dollar imset gona fine touch for well eing",
-                      prefixIcon: activity,
-                      suffixIcon: activity,
-                      onClick: () => alert("Hello 1"),
-                    },
-                  ],
-                },
               ]}
-              primaryAction={primaryAction1}
-              secondaryAction={secondaryAction1}
+              // primaryAction={primaryAction1}
+              // secondaryAction={secondaryAction1}
             />
           </FlexChild>
         </FlexLayout>
@@ -288,7 +266,6 @@ ActionList_with_Action_Only.decorators = [
               onClick={toggleActive}
               icon={active ? <ChevronUp /> : <ChevronDown />}
               iconAlign="right"
-              iconRound={false}
             >
               ActionList
             </Button>
@@ -334,7 +311,6 @@ ActionList_with_Action_and_title.decorators = [
               onClick={toggleActive}
               icon={active ? <ChevronUp /> : <ChevronDown />}
               iconAlign="right"
-              iconRound={false}
             >
               ActionList
             </Button>
@@ -383,7 +359,6 @@ ActionList_with_Action_title_and_prefix_icon.decorators = [
               onClick={toggleActive}
               icon={active ? <ChevronUp /> : <ChevronDown />}
               iconAlign="right"
-              iconRound={false}
             >
               ActionList
             </Button>
@@ -435,7 +410,6 @@ ActionList_with_Action_title_and_suffix_icon.decorators = [
               onClick={toggleActive}
               icon={active ? <ChevronUp /> : <ChevronDown />}
               iconAlign="right"
-              iconRound={false}
             >
               ActionList
             </Button>
@@ -487,7 +461,7 @@ ActionList_with_Action_title_and_description.decorators = [
               onClick={toggleActive}
               icon={active ? <ChevronUp /> : <ChevronDown />}
               iconAlign="right"
-              iconRound={false}
+            
             >
               ActionList
             </Button>
@@ -538,7 +512,6 @@ ActionList_with_Action_title_description_and_prefixIcon.decorators = [
               onClick={toggleActive}
               icon={active ? <ChevronUp /> : <ChevronDown />}
               iconAlign="right"
-              iconRound={false}
             >
               ActionList
             </Button>
@@ -575,80 +548,80 @@ ActionList_with_Action_title_description_and_prefixIcon.decorators = [
   },
 ];
 
-export const ActionList_with_Action_and_footer_Actions: any = Template.bind({});
-ActionList_with_Action_and_footer_Actions.decorators = [
-  () => {
-    const [active, setActive] = useState(false);
-    const toggleActive = useCallback(() => setActive((active) => !active), []);
-    const primaryAction1 = {
-      loading: false,
-      content: "Proceed",
-      onClick: () => {
-        alert("Conngratulations You proceeded :)");
-      },
-    };
-    const secondaryAction1 = {
-      loading: false,
-      content: "Cancel",
-      onClick: () => {
-        alert("Conngratulations You proceeded :)");
-      },
-    };
-    return (
-      <Card>
-        <ActionList
-          direction="left"
-          onClose={toggleActive}
-          activator={
-            <Button
-              type="Outlined"
-              onClick={toggleActive}
-              icon={active ? <ChevronUp /> : <ChevronDown />}
-              iconAlign="right"
-              iconRound={false}
-            >
-              ActionList
-            </Button>
-          }
-          open={active}
-          sections={[
-            {
-              items: [
-                {
-                  content: "Action 1",
-                  onClick: () => alert("Hello 1"),
-                },
-                {
-                  content: "Action 1",
-                  onClick: () => alert("Hello 1"),
-                },
-                {
-                  content: "Action 1",
-                  onClick: () => alert("Hello 1"),
-                },
-                {
-                  content: "Action 1",
-                  onClick: () => alert("Hello 1"),
-                },
-                {
-                  content: "Action 1",
-                  onClick: () => alert("Hello 1"),
-                },
-                {
-                  content: "Action 1",
-                  onClick: () => alert("Hello 1"),
-                },
-                {
-                  content: "Action 1",
-                  onClick: () => alert("Hello 1"),
-                },
-              ],
-            },
-          ]}
-          primaryAction={primaryAction1}
-          secondaryAction={secondaryAction1}
-        />
-      </Card>
-    );
-  },
-];
+// export const ActionList_with_Action_and_footer_Actions: any = Template.bind({});
+// ActionList_with_Action_and_footer_Actions.decorators = [
+//   () => {
+//     const [active, setActive] = useState(false);
+//     const toggleActive = useCallback(() => setActive((active) => !active), []);
+//     const primaryAction1 = {
+//       loading: false,
+//       content: "Proceed",
+//       onClick: () => {
+//         alert("Conngratulations You proceeded :)");
+//       },
+//     };
+//     const secondaryAction1 = {
+//       loading: false,
+//       content: "Cancel",
+//       onClick: () => {
+//         alert("Conngratulations You proceeded :)");
+//       },
+//     };
+//     return (
+//       <Card>
+//         <ActionList
+//           direction="left"
+//           onClose={toggleActive}
+//           activator={
+//             <Button
+//               type="Outlined"
+//               onClick={toggleActive}
+//               icon={active ? <ChevronUp /> : <ChevronDown />}
+//               iconAlign="right"
+//               iconRound={false}
+//             >
+//               ActionList
+//             </Button>
+//           }
+//           open={active}
+//           sections={[
+//             {
+//               items: [
+//                 {
+//                   content: "Action 1",
+//                   onClick: () => alert("Hello 1"),
+//                 },
+//                 {
+//                   content: "Action 1",
+//                   onClick: () => alert("Hello 1"),
+//                 },
+//                 {
+//                   content: "Action 1",
+//                   onClick: () => alert("Hello 1"),
+//                 },
+//                 {
+//                   content: "Action 1",
+//                   onClick: () => alert("Hello 1"),
+//                 },
+//                 {
+//                   content: "Action 1",
+//                   onClick: () => alert("Hello 1"),
+//                 },
+//                 {
+//                   content: "Action 1",
+//                   onClick: () => alert("Hello 1"),
+//                 },
+//                 {
+//                   content: "Action 1",
+//                   onClick: () => alert("Hello 1"),
+//                 },
+//               ],
+//             },
+//           ]}
+//           primaryAction={primaryAction1}
+//           secondaryAction={secondaryAction1}
+//         />
+//       </Card>
+//     );
+//   },
+// ];

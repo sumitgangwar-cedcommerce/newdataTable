@@ -3,7 +3,7 @@ import Button from "../Button/Button";
 import { Toast, Card, ToastWrapper } from "..";
 
 export default {
-  title: "Components/Toast",
+  title: "Components/Feedback/Toast",
   component: Toast,
   argTypes: {
     message: {

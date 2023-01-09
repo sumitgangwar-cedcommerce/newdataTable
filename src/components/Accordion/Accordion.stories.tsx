@@ -5,7 +5,7 @@ import { Card } from "../Card";
 import { TextStyles } from "..";
 
 export default {
-  title: "Components/Accordion",
+  title: "Components/Behaviour/Accordion",
   component: Accordion,
   parameters: {
     docs: {

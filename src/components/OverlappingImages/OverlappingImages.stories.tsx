@@ -4,7 +4,7 @@ import React from "react";
 import { OverlappingImages } from "..";
 import { Card } from "../Card";
 export default {
-  title: "Components/OverlappingImages",
+  title: "Components/Entity/OverlappingImages",
   component: OverlappingImages,
   argTypes: {
     size: {

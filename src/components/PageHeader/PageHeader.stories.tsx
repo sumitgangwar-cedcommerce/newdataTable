@@ -1,15 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Card } from "../..";
 import PageHeader from "./PageHeader";
 import { Meta } from "@storybook/react/types-6-0";
-import Button from "../Button/Button";
-import { FlexLayout } from "../FlexLayout";
 import Badge from "../Badge/Badge";
-import Popover from "../Popover/Popover";
-import { LogOut, MoreVertical } from "react-feather";
+import { Check} from "react-feather";
 
 export default {
-  title: "Components/PageHeader",
+  title: "Components/Layout/PageHeader",
   component: PageHeader,
   argTypes: {
     children: {
@@ -29,10 +26,9 @@ export default {
     sticky: {
       description: "Enter title",
       control: {
-        type: "radio",
-        options: ["sticky", "none"],
+        type: "boolean",
       },
-      defaultValue: "none",
+      defaultValue: false,
     },
     reverseNavigation: {
       description: "reverseNavigation set true or false",
@@ -47,22 +43,6 @@ export default {
         type: "text",
       },
       defaultValue: "Sell and manage all your orders and inventory",
-    },
-    action: {
-      description: "Enter Action button",
-      control: {
-        type: "text",
-      },
-      defaultValue: (
-        <Button
-          type="TextButton"
-          onClick={() => {
-            alert("clicked");
-          }}
-        >
-          Action
-        </Button>
-      ),
     },
     onClick: {
       table: {
@@ -81,6 +61,35 @@ const Template = ({ ...rest }) => {
 };
 
 export const Primary = Template.bind({});
+const primaryAction1 = {
+  content: "Save",
+  icon: <Check />,
+  onClick: () => {
+    alert("Conngratulations You proceeded :)");
+  },
+};
+
+const secondaryAction1 = [
+  {
+    content: "Sync With MarketPlace",
+    onClick: () => {
+      alert("Conngratulations You Syned :)");
+    },
+  },
+  {
+    content: "Sync With MarketPlaces",
+    onClick: () => {
+      alert("Conngratulations You Syned :)");
+    },
+  },
+  {
+    destructive: true,
+    content: "Delete Listing",
+    onClick: () => {
+      alert("Conngratulations You Syned :)");
+    },
+  },
+];
 
 // Only Page Title
 export const Page_header_with_only_title: any = Template.bind({});
@@ -99,13 +108,13 @@ Page_header_with_title_and_description.decorators = [
     <Card>
       <PageHeader
         title="Page Header"
-        description="Page Description"
+        description="A product can be a service or an item. It can be physical or in virtual or cyber form. Every product is made at a cost and each is sold at a price."
       ></PageHeader>
     </Card>
   ),
 ];
 
-//  Page Title and Description
+//  Page Title and Description and reverse Navigation
 export const Page_header_with_title_and_reverse_navigation: any = Template.bind(
   {}
 );
@@ -141,27 +150,16 @@ Page_header_with_title_and_metaData.decorators = [
   ),
 ];
 
-//  Page Title and Description
+//  Page Title  and Actions
 export const Page_header_with_title_and_Action: any = Template.bind({});
 Page_header_with_title_and_Action.decorators = [
   () => {
-    const [open, togglePopover] = useState(false);
-    const togglePop = () => togglePopover((open: any) => !open);
-    useEffect(() => {
-      togglePopover(open);
-    }, [open]);
     return (
       <Card>
         <PageHeader
           title="Page Header"
-          action={
-            <Popover
-              open={open}
-              onClose={togglePop}
-              activator={<Button type="Outlined" onClick={togglePop} icon={<MoreVertical />}></Button>}
-             
-            > <Button halign="Start" FullBtn icon={<LogOut />} type="TextButton">Logout</Button></Popover>
-          }
+          primaryAction={primaryAction1}
+          secondaryAction={secondaryAction1}
         ></PageHeader>
       </Card>
     );
@@ -172,28 +170,17 @@ Page_header_with_title_and_Action.decorators = [
 export const Page_header_with_all_faetures: any = Template.bind({});
 Page_header_with_all_faetures.decorators = [
   () => {
-    const [open, togglePopover] = useState(false);
-    const togglePop = () => togglePopover((open: any) => !open);
-    useEffect(() => {
-      togglePopover(open);
-    }, [open]);
     return (
       <Card>
         <PageHeader
+          reverseNavigation
           metaData={<Badge type="Positive-100" children={"Connected"} />}
           title="Page Header"
-          description="Page Description"
-          action={
-            <Popover
-              open={open}
-              onClose={togglePop}
-              activator={<Button type="Outlined" onClick={togglePop} icon={<MoreVertical />}></Button>}
-             
-            > <Button halign="Start" FullBtn icon={<LogOut />} type="TextButton">Logout</Button></Popover>
-          }
+          description="A product can be a service or an item. It can be physical or in virtual or cyber form. Every product is made at a cost and each is sold at a price."
+          primaryAction={primaryAction1}
+          secondaryAction={secondaryAction1}
         ></PageHeader>
       </Card>
     );
   },
 ];
-

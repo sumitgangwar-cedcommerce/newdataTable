@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Tabs, Card } from "..";
 
 export default {
-  title: "Components/Tabs",
+  title: "Components/Navigation/Tabs",
   component: Tabs,
   argTypes: {
     value: {

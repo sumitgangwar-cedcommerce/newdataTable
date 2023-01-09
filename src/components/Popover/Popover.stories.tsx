@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from "react";
 import Popover from "./Popover";
-// import Popover2 from "./Popover2";
 import { Card, Button } from "..";
 import { TextField } from "../FormElement";
 import { FlexChild, FlexLayout } from "../FlexLayout";
-import { RefreshCcw, Trash, Upload, ChevronDown } from "react-feather";
+import { ChevronDown } from "react-feather";
 import Avatar from "../Avatar/Avatar";
 import TextStyles from "../TextStyles/TextStyles";
 
 
 export default {
-  title: "Components/Popover",
+  title: "Components/Overlays/Popover",
   component: Popover,
   argTypes: {
     open: {
@@ -67,7 +66,6 @@ const Template = ({ ...rest }) => {
       onClick={togglePop1}
       icon={<ChevronDown color="#d4d4d4" />}
       iconAlign={"right"}
-      iconRound={false}
     >
       Popover With React Node
     </Button>
@@ -170,7 +168,6 @@ Popover_with_body_container.decorators = [
         onClick={togglePop1}
         icon={<ChevronDown color="#d4d4d4" />}
         iconAlign={"right"}
-        iconRound={false}
       >
         Popover With Buttons
       </Button>
@@ -266,7 +263,6 @@ popover_with_element_container.decorators = [
         onClick={togglePop1}
         icon={<ChevronDown color="#d4d4d4" />}
         iconAlign={"right"}
-        iconRound={false}
       >
         Popover With Buttons
       </Button>

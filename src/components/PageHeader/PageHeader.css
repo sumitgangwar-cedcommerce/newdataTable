@@ -8,6 +8,10 @@
   align-items: center;
   gap: 1.2rem;
 }
+.inte-PageHeader-Action {
+  display: flex;
+  gap: 1.2rem;
+}
 .inte-pageHeader--Description {
   color: var(--inte-G450) !important;
   font-size: 1.8rem;
@@ -16,7 +20,7 @@
 .inte-PageHeader-Title-Action-Wrapper {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   gap: 1.6rem;
 }
 .inte__has--pageHeaderDescription .inte-PageHeader-Title-Action-Wrapper {
@@ -40,6 +44,7 @@
 }
 .inte-pageHeader--Title h1 {
   color: var(--inte-G500) !important;
+  font-size: 2.6rem;
 }
 .inte-AnnouncementBar ~ .inte__Main .inte-pageHeader--fixed {
   top: 11.2rem;
@@ -54,18 +59,12 @@
   padding: 7.2rem 3.2rem 7.5rem 3.2rem;
 }
 
-@media screen and (max-width: 768px) {
-  .inte-PageHeader-ActionMobile {
-    margin-top: 1.2rem;
-  }
-  .inte__has--reverseNavigation .inte-PageHeader-ActionMobile {
-    padding-left: 5.2rem;
-  }
-}
-
-@media screen and (max-width:480px){
+@media screen and (max-width:640px){
   .inte-pageHeader {
     padding-left: 1.6rem;
     padding-right: 1.6rem;
+}
+.inte-pageHeader--Title h1 {
+  font-size: 1.8rem;
 }
 }

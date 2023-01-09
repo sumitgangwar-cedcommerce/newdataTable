@@ -3,7 +3,7 @@ import "antd/dist/antd.css";
 import { Card } from "../Card";
 import StepWizard from "./StepWizard";
 export default {
-  title: "Components/StepWizard",
+  title: "Components/Navigation/StepWizard",
   component: StepWizard,
   argTypes: {
     direction: {

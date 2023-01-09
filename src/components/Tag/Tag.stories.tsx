@@ -4,7 +4,7 @@ import { FlexLayout } from "../FlexLayout";
 import Popover from "../Popover/Popover";
 
 export default {
-  title: "Components/Tag",
+  title: "Components/Actions/Tag",
   component: Tag,
   argTypes: {
     children: {
@@ -21,14 +21,14 @@ export default {
       },
       defaultValue: true,
     },
-  },
-  popover: {
-    description: "Enable Popover on click",
-    control: {
-      type: "boolean",
+    popover: {
+      description: "Enable Popover on click",
+      control: {
+        type: "boolean",
+      },
+      defaultValue: false,
     },
-    defaultValue: false,
-  },
+  }
 };
 
 const tags = ["one", "two", "three", "four", "five"];

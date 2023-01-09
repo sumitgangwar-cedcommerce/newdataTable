@@ -49,10 +49,11 @@ export const parameters = {
       method: "alphabetical",
       order: [
         "Foundation",
-        ["Introduction", "Colors", "Logo"],
+        ["Introduction", "Colors", "Logo","Icons"],
         "Templates",
+        "Forms",
         "Components",
-      ],
+      ],         
     },
   },
   layout: "fullscreen",

@@ -9,6 +9,7 @@
   justify-content: flex-start;
   align-items: center;
   z-index: 999999999;
+  width: 100%;
 }
 .inte__Toast {
     display: inline-flex;
@@ -65,8 +66,9 @@
 /*Toast End*/
 @media screen and (max-width: 768px) {
   .inte__Toast {
-    padding: 1.5rem;
-  }
+    max-width: calc(100% - 3.2rem);
+    width: fit-content;
+}
 }
 @keyframes toastAnimation {
   100% {

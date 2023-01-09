@@ -121,7 +121,6 @@ function Faq({
                       <>
                         <Button
                           type="Outlined"
-                          iconRound={false}
                           thickness="thin"
                           content="Show More"
                           icon={<PlusCircle color="#5C5F62" />}

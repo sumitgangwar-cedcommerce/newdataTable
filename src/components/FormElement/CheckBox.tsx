@@ -1,4 +1,4 @@
-import React, { useState ,useRef } from "react";
+import React, { useState, useRef } from "react";
 import "./FormElement.css";
 
 const CheckBox: React.FC<CheckBoxI> = ({
@@ -7,31 +7,41 @@ const CheckBox: React.FC<CheckBoxI> = ({
   },
   ...props
 }: CheckBoxI) => {
-  const [id] = useState(() => "-" + Math.floor(Math.random() * 1000));
+  const [Rid] = useState(() => "-" + Math.floor(Math.random() * 1000));
+
   const [checked, toggleChecked] = useState(false);
   return (
-    <label
-      htmlFor={`inte__checkbox-${id}`}
+    <div
       className={
         props.disabled
           ? "inte-form__checkbox inte-form__checkbox--Disabled"
           : "inte-form__checkbox"
       }
     >
-      <div onClick={() => {
-        {props.disabled ? void(0) : onClick();}
-      }}>
+      <label
+        htmlFor={
+          props.id ? `inte__checkbox-${props.id}` : `inte__checkbox-${Rid}`
+        }
+        onClick={() => {
+          {
+            props.disabled ? void 0 : onClick();
+          }
+        }}
+      >
         <input
           disabled={props.disabled}
-          id={`inte__checkbox-${id}`}
+          id={props.id ? `inte__checkbox-${props.id}` : `inte__checkbox-${Rid}`}
           type="checkbox"
           name={props.name}
           onClick={() => {
-            {props.disabled ? void(0) : toggleChecked(!checked)}
-            
+            {
+              props.disabled ? void 0 : toggleChecked(!checked);
+            }
           }}
           checked={checked}
-          className={`inte-formElement inte__checkoxFake ${props.error ? "inte-form__checkbox--Error":""}`}
+          className={`inte-formElement inte__checkoxFake ${
+            props.error ? "inte-form__checkbox--Error" : ""
+          }`}
         />
         <span className={"inte__checkboxWrap"}>
           <span className={"inte__checkbox"} />
@@ -42,13 +52,13 @@ const CheckBox: React.FC<CheckBoxI> = ({
             ""
           )}
         </span>
-      </div>
+      </label>
       {props.description ? (
         <div className="inte__checkbox--Description">{props.description}</div>
       ) : (
         ""
       )}
-    </label>
+    </div>
   );
 };
 CheckBox.defaultProps = {

@@ -3,7 +3,7 @@ import { Dots, Card, FlexLayout } from "..";
 import { DotI } from "./Dots";
 
 export default {
-  title: "Components/Dots",
+  title: "Components/Entity/Dots",
   component: Dots,
   argTypes: {
     status: {

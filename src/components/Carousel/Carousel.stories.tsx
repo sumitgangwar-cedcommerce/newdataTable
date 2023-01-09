@@ -4,7 +4,7 @@ import Carousel from "./Carousel";
 import Slide from "./Carousel";
 
 export default {
-  title: "Components/Slider",
+  title: "Components/Behaviour/Slider",
   component: Slide,
   argTypes: {
     dots: {

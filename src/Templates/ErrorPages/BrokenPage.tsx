@@ -247,7 +247,6 @@ const BrokenPage = ({
               <Button
                 icon={icon}
                 iconAlign="left"
-                iconRound={false}
                 thickness="thin"
                 type="Primary"
                 onClick={onClick}

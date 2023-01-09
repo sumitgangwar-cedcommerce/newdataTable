@@ -4,7 +4,7 @@ import PageFooter from "./PageFooter";
 import { Meta } from "@storybook/react/types-6-0";
 
 export default {
-  title: "Components/PageFooter",
+  title: "Components/Layout/PageFooter",
   component: PageFooter,
   argTypes: {
     children: {

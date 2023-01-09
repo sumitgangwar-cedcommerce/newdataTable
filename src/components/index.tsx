@@ -34,7 +34,6 @@ export { default as AutoComplete } from "./AutoComplete/AutoComplete";
 export { default as Avatar } from "./Avatar/Avatar";
 export { default as Breadcrumb } from "./Breadcrumb/Breadcrumb";
 export { default as CopyClipboard } from "./CopyClipboard/CopyClipboard";
-export { default as InplaceEditor } from "./InplaceEditor/InplaceEditor";
 export { default as ToolTip } from "./ToolTip/ToolTip";
 export { default as Upload } from "./Upload/Upload";
 export { default as Uploadnew } from "./Uploadnew/Uploadnew";

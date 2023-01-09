@@ -15,13 +15,6 @@ export default {
         type: "array",
       },
     },
-    thickness: {
-      control: {
-        type: "radio",
-        options: ["thick", "thin"],
-      },
-      defaultValue: "thick",
-    },
     controlStates: {
       control: {
         type: "radio",
@@ -144,6 +137,7 @@ const options = [
     ],
   },
 ];
+
 const Template: Story<SelectI> = ({ ...rest }) => {
   const [value1, setValue] = useState("");
   function onSelectChange(val: string) {

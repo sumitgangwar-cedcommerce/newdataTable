@@ -69,7 +69,6 @@ const Template = ({ ...rest }) => {
     <Card title={"Checkbox"}>
       <CheckBox
         {...rest}
-        id={"two"}
         labelVal={rest.labelVal}
         required={rest.required}
         disabled={rest.disabled}
@@ -122,6 +121,7 @@ CheckboxWithDescription.decorators = [
         <CheckBox
           labelVal={"CheckBox"}
           description={"Checkbox Descripion"}
+          checked={true}
         />
          <CheckBox
           labelVal={"CheckBox"}

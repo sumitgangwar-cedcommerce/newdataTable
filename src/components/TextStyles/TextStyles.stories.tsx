@@ -4,7 +4,7 @@ import { TextStylesI } from './TextStyles'
 import { Card } from '../Card'
 
 export default {
-  title: 'Components/TextStyles',
+  title: 'Components/Entity/TextStyles',
   component: TextStyles,
   argTypes: {
     children: {

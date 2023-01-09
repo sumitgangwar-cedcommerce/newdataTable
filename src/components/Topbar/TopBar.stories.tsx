@@ -6,7 +6,7 @@ import AnnouncementBar from "../AnnouncementBar/AnnouncementBar";
 const iconMap = { ...Icon };
 
 export default {
-  title: "Components/Topbar",
+  title: "Components/Layout/Topbar",
   component: Topbar,
   argTypes: {
     connectLeft: {

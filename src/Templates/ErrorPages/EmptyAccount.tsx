@@ -242,7 +242,6 @@ const EmptyAccount = ({
               <Button
                 icon={icon}
                 iconAlign="left"
-                iconRound={false}
                 thickness="thin"
                 type="Primary"
                 onClick={props.onClick}

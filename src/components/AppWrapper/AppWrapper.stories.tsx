@@ -12,7 +12,7 @@ import PageFooter from "../PageFooter/PageFooter";
 import Demo from "../../Templates/Demo/Demo";
 
 export default {
-  title: "Components/Appwrapper",
+  title: "Components/Layout/Appwrapper",
   component: AppWrapper,
   argTypes: {
     children: {
@@ -234,7 +234,7 @@ const Template = ({ ...rest }) => {
         <PageHeader
           title="PageHeader"
           sticky
-          action={<Button>Hello</Button>}
+          primaryAction={<Button>Hello</Button>}
         ></PageHeader>
         <LRLayout title={<Card>Title</Card>}>
           <Card cardType="Subdued" title={"Subdued Card In Main App"}>

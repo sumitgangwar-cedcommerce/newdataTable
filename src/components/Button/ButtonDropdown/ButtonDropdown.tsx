@@ -49,7 +49,6 @@ function ButtonDropdown({
         icon={icon}
         iconAlign={iconAlign}
         thickness={props.thickness}
-        iconRound={false}
         onClick={() => {
           setToggle(!toggle);
         }}
@@ -68,7 +67,6 @@ function ButtonDropdown({
                 icon={e.icon}
                 onClick={e.onClick}
                 iconAlign={"left"}
-                iconRound={false}
               >
                 {e.label}
               </Button>

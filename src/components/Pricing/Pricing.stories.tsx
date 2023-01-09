@@ -3,7 +3,7 @@ import { Card } from "../Card";
 import Pricing from "./Pricing";
 
 export default {
-  title: "Components/Pricing",
+  title: "Templates/Pricing",
   component: Pricing,
   argTypes: {
     title: {

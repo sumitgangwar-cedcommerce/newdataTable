@@ -12,7 +12,7 @@ import Button from "../Button/Button";
 import { Card } from "../Card";
 
 export default {
-  title: "Components/LRLayout",
+  title: "Components/Layout/LRLayout",
   component: LRLayout,
   argTypes: {
     children: {

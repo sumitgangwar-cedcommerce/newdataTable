@@ -7,7 +7,7 @@ import TextStyles from "../TextStyles/TextStyles";
 import ToolTipA from "./TooltipA";
 
 export default {
-  title: "Components/ToolTip",
+  title: "Components/Overlays/ToolTip",
   component: ToolTip,
   argTypes: {
     children: {

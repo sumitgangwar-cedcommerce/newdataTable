@@ -1,20 +1,39 @@
-import React from "react";
-import { ChevronLeft } from "react-feather";
+import React, { useCallback, useEffect, useState } from "react";
+import { ChevronDown, ChevronLeft, MoreVertical } from "react-feather";
 import { Button } from "..";
+import ActionList from "../ActionList/ActionList";
+import { ButtonI } from "../Button/Button";
 import TextStyles from "../TextStyles/TextStyles";
 import "./PageHeader.css";
 
 function PageHeader({
   title,
-  action,
   description,
-  sticky,
+  sticky=false,
   reverseNavigation = false,
+  primaryAction,
+  secondaryAction,
   ...props
 }: PageHeaderI): JSX.Element {
+  const [active, setActive] = useState(false);
+  const toggleActive = useCallback(() => setActive((active) => !active), []);
+  // Window resize
+  const [windowSize, setWindowSize] = useState(getWindowSize());
+  useEffect(() => {
+    window.addEventListener("resize", () => setWindowSize(getWindowSize()));
+    return () => {
+      window.removeEventListener("resize", () =>
+        setWindowSize(getWindowSize())
+      );
+    };
+  }, []);
+
+  function getWindowSize() {
+    return window.innerWidth;
+  }
   return (
     <div
-      className={`inte-pageHeader ${sticky && "inte-pageHeader--fixed"} ${
+      className={`inte-pageHeader ${sticky ? "inte-pageHeader--fixed":""} ${
         reverseNavigation ? "inte__has--reverseNavigation" : ""
       } ${description ? "inte__has--pageHeaderDescription" : ""}`}
     >
@@ -34,39 +53,116 @@ function PageHeader({
               </div>
             ) : null}
             {title && (
-              <div className={`inte-pageHeader--Title ${props.metaData ? "inte-PageHeader--hasMetadata":""}`}>
+              <div
+                className={`inte-pageHeader--Title ${
+                  props.metaData ? "inte-PageHeader--hasMetadata" : ""
+                }`}
+              >
                 <TextStyles
                   type="Heading"
-                  headingTypes="LG-2.8"
-                  fontweight="bold"
-                  lineHeight="LH-3.6"
+                  fontweight="extraBold"
+                  lineHeight="LH-2.4"
                 >
                   {title}
                 </TextStyles>
-                {props.metaData ? props.metaData :""}
+                {props.metaData ? props.metaData : ""}
               </div>
             )}
           </div>
-          {action && window.innerWidth >= 768 && (
-            <div className="inte-PageHeader-Action">{action}</div>
+          {(primaryAction || secondaryAction) && windowSize >= 768 && (
+            <div className="inte-PageHeader-Action">
+              {secondaryAction && secondaryAction.length < 2 ? (
+                secondaryAction.map((item, index) => {
+                  return (
+                    <Button
+                      type="Outlined"
+                      {...secondaryAction}
+                      content={secondaryAction[index]?.content}
+                      icon={secondaryAction[index]?.icon}
+                    ></Button>
+                  );
+                })
+              ) : (
+                <ActionList
+                  direction="right"
+                  open={active}
+                  onClose={toggleActive}
+                  activator={
+                    <Button
+                      type="Outlined"
+                      icon={<ChevronDown />}
+                      iconAlign={"right"}
+                      onClick={toggleActive}
+                      content="More Action"
+                    ></Button>
+                  }
+                  sections={[
+                    
+                    {
+                      items: secondaryAction,
+                    },
+                  ]}
+                ></ActionList>
+              )}
+              {primaryAction ? (
+                <Button
+                  type="Primary"
+                  {...primaryAction}
+                  content={primaryAction?.content}
+                  icon={<>{primaryAction?.icon}</>}
+                ></Button>
+              ) : (
+                ""
+              )}
+            </div>
+          )}
+          {(primaryAction || secondaryAction) && windowSize <= 767 && (
+            <div className="inte-PageHeader-Action inte-PageHeader-ActionMobile">
+              {secondaryAction ? (
+                <ActionList
+                  direction="right"
+                  popoverContainer="element"
+                  open={active}
+                  onClose={toggleActive}
+                  activator={
+                    <Button
+                      type="Outlined"
+                      icon={<MoreVertical />}
+                      onClick={toggleActive}
+                    ></Button>
+                  }
+                  sections={[
+                    {
+                      items: secondaryAction,
+                    },
+                  ]}
+                ></ActionList>
+              ) : (
+                ""
+              )}
+              {primaryAction ? (
+                <Button
+                  type="Primary"
+                  {...props}
+                  content={primaryAction?.content}
+                  icon={primaryAction?.icon}
+                ></Button>
+              ) : (
+                ""
+              )}
+            </div>
           )}
         </div>
         {description && (
           <div className="inte-PageHeader--Description">
             <TextStyles
               type="SubHeading"
-              lineHeight="LH-2.8"
+              lineHeight="LH-2.0"
               subheadingTypes="XS-1.6"
               textcolor="light"
-              utility="mt-5"
             >
               {description}
             </TextStyles>
-          </div>
-        )}
-        {action && window.innerWidth <= 767 && (
-          <div className="inte-PageHeader-Action inte-PageHeader-ActionMobile">
-            {action}
           </div>
         )}
       </div>
@@ -75,12 +171,13 @@ function PageHeader({
 }
 export interface PageHeaderI {
   title?: string | React.ReactNode;
-  action?: string | React.ReactNode;
   sticky?: boolean;
   reverseNavigation?: boolean;
   description?: string | React.ReactNode;
   onClick?: () => void;
   metaData?: React.ReactNode;
+  primaryAction?: ButtonI;
+  secondaryAction?: Array<ButtonI>;
 }
 
 export default PageHeader;

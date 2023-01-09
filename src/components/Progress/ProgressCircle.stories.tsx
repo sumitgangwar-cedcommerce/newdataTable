@@ -4,7 +4,7 @@ import { ProgressCircle, Card } from "..";
 import { ProgressCircle1 } from "./progressCircle";
 
 export default {
-  title: "Components/Progress/ProgressCircle",
+  title: "Components/Behaviour/ProgressCircle",
   component: ProgressCircle,
   argTypes: {
     percentage: {

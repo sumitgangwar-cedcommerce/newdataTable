@@ -2,7 +2,7 @@ import React from "react";
 import { Skeleton, Card, FlexLayout} from "..";
 
 export default {
-  title: "Components/Skeleton",
+  title: "Components/Layout/Skeleton",
   component: Skeleton,
   argTypes: {
     type: {

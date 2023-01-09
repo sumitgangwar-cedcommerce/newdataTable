@@ -4,7 +4,7 @@ import { Card, FileUpload } from "..";
 import { FlexLayout } from "../FlexLayout";
 
 export default {
-  title: "Components/Upload",
+  title: "Components/Form/Upload",
   component: Upload,
   argTypes: {
     onChange: {

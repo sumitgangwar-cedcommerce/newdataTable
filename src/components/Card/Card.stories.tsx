@@ -6,7 +6,7 @@ import { FormElement } from "../FormElement";
 import FlexLayout from "../FlexLayout/FlexLayout";
 
 export default {
-  title: "Components/Card",
+  title: "Components/Layout/Card",
   component: Card,
   argTypes: {
     cardType: {

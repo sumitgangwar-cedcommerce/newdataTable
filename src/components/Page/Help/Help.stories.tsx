@@ -6,7 +6,7 @@ import email from "../../images/email.svg";
 import { Card } from "../../Card";
 
 export default {
-  title: "Components/Page/Help",
+  title: "Templates/Help",
   component: Help,
   argTypes: {},
 };

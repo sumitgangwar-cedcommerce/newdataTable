@@ -6,7 +6,7 @@ import FlexLayout from "../FlexLayout/FlexLayout";
 
 
 export default {
-  title: "Components/Alert",
+  title: "Components/Feedback/Alert",
   component: Alert,
   argTypes: {
     type: {

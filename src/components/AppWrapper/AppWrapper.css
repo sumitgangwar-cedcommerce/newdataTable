@@ -49,7 +49,7 @@
     padding: 10.2rem 2rem 7.5rem 2rem;
 }
 }
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 640px) {
   .inte__Main {
     padding: 9rem 0 7rem 0 !important;
   }

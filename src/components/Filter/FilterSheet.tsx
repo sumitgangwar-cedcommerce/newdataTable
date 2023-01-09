@@ -36,7 +36,6 @@ const FilterSheet: React.FC<FilterSheetI> = ({
           type="Outlined"
           thickness="thin"
           icon={<X color="#2a2a2a" size={20} />}
-          iconRound={false}
           iconAlign="right"
         ></Button>
       </FlexLayout>

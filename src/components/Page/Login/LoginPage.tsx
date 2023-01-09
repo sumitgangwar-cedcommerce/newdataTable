@@ -157,7 +157,6 @@ const LoginPage = (props: any) => {
         <Button
           icon={<ArrowLeft />}
           iconAlign="left"
-          iconRound={false}
           content="Return To Login"
           type="TextButton"
           halign="Equal"

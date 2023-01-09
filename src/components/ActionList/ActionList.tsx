@@ -1,8 +1,14 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { FC, useEffect, useMemo, useRef, useState } from "react";
+import React, {
+  FC,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import Button, { ButtonI } from "../Button/Button";
-import TextStyles from "../TextStyles/TextStyles";
 import { createPortal } from "react-dom";
 import FlexLayout from "../FlexLayout/FlexLayout";
 import "./ActionList.css";
@@ -115,7 +121,7 @@ const ActionList: FC<ActionListI> = ({
     setpositionObject(post);
   }
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const ParentEle = getScrollParent(
       document.getElementById("inte-ActionList--Container_" + id)
     );
@@ -126,6 +132,7 @@ const ActionList: FC<ActionListI> = ({
       GrandParentEle?.addEventListener("scroll", logit);
     }
     watchScroll();
+
     return () => {
       window.removeEventListener("scroll", logit);
       ParentEle?.removeEventListener("scroll", logit);
@@ -182,17 +189,22 @@ const ActionList: FC<ActionListI> = ({
           return (
             <li key={indexs} className="inte-ActionList-group-section">
               {items.title && (
-                <div className="inte-ActionList__title">{items.title}</div>
+                <div className="inte-ActionList__Heading">{items.title}</div>
               )}
               <ul className="inte-ActionList-group-container">
                 {items.items?.map((item: any, index: any) => {
                   return (
                     <li
                       key={index}
-                      className="inte-ActionList-group"
-                      onClick={item.onClick}
+                      className={`inte-ActionList-group ${
+                        item.destructive ? "inte-ActionList--Destrctive" : ""
+                      }`}
+                      onClick={() => {
+                        item.onClick();
+                        // setOpenState(false);
+                      }}
                     >
-                      <div className="inte-action__content">
+                      <div className="inte-ActionList__Content">
                         {item.prefixIcon && (
                           <div
                             className={`inte-ActionList__icon inte-ActionList__iconPrefix`}
@@ -201,27 +213,24 @@ const ActionList: FC<ActionListI> = ({
                           </div>
                         )}
 
-                        <div className="inte-Action__wrap-world">
-                          <TextStyles>{item.content}</TextStyles>
+                        <div className="inte-ActionList__ContentText">
+                          <p className="inte-ActionList__Title">
+                            {item.content}
+                          </p>
                           {item.description && (
-                            <TextStyles
-                              type="Paragraph"
-                              paragraphTypes="MD-1.4"
-                              textcolor="light"
-                              utility="mt-4"
-                            >
+                            <p className="inte-ActionList__Description">
                               {item.description}
-                            </TextStyles>
+                            </p>
                           )}
                         </div>
+                        {item.suffixIcon && (
+                          <div
+                            className={`inte-ActionList__icon inte-ActionList__iconSuffix`}
+                          >
+                            {item.suffixIcon}
+                          </div>
+                        )}
                       </div>
-                      {item.suffixIcon && (
-                        <div
-                          className={`inte-ActionList__icon inte-ActionList__iconSuffix`}
-                        >
-                          {item.suffixIcon}
-                        </div>
-                      )}
                     </li>
                   );
                 })}
@@ -247,36 +256,38 @@ const ActionList: FC<ActionListI> = ({
           return (
             <li key={indexs} className="inte-ActionList-group-section">
               {items.title && (
-                <div className="inte-ActionList__title">{items.title}</div>
+                <div className="inte-ActionList__Heading">{items.title}</div>
               )}
               <ul className="inte-ActionList-group-container">
                 {items.items?.map((item: any, index: any) => {
                   return (
                     <li
                       key={index}
-                      className="inte-ActionList-group"
-                      onClick={item.onClick}
+                      className={`inte-ActionList-group ${
+                        item.destructive ? "inte-ActionList--Destrctive" : ""
+                      }`}
+                      onClick={() => {
+                        item.onClick();
+                        // setOpenState(false);
+                      }}
                     >
-                      <div className="inte-action__content">
+                      <div className="inte-ActionList__Content">
                         {item.prefixIcon && (
                           <div
                             className={`inte-ActionList__icon inte-ActionList__iconPrefix`}
                           >
-                            {item.prefixIcon}
+                            <>{item.prefixIcon}</>
                           </div>
                         )}
 
-                        <div className="inte-Action__wrap-world">
-                          <TextStyles>{item.content}</TextStyles>
+                        <div className="inte-ActionList__ContentText">
+                          <p className="inte-ActionList__Title">
+                            {item.content}
+                          </p>
                           {item.description && (
-                            <TextStyles
-                              type="Paragraph"
-                              paragraphTypes="MD-1.4"
-                              textcolor="light"
-                              utility="mt-4"
-                            >
+                            <p className="inte-ActionList__Description">
                               {item.description}
-                            </TextStyles>
+                            </p>
                           )}
                         </div>
                       </div>
@@ -284,7 +295,7 @@ const ActionList: FC<ActionListI> = ({
                         <div
                           className={`inte-ActionList__icon inte-ActionList__iconSuffix`}
                         >
-                          {item.suffixIcon}
+                          <>{item.suffixIcon}</>
                         </div>
                       )}
                     </li>
@@ -305,8 +316,6 @@ const ActionList: FC<ActionListI> = ({
       id={"inte-ActionList--Container_" + id}
       className={`inte-ActionList--Container ${popoverdirection}`}
       onClick={() => {
-        window.scrollBy(0, 2);
-        window.scrollBy(0, -2);
         logit();
       }}
     >

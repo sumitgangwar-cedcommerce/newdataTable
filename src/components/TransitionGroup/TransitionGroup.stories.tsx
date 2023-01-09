@@ -3,7 +3,7 @@ import { Card } from "..";
 import TransitionGroup from "./TransitionGroup";
 
 export default {
-  title: "Components/TransitionGroup/TransitionGroup",
+  title: "Components/Form/TransitionGroup",
   component: TransitionGroup,
 };
 

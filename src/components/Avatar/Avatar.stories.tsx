@@ -4,7 +4,7 @@ import { Card } from "..";
 import { FlexLayout } from "../FlexLayout";
 
 export default {
-  title: "Components/Avatar",
+  title: "Components/Media/Avatar",
   component: Avatar,
   argTypes: {
     text: {

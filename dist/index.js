@@ -1,6 +1,6 @@
 import { __rest, __assign, __extends, __spreadArray } from 'tslib';
-import React, { useState, useEffect, useRef, useMemo, Component, useLayoutEffect, Children } from 'react';
-import { ChevronDown, ChevronUp, X as X$1, Info, Menu, ChevronsRight, CheckCircle, AlertTriangle, AlertOctagon, Search, ChevronLeft, ChevronRight, PlusCircle, Eye, EyeOff, ArrowLeft, HelpCircle } from 'react-feather';
+import React, { useState, useEffect, useRef, useMemo, Component, useLayoutEffect, Children, useCallback } from 'react';
+import { ChevronDown, ChevronUp, X as X$1, Info, Menu, ChevronsRight, CheckCircle, AlertTriangle, AlertOctagon, Search, ChevronLeft, ChevronRight, Copy, PlusCircle, Eye, EyeOff, ArrowLeft, HelpCircle, MoreVertical } from 'react-feather';
 import { DatePicker, Space, Upload as Upload$1, Slider as Slider$1, Steps, Table } from 'antd';
 import Slider from 'react-slick';
 import Lottie from 'lottie-react';
@@ -33733,7 +33733,7 @@ var ActionList = function (_a) {
             : 10;
         setpositionObject(post);
     }
-    useEffect(function () {
+    useLayoutEffect(function () {
         var ParentEle = getScrollParent$3(document.getElementById("inte-ActionList--Container_" + id));
         var GrandParentEle = getScrollParent$3(ParentEle);
         function watchScroll() {
@@ -33779,14 +33779,17 @@ var ActionList = function (_a) {
         React.createElement("ul", { style: { maxHeight: dropDownheight + "px" }, className: "inte-ActionList-section-container" }, sections === null || sections === void 0 ? void 0 : sections.map(function (items, indexs) {
             var _a;
             return (React.createElement("li", { key: indexs, className: "inte-ActionList-group-section" },
-                items.title && (React.createElement("div", { className: "inte-ActionList__title" }, items.title)),
+                items.title && (React.createElement("div", { className: "inte-ActionList__Heading" }, items.title)),
                 React.createElement("ul", { className: "inte-ActionList-group-container" }, (_a = items.items) === null || _a === void 0 ? void 0 : _a.map(function (item, index) {
-                    return (React.createElement("li", { key: index, className: "inte-ActionList-group", onClick: item.onClick },
-                        React.createElement("div", { className: "inte-action__content" },
+                    return (React.createElement("li", { key: index, className: "inte-ActionList-group ".concat(item.destructive ? "inte-ActionList--Destrctive" : ""), onClick: function () {
+                            item.onClick();
+                            // setOpenState(false);
+                        } },
+                        React.createElement("div", { className: "inte-ActionList__Content" },
                             item.prefixIcon && (React.createElement("div", { className: "inte-ActionList__icon inte-ActionList__iconPrefix" }, item.prefixIcon)),
-                            React.createElement("div", { className: "inte-Action__wrap-world" },
-                                React.createElement(TextStyles, null, item.content),
-                                item.description && (React.createElement(TextStyles, { type: "Paragraph", paragraphTypes: "MD-1.4", textcolor: "light", utility: "mt-4" }, item.description)))),
+                            React.createElement("div", { className: "inte-ActionList__ContentText" },
+                                React.createElement("p", { className: "inte-ActionList__Title" }, item.content),
+                                item.description && (React.createElement("p", { className: "inte-ActionList__Description" }, item.description)))),
                         item.suffixIcon && (React.createElement("div", { className: "inte-ActionList__icon inte-ActionList__iconSuffix" }, item.suffixIcon))));
                 }))));
         })),
@@ -33795,15 +33798,20 @@ var ActionList = function (_a) {
         React.createElement("ul", { style: { maxHeight: dropDownheight + "px" }, className: "inte-ActionList-section-container" }, sections === null || sections === void 0 ? void 0 : sections.map(function (items, indexs) {
             var _a;
             return (React.createElement("li", { key: indexs, className: "inte-ActionList-group-section" },
-                items.title && (React.createElement("div", { className: "inte-ActionList__title" }, items.title)),
+                items.title && (React.createElement("div", { className: "inte-ActionList__Heading" }, items.title)),
                 React.createElement("ul", { className: "inte-ActionList-group-container" }, (_a = items.items) === null || _a === void 0 ? void 0 : _a.map(function (item, index) {
-                    return (React.createElement("li", { key: index, className: "inte-ActionList-group", onClick: item.onClick },
+                    return (React.createElement("li", { key: index, className: "inte-ActionList-group ".concat(item.destructive ? "inte-ActionList--Destrctive" : ""), onClick: function () {
+                            item.onClick();
+                            // setOpenState(false);
+                        } },
                         React.createElement("div", { className: "inte-action__content" },
-                            item.prefixIcon && (React.createElement("div", { className: "inte-ActionList__icon inte-ActionList__iconPrefix" }, item.prefixIcon)),
-                            React.createElement("div", { className: "inte-Action__wrap-world" },
-                                React.createElement(TextStyles, null, item.content),
-                                item.description && (React.createElement(TextStyles, { type: "Paragraph", paragraphTypes: "MD-1.4", textcolor: "light", utility: "mt-4" }, item.description)))),
-                        item.suffixIcon && (React.createElement("div", { className: "inte-ActionList__icon inte-ActionList__iconSuffix" }, item.suffixIcon))));
+                            item.prefixIcon && (React.createElement("div", { className: "inte-ActionList__icon inte-ActionList__iconPrefix" },
+                                React.createElement(React.Fragment, null, item.prefixIcon))),
+                            React.createElement("div", { className: "inte-ActionList__ContentText" },
+                                React.createElement("p", { className: "inte-ActionList__Title" }, item.content),
+                                item.description && (React.createElement("p", { className: "inte-ActionList__Description" }, item.description)))),
+                        item.suffixIcon && (React.createElement("div", { className: "inte-ActionList__icon inte-ActionList__iconSuffix" },
+                            React.createElement(React.Fragment, null, item.suffixIcon)))));
                 }))));
         })),
         renderFooter()));
@@ -35069,19 +35077,19 @@ var CheckBox = function (_a) {
     var _b = _a.onClick, onClick = _b === void 0 ? function () {
         //
     } : _b, props = __rest(_a, ["onClick"]);
-    var id = useState(function () { return "-" + Math.floor(Math.random() * 1000); })[0];
+    var Rid = useState(function () { return "-" + Math.floor(Math.random() * 1000); })[0];
     var _c = useState(false), checked = _c[0], toggleChecked = _c[1];
-    return (React.createElement("label", { htmlFor: "inte__checkbox-".concat(id), className: props.disabled
+    return (React.createElement("div", { className: props.disabled
             ? "inte-form__checkbox inte-form__checkbox--Disabled"
             : "inte-form__checkbox" },
-        React.createElement("div", { onClick: function () {
+        React.createElement("label", { htmlFor: props.id ? "inte__checkbox-".concat(props.id) : "inte__checkbox-".concat(Rid), onClick: function () {
                 {
-                    props.disabled ? void (0) : onClick();
+                    props.disabled ? void 0 : onClick();
                 }
             } },
-            React.createElement("input", { disabled: props.disabled, id: "inte__checkbox-".concat(id), type: "checkbox", name: props.name, onClick: function () {
+            React.createElement("input", { disabled: props.disabled, id: props.id ? "inte__checkbox-".concat(props.id) : "inte__checkbox-".concat(Rid), type: "checkbox", name: props.name, onClick: function () {
                     {
-                        props.disabled ? void (0) : toggleChecked(!checked);
+                        props.disabled ? void 0 : toggleChecked(!checked);
                     }
                 }, checked: checked, className: "inte-formElement inte__checkoxFake ".concat(props.error ? "inte-form__checkbox--Error" : "") }),
             React.createElement("span", { className: "inte__checkboxWrap" },
@@ -35334,11 +35342,11 @@ var TextArea = function (_a) {
 };
 
 function Select(_a) {
-    var _b = _a.thickness, thickness = _b === void 0 ? "thick" : _b, _c = _a.options, options = _c === void 0 ? [] : _c, _d = _a.onChange, onChange = _d === void 0 ? function () { return null; } : _d, _e = _a.value, value = _e === void 0 ? "" : _e, selectHelp = _a.selectHelp, _f = _a.name, name = _f === void 0 ? "" : _f, _g = _a.placeholder, placeholder = _g === void 0 ? "Select" : _g, _h = _a.disabled, disabled = _h === void 0 ? false : _h, _j = _a.searchEable, searchEable = _j === void 0 ? false : _j, _k = _a.loading, loading = _k === void 0 ? false : _k, _l = _a.ellipsis, ellipsis = _l === void 0 ? true : _l, helpIcon = _a.helpIcon, controlStates = _a.controlStates, _m = _a.position, position = _m === void 0 ? "bottom" : _m, _o = _a.popoverContainer, popoverContainer = _o === void 0 ? "body" : _o, _p = _a.required, required = _p === void 0 ? false : _p, _q = _a.customClass, customClass = _q === void 0 ? "" : _q, props = __rest(_a, ["thickness", "options", "onChange", "value", "selectHelp", "name", "placeholder", "disabled", "searchEable", "loading", "ellipsis", "helpIcon", "controlStates", "position", "popoverContainer", "required", "customClass"]);
-    var _r = useState(false), displayMenu = _r[0], setdisplayMenu = _r[1];
+    var _b = _a.options, options = _b === void 0 ? [] : _b, _c = _a.onChange, onChange = _c === void 0 ? function () { return null; } : _c, _d = _a.value, value = _d === void 0 ? "" : _d, selectHelp = _a.selectHelp, _e = _a.name, name = _e === void 0 ? "" : _e, _f = _a.placeholder, placeholder = _f === void 0 ? "Select" : _f, _g = _a.disabled, disabled = _g === void 0 ? false : _g, _h = _a.searchEable, searchEable = _h === void 0 ? false : _h, _j = _a.loading, loading = _j === void 0 ? false : _j, _k = _a.ellipsis, ellipsis = _k === void 0 ? true : _k, helpIcon = _a.helpIcon, controlStates = _a.controlStates, _l = _a.position, position = _l === void 0 ? "bottom" : _l, _m = _a.popoverContainer, popoverContainer = _m === void 0 ? "body" : _m, _o = _a.required, required = _o === void 0 ? false : _o, _p = _a.customClass, customClass = _p === void 0 ? "" : _p, props = __rest(_a, ["options", "onChange", "value", "selectHelp", "name", "placeholder", "disabled", "searchEable", "loading", "ellipsis", "helpIcon", "controlStates", "position", "popoverContainer", "required", "customClass"]);
+    var _q = useState(false), displayMenu = _q[0], setdisplayMenu = _q[1];
     var id = useState(function () { return "-" + Math.floor(Math.random() * 1000); })[0];
-    var _s = useState(""), searchValue = _s[0], updateSearch = _s[1];
-    var _t = useState([]), setClick = _t[0], setClicked = _t[1];
+    var _r = useState(""), searchValue = _r[0], updateSearch = _r[1];
+    var _s = useState([]), setClick = _s[0], setClicked = _s[1];
     var myRef = useRef();
     var myReff = useRef();
     var listRef = useRef();
@@ -35364,16 +35372,6 @@ function Select(_a) {
                 return "inte-select-bottom";
             default:
                 return "";
-        }
-    }
-    function getThickness() {
-        switch (thickness) {
-            case "thin":
-                return "inte-select--thin";
-            case "thick":
-                return "inte-select--thick";
-            default:
-                return "inte-select--thick";
         }
     }
     function getcontrolStates(controlStates) {
@@ -35454,7 +35452,6 @@ function Select(_a) {
                 option.group ? React.createElement("ol", { className: "inte-Select__Select--ItemGroupItem" }, MoldGroupOptions(option.group)) : null));
         });
     }
-    var eleThickness = getThickness();
     var elePosition = getPosition();
     var checkSelectedID = function () {
         var valueNew = (React.createElement("div", { className: "inte-select-placeholder" }, placeholder));
@@ -35485,7 +35482,7 @@ function Select(_a) {
             ? (_b = myRef.current) === null || _b === void 0 ? void 0 : _b.getBoundingClientRect()
             : 10;
     }, []);
-    var _u = useState(positionObjectMemo), positionObject = _u[0], setpositionObject = _u[1];
+    var _t = useState(positionObjectMemo), positionObject = _t[0], setpositionObject = _t[1];
     function dyPos() {
         var _a, _b;
         var windowheight = window.innerHeight;
@@ -35555,7 +35552,7 @@ function Select(_a) {
         };
     });
     return (React.createElement(React.Fragment, null,
-        React.createElement("div", { "aria-expanded": displayMenu ? "true" : "false", "data-ellipsis": ellipsis ? "inte--ellipsis" : "inte--Noellipsis", className: "inte-formElement--Wrap ".concat(controlStatesVal, "  ").concat(eleThickness, " ").concat(displayMenu ? "inte-formElement--Focus" : "") },
+        React.createElement("div", { "aria-expanded": displayMenu ? "true" : "false", "data-ellipsis": ellipsis ? "inte--ellipsis" : "inte--Noellipsis", className: "inte-formElement--Wrap ".concat(controlStatesVal, "  ").concat(displayMenu ? "inte-formElement--Focus" : "") },
             name ? (React.createElement(TextStyles, { utility: required ? "inte--Required inte-Label--Text" : "inte-Label--Text" }, name)) : null,
             React.createElement("div", { className: "inte-formElemet--Inner" },
                 React.createElement("div", { ref: myRef, onClick: function () {
@@ -35915,7 +35912,7 @@ var Pagination = function (_a) {
                 React.createElement(FlexLayout, { spacing: "mediumTight", valign: "center" },
                     React.createElement(TextStyles, null, "Items : "),
                     React.createElement("div", { className: "inte-Pagination-perPage--Sorter" },
-                        React.createElement(Select, { customClass: "inte-Pagination--perPage", options: optionPerPage, popoverContainer: "body", thickness: "thick", onChange: function (e) {
+                        React.createElement(Select, { customClass: "inte-Pagination--perPage", options: optionPerPage, popoverContainer: "body", onChange: function (e) {
                                 onCountChange(parseInt(e));
                             }, placeholder: countPerPage, value: countPerPage })),
                     React.createElement(TextStyles, { textcolor: "light" },
@@ -36499,13 +36496,13 @@ var Breadcrumb = function (_a) {
     return (React.createElement("div", { className: "inte--BreadCrumbs" },
         React.createElement(FlexLayout, { spacing: "extraTight", wrap: "wrap", direction: "none", valign: "center" }, Object.values(items).map(function (e, i) { return (React.createElement(React.Fragment, { key: i }, i != 0 ? (React.createElement(FlexLayout, { spacing: "extraTight", wrap: "wrap", direction: "none", valign: "center" },
             React.createElement(ChevronRight, { size: 20 }),
-            i == Object.keys(items).length - 1 ? (React.createElement(Button, { disable: true, type: "Outlined", thickness: "thin" }, e.label)) : (React.createElement(Button, { thickness: "thin", onClick: function () {
+            i == Object.keys(items).length - 1 ? (React.createElement(Button, { disable: true, type: "TextButton", thickness: "thin" }, e.label)) : (React.createElement(Button, { thickness: "thin", onClick: function () {
                     onClick(e.value, e);
-                }, type: "Outlined" },
+                }, type: "TextButton" },
                 " ",
                 e.label)))) : (React.createElement(Button, { thickness: "thin", onClick: function () {
                 onClick(e.value, e);
-            }, type: "Outlined" },
+            }, type: "TextButton" },
             " ",
             e.label)))); }))));
 };
@@ -36518,9 +36515,9 @@ Breadcrumb.defaultProps = {
 };
 
 var CopyClipboard = function (_a) {
-    var _b = _a.value, value = _b === void 0 ? "" : _b, label = _a.label, _c = _a.align, align = _c === void 0 ? "none" : _c;
-    var _d = useState(false), status = _d[0], setstatus = _d[1];
-    var _e = useState(false), active = _e[0], setactive = _e[1];
+    var _b = _a.value, value = _b === void 0 ? "" : _b, label = _a.label, _c = _a.align, align = _c === void 0 ? "none" : _c, _d = _a.timeout, timeout = _d === void 0 ? 3000 : _d;
+    var _e = useState(false), status = _e[0], setstatus = _e[1];
+    var _f = useState(false), active = _f[0], setactive = _f[1];
     function copyText() {
         !status
             ? navigator.clipboard.writeText(value)
@@ -36528,12 +36525,10 @@ var CopyClipboard = function (_a) {
     }
     return (React.createElement(React.Fragment, null,
         active && (React.createElement(ToastWrapper, null,
-            React.createElement(Toast, { message: "Copied", type: "success", timeout: 3000, onDismiss: function () { return setactive(false); } }))),
+            React.createElement(Toast, { message: "Copied", type: "success", timeout: timeout, onDismiss: function () { return setactive(false); } }))),
         React.createElement(FlexLayout, { halign: align, valign: "center", spacing: "none" },
             React.createElement(TextStyles, null, label),
-            React.createElement(Button, { type: "Outlined", thickness: "extraThin", icon: React.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", width: "20", height: "20", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" },
-                    React.createElement("path", { d: "M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" }),
-                    React.createElement("rect", { x: "8", y: "2", width: "8", height: "4", rx: "1", ry: "1" })), onClick: function () {
+            React.createElement(Button, { type: "Outlined", thickness: "extraThin", icon: React.createElement(Copy, { size: 20 }), onClick: function () {
                     copyText();
                     setstatus(!status);
                     !status && setactive(!active);
@@ -39600,7 +39595,22 @@ function PageFooter(props) {
 }
 
 function PageHeader(_a) {
-    var title = _a.title, action = _a.action, description = _a.description, sticky = _a.sticky, _b = _a.reverseNavigation, reverseNavigation = _b === void 0 ? false : _b, props = __rest(_a, ["title", "action", "description", "sticky", "reverseNavigation"]);
+    var title = _a.title, description = _a.description, sticky = _a.sticky, _b = _a.reverseNavigation, reverseNavigation = _b === void 0 ? false : _b, primaryAction = _a.primaryAction, secondaryAction = _a.secondaryAction, props = __rest(_a, ["title", "description", "sticky", "reverseNavigation", "primaryAction", "secondaryAction"]);
+    var _c = useState(false), active = _c[0], setActive = _c[1];
+    var toggleActive = useCallback(function () { return setActive(function (active) { return !active; }); }, []);
+    // Window resize
+    var _d = useState(getWindowSize()), windowSize = _d[0], setWindowSize = _d[1];
+    useEffect(function () {
+        window.addEventListener("resize", function () { return setWindowSize(getWindowSize()); });
+        return function () {
+            window.removeEventListener("resize", function () {
+                return setWindowSize(getWindowSize());
+            });
+        };
+    }, []);
+    function getWindowSize() {
+        return window.innerWidth;
+    }
     return (React.createElement("div", { className: "inte-pageHeader ".concat(sticky && "inte-pageHeader--fixed", " ").concat(reverseNavigation ? "inte__has--reverseNavigation" : "", " ").concat(description ? "inte__has--pageHeaderDescription" : "") },
         React.createElement("div", { className: "inte-PageHeader--Wrapper" },
             React.createElement("div", { className: "inte-PageHeader-Title-Action-Wrapper" },
@@ -39611,12 +39621,27 @@ function PageHeader(_a) {
                                     props.onClick();
                             }, type: "Outlined", iconAlign: "left" }))) : null,
                     title && (React.createElement("div", { className: "inte-pageHeader--Title ".concat(props.metaData ? "inte-PageHeader--hasMetadata" : "") },
-                        React.createElement(TextStyles, { type: "Heading", headingTypes: "LG-2.8", fontweight: "bold", lineHeight: "LH-3.6" }, title),
+                        React.createElement(TextStyles, { type: "Heading", fontweight: "extraBold", lineHeight: "LH-2.4" }, title),
                         props.metaData ? props.metaData : ""))),
-                action && window.innerWidth >= 768 && (React.createElement("div", { className: "inte-PageHeader-Action" }, action))),
+                (primaryAction || secondaryAction) && windowSize >= 768 && (React.createElement("div", { className: "inte-PageHeader-Action" },
+                    secondaryAction && secondaryAction.length < 2 ? (secondaryAction.map(function (item, index) {
+                        var _a, _b;
+                        return (React.createElement(Button, __assign({ type: "Outlined" }, secondaryAction, { content: (_a = secondaryAction[index]) === null || _a === void 0 ? void 0 : _a.content, icon: (_b = secondaryAction[index]) === null || _b === void 0 ? void 0 : _b.icon })));
+                    })) : (React.createElement(ActionList, { direction: "right", open: active, onClose: toggleActive, activator: React.createElement(Button, { type: "Outlined", icon: React.createElement(ChevronDown, null), iconAlign: "right", onClick: toggleActive, content: "More Action" }), sections: [
+                            {
+                                items: secondaryAction,
+                            },
+                        ] })),
+                    primaryAction ? (React.createElement(Button, __assign({ type: "Primary" }, primaryAction, { content: primaryAction === null || primaryAction === void 0 ? void 0 : primaryAction.content, icon: React.createElement(React.Fragment, null, primaryAction === null || primaryAction === void 0 ? void 0 : primaryAction.icon) }))) : (""))),
+                (primaryAction || secondaryAction) && windowSize <= 767 && (React.createElement("div", { className: "inte-PageHeader-Action inte-PageHeader-ActionMobile" },
+                    secondaryAction ? (React.createElement(ActionList, { direction: "right", popoverContainer: "element", open: active, onClose: toggleActive, activator: React.createElement(Button, { type: "Outlined", icon: React.createElement(MoreVertical, null), onClick: toggleActive }), sections: [
+                            {
+                                items: secondaryAction,
+                            },
+                        ] })) : (""),
+                    primaryAction ? (React.createElement(Button, __assign({ type: "Primary" }, props, { content: primaryAction === null || primaryAction === void 0 ? void 0 : primaryAction.content, icon: primaryAction === null || primaryAction === void 0 ? void 0 : primaryAction.icon }))) : ("")))),
             description && (React.createElement("div", { className: "inte-PageHeader--Description" },
-                React.createElement(TextStyles, { type: "SubHeading", lineHeight: "LH-2.8", subheadingTypes: "XS-1.6", textcolor: "light", utility: "mt-5" }, description))),
-            action && window.innerWidth <= 767 && (React.createElement("div", { className: "inte-PageHeader-Action inte-PageHeader-ActionMobile" }, action)))));
+                React.createElement(TextStyles, { type: "SubHeading", lineHeight: "LH-2.0", subheadingTypes: "XS-1.6", textcolor: "light" }, description))))));
 }
 
 var MainLayoutClass = /** @class */ (function (_super) {

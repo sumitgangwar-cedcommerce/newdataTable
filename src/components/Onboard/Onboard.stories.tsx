@@ -2,7 +2,7 @@ import React from "react";
 import Onboard from "./Onboard";
 
 export default {
-  title: "Components/Onboard",
+  title: "Components/Layout/Onboard",
   component: Onboard,
   argTypes: {
     title: {

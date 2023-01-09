@@ -6,7 +6,7 @@ import TextStyles from "../TextStyles/TextStyles";
 import Alert from "../Alerts/Alert";
 
 export default {
-  title: "Components/AutoComplete",
+  title: "Components/Form/AutoComplete",
   component: AutoComplete,
   argTypes: {
     name: {

@@ -7,7 +7,7 @@ import { activity ,logout, down } from "../../../Icon/Icon";
 const iconMap = { ...Icon };
 
 export default {
-  title: "Components/ButtonDropdown",
+  title: "Components/Actions/ButtonDropdown",
   component: ButtonDropdown,
   argTypes: {
     children: {

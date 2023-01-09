@@ -3,37 +3,29 @@
   align-items: center;
   gap: 1.2rem;
 }
-.inte--switcher[disabled] {
-  opacity: 0.6;
-  cursor: not-allowed;
+.inte--switcher {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+  height: 2rem;
+  width: 3.8rem;
+  border-radius: var(--radius-rounded-5);
+  display: inline-block;
+  position: relative;
+  transition: all 0.3s ease;
+  background-color: var(--inte-G90);
+  overflow: hidden;
 }
-  .inte--switcher {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    -webkit-tap-highlight-color: transparent;
-    cursor: pointer;
-  }
-  .inte--switcher:focus {
-    outline: 0;
-  }
-  
-  .inte--switcher {
-    height: 1.8rem;
-    width: 3.6rem;
-    border-radius: var(--radius-rounded-4);
-    display: inline-block;
-    position: relative;
-    margin: 0;
-    transition: all 0.2s ease;
-    background-color: var(--inte-G30);
-    overflow: hidden;
+.inte--switcher:checked:hover{
+  background: var(--inte-P1000);
 }
 .inte--switcher:after {
   content: "";
   position: absolute;
-  top: 0.1rem;
-  left: 0.1rem;
+  top: 0.2rem;
+  left: 0.2rem;
   width: 1.6rem;
   height: 1.6rem;
   border-radius: var(--radius-rounded-4);
@@ -41,13 +33,37 @@
   box-shadow: 0.5px 0.5px 8px rgba(0, 0, 0, 0.25);
   transition: all 0.2s cubic-bezier(0.5, 0.1, 0.75, 1.35);
 }
-
+.inte--switcher:hover{
+  background-color: var(--inte-G100);
+}
+.inte--switcher:focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.1rem var(--inte-G0), 0 0 0 0.3rem var(--inte-B80);
+}
+.inte--switcher[disabled] {
+  cursor: not-allowed;
+  background: var(--inte-G40)!important;
+}
+.inte--switcher:checked[disabled] {
+  background: var(--inte-P40)!important;
+}
+.inte--switcher[disabled]:after {
+ box-shadow: unset!important;
+}
 .inte--switcher:checked {
-  background: var(--inte-B300);
+  background: var(--inte-P900);
 }
 .inte--switcher:checked:after {
-  background: var(--inte-B300);
+  background: var(--inte-P900);
   transform: translatex(1.8rem);
   background-color: var(--inte-G0);
   box-shadow: -0.5px 0.5px 8px rgba(0, 0, 0, 0.5);
 }
+span.inte__Switcher-Text {
+  font-weight: var(--weight-bolder);
+  font-size: 1.6rem;
+  color: var(--inte-G800);
+}
+
+
+

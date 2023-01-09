@@ -6,7 +6,7 @@ interface ObjI {
   value: number;
 }
 export default {
-  title: "Components/Breadcrumb",
+  title: "Components/Actions/Breadcrumb",
   component: Breadcrumb,
   argTypes: {
     items: {

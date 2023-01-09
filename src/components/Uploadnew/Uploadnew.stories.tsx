@@ -4,7 +4,7 @@ import Button from '../Button/Button'
 import Uploadnew from './Uploadnew'
 import 'antd/dist/antd.css'
 export default {
-  title: 'Components/Uploadnew',
+  title: 'Components/Form/Uploadnew',
   component: Uploadnew,
   argTypes: {
     onChange: {
@@ -83,7 +83,7 @@ const Template = ({ ...rest }) => {
         
 
       >
-        <Button content="Click to upload" type="Primary" iconRound={false} icon={<Upload color='#ffff'/>} />
+        <Button content="Click to upload" type="Primary"  icon={<Upload color='#ffff'/>} />
       </Uploadnew>
     </>
   )
@@ -104,7 +104,7 @@ export const UploadDirectory: any = Template.bind({})
 UploadDirectory.decorators = [
   () => (
     <Uploadnew directory>
-      <Button content="Click to Directory" type="Primary" iconRound={false} icon={<Upload color='white' />} />
+      <Button content="Click to Directory" type="Primary"  icon={<Upload color='white' />} />
     </Uploadnew>
   ),
 ]

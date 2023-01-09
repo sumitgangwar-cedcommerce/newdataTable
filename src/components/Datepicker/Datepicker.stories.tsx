@@ -9,7 +9,7 @@ import "moment/locale/zh-cn";
 import locale1 from "antd/es/date-picker/locale/de_DE";
 import { FormElement } from "../FormElement";
 export default {
-  title: "Components/Datepicker",
+  title: "Components/Form/Datepicker",
   component: Datepicker,
   argTypes: {
     showToday: {

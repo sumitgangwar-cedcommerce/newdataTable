@@ -4,7 +4,7 @@ import MainLayout from "./MainLayout";
 import "./MainLayout.css";
 
 export default {
-  title: "Components/MainLayout/MainLayout",
+  title: "Components/Layout/MainLayout",
   component: MainLayout,
 }
 

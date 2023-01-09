@@ -4,7 +4,7 @@ import RangeSlider from "./RangeSlider"
 import "antd/dist/antd.css";
 
 export default {
-  title: "Components/RangeSlider",
+  title: "Components/Form/RangeSlider",
   component: RangeSlider,
   argTypes: {
     range: {

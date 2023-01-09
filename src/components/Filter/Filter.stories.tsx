@@ -5,7 +5,7 @@ import { FormElement, Radio } from "../FormElement";
 import Filter from "./Filter";
 
 export default {
-  title: "Components/Filter",
+  title: "Components/Overlays/Filter",
   component: Filter,
   argTypes: {
     filters: {
@@ -44,24 +44,21 @@ export default {
       defaultValue: true,
     },
     onApply: {
-      description:
-        "Manage onApply Function",
+      description: "Manage onApply Function",
       control: {
         type: "function",
         disable: true,
       },
     },
     onClose: {
-      description:
-        "Manage onClose Function",
+      description: "Manage onClose Function",
       control: {
         type: "function",
         disable: true,
       },
     },
     resetFilter: {
-      description:
-        "Manage resetFilter Function",
+      description: "Manage resetFilter Function",
       control: {
         type: "function",
         disable: true,
@@ -146,11 +143,10 @@ const filtersObj = [
     ),
   },
   {
-    name: "Checbox Filter",
+    name: "Radio Filter",
     children: (
       <FlexLayout spacing="tight" direction="vertical">
         <RadioRender />
-       
       </FlexLayout>
     ),
   },
@@ -185,30 +181,27 @@ function CheckBoxRender({ labelVal }: any) {
 }
 
 function RadioRender() {
-  const [value, setvalue] = useState<any>({})
+  const [value, setvalue] = useState<any>({});
   return (
-    <Card title={'Radio Button'}>
-      <FormElement>
-        {['1', '2','3'].map((items: any,index:any) => {
-          return (
-            <Radio
-              id={index}
-              checked={value.index}
-              name={"2"}
-              labelVal={items}
-              value={value}
-              onClick={() => {
-                const temp={...value};
-                temp[index]=true
-                setvalue(temp)
-              }
-              }
-            />
-          )
-        })}
-      </FormElement>
-    </Card>
-  )
+    <FormElement>
+      {["1", "2", "3"].map((items: any, index: any) => {
+        return (
+          <Radio
+            id={index}
+            checked={value.index}
+            name={"2"}
+            labelVal={items}
+            value={value}
+            onClick={() => {
+              const temp = { ...value };
+              temp[index] = true;
+              setvalue(temp);
+            }}
+          />
+        );
+      })}
+    </FormElement>
+  );
 }
 
 const Template = ({ ...rest }) => {

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import Pagination from '../Pagination/Pagination';
 import Grid from './Grid'
 export default {
-  title: 'Components/Grid',
+  title: 'Components/DataGrid and List/Grid',
   component: Grid,
   argTypes: {
     size: {
@@ -159,7 +159,7 @@ const columns = [
 const columnss = [
   {
     title: 'Full Name',
-    width: 300,
+    width: 100,
     dataIndex: 'name',
     key: 'name',
     fixed: 'left',
@@ -169,7 +169,6 @@ const columnss = [
     width: 100,
     dataIndex: 'age',
     key: 'age',
-    fixed: 'left',
   },
   {
     title: 'Column 1',

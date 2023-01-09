@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Pagination, Card } from "..";
 
 export default {
-  title: "Components/Pagination",
+  title: "Components/Navigation/Pagination",
   component: Pagination,
   argTypes: {
     totalPages: {

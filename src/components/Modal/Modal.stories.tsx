@@ -5,10 +5,9 @@ import { useState } from "react";
 import { Card } from "../Card";
 import { FlexLayout } from "../FlexLayout";
 import { FormElement } from "../FormElement";
-import TextStyles from "../TextStyles/TextStyles";
 
 export default {
-  title: "Components/Modal",
+  title: "Components/Overlays/Modal",
   component: Modal,
   argTypes: {
     open: {
@@ -98,21 +97,15 @@ const Template = ({ ...rest }) => {
         }}
       >
        <FormElement>
-        <Datepicker placeholder="Date PlaceHolder" />
+        <Datepicker name="Choose Date" placeholder="Date PlaceHolder" />
         <Select
-          name="slect"
+          name="Select Options"
           popoverContainer="body"
-          thickness="thick"
           options={[
             {
               label: "Option 1",
               value: "valuedf",
             },
-            {
-              label: "Option 1",
-              value: "valuedf",
-            },
-           
           ]}
         />
        </FormElement>

@@ -2,7 +2,7 @@ import React from "react";
 import Video from "./Video";
 
 export default {
-  title: "Components/Video",
+  title: "Components/Media/Video",
   component: Video,
   argTypes: {
     src: {

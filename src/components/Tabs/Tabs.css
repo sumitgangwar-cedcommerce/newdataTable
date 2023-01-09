@@ -26,14 +26,26 @@
   border-bottom-color: var(--inte-P40);
   color: var(--inte-G800);
 }
-.inte-tabsWrap a,
-.inte-tabsWrap .inteTab--text {
+.inte-tabsWrap a, .inte-tabsWrap .inteTab--text {
   padding: 0 0.8rem 0.8rem 0.8rem;
   color: var(--link-color-dark);
   text-decoration: none;
   display: inline-block;
   outline: unset;
-  border-bottom: 0.2rem solid transparent;
+  position: relative;
+}
+.inte-tabsWrap .inteTab--text:after{
+  content: "";
+  background: var(--inte-P900);
+  height: 0.2rem;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  -webkit-transition: all 250ms ease 0s;
+  transition: all 250ms ease 0s;
+  -webkit-transform: scale(0);
+  transform: scale(0);
 }
 .inte-tabsWrap .inteTab--text span {
   font-size: 1.4rem;
@@ -72,9 +84,12 @@
   padding: 0.4rem 1rem;
 }
 .inte-tabsWrap .inte__item--active a {
-  border-bottom: 0.2rem solid var(--inte-P1100) !important;
   font-weight: var(--weight-bold);
   color: var(--inte-P900);
+}
+.inte-tabsWrap .inte__item--active a:after {
+  -webkit-transform: scale(1);
+  transform: scale(1);
 }
 .inte-Tabs--vertical {
   display: flex;

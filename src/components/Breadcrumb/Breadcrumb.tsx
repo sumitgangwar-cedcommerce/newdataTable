@@ -32,7 +32,7 @@ const Breadcrumb: FC<BreadcrumbI> = ({
                 <ChevronRight size={20} />
 
                 {i == Object.keys(items).length - 1 ? (
-                  <Button disable={true} type="Outlined" thickness="thin">
+                  <Button disable={true} type="TextButton" thickness="thin">
                     {e.label}
                   </Button>
                 ) : (
@@ -41,7 +41,7 @@ const Breadcrumb: FC<BreadcrumbI> = ({
                     onClick={() => {
                       onClick(e.value, e);
                     }}
-                    type="Outlined"
+                    type="TextButton"
                   >
                     {" "}
                     {e.label}
@@ -54,7 +54,7 @@ const Breadcrumb: FC<BreadcrumbI> = ({
                 onClick={() => {
                   onClick(e.value, e);
                 }}
-                type="Outlined"
+                type="TextButton"
               >
                 {" "}
                 {e.label}

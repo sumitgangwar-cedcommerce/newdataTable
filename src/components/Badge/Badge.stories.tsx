@@ -5,7 +5,7 @@ import Card from "../Card/Card";
 import FlexLayout from "../FlexLayout/FlexLayout";
 
 export default {
-  title: "Components/Badge",
+  title: "Components/Media/Badge",
   component: Badge,
   argTypes: {
     children: {
