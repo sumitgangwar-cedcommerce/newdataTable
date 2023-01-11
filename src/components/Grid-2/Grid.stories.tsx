@@ -1,7 +1,4 @@
-import { Button } from "antd";
 import React from "react";
-import { ChevronDown } from "react-feather";
-import ActionList from "../ActionList/ActionList";
 import Grid from "./Grid";
 
 
@@ -30,13 +27,32 @@ export default {
     scrollX : {
       control:{
         type:'number'
-      }
+      },
+      defaultValue:500,
     },
     scrollY : {
       control:{
         type:'number'
       },
-      defaultValue:400,
+      // defaultValue:200,
+    },
+    rowSelection : {
+      control:{
+        type:'boolean'
+      },
+      defaultValue:true
+    },
+    expandable: {
+      control : {
+        type:{
+          expandedRowRender:Function,
+          rowExpandable:Function
+        }
+      },
+      defaultValue:{
+        expandedRowRender:(record : any) => <p>{record.title}</p>,
+        rowExpandable:(record:any) => !['2' , '3' , '6'].includes(record.key)
+      }
     }
   }
 };
@@ -48,7 +64,7 @@ const columns = [
     key: 'name',
     width: 100,
     align: 'center',
-    // fixed:'Left',
+    fixed:'left',
   },
   {
     title: 'Status',
@@ -56,6 +72,8 @@ const columns = [
     key: 'age',
     width: 100,
     align: 'center',
+    fixed:'left',
+    sortable:true
   },
   {
     title: 'Palcement',
@@ -63,46 +81,51 @@ const columns = [
     key: 'address',
     width: 100,
     align: 'center',
+    // fixed:'left'
   },
   {
     title: 'Start Date',
     dataIndex: 'start-date',
-    key: 'name',
+    key: 'sd',
     width: 100,
     align: 'center',
   },
   {
     title: 'End Date',
     dataIndex: 'end-date',
-    key: 'name',
+    key: 'ed',
     width: 100,
     align: 'center',
   },
   {
     title: 'Daily Budget',
     dataIndex: 'daily-budget',
-    key: 'name',
+    key: 'db',
     width: 100,
     align: 'center',
   },
   {
     title: 'Spend',
     dataIndex: 'spend',
-    key: 'name',
+    key: 'spnd',
     width: 100,
     align: 'center',
+    fixed:'right',
+    sortable:true
   },
   {
     title: 'Sales',
     dataIndex: 'sales',
-    key: 'name',
+    key: 'slaes',
     width: 100,
     align: 'center',
+    fixed:'right',
+    sortable:true
   },
   {
     title: 'Actions',
     dataIndex: 'action',
-    key: 'name',
+    key: 'act',
     width: 100,
     align: 'center',
     fixed: 'right'
@@ -113,121 +136,121 @@ const dataSource = [
   {
     key: '1',
     campaign: 'Thanksgiving Promo',
-    status: 'Pending',
+    status: 'a',
     placement: 'Facebook',
     'start-date': 'MM/DD/YYYY',
     'end-date': 'MM/DD/YYYY',
     'daily-budget': '$150',
-    'spend': '$999',
+    'spend': '$4',
     'sales': '$0',
     action:'...'
   },
   {
     key: '2',
     campaign: 'Thanksgiving Promo',
-    status: 'Pending',
+    status: 'b',
     placement: 'Facebook',
     'start-date': 'MM/DD/YYYY',
     'end-date': 'MM/DD/YYYY',
     'daily-budget': '$150',
-    'spend': '$999',
-    'sales': '$0',
+    'spend': '$9',
+    'sales': '$1',
     action: '...'
   },
   {
     key: '3',
     campaign: 'Thanksgiving Promo',
-    status: 'Pending',
+    status: 'C',
     placement: 'Facebook',
     'start-date': 'MM/DD/YYYY',
     'end-date': 'MM/DD/YYYY',
     'daily-budget': '$150',
-    'spend': '$999',
-    'sales': '$0',
+    'spend': '$7',
+    'sales': '$2',
     action: '...'
   },
   {
     key: '4',
     campaign: 'Thanksgiving Promo',
-    status: 'Pending',
+    status: 'd',
     placement: 'Facebook',
     'start-date': 'MM/DD/YYYY',
     'end-date': 'MM/DD/YYYY',
     'daily-budget': '$150',
-    'spend': '$999',
-    'sales': '$0',
+    'spend': '$6',
+    'sales': '$3',
     action: '...'
   },
   {
     key: '5',
     campaign: 'Thanksgiving Promo',
-    status: 'Pending',
+    status: 'e',
     placement: 'Facebook',
     'start-date': 'MM/DD/YYYY',
     'end-date': 'MM/DD/YYYY',
     'daily-budget': '$150',
-    'spend': '$999',
-    'sales': '$0',
+    'spend': '$5',
+    'sales': '$4',
     action: '...'
   },
   {
     key: '6',
     campaign: 'Thanksgiving Promo',
-    status: 'Pending',
+    status: 'F',
     placement: 'Facebook',
     'start-date': 'MM/DD/YYYY',
     'end-date': 'MM/DD/YYYY',
     'daily-budget': '$150',
-    'spend': '$999',
-    'sales': '$0',
+    'spend': '$8',
+    'sales': '$5',
     action: '...'
   },
   {
     key: '7',
     campaign: 'Thanksgiving Promo',
-    status: 'Pending',
+    status: 'g',
     placement: 'Facebook',
     'start-date': 'MM/DD/YYYY',
     'end-date': 'MM/DD/YYYY',
     'daily-budget': '$150',
-    'spend': '$999',
-    'sales': '$0',
+    'spend': '$3',
+    'sales': '$6',
     action: '...'
   },
   {
     key: '8',
     campaign: 'Thanksgiving Promo',
-    status: 'Pending',
+    status: 'H',
     placement: 'Facebook',
     'start-date': 'MM/DD/YYYY',
     'end-date': 'MM/DD/YYYY',
     'daily-budget': '$150',
-    'spend': '$999',
-    'sales': '$0',
+    'spend': '$2',
+    'sales': '$7',
     action: '...'
   },
   {
     key: '9',
     campaign: 'Thanksgiving Promo',
-    status: 'Pending',
+    status: 'i',
     placement: 'Facebook',
     'start-date': 'MM/DD/YYYY',
     'end-date': 'MM/DD/YYYY',
     'daily-budget': '$150',
-    'spend': '$999',
-    'sales': '$0',
+    'spend': '$1',
+    'sales': '$8',
     action: '...'
   },
   {
     key: '10',
     campaign: 'Thanksgiving Promo',
-    status: 'Pending',
+    status: 'J  ',
     placement: 'Facebook',
     'start-date': 'MM/DD/YYYY',
     'end-date': 'MM/DD/YYYY',
     'daily-budget': '$150',
-    'spend': '$999',
-    'sales': '$0',
+    'spend': '$0',
+    'sales': '$9',
     action: '...'
   },
 ];
@@ -240,6 +263,8 @@ const Template = ({ ...rest }) => {
       fixedHeader={rest.fixedHeader}
       scrollX = {rest.scrollX}
       scrollY = {rest.scrollY}
+      rowSelection={rest.rowSelection}
+      expandable = {rest.expandable}
     />
   )
 }

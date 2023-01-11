@@ -1,16 +1,16 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./FormElement.css";
 
-const CheckBox: React.FC<CheckBoxI> = ({
-  onClick = () => {
-    //
-  },
-  ...props
-}: CheckBoxI) => {
+const CheckBox: React.FC<CheckBoxI> = ({...props}: CheckBoxI) => {
   const [id] = useState(() => "-" + Math.floor(Math.random() * 1000));
   const [checked, toggleChecked] = useState(false);
 
+
   const checkBoxRef = useRef<HTMLInputElement>(null)
+
+  const handelCheckboxClick = () => {
+    props.onClick && props.onClick();
+  }
 
   useEffect(()=>{
     if(checkBoxRef.current){
@@ -35,7 +35,7 @@ const CheckBox: React.FC<CheckBoxI> = ({
       }
     >
       <div onClick={() => {
-        { props.disabled ? void (0) : onClick(); }
+        { props.disabled ? void (0) : ''}
       }}>
         <input
           ref={checkBoxRef}
@@ -44,7 +44,7 @@ const CheckBox: React.FC<CheckBoxI> = ({
           type="checkbox"
           name={props.name}
           onClick={() => {
-            { props.disabled ? void (0) : toggleChecked(!checked) }
+            { props.disabled ? void (0) : handelCheckboxClick() }
 
           }}
           checked={checked}
@@ -74,7 +74,7 @@ const CheckBox: React.FC<CheckBoxI> = ({
 export interface CheckBoxI {
   checked?: boolean;
   indeterminate?: boolean;
-  onClick?: () => void | string;
+  onClick?: Function;
   labelVal?: string;
   id?: string;
   name?: string;
