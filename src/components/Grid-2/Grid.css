@@ -3,7 +3,7 @@
 }
 
 .inte-Grid--wrapper {
-  overflow: scroll;
+  overflow: auto;
   box-sizing: border-box;
   border: 0.1rem solid var(--grey);
   background: var(--inte-G0);

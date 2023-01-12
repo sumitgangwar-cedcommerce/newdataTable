@@ -9,7 +9,7 @@ export interface columnI {
   width?: number,
   align?: string,
   fixed?: string,
-  sortable?:boolean,
+  sortable?: boolean,
 }
 
 export interface gridI {
@@ -23,8 +23,8 @@ export interface gridI {
 }
 
 export interface expandableI {
-  expandedRowRender: Function,
-  rowExpandable?: (item:any) => boolean
+  expandedRowRender: (item:any) => React.ReactNode,
+  rowExpandable?: (item: any) => boolean
 }
 
 const Grid = ({ columns, dataSource, fixedHeader, scrollX, scrollY, rowSelection, expandable }: gridI) => {
@@ -32,10 +32,12 @@ const Grid = ({ columns, dataSource, fixedHeader, scrollX, scrollY, rowSelection
   const [data, setData] = useState(dataSource)
   const [headerCheckboxChecked, setHeaderCheckboxChecked] = useState<boolean>(false)
   const [selectedCheckbox, setSelectedCheckbox] = useState<string[]>([])
+  const [expandedRows , setExpandedRows] = useState<string[]>([])
 
-  const [sortOrder , setSortOrder] = useState('aesc')
+  const [sortOrder, setSortOrder] = useState('aesc')
 
   const GridWrapperRef = useRef<HTMLDivElement>(null)
+
 
   const GridWrapperStyle = {
     width: scrollX ? scrollX + 'px' : 'auto',
@@ -43,7 +45,7 @@ const Grid = ({ columns, dataSource, fixedHeader, scrollX, scrollY, rowSelection
   }
   const handelGridScroll = () => {
     if (GridWrapperRef.current) {
-      let scrollBarWidth = GridWrapperRef.current.scrollWidth - GridWrapperRef.current.offsetWidth
+      let scrollBarWidth = GridWrapperRef.current.scrollLeft + GridWrapperRef.current.offsetWidth
       if (GridWrapperRef.current.scrollLeft) {
         const ele = document.getElementsByClassName('inte-Grid__Cell--Fixedleft-last') as HTMLCollectionOf<HTMLElement>
         for (let i = 0; i < ele.length; i++) {
@@ -62,7 +64,9 @@ const Grid = ({ columns, dataSource, fixedHeader, scrollX, scrollY, rowSelection
 
       const ele = document.getElementsByClassName('inte-Grid__Cell--Fixedright-last') as HTMLCollectionOf<HTMLElement>
 
-      if (GridWrapperRef.current.scrollLeft - 7 >= scrollBarWidth) {
+      console.log()
+
+      if ((scrollBarWidth >= GridWrapperRef.current.scrollWidth)) {
         for (let i = 0; i < ele.length; i++) {
           ele[i].classList.remove('shadowedRight')
         }
@@ -102,21 +106,30 @@ const Grid = ({ columns, dataSource, fixedHeader, scrollX, scrollY, rowSelection
     }
   }
 
-  const sortTheData = (key:string)=>{
-    if(sortOrder==='aesc'){
-      data.sort((a:any , b:any)=> a[key].toLowerCase().localeCompare(b[key].toLowerCase()))
-     
+  const sortTheData = (key: string) => {
+    if (sortOrder === 'aesc') {
+      data.sort((a: any, b: any) => a[key].toLowerCase().localeCompare(b[key].toLowerCase()))
+
       setSortOrder('desc')
     }
-    else{
-      data.sort((a:any , b:any)=> b[key].toLowerCase().localeCompare(a[key].toLowerCase()))
+    else {
+      data.sort((a: any, b: any) => b[key].toLowerCase().localeCompare(a[key].toLowerCase()))
 
       setSortOrder('aesc')
     }
 
     setData(data)
   }
-  console.log(data)
+  
+  const expandIconClickHandler = (key:string) => {
+    if(expandedRows.includes(key))  setExpandedRows(prev => prev.filter(item => item!==key))
+    else setExpandedRows(prev => [...prev , key])
+  }
+
+  useEffect(()=>{
+    console.log('calling');
+    handelGridScroll()
+  })
 
   useEffect(() => {
     if (headerCheckboxChecked) {
@@ -206,7 +219,7 @@ const Grid = ({ columns, dataSource, fixedHeader, scrollX, scrollY, rowSelection
             <th
               key={item.key ? item.key : Math.random() * 5000}
               className={`inte-Grid__Cell ${item.fixed ? `inte-Grid__Cell--Fixed` + item.fixed.toLowerCase() : ''} ${item.sortable ? 'inte-Grid__Cell--sortable' : ''}`}
-              onClick={item.sortable ? ()=>sortTheData(item.dataIndex) : void(0)}
+              onClick={item.sortable ? () => sortTheData(item.dataIndex) : void (0)}
             >
               {item.title}
             </th>
@@ -225,9 +238,10 @@ const Grid = ({ columns, dataSource, fixedHeader, scrollX, scrollY, rowSelection
         {
           expandable ? <td
             className={`inte-Grid__Cell inte-Grid__Cell--Expand ${isRowExpandable ? '' : 'inte-Grid__Cell--Expand-spaced'}`}
+            onClick={isRowExpandable ? ()=>expandIconClickHandler(item.key) : void(0)}
           >
             {
-              isRowExpandable ? '+' : ''
+              isRowExpandable ? expandedRows.includes(item.key) ? '-' : '+' : ''
             }
           </td> : ''
         }
@@ -251,12 +265,30 @@ const Grid = ({ columns, dataSource, fixedHeader, scrollX, scrollY, rowSelection
           })
         }
       </tr>
+      {
+        expandedRows.includes(item.key) && <tr>
+          <td
+          className='inte-Grid__Cell' 
+          colSpan={columns.length + (rowSelection ? 1: 0) + (expandable ? 1 : 0)} 
+          >
+            {
+              expandable?.expandedRowRender(item)
+            }
+          </td>
+        </tr>
+      }
     </>
     return row
   }
 
   return (
-    <div className='inte-Grid--wrapper' style={GridWrapperStyle} ref={GridWrapperRef} onScroll={handelGridScroll}>
+    <div 
+      className='inte-Grid--wrapper' 
+      style={GridWrapperStyle} 
+      ref={GridWrapperRef} 
+      onScroll={handelGridScroll}
+     
+    >
       <table className='inte-Grid'>
         <thead id='inte-Grid__Header'>
           {

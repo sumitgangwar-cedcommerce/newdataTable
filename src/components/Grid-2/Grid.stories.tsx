@@ -5,54 +5,50 @@ import Grid from "./Grid";
 export default {
   title: 'Components/Grid-2',
   component: Grid,
-  argTypes : {
-    fixedHeader : {
+  argTypes: {
+    fixedHeader: {
       control: {
-        type:'boolean'
+        type: 'boolean'
       },
       defaultValue: true,
     },
-    columns : {
+    columns: {
       control: {
-        type:'text',
-        disable:true,
+        type: 'text',
+        disable: true,
       }
     },
-    dataSource : {
+    dataSource: {
       control: {
-        type:'text',
-        disable:true,
+        type: 'text',
+        disable: true,
       }
     },
-    scrollX : {
-      control:{
-        type:'number'
+    scrollX: {
+      control: {
+        type: 'number'
       },
-      defaultValue:500,
+      // defaultValue: 500,
     },
-    scrollY : {
-      control:{
-        type:'number'
+    scrollY: {
+      control: {
+        type: 'number'
       },
       // defaultValue:200,
     },
-    rowSelection : {
-      control:{
-        type:'boolean'
+    rowSelection: {
+      control: {
+        type: 'boolean'
       },
-      defaultValue:true
+      defaultValue: true
     },
     expandable: {
-      control : {
-        type:{
-          expandedRowRender:Function,
-          rowExpandable:Function
+      control: {
+        type: {
+          expandedRowRender: Function,
+          rowExpandable: Function
         }
       },
-      defaultValue:{
-        expandedRowRender:(record : any) => <p>{record.title}</p>,
-        rowExpandable:(record:any) => !['2' , '3' , '6'].includes(record.key)
-      }
     }
   }
 };
@@ -64,7 +60,7 @@ const columns = [
     key: 'name',
     width: 100,
     align: 'center',
-    fixed:'left',
+    fixed: 'left',
   },
   {
     title: 'Status',
@@ -72,8 +68,8 @@ const columns = [
     key: 'age',
     width: 100,
     align: 'center',
-    fixed:'left',
-    sortable:true
+    fixed: 'left',
+    sortable: true
   },
   {
     title: 'Palcement',
@@ -110,8 +106,8 @@ const columns = [
     key: 'spnd',
     width: 100,
     align: 'center',
-    fixed:'right',
-    sortable:true
+    fixed: 'right',
+    sortable: true
   },
   {
     title: 'Sales',
@@ -119,8 +115,8 @@ const columns = [
     key: 'slaes',
     width: 100,
     align: 'center',
-    fixed:'right',
-    sortable:true
+    fixed: 'right',
+    sortable: true
   },
   {
     title: 'Actions',
@@ -143,7 +139,7 @@ const dataSource = [
     'daily-budget': '$150',
     'spend': '$4',
     'sales': '$0',
-    action:'...'
+    action: '...'
   },
   {
     key: '2',
@@ -261,10 +257,23 @@ const Template = ({ ...rest }) => {
       dataSource={dataSource}
       columns={columns}
       fixedHeader={rest.fixedHeader}
-      scrollX = {rest.scrollX}
-      scrollY = {rest.scrollY}
+      scrollX={rest.scrollX}
+      scrollY={rest.scrollY}
       rowSelection={rest.rowSelection}
-      expandable = {rest.expandable}
+      expandable={{
+        expandedRowRender: (record: any) => (
+          <Grid
+          dataSource={dataSource}
+          columns={columns}
+          fixedHeader={rest.fixedHeader}
+          scrollX={rest.scrollX}
+          scrollY={rest.scrollY}
+          rowSelection={rest.rowSelection}
+          />
+          // <p>{JSON.stringify(record)}</p>
+        ),
+        rowExpandable: (record: any) => !['2', '3', '6'].includes(record.key)
+      }}
     />
   )
 }
