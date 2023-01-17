@@ -17,6 +17,13 @@ declare const _default: {
             };
             defaultValue: string;
         };
+        className: {
+            description: string;
+            control: {
+                type: string;
+            };
+            defaultValue: string;
+        };
         textAligh: {
             description: string;
             control: {

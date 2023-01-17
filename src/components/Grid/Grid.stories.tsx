@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import Pagination from '../Pagination/Pagination';
 import Grid from './Grid'
 export default {
-  title: 'Components/DataGrid and List/Grid',
+  title: 'Components/DataTable and List/Grid',
   component: Grid,
   argTypes: {
     size: {

@@ -1,4 +1,5 @@
 export { default as Button } from "./Button/Button";
+export { default as ButtonGroup } from "./Button/ButtonGroup/ButtonGroup";
 export { default as ButtonDropdown } from "./Button/ButtonDropdown/ButtonDropdown";
 export { default as Accordion } from "./Accordion/Accordion";
 export { default as AnnouncementBar } from "./AnnouncementBar/AnnouncementBar";
@@ -34,11 +35,8 @@ export { default as AutoComplete } from "./AutoComplete/AutoComplete";
 export { default as Avatar } from "./Avatar/Avatar";
 export { default as Breadcrumb } from "./Breadcrumb/Breadcrumb";
 export { default as CopyClipboard } from "./CopyClipboard/CopyClipboard";
-export { default as InplaceEditor } from "./InplaceEditor/InplaceEditor";
 export { default as ToolTip } from "./ToolTip/ToolTip";
-export { default as Upload } from "./Upload/Upload";
-export { default as Uploadnew } from "./Uploadnew/Uploadnew";
-export { default as FileUpload } from "./Upload/FileUpload";
+export { default as FileUpload } from "./FileUpload/FileUpload";
 export { default as List } from "./List/List";
 export { default as OverlappingImages } from "./OverlappingImages/OverlappngImages";
 export { default as LoginPage } from "./Page/Login/LoginPage";

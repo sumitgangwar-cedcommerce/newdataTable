@@ -47,7 +47,6 @@
 .inte-ActionList-group {
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
   border-radius: var(--radius-rounded-4);
   padding: 1rem 1.6rem;
   transition: 100ms all linear;
@@ -71,22 +70,19 @@
 .inte-ActionList__Content {
   display: flex;
   gap: 0.8rem;
+  width: 100%;
 }
-.inte-ActionList__icon {
-  display: flex;
-}
+
 .inte-ActionList__icon > svg {
   height: 2rem;
   width: 2rem;
+  display: block;
 }
 .inte-ActionList__icon > svg > path {
   stroke: var(--inte-G800);
 }
-
 .inte-ActionList__ContentText {
-  display: flex;
-  flex-flow: column;
-  gap: 0.4rem;
+  width: 100%;
 }
 .inte-ActionList__Content .inte-ActionList__Title,
 .inte-ActionList__Content .inte-ActionList__Description {
@@ -97,6 +93,7 @@
 }
 .inte-ActionList__Content .inte-ActionList__Description {
   color: var(--inte-G200);
+  margin-top: 0.4rem !important;
 }
 
 /* Animations */

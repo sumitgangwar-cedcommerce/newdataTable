@@ -146,7 +146,7 @@ const ActionList: FC<ActionListI> = ({
     const eleWidth = positionObject.right - positionObject.x;
 
     if (remainingrightWidth > positionObject.width) {
-      const x = "left";
+      const x = "inte-ActionList--Left";
       return {
         class: x,
         style: {
@@ -155,7 +155,7 @@ const ActionList: FC<ActionListI> = ({
         },
       };
     } else {
-      const x = "right";
+      const x = "inte-ActionList--Right";
       return {
         class: x,
         style: {

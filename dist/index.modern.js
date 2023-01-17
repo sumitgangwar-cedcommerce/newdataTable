@@ -73,11 +73,10 @@ var Button = function (_a) {
     var icon = React__default["default"].createElement(React__default["default"].Fragment, null);
     var thicknessCss = getThickness();
     var halignCss = checkForForHAlign();
-    var _g = props.iconAlign, iconAlign = _g === void 0 ? "left" : _g, _h = props.iconRound, iconRound = _h === void 0 ? false : _h;
+    var _g = props.iconAlign, iconAlign = _g === void 0 ? "left" : _g;
     if (props.icon) {
         iconClass = "inte-btn--hasIcon";
-        var round = iconRound ? "inte-btn__icon--round" : "";
-        icon = (React__default["default"].createElement("span", { style: iconRound ? {} : {}, className: "inte-btn__icon ".concat(round) }, props.icon));
+        icon = (React__default["default"].createElement("span", { className: "inte-btn__icon" }, props.icon));
     }
     var content = props.content ? props.content : props.children;
     return (React__default["default"].createElement("button", { disabled: disable, tabIndex: props.tabIndex, className: disable
@@ -97,6 +96,11 @@ var Button = function (_a) {
         props.children ? React__default["default"].createElement("span", { className: "inte__text" }, content) : "",
         props.content ? React__default["default"].createElement("span", { className: "inte__text" }, content) : "",
         iconAlign === "right" && icon));
+};
+
+var ButtonGroup = function (_a) {
+    var _b = _a.segmented, segmented = _b === void 0 ? false : _b, children = _a.children, _c = _a.vertical, vertical = _c === void 0 ? false : _c;
+    return (React__default["default"].createElement("div", { className: " ".concat(segmented ? "inte-ButtonGroup--Segmented" : "", "  ").concat(vertical ? "inte-ButtonGroup--Vertical" : "inte-ButtonGroup") }, children));
 };
 
 function ButtonDropdown(_a) {
@@ -125,10 +129,10 @@ function ButtonDropdown(_a) {
     return (React__default["default"].createElement("div", { id: "inte-btn--Dropdown" + div_id, className: toggle
             ? "inte-btn--Dropdown inte-btn--Dropdown-Open"
             : "inte-btn--Dropdown" },
-        React__default["default"].createElement(Button, { type: props.type, disable: props.disable, loading: props.loading, icon: icon, iconAlign: iconAlign, thickness: props.thickness, iconRound: false, onClick: function () {
+        React__default["default"].createElement(Button, { type: props.type, disable: props.disable, loading: props.loading, icon: icon, iconAlign: iconAlign, thickness: props.thickness, onClick: function () {
                 setToggle(!toggle);
             } }, props.title),
-        React__default["default"].createElement("ul", { className: "inte-btn--Dropdown__Popover", style: { display: toggle ? "block" : "none" } }, list.map(function (e, key) { return (React__default["default"].createElement("li", { key: key, onClick: function () { return setToggle(!toggle); } }, e.icon != undefined ? (React__default["default"].createElement(Button, { type: "Outlined", icon: e.icon, onClick: e.onClick, iconAlign: "left", iconRound: false }, e.label)) : (React__default["default"].createElement(Button, { type: "Outlined", onClick: e.onClick }, e.label)))); }))));
+        React__default["default"].createElement("ul", { className: "inte-btn--Dropdown__Popover", style: { display: toggle ? "block" : "none" } }, list.map(function (e, key) { return (React__default["default"].createElement("li", { key: key, onClick: function () { return setToggle(!toggle); } }, e.icon != undefined ? (React__default["default"].createElement(Button, { type: "Outlined", icon: e.icon, onClick: e.onClick, iconAlign: "left" }, e.label)) : (React__default["default"].createElement(Button, { type: "Outlined", onClick: e.onClick }, e.label)))); }))));
 }
 ButtonDropdown.defaultProps = {
     children: "",
@@ -32198,6 +32202,11 @@ var Popover = function (_a) {
     var _f = React.useState(false), openState = _f[0], setOpenState = _f[1];
     var myRef = React.useRef();
     var myReff = React.useRef();
+    var _g = React.useState(0); _g[0]; var setStoreData = _g[1];
+    React.useLayoutEffect(function () {
+        var _a;
+        setStoreData((_a = myReff.current) === null || _a === void 0 ? void 0 : _a.offsetHeight);
+    }, []);
     function myFun(event) {
         var getPath = event.composedPath();
         var flag = true;
@@ -32235,7 +32244,7 @@ var Popover = function (_a) {
             ? (_b = myRef.current) === null || _b === void 0 ? void 0 : _b.getBoundingClientRect()
             : 10;
     }, []);
-    var _g = React.useState(positionObjectMemo), positionObject = _g[0], setpositionObject = _g[1];
+    var _h = React.useState(positionObjectMemo), positionObject = _h[0], setpositionObject = _h[1];
     function logit() {
         var _a, _b;
         var post = ((_a = myRef.current) === null || _a === void 0 ? void 0 : _a.getBoundingClientRect())
@@ -32296,19 +32305,25 @@ var Popover = function (_a) {
         }
     }
     var pp = dyPos();
+    var showElement = function (value) {
+        switch (value) {
+            case "body":
+                return (React__default["default"].createElement(React__default["default"].Fragment, null, reactDom_1(React__default["default"].createElement("div", { ref: myReff, style: tslib.__assign(tslib.__assign({}, pp.style), { position: "fixed", width: popoverWidth + "px", visibility: "".concat(openState ? "visible" : "hidden") }), className: "inte__Popover-Wrapper inte__Popover-Wrapper--Body ".concat(pp.class), id: "inte__Popover--Item" + id }, children), document.body)));
+            case "element":
+                return (React__default["default"].createElement("div", { ref: myReff, style: {
+                        position: "absolute",
+                        width: popoverWidth + "px",
+                        visibility: "".concat(openState ? "visible" : "hidden"),
+                    }, className: "inte__Popover-Wrapper inte__Popover-Wrapper--Element", id: "inte__Popover--Item" + id }, children));
+        }
+    };
     return (React__default["default"].createElement("div", { id: "pop_parent_" + id, ref: myRef, onClick: function () {
             logit();
         }, className: "popover-parent" },
         activator,
-        !openState ? (React__default["default"].createElement("div", { ref: myReff, style: {
-                position: "fixed",
-                width: popoverWidth + "px",
-                visibility: "hidden",
-                opacity: 0,
-            }, className: "inte__Popover-Wrapper inte__Popover-Wrapper--Fake", id: "inte__Popover--Item" + id }, children)) : popoverContainer == "body" ? (reactDom_1(React__default["default"].createElement("div", { ref: myReff, style: tslib.__assign(tslib.__assign({}, pp.style), { position: "fixed", width: popoverWidth + "px" }), className: "inte__Popover-Wrapper inte__Popover-Wrapper--Body ".concat(pp.class), id: "inte__Popover--Item" + id }, children), document.body)) : (React__default["default"].createElement("div", { ref: myReff, style: {
-                position: "absolute",
-                width: popoverWidth + "px",
-            }, className: "inte__Popover-Wrapper inte__Popover-Wrapper--Element", id: "inte__Popover--Item" + id }, children))));
+        popoverContainer == "body"
+            ? showElement("body")
+            : showElement("element")));
 };
 var getScrollParent$4 = function (node) {
     var regex = /(auto|scroll)/;
@@ -33639,7 +33654,7 @@ var Modal = function (_a) {
                         heading.length > 0 && (React__default["default"].createElement("div", { className: "inte-Modal-Header" },
                             React__default["default"].createElement("div", { className: "inte-Modal-Header__Title" },
                                 React__default["default"].createElement(TextStyles, { type: "Subheading", subheadingTypes: "XS-1.6", lineHeight: "LH-1.6", fontweight: "bold" }, heading)),
-                            React__default["default"].createElement(Button, { thickness: "thin", type: "Secondary", iconRound: false, icon: React__default["default"].createElement(reactFeather.X, { size: 20, color: "#2a2a2a" }), onClick: function () {
+                            React__default["default"].createElement(Button, { thickness: "thin", type: "Secondary", icon: React__default["default"].createElement(reactFeather.X, { size: 20, color: "#2a2a2a" }), onClick: function () {
                                     props.close();
                                 } }))),
                         React__default["default"].createElement("div", { className: "inte-Modal__BodyWrapper" },
@@ -33763,7 +33778,7 @@ var ActionList = function (_a) {
         var remainingrightWidth = windowWidths - positionObject.right;
         var eleWidth = positionObject.right - positionObject.x;
         if (remainingrightWidth > positionObject.width) {
-            var x = "left";
+            var x = "inte-ActionList--Left";
             return {
                 class: x,
                 style: {
@@ -33773,7 +33788,7 @@ var ActionList = function (_a) {
             };
         }
         else {
-            var x = "right";
+            var x = "inte-ActionList--Right";
             return {
                 class: x,
                 style: {
@@ -33799,8 +33814,8 @@ var ActionList = function (_a) {
                             item.prefixIcon && (React__default["default"].createElement("div", { className: "inte-ActionList__icon inte-ActionList__iconPrefix" }, item.prefixIcon)),
                             React__default["default"].createElement("div", { className: "inte-ActionList__ContentText" },
                                 React__default["default"].createElement("p", { className: "inte-ActionList__Title" }, item.content),
-                                item.description && (React__default["default"].createElement("p", { className: "inte-ActionList__Description" }, item.description)))),
-                        item.suffixIcon && (React__default["default"].createElement("div", { className: "inte-ActionList__icon inte-ActionList__iconSuffix" }, item.suffixIcon))));
+                                item.description && (React__default["default"].createElement("p", { className: "inte-ActionList__Description" }, item.description))),
+                            item.suffixIcon && (React__default["default"].createElement("div", { className: "inte-ActionList__icon inte-ActionList__iconSuffix" }, item.suffixIcon)))));
                 }))));
         })),
         renderFooter()));
@@ -33814,7 +33829,7 @@ var ActionList = function (_a) {
                             item.onClick();
                             // setOpenState(false);
                         } },
-                        React__default["default"].createElement("div", { className: "inte-action__content" },
+                        React__default["default"].createElement("div", { className: "inte-ActionList__Content" },
                             item.prefixIcon && (React__default["default"].createElement("div", { className: "inte-ActionList__icon inte-ActionList__iconPrefix" },
                                 React__default["default"].createElement(React__default["default"].Fragment, null, item.prefixIcon))),
                             React__default["default"].createElement("div", { className: "inte-ActionList__ContentText" },
@@ -33826,8 +33841,6 @@ var ActionList = function (_a) {
         })),
         renderFooter()));
     return (React__default["default"].createElement("div", { ref: myRef, id: "inte-ActionList--Container_" + id, className: "inte-ActionList--Container ".concat(popoverdirection), onClick: function () {
-            window.scrollBy(0, 2);
-            window.scrollBy(0, -2);
             logit();
         } },
         activator,
@@ -35943,7 +35956,7 @@ var Pagination = function (_a) {
                         "of ",
                         totalitem)))) : null,
             React__default["default"].createElement(FlexLayout, { spacing: "mediumTight", valign: "center" },
-                React__default["default"].createElement(Button, { iconRound: false, icon: React__default["default"].createElement(reactFeather.ChevronLeft, { size: 20, color: "#2a2a2a" }), thickness: "thin", type: "TextButton", disable: activePage <= 1, onClick: function () {
+                React__default["default"].createElement(Button, { icon: React__default["default"].createElement(reactFeather.ChevronLeft, { size: 20, color: "#2a2a2a" }), thickness: "thin", type: "TextButton", disable: activePage <= 1, onClick: function () {
                         setpage(true);
                         onPrevious();
                     } }),
@@ -35972,7 +35985,7 @@ var Pagination = function (_a) {
                 React__default["default"].createElement(TextStyles, null,
                     "of \u00A0",
                     Math.ceil(totalitem / countPerPage)),
-                React__default["default"].createElement(Button, { iconRound: false, icon: React__default["default"].createElement(reactFeather.ChevronRight, { size: 20, color: "#2a2a2a" }), type: "Secondary", thickness: "thin", disable: Math.ceil(totalitem / countPerPage) <= activePage ||
+                React__default["default"].createElement(Button, { icon: React__default["default"].createElement(reactFeather.ChevronRight, { size: 20, color: "#2a2a2a" }), type: "Secondary", thickness: "thin", disable: Math.ceil(totalitem / countPerPage) <= activePage ||
                         activePage == "", onClick: function () {
                         setpage(true);
                         onNext();
@@ -35992,7 +36005,7 @@ var AdvanceFilterSheet = function (_a) {
             React__default["default"].createElement(TextStyles, { type: "Paragraph", paragraphTypes: "LG-1.5", lineHeight: "LH-1.6", fontweight: "bold" }, heading),
             React__default["default"].createElement(Button, { onClick: function () {
                     onClose(), handleToggle();
-                }, type: "Outlined", thickness: "thin", icon: React__default["default"].createElement(reactFeather.X, { color: "#2a2a2a", size: 20 }), iconRound: false, iconAlign: "right" })))); };
+                }, type: "Outlined", thickness: "thin", icon: React__default["default"].createElement(reactFeather.X, { color: "#2a2a2a", size: 20 }), iconAlign: "right" })))); };
     var showFooter = function () { return (React__default["default"].createElement("div", { className: "inte-FilterSheet--Footer" },
         React__default["default"].createElement(FlexLayout, { halign: "start", valign: "center", spacing: "tight", desktopWidth: "50", tabWidth: "50", mobileWidth: "50" },
             React__default["default"].createElement(Button, { FullBtn: true, onClick: function () {
@@ -36065,7 +36078,7 @@ var FilterSheet = function (_a) {
     var showCross = function () { return (React__default["default"].createElement("div", { className: "inte-FilterSheet--Header" },
         React__default["default"].createElement(FlexLayout, { halign: "fill", valign: "center" },
             React__default["default"].createElement(TextStyles, { type: "Paragraph", paragraphTypes: "LG-1.5", lineHeight: "LH-1.6", fontweight: "bold" }, heading),
-            React__default["default"].createElement(Button, { onClick: handleToggle, type: "Outlined", thickness: "thin", icon: React__default["default"].createElement(reactFeather.X, { color: "#2a2a2a", size: 20 }), iconRound: false, iconAlign: "right" })))); };
+            React__default["default"].createElement(Button, { onClick: handleToggle, type: "Outlined", thickness: "thin", icon: React__default["default"].createElement(reactFeather.X, { color: "#2a2a2a", size: 20 }), iconAlign: "right" })))); };
     var showFooter = function () { return (React__default["default"].createElement("div", { className: "inte-FilterSheet--Footer" },
         React__default["default"].createElement(FlexLayout, { halign: "start", valign: "center", spacing: "tight" },
             React__default["default"].createElement(Button, { onClick: function () {
@@ -36200,13 +36213,11 @@ function Switcher(_a) {
     var checked = _a.checked, _b = _a.onChange, onChange = _b === void 0 ? function () {
         // Use / Click This function and switcher ON or OFF / true or false
         // The onclick event occurs when the user clicks on an element.
-    } : _b, name = _a.name, _c = _a.disabled, disabled = _c === void 0 ? false : _c, _d = _a.textAligh, textAligh = _d === void 0 ? "left" : _d;
-    return (React__default["default"].createElement("div", { className: "inte__Switcher--Wrapper" },
-        name && textAligh === "left" ? (React__default["default"].createElement(TextStyles, { type: "SubHeading", subheadingTypes: "XS-1.6", paragraphTypes: "LG-1.5", lineHeight: "LH-1.6" }, name)) : null,
+    } : _b, name = _a.name, _c = _a.disabled, disabled = _c === void 0 ? false : _c, _d = _a.textAligh, textAligh = _d === void 0 ? "left" : _d, className = _a.className;
+    return (React__default["default"].createElement("div", { className: "inte__Switcher--Wrapper ".concat(className) },
+        name && textAligh === "left" ? (React__default["default"].createElement("span", { className: "inte__Switcher-Text" }, name)) : null,
         React__default["default"].createElement("input", { disabled: disabled, type: "checkbox", className: "inte--switcher", checked: checked, onChange: onChange }),
-        name && textAligh === "right" ? (React__default["default"].createElement(TextStyles, { type: "Paragraph", paragraphTypes: "MD-1.4", lineHeight: "LH-1.6" },
-            " ",
-            name)) : null));
+        name && textAligh === "right" ? (React__default["default"].createElement("span", { className: "inte__Switcher-Text" }, name)) : null));
 }
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -36525,7 +36536,7 @@ Breadcrumb.defaultProps = {
 };
 
 var CopyClipboard = function (_a) {
-    var _b = _a.value, value = _b === void 0 ? "" : _b, label = _a.label, _c = _a.align, align = _c === void 0 ? "none" : _c, _d = _a.timeout, timeout = _d === void 0 ? 3000 : _d;
+    var _b = _a.value, value = _b === void 0 ? "" : _b, label = _a.label, _c = _a.align, align = _c === void 0 ? "none" : _c; _a.timeout;
     var _e = React.useState(false), status = _e[0], setstatus = _e[1];
     var _f = React.useState(false), active = _f[0], setactive = _f[1];
     function copyText() {
@@ -36533,103 +36544,23 @@ var CopyClipboard = function (_a) {
             ? navigator.clipboard.writeText(value)
             : navigator.clipboard.writeText("");
     }
+    React.useEffect(function () {
+        setTimeout(function () { return setactive(false); }, 3000);
+    }, []);
     return (React__default["default"].createElement(React__default["default"].Fragment, null,
-        active && (React__default["default"].createElement(ToastWrapper, null,
-            React__default["default"].createElement(Toast, { message: "Copied", type: "success", timeout: timeout, onDismiss: function () { return setactive(false); } }))),
         React__default["default"].createElement(FlexLayout, { halign: align, valign: "center", spacing: "none" },
             React__default["default"].createElement(TextStyles, null, label),
-            React__default["default"].createElement(Button, { type: "Outlined", thickness: "extraThin", icon: React__default["default"].createElement(reactFeather.Copy, { size: 20 }), onClick: function () {
+            React__default["default"].createElement(Button, { type: "Outlined", thickness: "extraThin", icon: active ? React__default["default"].createElement(reactFeather.Check, null) : React__default["default"].createElement(reactFeather.Copy, { size: 20 }), onClick: function () {
                     copyText();
                     setstatus(!status);
                     !status && setactive(!active);
+                    setTimeout(function () { return setactive(false); }, 3000);
                 } }))));
 };
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-var InplaceEditor = function (props) {
-    var _a = React.useState(false), edit = _a[0], setedit = _a[1];
-    return (React__default["default"].createElement("div", null, edit ? (React__default["default"].createElement("input", { type: props.type, className: "inte-formElement inte-formElementTextfield inte--Textfield__thin", value: props.value, onChange: function (e) { return props.onChange(e.target.value); }, onBlur: function () { return setedit(false); }, autoFocus: true, onFocus: function () { return setedit(true); }, onKeyUp: function (event) {
-            if (event.key === "Escape" || event.key === "Enter") {
-                setedit(false);
-            }
-        }, maxLength: props.maxSize, minLength: props.minSize })) : (React__default["default"].createElement("span", { onClick: function () { return setedit(true); } }, props.value))));
-};
-
-/* loaded by smart-asset */
-var add = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAYAAAAehFoBAAAABHNCSVQICAgIfAhkiAAABG5JREFUWEfVWT1620YQnQFU2YWZzgaLSCeIfIKAAJhWzAlsn8DQCUSfgPQJJJ0gdBsCIHQCMyeQUgCfO1OFXWkx+WYXS4MSSfwQkUxUJL7F7NvZN7MzbxF2fHrW9ATBOEYkW5oi6gDicf57DogL9Rpjgmw+S/ufdpkSm3zsdoM3QDAgBBsBOnVsEMACCWJAmISJd1nnWx5bC7D3cmqTAaOlB9lzAP8A0cTIIGaDdyYt4uSPOf+2u38fHwiUC8pMHPArBPhtCZJojhmcBl/68tsqTyXAPLEJxognVNsL/wLiMBNGHH/p3VSZSI+xX84ODTOzgWiICL/m72MB2ale6DZ7pYBdK+CtP1dbT7dEMI7S/rAOyE1jHWvKoH0AfMFUMQT9WebtrYDdV8F7MGCsAgguxXfTjxc9GURtPXZn1jGfiTEgvFHT4LsocS822d8I2LGCc0R4qyhAH9ry6nZv41lOuYso9d6tG7sWsPNq6qOBI0kBMPxtK27L02zH6YZvEbKxosh6Tz8AzJwFhL+qbE+bYLUtBZrO+T8K6t3n9ApgzgYGGDMOsMegQRk9OBAzyHrF7LEC2O0GM5m6CC7D1JP8farHtYKLPBDjMPF6GscSsDwUTJwxb8W3g8O2s0Hdhcvs8fzuhvlcpMYSsGtNP/MJ9pRUuL8olafxDIjmYdp/LXn9IzrpnE+wKPUO63rjwUTdaYyAVNzKpjYdK7jhE1FnDQnYtaYTQDwpS9pVJ3W7AfHYMPFKT9Iym8usQfQpTPuD3MPBV84MQphHdWuDdRO2CZhrD9MU15wxosT7BXXe5aorSjxVx+74tAlYUTaYc5XHwYea2G0G2/8AeIwA7xkjOipAfl93qjR1dNuAdcoloKs9BGwF14hw2FbAyazTYpZge3kD8ZnzMTYxrmnUlDL5dytHbpktjfPJADMfo6SvOu0KzxKwPkn2gRKcevcw6PYvrQUqKQN8jBLPr0Cn0iFNAnmbUaebY+SDY9kSFUq4UkQlA9oGrEtfeTSrvDldcKHcVuC1CVgXP9xYhEm/8/OXl7qDXy0vVadKBDdR6h3tSgk+WNhGnTy7aU4nP4lXCvhiCddm1bbzwvMWqVj6PmhCZWv9zTz6GZpQ47m45sZibROqvKxKTSLYKBXt6rWq32up7P4R/kBIMQFjKRU9gp62mbd5t8ySA5C9UUiRKW6fpCq9Yi0GMp8B8PQxxUAAGkmprKoYqEEXpCK+UBlGqfuhKv+ajHOs8AyRlFC+RSrbqhv8kF3lNcFF9t08bTt7sCRlPBOjpRbdVNDWXlINIEy0rA+E47a8zV4FJF9fR6CAwU5XBhq0kmFxzClP7hgBy0dDIcyrusKLrA1QnBCCz72kYgBdZUB+K5cyRT6ytzOTga9eXRFCTMKcyMnNu9vitReKgxf8Hk0xQAL7/pWZIcgv82oRQyPtS+pdlLFSbzNV6gUZ3QJBTGhMmmSfRoCLAOW1GNCxAi99ySWgvDyUl45A6taJIObLxzreXOeI/wAh0daJlpiRkQAAAABJRU5ErkJggg==";
-
-var allowedFileExts = ["png", "jpg"];
-var Upload = function (props) {
-    var _a = React.useState([]), fileState = _a[0], setfileState = _a[1];
-    var _b = React.useState(undefined), activeImg = _b[0], setactiveImg = _b[1];
-    var fileInputChanged = function (e) {
-        if (e["target"]["files"].length > 0) {
-            var file = e["target"]["files"][0];
-            var fileExt = file.name.split(".").pop().toLowerCase();
-            if (allowedFileExts.includes(fileExt)) {
-                var objectUrl = URL.createObjectURL(file);
-                setfileState(tslib.__spreadArray(tslib.__spreadArray([], fileState, true), [
-                    {
-                        name: file.name,
-                        fileType: file.type,
-                        fileExtension: fileExt,
-                        fileSize: file.size,
-                        src: objectUrl,
-                        style: { display: "none" },
-                    },
-                ], false));
-            }
-            else {
-                setTimeout(props.notify, 200);
-            }
-        }
-    };
-    var mouseEnterHandler = function (index) {
-        var fileStateModified = fileState;
-        var style = {
-            style: {
-                display: "block",
-            },
-        };
-        var styleofOneFile = Object.assign({}, fileStateModified[index], style);
-        fileStateModified.splice(index, 1, styleofOneFile);
-        setfileState(tslib.__spreadArray([], fileStateModified, true));
-    };
-    var mouseLeaveHandler = function (index) {
-        var fileStateModified = fileState;
-        var styleofOneFile = tslib.__assign(tslib.__assign({}, fileStateModified[index]), { style: { display: "none" } });
-        fileStateModified.splice(index, 1, styleofOneFile);
-        setfileState(tslib.__spreadArray([], fileStateModified, true));
-    };
-    var delImage = function (e, index) {
-        var fileImages = fileState;
-        if (fileImages[index].src === activeImg)
-            setactiveImg(undefined);
-        fileImages.splice(index, 1);
-        setfileState(tslib.__spreadArray([], fileImages, true));
-    };
-    var activeThisImage = function (src) {
-        setactiveImg(src);
-    };
-    return (React__default["default"].createElement(FlexLayout, { spacing: "loose", wrap: "wrap", direction: "vertical" },
-        React__default["default"].createElement(FlexLayout, { spacing: "loose", wrap: "wrap" },
-            fileState.map(function (file, i) { return (React__default["default"].createElement(Card, { cardType: "Bordered", key: i },
-                React__default["default"].createElement("div", { className: "int-imgThumb", id: "img-container", key: i, onMouseEnter: function () { return mouseEnterHandler(i); }, onMouseLeave: function () { return mouseLeaveHandler(i); } },
-                    React__default["default"].createElement("img", { className: "pr-image", src: file.src, alt: "product", onClick: function () { return activeThisImage(file.src); } }),
-                    React__default["default"].createElement("div", { id: "cross-container", style: file.style, onClick: function (e) { return delImage(e, i); } },
-                        React__default["default"].createElement("div", { className: "cross-line", id: "first-line" }),
-                        React__default["default"].createElement("div", { className: "cross-line", id: "sec-line" }))))); }),
-            fileState.length <= 0 ? (React__default["default"].createElement("div", { className: "imgpreview" })) : (React__default["default"].createElement("div", { className: "imgpreview" },
-                React__default["default"].createElement("form", { action: "", method: "post", encType: "multipart/form-data" }, fileState.length !== 0 ? (React__default["default"].createElement("label", { htmlFor: "adsfile", style: { textAlign: "center" } },
-                    React__default["default"].createElement("img", { src: add, alt: "Add", height: "30px" }),
-                    React__default["default"].createElement("input", { type: "file", name: "adsfile", id: "adsfile", style: { display: "none" }, onChange: function (eve) { return fileInputChanged(eve); } }))) : null)))),
-        React__default["default"].createElement(FlexLayout, { halign: "center", valign: "center" }, activeImg && (React__default["default"].createElement(Card, null,
-            React__default["default"].createElement("img", { src: activeImg, alt: "" }))))));
-};
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
 var Dragger = antd.Upload.Dragger;
-function Uploadnew(_a) {
+function FileUpload(_a) {
     var name = _a.name, children = _a.children, listType = _a.listType, className = _a.className, uploadbutton = _a.uploadbutton, showUploadList = _a.showUploadList, directory = _a.directory, accept = _a.accept, maxCount = _a.maxCount, multiple = _a.multiple, drag = _a.drag, onChange = _a.onChange, disabled = _a.disabled, _b = _a.beforeUpload, beforeUpload = _b === void 0 ? false : _b, openFileDialogOnClick = _a.openFileDialogOnClick;
     return (React__default["default"].createElement(React__default["default"].Fragment, null, drag ? (React__default["default"].createElement("div", { className: "inte-Upload inte-Upload--Drag" },
         React__default["default"].createElement(Dragger, { name: name, onChange: onChange, listType: listType, className: className, showUploadList: showUploadList, directory: directory, accept: accept, multiple: multiple, maxCount: maxCount, disabled: disabled, beforeUpload: beforeUpload, openFileDialogOnClick: openFileDialogOnClick },
@@ -36644,94 +36575,6 @@ function Uploadnew(_a) {
                     } }, "Upload"))))) : (React__default["default"].createElement("div", { className: "inte-Upload" },
         React__default["default"].createElement(antd.Upload, { name: name, onChange: onChange, listType: listType, className: className, showUploadList: showUploadList, directory: directory, accept: accept, multiple: multiple, maxCount: maxCount, disabled: disabled, beforeUpload: beforeUpload, openFileDialogOnClick: openFileDialogOnClick }, children)))))));
 }
-
-/* loaded by smart-asset */
-var xcircle = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjUiIHZpZXdCb3g9IjAgMCAyNCAyNSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDIyLjVDMTcuNTIyOCAyMi41IDIyIDE4LjAyMjggMjIgMTIuNUMyMiA2Ljk3NzE1IDE3LjUyMjggMi41IDEyIDIuNUM2LjQ3NzE1IDIuNSAyIDYuOTc3MTUgMiAxMi41QzIgMTguMDIyOCA2LjQ3NzE1IDIyLjUgMTIgMjIuNVoiIGZpbGw9IiNGNzk3N0UiLz4KPHBhdGggZD0iTTE1IDkuNUw5IDE1LjUiIHN0cm9rZT0iIzU2NTY1NiIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPHBhdGggZD0iTTkgOS41TDE1IDE1LjUiIHN0cm9rZT0iIzU2NTY1NiIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPC9zdmc+Cg==";
-
-/* loaded by smart-asset */
-var fileUpload = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAiIGhlaWdodD0iNTEiIHZpZXdCb3g9IjAgMCA1MCA1MSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTI1IDQ2LjMzMzNDMzYuNTA1OSA0Ni4zMzMzIDQ1LjgzMzMgMzcuMDA1OSA0NS44MzMzIDI1LjVDNDUuODMzMyAxMy45OTQgMzYuNTA1OSA0LjY2NjYzIDI1IDQuNjY2NjNDMTMuNDk0MSA0LjY2NjYzIDQuMTY2NjYgMTMuOTk0IDQuMTY2NjYgMjUuNUM0LjE2NjY2IDM3LjAwNTkgMTMuNDk0MSA0Ni4zMzMzIDI1IDQ2LjMzMzNaIiBzdHJva2U9InVybCgjcGFpbnQwX2xpbmVhcikiIHN0cm9rZS13aWR0aD0iNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CjxwYXRoIGQ9Ik0zMy4zMzMzIDI1LjVMMjUgMTcuMTY2NkwxNi42NjY3IDI1LjUiIHN0cm9rZT0idXJsKCNwYWludDFfbGluZWFyKSIgc3Ryb2tlLXdpZHRoPSI0IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPHBhdGggZD0iTTI1IDMzLjgzMzNWMTcuMTY2NiIgc3Ryb2tlPSJ1cmwoI3BhaW50Ml9saW5lYXIpIiBzdHJva2Utd2lkdGg9IjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8ZGVmcz4KPGxpbmVhckdyYWRpZW50IGlkPSJwYWludDBfbGluZWFyIiB4MT0iNC4xNjY2NiIgeTE9IjkuMzg4ODUiIHgyPSI1MS4zOTgiIHkyPSIxOS4wMDY4IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CjxzdG9wIHN0b3AtY29sb3I9IiM1REQ2OUQiLz4KPHN0b3Agb2Zmc2V0PSIwLjI3Mzk1OCIgc3RvcC1jb2xvcj0iIzZFQjdGRiIvPgo8c3RvcCBvZmZzZXQ9IjAuNTA4MzMzIiBzdG9wLWNvbG9yPSIjRkY2RTZFIi8+CjxzdG9wIG9mZnNldD0iMC43NDc5MTciIHN0b3AtY29sb3I9IiNGRkQ4NkUiLz4KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjNTNCRjYyIi8+CjwvbGluZWFyR3JhZGllbnQ+CjxsaW5lYXJHcmFkaWVudCBpZD0icGFpbnQxX2xpbmVhciIgeDE9IjE2LjY2NjciIHkxPSIxOC4xMTExIiB4Mj0iMzMuNTQzMyIgeTI9IjI0Ljk4NDQiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KPHN0b3Agc3RvcC1jb2xvcj0iIzVERDY5RCIvPgo8c3RvcCBvZmZzZXQ9IjAuMjczOTU4IiBzdG9wLWNvbG9yPSIjNkVCN0ZGIi8+CjxzdG9wIG9mZnNldD0iMC41MDgzMzMiIHN0b3AtY29sb3I9IiNGRjZFNkUiLz4KPHN0b3Agb2Zmc2V0PSIwLjc0NzkxNyIgc3RvcC1jb2xvcj0iI0ZGRDg2RSIvPgo8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiM1M0JGNjIiLz4KPC9saW5lYXJHcmFkaWVudD4KPGxpbmVhckdyYWRpZW50IGlkPSJwYWludDJfbGluZWFyIiB4MT0iMjUiIHkxPSIxOS4wNTU1IiB4Mj0iMjYuMTgwNCIgeTI9IjE5LjA2OTkiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KPHN0b3Agc3RvcC1jb2xvcj0iIzVERDY5RCIvPgo8c3RvcCBvZmZzZXQ9IjAuMjczOTU4IiBzdG9wLWNvbG9yPSIjNkVCN0ZGIi8+CjxzdG9wIG9mZnNldD0iMC41MDgzMzMiIHN0b3AtY29sb3I9IiNGRjZFNkUiLz4KPHN0b3Agb2Zmc2V0PSIwLjc0NzkxNyIgc3RvcC1jb2xvcj0iI0ZGRDg2RSIvPgo8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiM1M0JGNjIiLz4KPC9saW5lYXJHcmFkaWVudD4KPC9kZWZzPgo8L3N2Zz4K";
-
-var FileUpload = function (_a) {
-    var _b = _a.multiple, multiple = _b === void 0 ? false : _b, _c = _a.format, format = _c === void 0 ? [] : _c, _d = _a.onChange, onChange = _d === void 0 ? function () {
-        return null;
-    } : _d;
-    var _e = React.useState([]), file = _e[0], setfile = _e[1];
-    var _f = React.useState([]), error = _f[0], seterror = _f[1];
-    var getFiles = function (files) {
-        var temp = [];
-        Object.values(files).map(function (elem) {
-            temp.push(elem);
-        });
-        if (multiple)
-            setfile(tslib.__spreadArray(tslib.__spreadArray([], file, true), temp, true));
-        else
-            setfile(temp);
-    };
-    function getSize(bytes, dp) {
-        if (dp === void 0) { dp = 1; }
-        var thresh = 1024;
-        if (Math.abs(bytes) < thresh) {
-            return bytes + " B";
-        }
-        var units = ["kB", "MB", "GB"];
-        var u = -1;
-        var r = Math.pow(10, dp);
-        do {
-            bytes /= thresh;
-            ++u;
-        } while (Math.round(Math.abs(bytes) * r) / r >= thresh &&
-            u < units.length - 1);
-        return bytes.toFixed(dp) + " " + units[u];
-    }
-    var delfile = function (key) {
-        var temp = file;
-        temp.splice(key, 1);
-        setfile(tslib.__spreadArray([], temp, true));
-        onChange(temp);
-    };
-    return (React__default["default"].createElement("div", { className: "inte-File--Upload" },
-        React__default["default"].createElement(FlexLayout, { direction: "vertical", spacing: "extraLoose", halign: "center", valign: "center" },
-            React__default["default"].createElement(FlexLayout, { spacing: "loose", wrap: "wrap" }, file.length > 0 ? (file.map(function (elem, index) { return (React__default["default"].createElement(Card, { key: index, cardType: "Bordered" },
-                React__default["default"].createElement(FlexLayout, { spacing: "tight", valign: "center" },
-                    React__default["default"].createElement(FlexChild, null,
-                        React__default["default"].createElement(FlexLayout, { spacing: "loose", valign: "center", wrap: "noWrap" },
-                            React__default["default"].createElement("img", { src: elem.type.search("image") > -1
-                                    ? URL.createObjectURL(elem)
-                                    : fileUpload, alt: "Upload", height: "50", width: "50" }),
-                            React__default["default"].createElement(FlexLayout, { direction: "vertical" },
-                                React__default["default"].createElement(TextStyles, { type: "smallText" }, elem.name),
-                                React__default["default"].createElement(TextStyles, { type: "smallText", textcolor: "light", utility: "mt-5" }, getSize(elem.size))))),
-                    React__default["default"].createElement(FlexChild, null,
-                        React__default["default"].createElement(FlexLayout, { spacing: "loose" }, React__default["default"].createElement("img", { style: { cursor: "pointer" }, src: xcircle, alt: "Delete", height: "20", width: "20", onClick: function () { return delfile(index); } })))))); })) : (React__default["default"].createElement(React__default["default"].Fragment, null))),
-            React__default["default"].createElement("form", { action: "", method: "" },
-                React__default["default"].createElement(FlexLayout, { direction: "vertical", spacing: "extraLoose", valign: "center" },
-                    React__default["default"].createElement("img", { src: fileUpload, alt: "Upload", height: "50", width: "50" }),
-                    React__default["default"].createElement(FlexLayout, { direction: "vertical", valign: "center", spacing: "tight" },
-                        React__default["default"].createElement("label", { className: "inte-File--Fake", htmlFor: "" },
-                            React__default["default"].createElement("input", { id: "fileUpload", type: "file", multiple: multiple, onChange: function (e) {
-                                    var filestemp = [];
-                                    Object.values(e.target.files).map(function (elem) {
-                                        var extension = elem.name.split(".").pop();
-                                        if (format.length == 0 || format.includes(extension)) {
-                                            filestemp.push(elem);
-                                        }
-                                        else {
-                                            if (!error.includes(extension)) {
-                                                var x = error;
-                                                x.push(extension);
-                                                seterror(x);
-                                            }
-                                        }
-                                    });
-                                    if (filestemp.length > 0) {
-                                        getFiles(filestemp);
-                                    }
-                                    onChange(filestemp);
-                                } }),
-                            React__default["default"].createElement(Button, { type: "Outlined" }, multiple ? "Upload Files" : "Upload File")),
-                        error.length > 0 && (React__default["default"].createElement(Toast, { onDismiss: function () { return seterror([]); }, type: "error", message: error.join(" , ") + " format not supported" })),
-                        React__default["default"].createElement(TextStyles, { type: "Paragraph", paragraphTypes: "LG-1.5", lineHeight: "LH-1.6", textcolor: "light", utility: "mt-5" }, "Click Button To upload files")))))));
-};
 
 var List = function (_a) {
     var _b = _a.children, children = _b === void 0 ? React__default["default"].createElement(React__default["default"].Fragment, null) : _b, type = _a.type, _c = _a.imageSrc, imageSrc = _c === void 0 ? "d" : _c;
@@ -36808,7 +36651,7 @@ var LoginPage = function (props) {
             React__default["default"].createElement(Button, { content: "Send Authentication Link", FullBtn: true, halign: "Equal", thickness: "thin", onClick: toggleActive }),
             active && (React__default["default"].createElement(ToastWrapper, null,
                 React__default["default"].createElement(Toast, { message: "Check validation email and password", type: "error", timeout: 700, onDismiss: toggleActive }))),
-            React__default["default"].createElement(Button, { icon: React__default["default"].createElement(reactFeather.ArrowLeft, null), iconAlign: "left", iconRound: false, content: "Return To Login", type: "TextButton", halign: "Equal", thickness: "thin", onClick: function () {
+            React__default["default"].createElement(Button, { icon: React__default["default"].createElement(reactFeather.ArrowLeft, null), iconAlign: "left", content: "Return To Login", type: "TextButton", halign: "Equal", thickness: "thin", onClick: function () {
                     setLinkMail(false);
                     setLogin(true);
                 } })));
@@ -36914,7 +36757,7 @@ var LoginSimple = function (props) {
                 } }),
             active && (React__default["default"].createElement(ToastWrapper, null,
                 React__default["default"].createElement(Toast, { message: "Check validation email and password", type: "error", timeout: 700, onDismiss: toggleActive }))),
-            React__default["default"].createElement(Button, { icon: React__default["default"].createElement(reactFeather.ArrowLeft, { size: 20 }), iconAlign: "left", iconRound: false, content: "Return To Login", type: "TextButton", halign: "Equal", thickness: "thin", onClick: function () {
+            React__default["default"].createElement(Button, { icon: React__default["default"].createElement(reactFeather.ArrowLeft, { size: 20 }), iconAlign: "left", content: "Return To Login", type: "TextButton", halign: "Equal", thickness: "thin", onClick: function () {
                     setLogin(true);
                     setLinkMail(false);
                     setRegistration(false);
@@ -36970,11 +36813,11 @@ var LoginSimple = function (props) {
         return (React__default["default"].createElement(FormElement, null,
             React__default["default"].createElement(TextField, { type: show ? "text" : "password", placeHolder: "Enter New password", label: "New Password", value: newpsw, onChange: function (e) { return setNewpsw(e); }, suffix: show ? (React__default["default"].createElement(reactFeather.Eye, { color: "#3B424F", size: 20, onClick: function () { return setShow(!show); } })) : (React__default["default"].createElement(reactFeather.EyeOff, { color: "#3B424F", size: 20, onClick: function () { return setShow(!show); } })) }),
             React__default["default"].createElement(FlexLayout, { wrap: "noWrap", spacing: "loose" },
-                React__default["default"].createElement(Button, { type: "TextButton", iconRound: false, icon: React__default["default"].createElement(reactFeather.HelpCircle, null) }),
+                React__default["default"].createElement(Button, { type: "TextButton", icon: React__default["default"].createElement(reactFeather.HelpCircle, null) }),
                 React__default["default"].createElement(TextStyles, { content: "To have a strong password make sure your password contains one upper case alphabet, one lower case alphabet, one numeric and one special character" })),
             React__default["default"].createElement(TextField, { type: "password", placeHolder: "Enter Confirm New Password", label: "Confirm New Password", value: confirmpsw, onChange: function (e) { return setConfirmpsw(e); } }),
             React__default["default"].createElement(Button, { content: "Save", FullBtn: true, halign: "Equal", thickness: "thin", onClick: otpVerification }),
-            React__default["default"].createElement(Button, { content: "Return To Email", type: "TextButton", icon: React__default["default"].createElement(reactFeather.ArrowLeft, { size: 20 }), iconRound: false, onClick: function () {
+            React__default["default"].createElement(Button, { content: "Return To Email", type: "TextButton", icon: React__default["default"].createElement(reactFeather.ArrowLeft, { size: 20 }), onClick: function () {
                     setLogin(false);
                     setLinkMail(true);
                     setRegistration(false);
@@ -37137,7 +36980,7 @@ var BrokenPage = function (_a) {
                     React__default["default"].createElement(FlexLayout, { direction: "vertical", valign: "center", wrap: "noWrap" },
                         React__default["default"].createElement(TextStyles, { textcolor: "light", type: "simpleText" }, description)),
                     React__default["default"].createElement(FlexLayout, null,
-                        React__default["default"].createElement(Button, { icon: icon, iconAlign: "left", iconRound: false, thickness: "thin", type: "Primary", onClick: onClick }, buttonText)))))));
+                        React__default["default"].createElement(Button, { icon: icon, iconAlign: "left", thickness: "thin", type: "Primary", onClick: onClick }, buttonText)))))));
 };
 
 var EmptyAccount = function (_a) {
@@ -37188,7 +37031,7 @@ var EmptyAccount = function (_a) {
                     React__default["default"].createElement(FlexLayout, { direction: "vertical", valign: "center", wrap: "noWrap" },
                         React__default["default"].createElement(TextStyles, { textcolor: "light", type: "simpleText" }, description)),
                     React__default["default"].createElement(FlexLayout, null,
-                        React__default["default"].createElement(Button, { icon: icon, iconAlign: "left", iconRound: false, thickness: "thin", type: "Primary", onClick: props.onClick }, buttonText)))))));
+                        React__default["default"].createElement(Button, { icon: icon, iconAlign: "left", thickness: "thin", type: "Primary", onClick: props.onClick }, buttonText)))))));
 };
 
 var NoProduct = function (_a) {
@@ -37230,7 +37073,7 @@ var NoProduct = function (_a) {
                     React__default["default"].createElement(FlexLayout, { direction: "vertical", valign: "center", wrap: "noWrap" },
                         React__default["default"].createElement(TextStyles, { textcolor: "light", type: "simpleText" }, description)),
                     React__default["default"].createElement(FlexLayout, null,
-                        React__default["default"].createElement(Button, { icon: props.icon, iconAlign: "left", iconRound: false, thickness: "thin", type: "Primary", onClick: props.onClick }, buttonText)))))));
+                        React__default["default"].createElement(Button, { icon: props.icon, iconAlign: "left", thickness: "thin", type: "Primary", onClick: props.onClick }, buttonText)))))));
 };
 
 var NoNotification = function (_a) {
@@ -37281,7 +37124,7 @@ var NoNotification = function (_a) {
                     React__default["default"].createElement(FlexLayout, { direction: "vertical", valign: "center", wrap: "noWrap" },
                         React__default["default"].createElement(TextStyles, { textcolor: "light", type: "simpleText" }, description)),
                     React__default["default"].createElement(FlexLayout, null,
-                        React__default["default"].createElement(Button, { icon: icon, iconAlign: "left", iconRound: false, thickness: "thin", type: "Primary", onClick: onClick }, buttonText)))))));
+                        React__default["default"].createElement(Button, { icon: icon, iconAlign: "left", thickness: "thin", type: "Primary", onClick: onClick }, buttonText)))))));
 };
 
 var PagenotFound = function (_a) {
@@ -37318,7 +37161,7 @@ var PagenotFound = function (_a) {
                     React__default["default"].createElement(FlexLayout, { direction: "vertical", valign: "center", wrap: "noWrap" },
                         React__default["default"].createElement(TextStyles, { textcolor: "light", type: "simpleText" }, description)),
                     React__default["default"].createElement(FlexLayout, null,
-                        React__default["default"].createElement(Button, { icon: icon, iconAlign: "left", iconRound: false, thickness: "thin", type: "Primary", onClick: onClick }, buttonText)))))));
+                        React__default["default"].createElement(Button, { icon: icon, iconAlign: "left", thickness: "thin", type: "Primary", onClick: onClick }, buttonText)))))));
 };
 
 var SessionExpired = function (_a) {
@@ -37381,7 +37224,7 @@ var SessionExpired = function (_a) {
                     React__default["default"].createElement(FlexLayout, { direction: "vertical", valign: "center", wrap: "noWrap" },
                         React__default["default"].createElement(TextStyles, { textcolor: "light", type: "simpleText" }, description)),
                     React__default["default"].createElement(FlexLayout, null,
-                        React__default["default"].createElement(Button, { icon: icon, iconAlign: "left", iconRound: false, thickness: "thin", type: "Primary", onClick: onClick }, buttonText)))))));
+                        React__default["default"].createElement(Button, { icon: icon, iconAlign: "left", thickness: "thin", type: "Primary", onClick: onClick }, buttonText)))))));
 };
 
 var v = "5.8.1";
@@ -39605,11 +39448,11 @@ function PageFooter(props) {
 }
 
 function PageHeader(_a) {
-    var title = _a.title, description = _a.description, sticky = _a.sticky, _b = _a.reverseNavigation, reverseNavigation = _b === void 0 ? false : _b, primaryAction = _a.primaryAction, secondaryAction = _a.secondaryAction, props = tslib.__rest(_a, ["title", "description", "sticky", "reverseNavigation", "primaryAction", "secondaryAction"]);
-    var _c = React.useState(false), active = _c[0], setActive = _c[1];
+    var title = _a.title, description = _a.description, _b = _a.sticky, sticky = _b === void 0 ? false : _b, _c = _a.reverseNavigation, reverseNavigation = _c === void 0 ? false : _c, primaryAction = _a.primaryAction, secondaryAction = _a.secondaryAction, props = tslib.__rest(_a, ["title", "description", "sticky", "reverseNavigation", "primaryAction", "secondaryAction"]);
+    var _d = React.useState(false), active = _d[0], setActive = _d[1];
     var toggleActive = React.useCallback(function () { return setActive(function (active) { return !active; }); }, []);
     // Window resize
-    var _d = React.useState(getWindowSize()), windowSize = _d[0], setWindowSize = _d[1];
+    var _e = React.useState(getWindowSize()), windowSize = _e[0], setWindowSize = _e[1];
     React.useEffect(function () {
         window.addEventListener("resize", function () { return setWindowSize(getWindowSize()); });
         return function () {
@@ -39621,7 +39464,7 @@ function PageHeader(_a) {
     function getWindowSize() {
         return window.innerWidth;
     }
-    return (React__default["default"].createElement("div", { className: "inte-pageHeader ".concat(sticky && "inte-pageHeader--fixed", " ").concat(reverseNavigation ? "inte__has--reverseNavigation" : "", " ").concat(description ? "inte__has--pageHeaderDescription" : "") },
+    return (React__default["default"].createElement("div", { className: "inte-pageHeader ".concat(sticky ? "inte-pageHeader--fixed" : "", " ").concat(reverseNavigation ? "inte__has--reverseNavigation" : "", " ").concat(description ? "inte__has--pageHeaderDescription" : "") },
         React__default["default"].createElement("div", { className: "inte-PageHeader--Wrapper" },
             React__default["default"].createElement("div", { className: "inte-PageHeader-Title-Action-Wrapper" },
                 React__default["default"].createElement("div", { className: "inte-PageHeader--Title-And-Reversenavigation" },
@@ -39762,7 +39605,7 @@ function Faq(_a) {
                                 React__default["default"].createElement("div", { dangerouslySetInnerHTML: createMarkup() }))));
                     }),
                     ((_b = data[title]) !== null && _b !== void 0 ? _b : 2 < data[title].length) ? (React__default["default"].createElement(FlexLayout, { halign: "center" }, ((_c = dataReplica[title]) !== null && _c !== void 0 ? _c : 2) <= data[title].length ? (React__default["default"].createElement(React__default["default"].Fragment, null,
-                        React__default["default"].createElement(Button, { type: "Outlined", iconRound: false, thickness: "thin", content: "Show More", icon: React__default["default"].createElement(reactFeather.PlusCircle, { color: "#5C5F62" }), onClick: function () { return handleShowMore(title); } }))) : null)) : null));
+                        React__default["default"].createElement(Button, { type: "Outlined", thickness: "thin", content: "Show More", icon: React__default["default"].createElement(reactFeather.PlusCircle, { color: "#5C5F62" }), onClick: function () { return handleShowMore(title); } }))) : null)) : null));
             })))));
 }
 
@@ -39845,6 +39688,7 @@ exports.Breadcrumb = Breadcrumb;
 exports.BrokenPage = BrokenPage;
 exports.Button = Button;
 exports.ButtonDropdown = ButtonDropdown;
+exports.ButtonGroup = ButtonGroup;
 exports.Callicon = Callicon;
 exports.Card = Card;
 exports.CardFooter = CardFooter;
@@ -39871,7 +39715,6 @@ exports.FormChild = FormChild;
 exports.FormElement = FormElement;
 exports.Grid = Grid;
 exports.Help = Help;
-exports.InplaceEditor = InplaceEditor;
 exports.LRLayout = LRLayout;
 exports.LineCharts = LineCharts;
 exports.List = List;
@@ -39917,8 +39760,6 @@ exports.Toast = Toast;
 exports.ToastWrapper = ToastWrapper;
 exports.ToolTip = ToolTip;
 exports.Topbar = Topbar;
-exports.Upload = Upload;
-exports.Uploadnew = Uploadnew;
 exports.Wysiwyg = Wysiwyg;
 exports.activity = activity;
 exports.bag = bag;

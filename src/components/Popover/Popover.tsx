@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState, useEffect, useRef, useMemo } from "react";
+import React, { useState, useEffect, useRef, useMemo, useLayoutEffect } from "react";
 import { createPortal } from "react-dom";
 import "./Popover.css";
 
@@ -18,6 +18,10 @@ const Popover: React.FC<PopoverI> = ({
   const [openState, setOpenState] = useState(false);
   const myRef: any = useRef();
   const myReff: any = useRef();
+  const [storeData, setStoreData] = useState(0);
+  useLayoutEffect(() => {
+    setStoreData(myReff.current?.offsetHeight);
+  }, []);
 
   function myFun(event: Event) {
     const getPath: EventTarget[] = event.composedPath();
@@ -124,6 +128,46 @@ const Popover: React.FC<PopoverI> = ({
     }
   }
   const pp = dyPos();
+  const showElement = (value: any) => {
+    switch (value) {
+      case "body":
+        return (
+          <>
+            {createPortal(
+              <div
+                ref={myReff}
+                style={{
+                  ...pp.style,
+                  position: "fixed",
+                  width: popoverWidth + "px",
+                  visibility: `${openState ? "visible" : "hidden"}`,
+                }}
+                className={`inte__Popover-Wrapper inte__Popover-Wrapper--Body ${pp.class}`}
+                id={"inte__Popover--Item" + id}
+              >
+                {children}
+              </div>,
+              document.body
+            )}
+          </>
+        );
+      case "element":
+        return (
+          <div
+            ref={myReff}
+            style={{
+              position: "absolute",
+              width: popoverWidth + "px",
+              visibility: `${openState ? "visible" : "hidden"}`,
+            }}
+            className={`inte__Popover-Wrapper inte__Popover-Wrapper--Element`}
+            id={"inte__Popover--Item" + id}
+          >
+            {children}
+          </div>
+        );
+    }
+  };
 
   return (
     <div
@@ -135,7 +179,11 @@ const Popover: React.FC<PopoverI> = ({
       className={`popover-parent`}
     >
       {activator}
-      {!openState ? (
+      {popoverContainer == "body"
+          ? showElement("body")
+          : showElement("element")}
+
+      {/* {!openState ? (
         <div
           ref={myReff}
           style={{
@@ -177,7 +225,7 @@ const Popover: React.FC<PopoverI> = ({
         >
           {children}
         </div>
-      )}
+      )} */}
     </div>
   );
 };

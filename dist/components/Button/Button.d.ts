@@ -14,7 +14,6 @@ export interface ButtonI {
     loading?: boolean;
     disable?: boolean;
     iconAlign?: "left" | "right";
-    iconRound?: boolean;
     tabIndex?: number;
 }
 export default Button;

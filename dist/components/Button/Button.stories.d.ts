@@ -8,7 +8,6 @@ export declare const Length: any;
 export declare const Thickness: any;
 export declare const Halign: any;
 export declare const Icon_Align: any;
-export declare const ButtonIconRound: any;
 export declare const Disable: any;
 export declare const Loading: any;
 export declare const Only_Icon: any;
