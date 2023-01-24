@@ -1,13 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, {
-  FC,
-  useEffect,
-  useLayoutEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import React, { FC, useEffect, useLayoutEffect, useRef, useState } from "react";
 import Button, { ButtonI } from "../Button/Button";
 import { createPortal } from "react-dom";
 import FlexLayout from "../FlexLayout/FlexLayout";
@@ -16,10 +9,11 @@ import "./ActionList.css";
 const ActionList: FC<ActionListI> = ({
   sections,
   activator,
-  direction = "left",
   popoverContainer = "body",
   open = false,
-  onClose,
+  onClose = () => {
+    //
+  },
   primaryAction,
   dropDownheight = 250,
   secondaryAction,
@@ -67,117 +61,62 @@ const ActionList: FC<ActionListI> = ({
       );
     }
   }
-  const checkAlignment = () => {
-    switch (direction) {
-      case "left":
-        return "inte-ActionList--Left";
-      case "right":
-        return "inte-ActionList--Right";
-    }
-  };
 
-  function myFun(event: Event) {
-    const getPath: EventTarget[] = event.composedPath();
-    let flag = true;
-    for (let i = 0; i < getPath.length; i++) {
-      const element = getPath[i] as any;
-      if (
-        element.id == `inte-ActionList--Container_${id}` ||
-        element.id === `inte-ActionList--Wrapper${id}`
-      ) {
-        flag = false;
+  useLayoutEffect(() => {
+    const dropdownPopUp = myReff.current?.getBoundingClientRect();
+  }, [myReff]);
+
+  const scrollWindow = () => {
+    var clientHeight = document.documentElement.clientHeight;
+    if (myRef.current && myReff.current) {
+      const object = myRef.current?.getBoundingClientRect(); // Button or Activator object
+      const dropdownPopUp = myReff.current?.getBoundingClientRect(); // popup or popover object
+      console.log(dropdownPopUp)
+      const popUpStyle = myReff.current.style; // popup style
+      const bottomSpace = clientHeight - object.bottom > dropdownPopUp.height; // get popup bottom space
+      popUpStyle.width = `${object.width - 2}px`;
+      popUpStyle.left = `${object.left + 1}px`;
+      popUpStyle.top = `${object.bottom}px`;
+
+      if (bottomSpace) {
+        console.log("have")
+        popUpStyle.top = `${object.bottom}px`;
+        popUpStyle.left = `${object.left}px`;
+      } else {
+        console.log("not")
+        popUpStyle.top = `${object.top - dropdownPopUp.height - 3}px`;
+        popUpStyle.left = `${object.left}px`;
       }
     }
+  };
+  console.log(open)
 
-    if (flag && open) {
-      onClose?.();
-    }
-  }
   useEffect(() => {
-    if (openState) {
-      window.addEventListener("click", myFun, false);
-    }
+    window.addEventListener("scroll", scrollWindow, true);
+    window.addEventListener("resize", scrollWindow, true);
     return () => {
-      window.removeEventListener("click", myFun, false);
+      window.removeEventListener("scroll", scrollWindow, true);
+      window.removeEventListener("resize", scrollWindow, true);
     };
-  }, [openState]);
+  }, []);
 
   useEffect(() => {
     setOpenState(open);
+    scrollWindow()
   }, [open]);
 
-  const positionObjectMemo = useMemo(() => {
-    return myRef.current?.getBoundingClientRect()
-      ? myRef.current?.getBoundingClientRect()
-      : 10;
-  }, []);
-
-  const [positionObject, setpositionObject] = useState(positionObjectMemo);
-
-  function logit() {
-    const post = myRef.current?.getBoundingClientRect()
-      ? myRef.current?.getBoundingClientRect()
-      : 10;
-    setpositionObject(post);
-  }
-
   useLayoutEffect(() => {
-    const ParentEle = getScrollParent(
-      document.getElementById("inte-ActionList--Container_" + id)
-    );
-    const GrandParentEle = getScrollParent(ParentEle);
-    function watchScroll() {
-      window.addEventListener("scroll", logit);
-      ParentEle?.addEventListener("scroll", logit);
-      GrandParentEle?.addEventListener("scroll", logit);
-    }
-    watchScroll();
-
-    return () => {
-      window.removeEventListener("scroll", logit);
-      ParentEle?.removeEventListener("scroll", logit);
-      GrandParentEle?.removeEventListener("scroll", logit);
-    };
-  });
-
-  function dyPos() {
-    const windowWidths = window.innerWidth;
-    const remainingrightWidth = windowWidths - positionObject.right;
-    const eleWidth = positionObject.right - positionObject.x;
-
-    if (remainingrightWidth > positionObject.width) {
-      const x = "inte-ActionList--Left";
-      return {
-        class: x,
-        style: {
-          left: positionObject.right - eleWidth,
-          top: positionObject.top + positionObject.height + 5,
-        },
-      };
-    } else {
-      const x = "inte-ActionList--Right";
-      return {
-        class: x,
-        style: {
-          left: positionObject.right - 250,
-          top: positionObject.top + positionObject.height + 5,
-        },
-      };
-    }
-  }
-
-  const pp = dyPos();
-  const popoverdirection = checkAlignment();
+    scrollWindow();
+  }, [openState, open]);
 
   const bodyPortal = (
     <div
       ref={myReff}
-      className={`inte-ActionList--Wrapper ${pp.class}`}
+      className={`inte-ActionList--Wrapper ${"pp.class"}`}
       id={"inte-ActionList--Wrapper" + id}
       style={{
-        width: positionObject.width,
+        visibility: `${openState ? "visible" : "hidden"}`,
         position: "fixed",
-        ...pp.style,
         zIndex: 99999,
       }}
     >
@@ -196,9 +135,8 @@ const ActionList: FC<ActionListI> = ({
                   return (
                     <li
                       key={index}
-                      className={`inte-ActionList-group ${
-                        item.destructive ? "inte-ActionList--Destrctive" : ""
-                      }`}
+                      className={`inte-ActionList-group ${item.destructive ? "inte-ActionList--Destrctive" : ""
+                        }`}
                       onClick={() => {
                         item.onClick();
                         // setOpenState(false);
@@ -244,9 +182,11 @@ const ActionList: FC<ActionListI> = ({
   );
   const elementPortal = (
     <div
-      ref={myReff}
       className="inte-ActionList--Wrapper"
       id={"inte-ActionList--Wrapper" + id}
+      style={{
+        display: `${openState ? "block" : "none"}`,
+      }}
     >
       <ul
         style={{ maxHeight: dropDownheight + "px" }}
@@ -263,9 +203,8 @@ const ActionList: FC<ActionListI> = ({
                   return (
                     <li
                       key={index}
-                      className={`inte-ActionList-group ${
-                        item.destructive ? "inte-ActionList--Destrctive" : ""
-                      }`}
+                      className={`inte-ActionList-group ${item.destructive ? "inte-ActionList--Destrctive" : ""
+                        }`}
                       onClick={() => {
                         item.onClick();
                         // setOpenState(false);
@@ -314,66 +253,35 @@ const ActionList: FC<ActionListI> = ({
     <div
       ref={myRef}
       id={"inte-ActionList--Container_" + id}
-      className={`inte-ActionList--Container ${popoverdirection}`}
-      onClick={() => {
-        logit();
-      }}
+      className="inte-ActionList--Container"
     >
       {activator}
-
-      {!openState
-        ? null
-        : popoverContainer == "body"
-        ? createPortal(bodyPortal, document.body)
-        : elementPortal}
+      {openState ? createPortal(bodyPortal, document.body) : elementPortal}
     </div>
   );
 };
 
-export const getScrollParent = (node: any) => {
-  const regex = /(auto|scroll)/;
-  const parents: any = (_node: any, ps: any) => {
-    if (_node.parentNode === null) {
-      return ps;
-    }
-    return parents(_node.parentNode, ps.concat([_node]));
-  };
-
-  const style = (_node: any, prop: any) =>
-    getComputedStyle(_node, null).getPropertyValue(prop);
-  const overflow = (_node: any) =>
-    style(_node, "overflow") +
-    style(_node, "overflow-y") +
-    style(_node, "overflow-x");
-  const scroll = (_node: any) => regex.test(overflow(_node));
-
-  const scrollParent = (_node: any) => {
-    if (!(_node instanceof HTMLElement || _node instanceof SVGElement)) {
-      return;
-    }
-
-    const ps = parents(_node.parentNode, []);
-
-    for (let i = 0; i < ps.length; i += 1) {
-      if (scroll(ps[i])) {
-        return ps[i];
-      }
-    }
-
-    return document.scrollingElement || document.documentElement;
-  };
-
-  return scrollParent(node);
-};
 export interface ActionListI {
   open?: boolean;
   activator: React.ReactNode;
-  sections?: any;
+  sections: ObjI[];
   primaryAction?: ButtonI;
   secondaryAction?: ButtonI;
-  direction?: "left" | "right";
   popoverContainer?: "body" | "element";
   dropDownheight?: number;
   onClose?: () => void;
 }
+interface ObjI {
+  title?: string;
+  items?: items[];
+}
+interface items {
+  content?: string;
+  destructive?: boolean;
+  description?: string;
+  onClick?: () => void;
+  prefixIcon?: React.ReactNode;
+  suffixIcon?: React.ReactNode;
+}
+
 export default ActionList;

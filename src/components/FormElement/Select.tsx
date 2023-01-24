@@ -156,7 +156,7 @@ function Select({
           id={"ced-li-componenet" + id}
           value={option.value}
         >
-          <TextStyles utility="inte-Select__Select--ItemHeading" textcolor="light">{option.label}</TextStyles>
+          <TextStyles textcolor="light">{option.label}</TextStyles>
           {option.group ? <ol className="inte-Select__Select--ItemGroupItem">{MoldGroupOptions(option.group)}</ol> : null}
         </li>
       );
