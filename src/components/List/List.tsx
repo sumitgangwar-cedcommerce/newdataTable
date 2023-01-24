@@ -1,7 +1,7 @@
 import React from "react";
 import "./List.css";
 
-const List: React.FC<ListI> = ({ children = <></>, type , imageSrc="d" }: ListI) => {
+const List: React.FC<ListI> = ({ children = <></>, type , src="" }: ListI) => {
   const childrens: any = React.Children.toArray(children);
   const newChildrens = childrens.map((children: any, index: string) => {
     return <li key={index}>{children}</li>;
@@ -13,7 +13,7 @@ const List: React.FC<ListI> = ({ children = <></>, type , imageSrc="d" }: ListI)
           <>{newChildrens}</>
         </ul>
       ) : type == "image" ? (
-        <ul style={{ listStyleImage : "url('"+imageSrc+"')"  }} className="inte__List inte__List--WithImage">
+        <ul style={{ listStyleImage : "url('"+src+"')"  }} className="inte__List inte__List--WithImage">
           <>{newChildrens}</>
         </ul>
       ) : <ol style={{ listStyleType: type}} className="inte__List">
@@ -26,6 +26,6 @@ const List: React.FC<ListI> = ({ children = <></>, type , imageSrc="d" }: ListI)
 export interface ListI {
   children: React.ReactNode;
   type?: "disc" | "circle" | "square" | "lower-roman" | "decimal" | "image" | any;
-  imageSrc?: string | any;
+  src?: string | any;
 }
 export default List;

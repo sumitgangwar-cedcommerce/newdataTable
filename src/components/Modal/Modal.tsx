@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ButtonI } from "../Button/Button";
 import { createPortal } from "react-dom";
-import { FlexLayout, Button, TextStyles } from "..";
+import { FlexLayout, Button, TextStyles, FlexChild } from "..";
 import "./Modal.css";
 import { X } from "react-feather";
 
@@ -31,6 +31,8 @@ const Modal: React.FC<ModalI> = ({
         return "inte-Modal-Dialog--Medium";
       case "large":
         return "inte-Modal-Dialog--Large";
+      case "xLarge":
+        return "inte-Modal-Dialog--extraLarge";
       default:
         return "";
     }
@@ -40,7 +42,7 @@ const Modal: React.FC<ModalI> = ({
   return createPortal(
     <>
       {props.open && (
-        <>
+       
           <div
             id={`inte-Modal-${id}`}
             className={`inte-Modal__Wrapper ${extraClass}`}
@@ -50,12 +52,25 @@ const Modal: React.FC<ModalI> = ({
                 <div className={`inte-Modal-Dialog__Modal ${modalWidth}`}>
                   {heading.length > 0 && (
                     <div className={"inte-Modal-Header"}>
-                      <div className={"inte-Modal-Header__Title"}>
+                      <div
+                        className={`inte-Modal-Header__Title ${
+                          props.headingIcon
+                            ? "inte-Modal-Header__Title--hasIcon"
+                            : ""
+                        }`}
+                      >
+                        {props.headingIcon ? (
+                          <span className="inte-Modal-Header__Icon">
+                            {props.headingIcon}
+                          </span>
+                        ) : (
+                          ""
+                        )}
                         <TextStyles
                           type="Subheading"
                           subheadingTypes="XS-1.6"
                           lineHeight="LH-1.6"
-                          fontweight="bold"
+                          fontweight="extraBold"
                         >
                           {heading}
                         </TextStyles>
@@ -92,20 +107,25 @@ const Modal: React.FC<ModalI> = ({
               className={"inte-Backdrop"}
             />
           </div>
-        </>
+       
       )}
     </>,
     document.body
   );
 
   function renderFooter() {
-    if (props.primaryAction || props.secondaryAction) {
+    if (props.primaryAction || props.secondaryAction || props.tertiaryAction) {
       return (
         <div className={"inte-Modal-Footer"}>
           <div className={"inte-Modal-Footer__FooterContent"}>
-            <FlexLayout halign="end" spacing="tight" halignMob="start">
-              {secondaryAction()}
-              {primaryAction()}
+            <FlexLayout halign={props.tertiaryAction ? "fill": "end"} valign="center" spacing="tight" halignMob="start">
+              {tertiaryAction()}
+              <FlexChild>
+                <FlexLayout halign="fill" spacing="tight" halignMob="start">
+                  {secondaryAction()}
+                  {primaryAction()}
+                </FlexLayout>
+              </FlexChild>
             </FlexLayout>
           </div>
         </div>
@@ -140,16 +160,31 @@ const Modal: React.FC<ModalI> = ({
       );
     }
   }
+  function tertiaryAction() {
+    if (props.tertiaryAction) {
+      const tertiaryAction = props.tertiaryAction;
+      return (
+        <Button
+          thickness="thin"
+          content={tertiaryAction.content ? tertiaryAction.content : "Close"}
+          {...tertiaryAction}
+          type={"TextButton"}
+        ></Button>
+      );
+    }
+  }
 };
 
 export interface ModalI {
   children: React.ReactNode;
   heading?: string;
+  headingIcon?: React.ReactNode;
   open: boolean;
-  modalSize?: "small" | "medium" | "large";
+  modalSize?: "small" | "medium" | "large" | "xLarge";
   close: () => void;
   primaryAction?: ButtonI;
   secondaryAction?: ButtonI;
+  tertiaryAction?: ButtonI;
   overlayClose?: boolean;
   extraClass?: string;
 }

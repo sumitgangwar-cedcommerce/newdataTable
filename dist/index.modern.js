@@ -33641,36 +33641,43 @@ var Modal = function (_a) {
                 return "inte-Modal-Dialog--Medium";
             case "large":
                 return "inte-Modal-Dialog--Large";
+            case "xLarge":
+                return "inte-Modal-Dialog--extraLarge";
             default:
                 return "";
         }
     }
     var modalWidth = checModalkWidth();
-    return reactDom_1(React__default["default"].createElement(React__default["default"].Fragment, null, props.open && (React__default["default"].createElement(React__default["default"].Fragment, null,
-        React__default["default"].createElement("div", { id: "inte-Modal-".concat(id), className: "inte-Modal__Wrapper ".concat(extraClass) },
-            React__default["default"].createElement("div", { className: "inte-Modal-Dialog__Container" },
-                React__default["default"].createElement("div", { className: "inte-Modal-Dialog" },
-                    React__default["default"].createElement("div", { className: "inte-Modal-Dialog__Modal ".concat(modalWidth) },
-                        heading.length > 0 && (React__default["default"].createElement("div", { className: "inte-Modal-Header" },
-                            React__default["default"].createElement("div", { className: "inte-Modal-Header__Title" },
-                                React__default["default"].createElement(TextStyles, { type: "Subheading", subheadingTypes: "XS-1.6", lineHeight: "LH-1.6", fontweight: "bold" }, heading)),
-                            React__default["default"].createElement(Button, { thickness: "thin", type: "Secondary", icon: React__default["default"].createElement(reactFeather.X, { size: 20, color: "#2a2a2a" }), onClick: function () {
-                                    props.close();
-                                } }))),
-                        React__default["default"].createElement("div", { className: "inte-Modal__BodyWrapper" },
-                            React__default["default"].createElement("div", { className: "inte-Modal__Body inte-Scrollable inte-Scrollable--vertical" },
-                                React__default["default"].createElement("div", { className: "inte-Modal-Section" }, props.children))),
-                        React__default["default"].createElement(React__default["default"].Fragment, null, renderFooter())))),
-            React__default["default"].createElement("div", { onClick: function () {
-                    overlayClose ? props.close() : {};
-                }, className: "inte-Backdrop" }))))), document.body);
+    return reactDom_1(React__default["default"].createElement(React__default["default"].Fragment, null, props.open && (React__default["default"].createElement("div", { id: "inte-Modal-".concat(id), className: "inte-Modal__Wrapper ".concat(extraClass) },
+        React__default["default"].createElement("div", { className: "inte-Modal-Dialog__Container" },
+            React__default["default"].createElement("div", { className: "inte-Modal-Dialog" },
+                React__default["default"].createElement("div", { className: "inte-Modal-Dialog__Modal ".concat(modalWidth) },
+                    heading.length > 0 && (React__default["default"].createElement("div", { className: "inte-Modal-Header" },
+                        React__default["default"].createElement("div", { className: "inte-Modal-Header__Title ".concat(props.headingIcon
+                                ? "inte-Modal-Header__Title--hasIcon"
+                                : "") },
+                            props.headingIcon ? (React__default["default"].createElement("span", { className: "inte-Modal-Header__Icon" }, props.headingIcon)) : (""),
+                            React__default["default"].createElement(TextStyles, { type: "Subheading", subheadingTypes: "XS-1.6", lineHeight: "LH-1.6", fontweight: "extraBold" }, heading)),
+                        React__default["default"].createElement(Button, { thickness: "thin", type: "Secondary", icon: React__default["default"].createElement(reactFeather.X, { size: 20, color: "#2a2a2a" }), onClick: function () {
+                                props.close();
+                            } }))),
+                    React__default["default"].createElement("div", { className: "inte-Modal__BodyWrapper" },
+                        React__default["default"].createElement("div", { className: "inte-Modal__Body inte-Scrollable inte-Scrollable--vertical" },
+                            React__default["default"].createElement("div", { className: "inte-Modal-Section" }, props.children))),
+                    React__default["default"].createElement(React__default["default"].Fragment, null, renderFooter())))),
+        React__default["default"].createElement("div", { onClick: function () {
+                overlayClose ? props.close() : {};
+            }, className: "inte-Backdrop" })))), document.body);
     function renderFooter() {
-        if (props.primaryAction || props.secondaryAction) {
+        if (props.primaryAction || props.secondaryAction || props.tertiaryAction) {
             return (React__default["default"].createElement("div", { className: "inte-Modal-Footer" },
                 React__default["default"].createElement("div", { className: "inte-Modal-Footer__FooterContent" },
-                    React__default["default"].createElement(FlexLayout, { halign: "end", spacing: "tight", halignMob: "start" },
-                        secondaryAction(),
-                        primaryAction()))));
+                    React__default["default"].createElement(FlexLayout, { halign: props.tertiaryAction ? "fill" : "end", valign: "center", spacing: "tight", halignMob: "start" },
+                        tertiaryAction(),
+                        React__default["default"].createElement(FlexChild, null,
+                            React__default["default"].createElement(FlexLayout, { halign: "fill", spacing: "tight", halignMob: "start" },
+                                secondaryAction(),
+                                primaryAction()))))));
         }
     }
     function primaryAction() {
@@ -33683,6 +33690,12 @@ var Modal = function (_a) {
         if (props.secondaryAction) {
             var secondaryAction_1 = props.secondaryAction;
             return (React__default["default"].createElement(Button, tslib.__assign({ thickness: "thin", content: secondaryAction_1.content ? secondaryAction_1.content : "Close" }, secondaryAction_1, { type: secondaryAction_1.type ? secondaryAction_1.type : "Outlined" })));
+        }
+    }
+    function tertiaryAction() {
+        if (props.tertiaryAction) {
+            var tertiaryAction_1 = props.tertiaryAction;
+            return (React__default["default"].createElement(Button, tslib.__assign({ thickness: "thin", content: tertiaryAction_1.content ? tertiaryAction_1.content : "Close" }, tertiaryAction_1, { type: "TextButton" })));
         }
     }
 };
@@ -36577,13 +36590,13 @@ function FileUpload(_a) {
 }
 
 var List = function (_a) {
-    var _b = _a.children, children = _b === void 0 ? React__default["default"].createElement(React__default["default"].Fragment, null) : _b, type = _a.type, _c = _a.imageSrc, imageSrc = _c === void 0 ? "d" : _c;
+    var _b = _a.children, children = _b === void 0 ? React__default["default"].createElement(React__default["default"].Fragment, null) : _b, type = _a.type, _c = _a.src, src = _c === void 0 ? "" : _c;
     var childrens = React__default["default"].Children.toArray(children);
     var newChildrens = childrens.map(function (children, index) {
         return React__default["default"].createElement("li", { key: index }, children);
     });
     return (React__default["default"].createElement(React__default["default"].Fragment, null, type == "disc" || type == "circle" || type == "square" ? (React__default["default"].createElement("ul", { style: { listStyleType: type, }, className: "inte__List" },
-        React__default["default"].createElement(React__default["default"].Fragment, null, newChildrens))) : type == "image" ? (React__default["default"].createElement("ul", { style: { listStyleImage: "url('" + imageSrc + "')" }, className: "inte__List inte__List--WithImage" },
+        React__default["default"].createElement(React__default["default"].Fragment, null, newChildrens))) : type == "image" ? (React__default["default"].createElement("ul", { style: { listStyleImage: "url('" + src + "')" }, className: "inte__List inte__List--WithImage" },
         React__default["default"].createElement(React__default["default"].Fragment, null, newChildrens))) : React__default["default"].createElement("ol", { style: { listStyleType: type }, className: "inte__List" },
         React__default["default"].createElement(React__default["default"].Fragment, null, newChildrens))));
 };

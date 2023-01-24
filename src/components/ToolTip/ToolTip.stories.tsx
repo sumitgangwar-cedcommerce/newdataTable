@@ -122,13 +122,13 @@ Tooltip_Body_container.decorators = [
     return (
       <Card>
         <FlexLayout spacing="loose">
-        <ToolTip position="top" open={false} popoverContainer="body" helpText={"lorem ipsul dollar issue going to be false and poor for rest not of life"}>
+        <ToolTip position="top" open={false} popoverContainer="body" helpText={<TextStyles textcolor="dark">lorem ipsul dollar issue going to be false and poor for rest not of life <Button>Click Here</Button></TextStyles>}>
           <Button>Body Container element with Dark tooltip</Button>
         </ToolTip>
         <ToolTip extraClass="hello" open={false} type="light" popoverContainer="body" helpText={<TextStyles textcolor="dark">lorem ipsul dollar issue going to be false and poor for rest not of life</TextStyles>}>
           <Button>Body Container element With Light Tooltip</Button>
         </ToolTip>
-        <ToolTipA open={false} type="light" popoverContainer="body" helpText={<TextStyles textcolor="dark">lorem ipsul dollar issue going to be false and poor for rest not of life</TextStyles>}>
+        <ToolTipA open={false} type="light" popoverContainer="body" helpText={<TextStyles textcolor="dark">lorem ipsul dollar issue going to be false and poor for rest not of life <Button>Click Here</Button></TextStyles>}>
           <Button>Body Container element With Light TooltipA</Button>
         </ToolTipA>
         </FlexLayout>

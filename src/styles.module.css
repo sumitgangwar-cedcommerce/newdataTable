@@ -188,8 +188,9 @@ body {
   --inte-BL400: rgba(27, 27, 27, 1);
   --inte-BL500: rgba(10, 10, 10, 1);
   --inte-BL600: rgba(1, 1, 1, 1);
-
   --inte-transparet: transparent;
+
+  --drop-Shadow:0px 2px 8px 0px rgba(0, 0, 0, 0.15);
 
   /* New Color Declarations End */
 
