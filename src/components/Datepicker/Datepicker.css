@@ -9,8 +9,9 @@
     z-index: 9999999;
 }
 .inte--DatePicker .ant-picker.ant-picker-focused {
-    box-shadow: 0 0 0 1px var(--inte-P900);
+    box-shadow: 0 0 0 3px var(--inte-P30);
     border-color: var(--inte-P900);
+    background-color: var(--inte-P20);
 }
 .inte--DatePicker .anticon svg {
     display: inline-block;

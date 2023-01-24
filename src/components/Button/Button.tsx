@@ -67,15 +67,15 @@ const Button = ({
   const thicknessCss = getThickness();
   const halignCss = checkForForHAlign();
 
-  const { iconAlign = "left", iconRound = false } = props;
+  const { iconAlign = "left" } = props;
 
   if (props.icon) {
     iconClass = "inte-btn--hasIcon";
 
     iconAlign !== "left" ? { paddingLeft: "1rem" } : { paddingRight: "1rem" };
-    const round = iconRound ? "inte-btn__icon--round" : "";
+    
     icon = (
-      <span style={iconRound ? {} : {}} className={`inte-btn__icon ${round}`}>
+      <span className={`inte-btn__icon`}>
         {props.icon}
       </span>
     );
@@ -137,7 +137,6 @@ export interface ButtonI {
   loading?: boolean;
   disable?: boolean;
   iconAlign?: "left" | "right";
-  iconRound?: boolean;
   tabIndex?: number;
 }
 export default Button;

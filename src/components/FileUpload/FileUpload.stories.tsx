@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
-import { Loader, Plus, PlusCircle, Upload } from 'react-feather'
+import React from 'react'
+import { Upload } from 'react-feather'
 import Button from '../Button/Button'
-import Uploadnew from './Uploadnew'
+import FileUpload from './FileUpload'
 import 'antd/dist/antd.css'
 export default {
-  title: 'Components/Uploadnew',
-  component: Uploadnew,
+  title: 'Components/Form/FileUpload',
+  component: FileUpload,
   argTypes: {
     onChange: {
       description:"On Change Call back function",
@@ -70,7 +70,7 @@ export default {
 const Template = ({ ...rest }) => {
   return (
     <>
-      <Uploadnew
+      <FileUpload
         {...rest}
         name="file"
         directory={rest.directory}
@@ -83,8 +83,8 @@ const Template = ({ ...rest }) => {
         
 
       >
-        <Button content="Click to upload" type="Primary" iconRound={false} icon={<Upload color='#ffff'/>} />
-      </Uploadnew>
+        <Button content="Click to upload" type="Primary"  icon={<Upload color='#ffff'/>} />
+      </FileUpload>
     </>
   )
 }
@@ -92,21 +92,21 @@ export const Primary: any = Template.bind({})
 export const Avtar: any = Template.bind({})
 Avtar.decorators = [
   () => (
-    <Uploadnew
+    <FileUpload
       name="Avtar"
       uploadbutton={true}
       listType="picture-card"
       className="avatar-uploader"
-    ></Uploadnew>
+    ></FileUpload>
   ),
 ]
 export const UploadDirectory: any = Template.bind({})
 UploadDirectory.decorators = [
   () => (
-    <Uploadnew directory>
-      <Button content="Click to Directory" type="Primary" iconRound={false} icon={<Upload color='white' />} />
-    </Uploadnew>
+    <FileUpload directory>
+      <Button content="Click to Directory" type="Primary"  icon={<Upload color='white' />} />
+    </FileUpload>
   ),
 ]
 export const Drag: any = Template.bind({})
-Drag.decorators = [() => <Uploadnew drag></Uploadnew>]
+Drag.decorators = [() => <FileUpload drag></FileUpload>]

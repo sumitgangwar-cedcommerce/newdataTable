@@ -161,7 +161,7 @@ const Pricing: React.FC<PricingI> = ({
       <Card>
         <PageHeader
           title={faqTitle}
-          action={
+          primaryAction={
             <Button type="TextButton" onClick={() => setShowMore(true)}>
               {faqAction}
             </Button>

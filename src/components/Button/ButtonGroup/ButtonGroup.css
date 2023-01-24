@@ -1,0 +1,35 @@
+.inte-ButtonGroup,
+.inte-ButtonGroup--Vertical {
+    display: inline-flex;
+    gap: 1.2rem;
+}
+.inte-ButtonGroup--Segmented {
+    gap: 0;
+}
+.inte-ButtonGroup--Vertical {
+    flex-direction: column;
+    align-items: stretch;
+}
+.inte-ButtonGroup--Segmented > .inte-btn:not(:last-child),
+.inte-ButtonGroup--Segmented > .inte-ActionList--Container:not(:last-child) .inte-btn {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.inte-ButtonGroup--Segmented > .inte-btn:not(:first-child),
+.inte-ButtonGroup--Segmented > .inte-ActionList--Container:not(:first-child) .inte-btn {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    margin-left: -1px;
+}
+.inte-ButtonGroup--Vertical.inte-ButtonGroup--Segmented > .inte-btn:not(:last-child), .inte-ButtonGroup--Vertical.inte-ButtonGroup--Segmented > .inte-ActionList--Container:not(:last-child) .inte-btn {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0!important;
+    border-top-right-radius: var(--radius-rounded-6);
+}
+.inte-ButtonGroup--Vertical.inte-ButtonGroup--Segmented > .inte-btn:not(:first-child), .inte-ButtonGroup--Vertical.inte-ButtonGroup--Segmented > .inte-ActionList--Container:not(:first-child) .inte-btn {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    margin-left: 0;
+    margin-top: -1px;
+    border-bottom-left-radius: var(--radius-rounded-6);
+}

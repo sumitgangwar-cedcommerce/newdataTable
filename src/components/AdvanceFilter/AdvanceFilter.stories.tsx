@@ -5,7 +5,7 @@ import { FormElement } from "../FormElement";
 import AdvanceFilter from "./AdvanceFilter";
 
 export default {
-  title: "Components/AdvanceFilter",
+  title: "Components/Overlays/AdvanceFilter",
   component: AdvanceFilter,
   argTypes: {
     filters: {
@@ -145,7 +145,6 @@ function SelectRender() {
       onChange={(e) => {
         setVal(e);
       }}
-      thickness="thin"
       options={[
         {
           label: "Option 1",

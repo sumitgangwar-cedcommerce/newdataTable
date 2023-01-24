@@ -36,10 +36,10 @@
   line-height: 1.429;
 }
 .inte-formElement--Wrap .inte-formElement.inte-formElementTextfield,
-.inte-select--thick .inte-select.inte-formElement {
+.inte-select.inte-formElement {
   height: 4.4rem !important;
 }
-.inte-formElement--ChoiceList.inte-select--thick .inte-select {
+.inte-formElement--ChoiceList.inte-select {
   min-height: 4.4rem !important;
   height: unset !important;
 }
@@ -88,10 +88,10 @@
 }
 .inte-select .inte-loading,
 .inte-formElemet--Inner .inte-loading {
-  border: 1px solid var(--inte-G42);
+  border: 1px solid var(--inte-G60);
   -webkit-animation: spin 1s linear infinite;
   animation: spin 1s linear infinite;
-  border-top: 1px solid var(--inte-G600);
+  border-top: 1px solid var(--inte-G800);
   border-radius: 50%;
   width: 1.8rem;
   height: 1.8rem;
@@ -99,7 +99,7 @@
   top: 1.2rem;
 }
 .inte-select .inte-loading {
-  right: 3.2rem !important;
+  right: 6rem !important;
 }
 
 .inte-select-placeholder {
@@ -295,7 +295,7 @@ h3 + .inte-formElementTextfield ~ .inte-clear {
   color: var(--inte-R350);
 }
 .inte-formElement--disabled .inte-formElemet--Inner {
-  pointer-events: none;
+  cursor: not-allowed;
 }
 .inte-formElement--disabled .inte-formElemet--Inner .inte-formElement {
   border-color: var(--inte-G40);
@@ -369,12 +369,13 @@ h3 + .inte-formElementTextfield ~ .inte-clear {
   background-color: var(--inte-P30);
 }
 .inte-Select__Select--ItemGrouped > h3 {
-  color: var(--inte-G800) !important;
+  color: var(--inte-G90) !important;
   cursor: default;
   padding: 0;
   margin-bottom: 0 !important;
   padding: 1.2rem 0.8rem;
   font-weight: var(--weight-bolder) !important;
+  text-transform: uppercase;
 }
 .inte-select li:last-child {
   border-bottom: none;

@@ -4,9 +4,9 @@ import React from "react";
 import { PlusCircle } from "react-feather";
 import Button from "../Button/Button";
 import TextStyles from "../TextStyles/TextStyles";
-import "./upload.css";
+import "./FileUpload.css";
 const { Dragger } = Upload;
-function Uploadnew({
+function FileUpload({
   name,
   children,
   listType,
@@ -120,4 +120,4 @@ export interface UploadI {
   disabled?: boolean;
   openFileDialogOnClick?: boolean;
 }
-export default Uploadnew;
+export default FileUpload;

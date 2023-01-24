@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import Pagination from '../Pagination/Pagination';
 import Grid from './Grid'
 export default {
-  title: 'Components/Grid',
+  title: 'Components/DataTable and List/Grid',
   component: Grid,
   argTypes: {
     size: {
@@ -17,10 +17,10 @@ export default {
         type: 'boolean',
       },
     },
-     expandable: {
-      description:`<table><thead><tr><th>Property</th><th>Description</th><th>Type</th><th>Default</th><th>Version</th></tr></thead><tbody><tr><td>childrenColumnName</td><td>The column contains children to display</td><td>string</td><td>children</td><td></td></tr><tr><td>columnTitle</td><td>Set the title of the expand column</td><td>ReactNode</td><td>-</td><td>4.23.0</td></tr><tr><td>columnWidth</td><td>Set the width of the expand column</td><td>string | number</td><td>-</td><td></td></tr><tr><td>defaultExpandAllRows</td><td>Expand all rows initially</td><td>boolean</td><td>false</td><td></td></tr><tr><td>defaultExpandedRowKeys</td><td>Initial expanded row keys</td><td>string[]</td><td>-</td><td></td></tr><tr><td>expandedRowClassName</td><td>Expanded row's className</td><td>function(record, index, indent): string</td><td>-</td><td></td></tr><tr><td>expandedRowKeys</td><td>Current expanded row keys</td><td>string[]</td><td>-</td><td></td></tr><tr><td>expandedRowRender</td><td>Expanded container render for each row</td><td>function(record, index, indent, expanded): ReactNode</td><td>-</td><td></td></tr><tr><td>expandIcon</td><td>Customize row expand Icon. Ref <a href="https://codesandbox.io/s/fervent-bird-nuzpr">example</a></td><td>function(props): ReactNode</td><td>-</td><td></td></tr><tr><td>expandRowByClick</td><td>Whether to expand row by clicking anywhere in the whole row</td><td>boolean</td><td>false</td><td></td></tr><tr><td>fixed</td><td>Whether the expansion icon is fixed. Optional true <code>left</code> <code>right</code></td><td>boolean | string</td><td>false</td><td>4.16.0</td></tr><tr><td>indentSize</td><td>Indent size in pixels of tree data</td><td>number</td><td>15</td><td></td></tr><tr><td>rowExpandable</td><td>Enable row can be expandable</td><td>(record) =&gt; boolean</td><td>-</td><td></td></tr><tr><td>showExpandColumn</td><td>Show expand column</td><td>boolean</td><td>true</td><td>4.18.0</td></tr><tr><td>onExpand</td><td>Callback executed when the row expand icon is clicked</td><td>function(expanded, record)</td><td>-</td><td></td></tr><tr><td>onExpandedRowsChange</td><td>Callback executed when the expanded rows change</td><td>function(expandedRows)</td><td>-</td><td></td></tr></tbody></table>`,
+    expandable: {
+      description: `<table><thead><tr><th>Property</th><th>Description</th><th>Type</th><th>Default</th><th>Version</th></tr></thead><tbody><tr><td>childrenColumnName</td><td>The column contains children to display</td><td>string</td><td>children</td><td></td></tr><tr><td>columnTitle</td><td>Set the title of the expand column</td><td>ReactNode</td><td>-</td><td>4.23.0</td></tr><tr><td>columnWidth</td><td>Set the width of the expand column</td><td>string | number</td><td>-</td><td></td></tr><tr><td>defaultExpandAllRows</td><td>Expand all rows initially</td><td>boolean</td><td>false</td><td></td></tr><tr><td>defaultExpandedRowKeys</td><td>Initial expanded row keys</td><td>string[]</td><td>-</td><td></td></tr><tr><td>expandedRowClassName</td><td>Expanded row's className</td><td>function(record, index, indent): string</td><td>-</td><td></td></tr><tr><td>expandedRowKeys</td><td>Current expanded row keys</td><td>string[]</td><td>-</td><td></td></tr><tr><td>expandedRowRender</td><td>Expanded container render for each row</td><td>function(record, index, indent, expanded): ReactNode</td><td>-</td><td></td></tr><tr><td>expandIcon</td><td>Customize row expand Icon. Ref <a href="https://codesandbox.io/s/fervent-bird-nuzpr">example</a></td><td>function(props): ReactNode</td><td>-</td><td></td></tr><tr><td>expandRowByClick</td><td>Whether to expand row by clicking anywhere in the whole row</td><td>boolean</td><td>false</td><td></td></tr><tr><td>fixed</td><td>Whether the expansion icon is fixed. Optional true <code>left</code> <code>right</code></td><td>boolean | string</td><td>false</td><td>4.16.0</td></tr><tr><td>indentSize</td><td>Indent size in pixels of tree data</td><td>number</td><td>15</td><td></td></tr><tr><td>rowExpandable</td><td>Enable row can be expandable</td><td>(record) =&gt; boolean</td><td>-</td><td></td></tr><tr><td>showExpandColumn</td><td>Show expand column</td><td>boolean</td><td>true</td><td>4.18.0</td></tr><tr><td>onExpand</td><td>Callback executed when the row expand icon is clicked</td><td>function(expanded, record)</td><td>-</td><td></td></tr><tr><td>onExpandedRowsChange</td><td>Callback executed when the expanded rows change</td><td>function(expandedRows)</td><td>-</td><td></td></tr></tbody></table>`,
       control: {
-        disable:true
+        disable: true
       },
     },
     bordered: {
@@ -41,7 +41,7 @@ export default {
     tableLayout: {
       control: {
         type: 'radio',
-        options: ['auto','fix'],
+        options: ['auto', 'fix'],
       },
     },
   },
@@ -138,6 +138,29 @@ const columns = [
     title: 'Name',
     dataIndex: 'name',
     key: 'name',
+    align: 'center',
+    fixed:'left'
+  },
+  {
+    title: 'Age',
+    dataIndex: 'age',
+    key: 'age',
+    align: 'center',
+  },
+  {
+    title: 'Address',
+    dataIndex: 'address',
+    key: 'address',
+    align: 'center',
+  },
+];
+
+
+const columns22 = [
+  {
+    title: 'Name',
+    dataIndex: 'name',
+    key: 'name',
     width: 100,
     align: 'center',
   },
@@ -156,10 +179,12 @@ const columns = [
     align: 'center',
   },
 ];
+
+
 const columnss = [
   {
     title: 'Full Name',
-    width: 300,
+    width: 100,
     dataIndex: 'name',
     key: 'name',
     fixed: 'left',
@@ -169,7 +194,6 @@ const columnss = [
     width: 100,
     dataIndex: 'age',
     key: 'age',
-    fixed: 'left',
   },
   {
     title: 'Column 1',
@@ -298,10 +322,10 @@ const expandeddata = [
   },
 ];
 const rowSelection = {
-  onChange: (selectedRowKeys: React.Key[], selectedRows:any) => {
- 
+  onChange: (selectedRowKeys: React.Key[], selectedRows: any) => {
+
   },
- 
+
 };
 const GridWithPaginationDemoColumns = [
   {
@@ -320,7 +344,7 @@ const GridWithPaginationDemoColumns = [
     dataIndex: "email",
   },
 ];
- 
+
 const Template = ({ ...rest }) => {
   return (
     <Grid
@@ -357,104 +381,114 @@ Fixedheader.decorators = [
 ]
 export const ExpandableRow: any = Template.bind({})
 ExpandableRow.decorators = [
-  () => <Grid dataSource={expandeddata} columns={columns} />,
+  () => <Grid scrollX={500} dataSource={expandeddata} columns={columns} rowSelection={{...rowSelection}} expandable={{
+    expandedRowRender : () =><Grid
+    scrollX={800} 
+    scrollY={400}
+    dataSource={dataSource} 
+    columns={columns22} 
+    rowSelection={{...rowSelection}}
+  />,
+  }}/>,
 ]
 export const Selection: any = Template.bind({})
 Selection.decorators = [
-  () => <Grid dataSource={dataSource} columns={columns}  rowSelection={{
-    ...rowSelection
-  }}  />,
+  () => <Grid 
+          dataSource={dataSource} 
+          columns={columns} 
+          rowSelection={{...rowSelection}}
+        />,
 ]
 export const GridWithPaginationDemo: any = Template.bind({})
 GridWithPaginationDemo.decorators = [
   () => {
     const getRandomuserParams = (params: any) => ({
-  results: params.pagination?.pageSize,
-  page: params.pagination?.current,
-  ...params,
-});
-     const [data, setData] = useState();
-  const [loading, setLoading] = useState(false);
-  const [tableParams, setTableParams] = useState({
-    pagination: {
-      current: 1,
-      pageSize: 10,
-    },
-  });
-  const fetchData = () => {
-    setLoading(true);
-    fetch(
-      `https://randomuser.me/api?${qs.stringify(
-        getRandomuserParams(tableParams)
-      )}`
-    )
-      .then((res) => res.json())
-      .then(({ results }) => {
-        setData(results);
-        setLoading(false);
-        setTableParams({
-          ...tableParams,
-          pagination: {
-            ...tableParams.pagination,
-          },
-        });
-      });
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, [JSON.stringify(tableParams)]);
-
-  const handleTableChange = (pagination: any, filters: any) => {
-    setTableParams({
-      pagination,
-      ...filters,
+      results: params.pagination?.pageSize,
+      page: params.pagination?.current,
+      ...params,
     });
-  };
+    const [data, setData] = useState();
+    const [loading, setLoading] = useState(false);
+    const [tableParams, setTableParams] = useState({
+      pagination: {
+        current: 1,
+        pageSize: 10,
+      },
+    });
+    const fetchData = () => {
+      setLoading(true);
+      fetch(
+        `https://randomuser.me/api?${qs.stringify(
+          getRandomuserParams(tableParams)
+        )}`
+      )
+        .then((res) => res.json())
+        .then(({ results }) => {
+          setData(results);
+          setLoading(false);
+          setTableParams({
+            ...tableParams,
+            pagination: {
+              ...tableParams.pagination,
+            },
+          });
+        });
+    };
 
-  return (
-    <>
-      <Grid
-        columns={GridWithPaginationDemoColumns}
-        rowKey={(record: any) => record.login.uuid}
-        dataSource={data}
-        loading={loading}
-        onChange={handleTableChange}
-      />
-      <Pagination
-        optionPerPage={[
-          { label: "10", value: "10" },
-          { label: "15", value: "15" },
-          { label: "20", value: "20" },
-          { label: "25", value: "25" },
-          { label: "50", value: "50" },
-        ]}
-        currentPage={tableParams.pagination.current}
-        totalitem={200}
-        onNext={() => {
-          const temp = { ...tableParams };
-          temp.pagination.current = temp.pagination?.current + 1;
-          setTableParams(temp);
-        }}
-        onPrevious={() => {
-          const temp = { ...tableParams };
-          temp.pagination.current = temp.pagination?.current - 1;
-          setTableParams(temp);
-        }}
-        countPerPage={tableParams.pagination.pageSize}
-        onCountChange={(e: any) => {
-          const temp = { ...tableParams };
-          temp.pagination.pageSize = e;
-          temp.pagination.current = e;
-          setTableParams(temp);
-        }}
-        onEnter={(e: any) => {
-          const temp = { ...tableParams };
-          temp.pagination.current = e;
-          setTableParams(temp);
-        }}
-      />
-    </>
-  );
+    useEffect(() => {
+      fetchData();
+    }, [JSON.stringify(tableParams)]);
+
+    const handleTableChange = (pagination: any, filters: any) => {
+      setTableParams({
+        pagination,
+        ...filters,
+      });
+    };
+
+    return (
+      <>
+        <Grid
+          columns={GridWithPaginationDemoColumns}
+          rowKey={(record: any) => record.login.uuid}
+          dataSource={data}
+          loading={loading}
+          onChange={handleTableChange}
+        />
+        <Pagination
+          optionPerPage={[
+            { label: "10", value: "10" },
+            { label: "15", value: "15" },
+            { label: "20", value: "20" },
+            { label: "25", value: "25" },
+            { label: "50", value: "50" },
+          ]}
+          currentPage={tableParams.pagination.current}
+          totalitem={200}
+          onNext={() => {
+            const temp = { ...tableParams };
+            temp.pagination.current = temp.pagination?.current + 1;
+            setTableParams(temp);
+          }}
+          onPrevious={() => {
+            const temp = { ...tableParams };
+            temp.pagination.current = temp.pagination?.current - 1;
+            setTableParams(temp);
+          }}
+          countPerPage={tableParams.pagination.pageSize}
+          onCountChange={(e: any) => {
+            const temp = { ...tableParams };
+            temp.pagination.pageSize = e;
+            temp.pagination.current = e;
+            setTableParams(temp);
+          }}
+          onEnter={(e: any) => {
+            const temp = { ...tableParams };
+            temp.pagination.current = e;
+            setTableParams(temp);
+          }}
+        />
+      </>
+    );
   }
 ]

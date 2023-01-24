@@ -175,7 +175,6 @@ const NoProduct = ({
               <Button
                 icon={props.icon}
                 iconAlign="left"
-                iconRound={false}
                 thickness="thin"
                 type="Primary"
                 onClick={props.onClick}

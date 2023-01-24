@@ -55,7 +55,6 @@ const Pagination: React.FC<PaginationI> = ({
                   customClass="inte-Pagination--perPage"
                   options={optionPerPage}
                   popoverContainer="body"
-                  thickness="thick"
                   onChange={(e) => {
                     onCountChange(parseInt(e));
                   }}
@@ -81,7 +80,6 @@ const Pagination: React.FC<PaginationI> = ({
         ) : null}
         <FlexLayout spacing="mediumTight" valign="center">
           <Button
-            iconRound={false}
             icon={<ChevronLeft size={20} color={"#2a2a2a"} />}
             thickness="thin"
             type="TextButton"
@@ -124,7 +122,6 @@ const Pagination: React.FC<PaginationI> = ({
             of &nbsp;{Math.ceil(totalitem / countPerPage)}
           </TextStyles>
           <Button
-            iconRound={false}
             icon={<ChevronRight size={20} color={"#2a2a2a"} />}
             type="Secondary"
             thickness="thin"

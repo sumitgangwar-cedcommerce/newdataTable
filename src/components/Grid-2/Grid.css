@@ -59,7 +59,31 @@
   box-shadow: inset -10px 0 8px -8px rgb(0 0 0 / 15%);
 }
 
+.inte-Grid__Cell--Expand {
+  cursor: pointer;
+}
 
+.inte-Grid__Cell--Expand-spaced {
+  cursor:alias;
+}
 
+.extra  input {
+  padding: 0 !important;
+}
 
+.inte-Grid__Row--Fixed {
+  padding: 1.6rem;
+}
+
+.inte-Grid__Row--Fixed {
+  margin: 0 -10px;
+}
+
+.inte-Grid__Row:hover > .inte-Grid__Cell {
+  background-color: rgb(243, 243, 243);
+}
+
+.inte-Grid__Row--Selected > .inte-Grid__Cell {
+  background-color: rgb(197, 199, 201) !important;
+}
   

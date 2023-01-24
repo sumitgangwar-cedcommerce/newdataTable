@@ -3,7 +3,7 @@ import { Progressbar, Card, FlexLayout } from "..";
 import { ProgressbarI } from "./Progressbar";
 
 export default {
-  title: "Components/Progress/Progressbar",
+  title: "Components/Behaviour/Progressbar",
   component: Progressbar,
   argTypes: {
     percentage: {

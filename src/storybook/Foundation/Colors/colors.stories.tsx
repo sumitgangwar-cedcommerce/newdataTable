@@ -1,11 +1,7 @@
 import React from "react";
-import {
-  Card,
-  CopyClipboard,
-  TextStyles,
-} from "../../components";
+import { Card, CopyClipboard, TextStyles } from "../../../components";
 import { Colors } from "./Colors";
-import "../../storybook.css";
+import "../../../storybook.css";
 
 export default {
   title: "Foundation/Colors",
@@ -34,7 +30,9 @@ const Template = ({}) => {
                 <div key={index} className="story-color-items">
                   <div className="story-color-box">
                     <div
-                      className={`story-color-aria ${"story-color-"+color.colorName}`}
+                      className={`story-color-aria ${
+                        "story-color-" + color.colorName
+                      }`}
                       style={{ backgroundColor: color.colorHex }}
                     ></div>
                     <TextStyles
@@ -46,17 +44,20 @@ const Template = ({}) => {
                   </div>
                   <div className="story-colorCodeWrapper">
                     <CopyClipboard
+                      timeout={1000}
                       label={color.colorHex}
                       value={color.colorHex}
                       align={"fill"}
                     />
 
                     <CopyClipboard
+                      timeout={1000}
                       label={color.colorRgba}
                       value={color.colorRgba}
                       align={"fill"}
                     />
                     <CopyClipboard
+                      timeout={1000}
                       label={color.colorHsl}
                       value={color.colorHsl}
                       align={"fill"}

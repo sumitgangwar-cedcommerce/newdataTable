@@ -22,6 +22,10 @@
   overflow-x: hidden;
   right: 0;
   padding: 0.8rem;
+  top: 4.7rem;
+}
+.inte__AutoComplete--hasName.inte__AutoComplete ul{
+  top: 7.5rem;
 }
 .inte__AutoComplete .inte--Textfield__thick ~ ul{
   top: 4.5rem;

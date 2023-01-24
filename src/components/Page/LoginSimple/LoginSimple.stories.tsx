@@ -2,7 +2,7 @@ import React from "react";
 import LoginSimple from "./LoginSimple";
 
 export default {
-  title: "Components/Page/LoginSimple",
+  title: "Templates/Authentication/LoginSimple",
   component: LoginSimple,
   argTypes: {},
 };

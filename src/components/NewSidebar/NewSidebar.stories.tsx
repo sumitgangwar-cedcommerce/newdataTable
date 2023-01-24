@@ -3,7 +3,7 @@ import { box, home, note, bag, setting } from "../../Icon/Icon";
 import NewSidebar from "./NewSidebar";
 
 export default {
-  title: "Components/NewSidebar",
+  title: "Components/Navigation/NewSidebar",
   component: NewSidebar,
   argTypes: {
     menu: {

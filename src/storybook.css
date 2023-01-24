@@ -25,11 +25,11 @@ div#anchor--ounce-button--scroller .css-11xgcgt {
 .sbdocs.sbdocs-wrapper .sbdocs-content {
   position: relative;
 }
-.sbdocs.sbdocs-wrapper .inte--Badge {
+/* .sbdocs.sbdocs-wrapper .inte--Badge {
   position: absolute;
   top: 0;
   right: 0;
-}
+} */
 div[id$="--documentation"] .sbdocs.sbdocs-preview.css-tmvzag,
 div[id$="--documentation"] .sbdocs.sbdocs-preview.css-tmvzag > div.docs-story {
   border: unset;
@@ -145,7 +145,8 @@ div[id$="--documentation"] .css-11xgcgt {
 .story-color-aria {
   height: 12rem;
   width: 100%;
-  border-radius: var(--radius-rounded-6);
+  border-top-right-radius: var(--radius-rounded-6);
+  border-top-left-radius: var(--radius-rounded-6);
 }
 .story-colorCodeWrapper > div {
   padding: 0.5rem 1rem;

@@ -3,7 +3,7 @@ import { Card } from "../../Card";
 import Contact from "./Contact";
 
 export default {
-  title: "Components/Page/Contact",
+  title: "Templates/Contact",
   component: Contact,
   argTypes: {},
 };

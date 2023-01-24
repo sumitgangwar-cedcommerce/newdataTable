@@ -5,7 +5,7 @@ import draftToHtml from "draftjs-to-html";
 import { convertToRaw } from "draft-js";
 
 export default {
-  title: "Components/WysiwygEditor",
+  title: "Components/Form/WysiwygEditor",
   component: Wysiwyg,
 };
 

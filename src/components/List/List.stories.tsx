@@ -5,7 +5,7 @@ import { List } from "..";
 import TextStyles from "../TextStyles/TextStyles";
 import { Card } from "../Card";
 export default {
-  title: "Components/List",
+  title: "Components/DataTable and List/List",
   component: List,
   argTypes: {
     type: {

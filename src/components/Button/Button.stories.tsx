@@ -12,7 +12,7 @@ const iconMap = { ...Icon };
 import "../../storybook.css";
 import AccordionStory from "../../storybook/AccordionStory";
 export default {
-  title: "Components/Button",
+  title: "Components/Actions/Button",
   component: Button,
   parameters: {
     docs: {
@@ -65,7 +65,7 @@ export default {
       control: {
         type: "boolean",
       },
-      defaultValue: true,
+      defaultValue: false,
     },
     thickness: {
       description: "Set Button thickness",
@@ -118,13 +118,6 @@ export default {
         type: "function",
         disable: true,
       },
-    },
-    iconRound: {
-      description: "Button icon Round",
-      control: {
-        type: "boolean",
-      },
-      defaultValue: false,
     },
     tabIndex: {
       description: "Button tabIndex",
@@ -201,7 +194,11 @@ Length.decorators = [
   () => (
     <Card title={"Button Length Options"}>
       <FlexLayout spacing="extraLoose" direction="vertical">
-        <Button thickness="large" content={"Full Width Button"} FullBtn={true} />
+        <Button
+          thickness="large"
+          content={"Full Width Button"}
+          FullBtn={true}
+        />
       </FlexLayout>
     </Card>
   ),
@@ -292,25 +289,6 @@ Icon_Align.decorators = [
           />
         ))}
       </FlexLayout>
-    </Card>
-  ),
-];
-
-// iconRound
-export const ButtonIconRound: any = Template.bind({});
-ButtonIconRound.decorators = [
-  () => (
-    <Card
-      title={"Icon Round"}
-      subTitle={"Used for specific design requirements"}
-    >
-      <Button
-        type="Primary"
-        thickness="large"
-        content="Button Icon Round"
-        icon={<Settings color="#431bbc" size={20} />}
-        iconRound={true}
-      />
     </Card>
   ),
 ];
@@ -456,12 +434,7 @@ export function Documentation() {
   return (
     <div className="story-documentation">
       {DocData.map((menu: any, index: any) => {
-        return (
-          <AccordionStory
-          title={menu.title}
-          content={menu.description}
-        />
-        );
+        return <AccordionStory title={menu.title} content={menu.description} />;
       })}
     </div>
   );
@@ -469,14 +442,22 @@ export function Documentation() {
 
 // Scroller Function
 
-export function Scroller(){
-  return(
+export function Scroller() {
+  return (
     <div className="story-scroller">
       <ul>
-        <li><a href="#anchor--ounce-button--types" target={"_top"}>Types</a></li>
-        <li><a href="#anchor--ounce-button--length">Length</a></li>
-        <li><a href="#anchor--ounce-button--thickness">Thickness</a></li>
+        <li>
+          <a href="#anchor--ounce-button--types" target={"_top"}>
+            Types
+          </a>
+        </li>
+        <li>
+          <a href="#anchor--ounce-button--length">Length</a>
+        </li>
+        <li>
+          <a href="#anchor--ounce-button--thickness">Thickness</a>
+        </li>
       </ul>
     </div>
-  )
+  );
 }

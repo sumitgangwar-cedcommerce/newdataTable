@@ -3,7 +3,7 @@ import CopyClipboard from "./CopyClipboard";
 import { Card } from "..";
 
 export default {
-  title: "Components/CopyClipboard",
+  title: "Components/Actions/CopyClipboard",
   component: CopyClipboard,
   argTypes: {
     value: {

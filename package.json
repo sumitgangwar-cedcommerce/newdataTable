@@ -29,7 +29,7 @@
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^11.1.0",
     "@rollup/plugin-typescript": "^8.1.0",
-    "@storybook/addon-a11y": "^6.5.5",
+    "@storybook/addon-a11y": "^6.5.15",
     "@storybook/addon-actions": "^6.5.5",
     "@storybook/addon-contexts": "^5.3.21",
     "@storybook/addon-controls": "^6.5.5",

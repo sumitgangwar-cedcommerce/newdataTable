@@ -6,7 +6,7 @@ import FlexChild from "./FlexChild";
 import "./FlexStories.css";
 
 export default {
-  title: "Components/FlexLayout",
+  title: "Components/Layout/FlexLayout",
   component: FlexLayout,
   parameters: {
     docs: {

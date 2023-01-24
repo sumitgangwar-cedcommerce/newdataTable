@@ -4,7 +4,7 @@ import TextStyles from "../TextStyles/TextStyles";
 import AnnouncementBar from "./AnnouncementBar";
 
 export default {
-  title: "Components/AnnouncementBar",
+  title: "Components/Feedback/AnnouncementBar",
   component: AnnouncementBar,
   argTypes: {
     children: {

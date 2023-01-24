@@ -2,7 +2,7 @@ import React from "react";
 import Loader from "./Loader";
 
 export default {
-  title: "Components/Loader",
+  title: "Components/Behaviour/Loader",
   component: Loader,
   argTypes: {
     title: {

@@ -1,54 +1,47 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import "./FormElement.css";
 
-const CheckBox: React.FC<CheckBoxI> = ({...props}: CheckBoxI) => {
-  const [id] = useState(() => "-" + Math.floor(Math.random() * 1000));
+const CheckBox: React.FC<CheckBoxI> = ({
+  onClick = () => {
+    //
+  },
+  ...props
+}: CheckBoxI) => {
+  const [Rid] = useState(() => "-" + Math.floor(Math.random() * 1000));
+
   const [checked, toggleChecked] = useState(false);
-
-
-  const checkBoxRef = useRef<HTMLInputElement>(null)
-
-  const handelCheckboxClick = () => {
-    props.onClick && props.onClick();
-  }
-
-  useEffect(()=>{
-    if(checkBoxRef.current){
-      if(props.indeterminate) {
-        checkBoxRef.current.indeterminate = true;
-      }
-      else checkBoxRef.current.indeterminate = false;
-    }
-  },[props.indeterminate])
-
-  useEffect(()=>{
-    toggleChecked(props.checked || false)
-  },[props.checked])
-
   return (
-    <label
-      htmlFor={`inte__checkbox-${id}`}
+    <div
       className={
         props.disabled
           ? "inte-form__checkbox inte-form__checkbox--Disabled"
           : "inte-form__checkbox"
       }
     >
-      <div onClick={() => {
-        { props.disabled ? void (0) : ''}
-      }}>
+      <label
+        htmlFor={
+          props.id ? `inte__checkbox-${props.id}` : `inte__checkbox-${Rid}`
+        }
+        onClick={() => {
+          {
+            props.disabled ? void 0 : onClick();
+          }
+        }}
+      >
         <input
-          ref={checkBoxRef}
           disabled={props.disabled}
-          id={`inte__checkbox-${id}`}
+          id={props.id ? `inte__checkbox-${props.id}` : `inte__checkbox-${Rid}`}
           type="checkbox"
           name={props.name}
           onClick={() => {
-            { props.disabled ? void (0) : handelCheckboxClick() }
-
+            {
+              props.disabled ? void 0 : toggleChecked(!checked);
+            }
           }}
           checked={checked}
-          className={`inte-formElement inte__checkoxFake ${props.error ? "inte-form__checkbox--Error" : ""}`}
+          className={`inte-formElement inte__checkoxFake ${
+            props.error ? "inte-form__checkbox--Error" : ""
+          }`}
         />
         <span className={"inte__checkboxWrap"}>
           <span className={"inte__checkbox"} />
@@ -59,22 +52,21 @@ const CheckBox: React.FC<CheckBoxI> = ({...props}: CheckBoxI) => {
             ""
           )}
         </span>
-      </div>
+      </label>
       {props.description ? (
         <div className="inte__checkbox--Description">{props.description}</div>
       ) : (
         ""
       )}
-    </label>
+    </div>
   );
 };
-// CheckBox.defaultProps = {
-//   labelVal: "label",
-// };
+CheckBox.defaultProps = {
+  labelVal: "label",
+};
 export interface CheckBoxI {
   checked?: boolean;
-  indeterminate?: boolean;
-  onClick?: Function;
+  onClick?: () => void | string;
   labelVal?: string;
   id?: string;
   name?: string;

@@ -4,7 +4,7 @@ import { Card } from "../Card";
 import { FlexLayout } from "../FlexLayout";
 
 export default {
-  title: "Components/Image",
+  title: "Components/Media/Image",
   component: Image,
   argTypes: {
     src: {

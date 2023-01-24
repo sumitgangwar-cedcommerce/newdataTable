@@ -8,7 +8,6 @@ import "../../styles.module.css";
 import "./FormElement.css";
 
 function Select({
-  thickness = "thick",
   options = [],
   onChange = () => null,
   value = "",
@@ -61,16 +60,7 @@ function Select({
     }
   }
 
-  function getThickness() {
-    switch (thickness) {
-      case "thin":
-        return "inte-select--thin";
-      case "thick":
-        return "inte-select--thick";
-      default:
-        return "inte-select--thick";
-    }
-  }
+ 
   function getcontrolStates(controlStates: "Success" | "Warning" | "Error") {
     switch (controlStates) {
       case "Success":
@@ -173,7 +163,6 @@ function Select({
     });
   }
 
-  const eleThickness = getThickness();
   const elePosition = getPosition();
 
   const checkSelectedID = () => {
@@ -335,7 +324,7 @@ function Select({
       <div
         aria-expanded={displayMenu ? "true" : "false"}
         data-ellipsis={ellipsis ? "inte--ellipsis" : "inte--Noellipsis"}
-        className={`inte-formElement--Wrap ${controlStatesVal}  ${eleThickness} ${
+        className={`inte-formElement--Wrap ${controlStatesVal}  ${
           displayMenu ? "inte-formElement--Focus" : ""
         }`}
       >
@@ -456,7 +445,6 @@ export const getScrollParent = (node: any) => {
 
 export type SelectI = {
   options?: Array<ObjI>;
-  thickness?: "thin" | "thick";
   onChange?: (value: string, obj?: ObjI) => void;
   onblur?: () => void;
   value?: string;

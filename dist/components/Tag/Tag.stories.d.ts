@@ -17,13 +17,13 @@ declare const _default: {
             };
             defaultValue: boolean;
         };
-    };
-    popover: {
-        description: string;
-        control: {
-            type: string;
+        popover: {
+            description: string;
+            control: {
+                type: string;
+            };
+            defaultValue: boolean;
         };
-        defaultValue: boolean;
     };
 };
 export default _default;

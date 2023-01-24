@@ -153,7 +153,6 @@ const LoginSimple = (props: any) => {
         <Button
           icon={<ArrowLeft size={20} />}
           iconAlign="left"
-          iconRound={false}
           content="Return To Login"
           type="TextButton"
           halign="Equal"
@@ -331,7 +330,7 @@ const LoginSimple = (props: any) => {
           }
         />
         <FlexLayout wrap="noWrap" spacing="loose">
-          <Button type="TextButton" iconRound={false} icon={<HelpCircle />} />
+          <Button type="TextButton"  icon={<HelpCircle />} />
           <TextStyles content="To have a strong password make sure your password contains one upper case alphabet, one lower case alphabet, one numeric and one special character" />
         </FlexLayout>
         <TextField
@@ -353,7 +352,6 @@ const LoginSimple = (props: any) => {
           content="Return To Email"
           type="TextButton"
           icon={<ArrowLeft size={20} />}
-          iconRound={false}
           onClick={() => {
             setLogin(false);
             setLinkMail(true);

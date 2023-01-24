@@ -3,7 +3,7 @@ import Switcher from "./Switcher";
 import { Card } from "..";
 
 export default {
-  title: "Components/Switcher",
+  title: "Components/Form/Switcher",
   component: Switcher,
   argTypes: {
     checked: {
@@ -19,6 +19,13 @@ export default {
         type: "text",
       },
       defaultValue: "Swicher",
+    },
+    className: {
+      description: "You can set Custom Class Name",
+      control: {
+        type: "text",
+      },
+      defaultValue: "",
     },
     textAligh: {
       description: "You can Align text from here",
@@ -48,6 +55,7 @@ const Template = ({ ...rest }) => {
         name={rest.name}
         textAligh={rest.textAligh}
         checked={check}
+        className={rest.className}
       />
     </Card>
   );

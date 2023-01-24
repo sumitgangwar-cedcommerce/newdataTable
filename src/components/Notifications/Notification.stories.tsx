@@ -2,7 +2,7 @@ import React from 'react'
 import { Notification, Card } from '..'
 
 export default {
-  title:'Components/Notification',
+  title:'Components/Feedback/Notification',
   component: Notification,
   argTypes: {
     type: {
