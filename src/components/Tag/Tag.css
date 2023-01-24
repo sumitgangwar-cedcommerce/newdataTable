@@ -1,6 +1,6 @@
 /*Tags and Swatches*/
 .inte--Tag {
-  padding: 0.4rem 0.8rem;
+  padding: 0.2rem 0.8rem;
   text-align: center;
   border-radius: var(--radius-rounded-4);
   font-size: 1.4rem;
@@ -9,11 +9,12 @@
   transition: 300ms all linear;
   background-color: var(--inte-G30);
   color: var(--inte-G800);
-  min-height: 2.8rem;
+  min-height: 2.4rem;
   align-items: center;
 }
 .inte--Tag__Dismissible {
   display: flex;
+  gap: 0.8rem;
   align-items: center;
 }
 .inte--Tag__Dismissible button:hover {
@@ -24,11 +25,10 @@
   border: 0;
   display: flex;
   justify-content: center;
-  border-radius: var(--radius-rounded-4);
+  border-radius: 50%;
   cursor: pointer;
   transition: 300ms all linear;
   padding: 0.2rem;
-  margin-left: 0.4rem;
 }
 .inte--TagNarrow .inte--Tag-content span {
   font-size: 1.2rem;
@@ -37,7 +37,7 @@
   display: flex;
 }
 .inte--Tag-content span {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
 }
 .inte--Tag-content *,
 .inte--Tag-content {
@@ -80,4 +80,15 @@
 /* DARK MODE */
 [data-theme="dark"] .inte--Tag {
   opacity: 0.7;
+}
+/* Tag disabled */
+.inte-Tag--disabled {
+  cursor: not-allowed;
+  background-color: var(--inte-G20);
+  color: var(--inte-G80);
+}
+
+.inte--Tag__Dismissible--disabled button{
+  background-color: var(--inte-G30);
+  cursor: not-allowed;
 }

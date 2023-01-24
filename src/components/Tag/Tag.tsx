@@ -10,6 +10,7 @@ const Tag: React.FC<TagI> = ({
   popover,
   count,
   toggle,
+  disabled,
   togglePopup = () => {
     //That's onClick function apply accordion title
   },
@@ -20,7 +21,7 @@ TagI): JSX.Element => {
     if (destroy) {
       return (
         <button onClick={destroy}>
-          <X size={16} color={"#3b424f"} />
+          <X size={14} color={disabled ? "var(--inte-G50)":"#1C2433"} />
         </button>
       );
     }
@@ -30,16 +31,16 @@ TagI): JSX.Element => {
   return (
     <div
       ref={currentRef}
-      className={`inte--Tag ${popover && "inte--Tag-hasPopover"} ${
-        toggle  && "inte--Tag-ActivePopover" 
-      }`}
+      className={`inte--Tag ${popover ? "inte--Tag-hasPopover" : ""} ${
+        toggle  ? "inte--Tag-ActivePopover" : "" 
+      } ${disabled ? 'inte-Tag--disabled':''}`}
       onClick={() => {
         togglePopup();
       }}
       {...(popover ? { tabIndex: 0 } : {})}
     >
       {checkOnDismiss() ? (
-        <div className="inte--Tag__Dismissible">
+        <div className={`inte--Tag__Dismissible ${disabled ? "inte--Tag__Dismissible--disabled" :""}`}>
           <div className="inte--Tag-content">
             <span>{children}</span>
           </div>
@@ -86,6 +87,7 @@ export interface TagI {
   count?: any;
   togglePopup?: (() => void) | any;
   toggle?: boolean;
+  disabled?:boolean
 }
 
 export default Tag;
