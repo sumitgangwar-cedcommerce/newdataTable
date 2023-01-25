@@ -4,6 +4,8 @@ import { Card } from "..";
 import { FlexChild, FlexLayout } from "../FlexLayout";
 import TextStyles from "../TextStyles/TextStyles";
 import Alert from "../Alerts/Alert";
+import Auto from "./Auto";
+
 
 export default {
   title: "Components/Form/AutoComplete",
@@ -129,7 +131,7 @@ export default {
 
 const names = [
   {
-    label: "Barbara-anne Barbara-anne Barbara-anne Barbara-anne" ,
+    label: "Barbara-anne Barbara-anne Barbara-anne Barbara-anne",
     value: "Barbara-anne Barbara-anne Barbara-anne Barbara-anne",
     lname: "hello",
     id: "popover0",
@@ -157,7 +159,7 @@ const names = [
           type="info"
           desciption="The audience size for the selected interest group is shown as a range. These numbers are subject to change over time."
         >
-          {}
+          { }
         </Alert>
       </FlexLayout>
     ),
@@ -190,7 +192,7 @@ const names = [
           type="info"
           desciption="The audience size for the selected interest group is shown as a range. These numbers are subject to change over time."
         >
-          {}
+          { }
         </Alert>
       </FlexLayout>
     ),
@@ -223,7 +225,7 @@ const names = [
           type="info"
           desciption="The audience size for the selected interest group is shown as a range. These numbers are subject to change over time."
         >
-          {}
+          { }
         </Alert>
       </FlexLayout>
     ),
@@ -256,7 +258,7 @@ const names = [
           type="info"
           desciption="The audience size for the selected interest group is shown as a range. These numbers are subject to change over time."
         >
-          {}
+          { }
         </Alert>
       </FlexLayout>
     ),
@@ -289,7 +291,7 @@ const names = [
           type="info"
           desciption="The audience size for the selected interest group is shown as a range. These numbers are subject to change over time."
         >
-          {}
+          { }
         </Alert>
       </FlexLayout>
     ),
@@ -445,7 +447,7 @@ const Template = ({ ...rest }) => {
   function onEnter(e: string) {
     setValue(e);
   }
-  function onclicks(e: string) {}
+  function onclicks(e: string) { }
 
   // function func1(e:any) {
   //   {
@@ -493,19 +495,15 @@ autocomplete_without_Higlight.decorators = [
     function onChange(e: string) {
       setValue(e);
     }
-    function onclicks(e: string) {}
+    function onclicks(e: string) { }
     return (
       <Card>
-        <AutoComplete
-          options={names}
-          name="Name"
-          placeHolder="Autocomplete without Heighlighted Text"
-          showHelp="You can search Your Term"
+        <Auto
           value={value}
-          onChange={onChange}
-          onClick={onclicks}
+          options={names}
           onEnter={onEnter}
-          setHiglighted={false}
+          onClick={onclicks}
+          onChange={onChange}
         />
       </Card>
     );

@@ -43,7 +43,7 @@ export default {
       description: "Controls the Collapsible behaviour of ActionList",
       control: {
         type: "boolean",
-        disable:true
+        disable: true
       },
     },
     activator: {
@@ -57,7 +57,7 @@ export default {
       description: "Change Action list content name",
       control: {
         type: "text",
-        disable:true,
+        disable: true,
       },
       defaultValue: "Action List content",
     },
@@ -115,7 +115,7 @@ const Template = ({ ...rest }) => {
         <FlexLayout halign="start">
           <FlexChild>
             <ActionList
-              {...rest}
+
               direction={rest.direction}
               dropDownheight={rest.dropDownheight}
               onClose={toggleActive}
@@ -136,7 +136,7 @@ const Template = ({ ...rest }) => {
                   title: "Action List With title Only",
                   items: [
                     {
-                      destructive:true,
+                      destructive: true,
                       content: rest.ActionListContent,
                       description: false,
                       onClick: () => alert("Hello 1"),
@@ -238,8 +238,8 @@ const Template = ({ ...rest }) => {
                   ],
                 },
               ]}
-              // primaryAction={primaryAction1}
-              // secondaryAction={secondaryAction1}
+            // primaryAction={primaryAction1}
+            // secondaryAction={secondaryAction1}
             />
           </FlexChild>
         </FlexLayout>
@@ -461,7 +461,7 @@ ActionList_with_Action_title_and_description.decorators = [
               onClick={toggleActive}
               icon={active ? <ChevronUp /> : <ChevronDown />}
               iconAlign="right"
-            
+
             >
               ActionList
             </Button>

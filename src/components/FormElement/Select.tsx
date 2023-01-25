@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import { createPortal } from "react-dom";
-import { TextStyles, TextField ,Tag } from "..";
+import { TextStyles, TextField, Tag } from "..";
 import { ChevronDown } from "react-feather";
 import "../../styles.module.css";
 import "./FormElement.css";
@@ -31,11 +31,11 @@ function Select({
   const [searchValue, updateSearch] = useState("");
   const [setClick, setClicked] = useState<any>([]);
   const myRef = useRef<any>();
-  const myReff= useRef<any>();
-  const listRef =useRef<any>();
-  useEffect(() =>{
+  const myReff = useRef<any>();
+  const listRef = useRef<any>();
+  useEffect(() => {
     console.log(listRef.current)
-  },[]);
+  }, []);
   const parentRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (parentRef && parentRef.current) {
@@ -60,7 +60,7 @@ function Select({
     }
   }
 
- 
+
   function getcontrolStates(controlStates: "Success" | "Warning" | "Error") {
     switch (controlStates) {
       case "Success":
@@ -103,7 +103,7 @@ function Select({
     setdisplayMenu(!displayMenu);
   }
   function MoldGroupOptions(group: ObjI[]) {
-    return group.filter(itWillSearchForYou).map((option,index) => {
+    return group.filter(itWillSearchForYou).map((option, index) => {
       return (
         <li
           ref={listRef}
@@ -111,12 +111,12 @@ function Select({
           value={option.value}
           onClick={(event) => {
             onChange(option.value, option);
-            {props.multiSelect ? setdisplayMenu(true):setdisplayMenu(false)}
+            { props.multiSelect ? setdisplayMenu(true) : setdisplayMenu(false) }
             updateSearch("");
             setClicked(index)
             event.stopPropagation();
           }}
-          className={setClick === index  ? "hello" :""}
+          className={setClick === index ? "hello" : ""}
           id={"ced-li-componenet" + id}
         >
           <TextStyles textcolor="light">{option.label}</TextStyles>
@@ -149,7 +149,7 @@ function Select({
           onClick={(e) => {
             // onChange(option.value, option);
             e.stopPropagation();
-            {props.multiSelect ? setdisplayMenu(true):setdisplayMenu(true)}
+            { props.multiSelect ? setdisplayMenu(true) : setdisplayMenu(true) }
             updateSearch("");
           }}
           key={option.value}
@@ -178,7 +178,7 @@ function Select({
     });
     return valueNew;
   };
- 
+
 
   const renderSearch = () => {
     return (
@@ -262,11 +262,10 @@ function Select({
       style={{ maxHeight: 250 + "px" }}
       id={"inte-select" + id}
       aria-label="inte-select-options"
-      className={`${
-        searchEable
+      className={`${searchEable
           ? "inte__Search-Enabled inte-select-options"
           : "inte-select-options"
-      }`}
+        }`}
     >
       {searchEable ? (
         <li className="inte-search--options">
@@ -324,9 +323,8 @@ function Select({
       <div
         aria-expanded={displayMenu ? "true" : "false"}
         data-ellipsis={ellipsis ? "inte--ellipsis" : "inte--Noellipsis"}
-        className={`inte-formElement--Wrap ${controlStatesVal}  ${
-          displayMenu ? "inte-formElement--Focus" : ""
-        }`}
+        className={`inte-formElement--Wrap ${controlStatesVal}  ${displayMenu ? "inte-formElement--Focus" : ""
+          }`}
       >
         {name ? (
           <TextStyles
@@ -349,13 +347,12 @@ function Select({
             onBlur={onblur}
             style={{ opacity: disabled || loading ? "0.6" : "1" }}
             id={"ced-select-componenet" + id}
-            className={`inte-formElement inte-select  ${elePosition} ${
-              disabled ? "inte-select--Disabled" : ""
-            }`}
+            className={`inte-formElement inte-select  ${elePosition} ${disabled ? "inte-select--Disabled" : ""
+              }`}
           >
             <>
               <span className="inte__Select--Selected">
-                {props.multiSelect ? <Tag destroy={()=> alert("destryed")} children={checkSelectedID()} /> : <>{checkSelectedID()}</>}
+                {props.multiSelect ? <Tag destroy={() => alert("destryed")} children={checkSelectedID()} /> : <>{checkSelectedID()}</>}
               </span>
               {searchEable && renderSearch()}
               <div className="inte-formElemet__Arrow">
@@ -398,9 +395,8 @@ function Select({
         </div>
         {selectHelp && (
           <span
-            className={`inte-form__itemHelp ${
-              helpIcon && "inte-form__itemHelp--HasHelpIcon"
-            }`}
+            className={`inte-form__itemHelp ${helpIcon && "inte-form__itemHelp--HasHelpIcon"
+              }`}
           >
             {helpIcon && <span style={{ display: "flex" }}>{helpIcon}</span>}
             <span>{selectHelp}</span>
@@ -461,7 +457,7 @@ export type SelectI = {
   popoverContainer?: "body" | "element";
   required?: boolean;
   customClass?: string;
-  multiSelect?:boolean;
+  multiSelect?: boolean;
 };
 
 interface ObjI extends GroupI {
