@@ -7,7 +7,7 @@ import { Card } from "../Card";
 import { FlexChild, FlexLayout } from "../FlexLayout";
 
 export default {
-  title: "Components/Actions/ActionList",
+  title: "Components/Actions/ActionLists",
   component: ActionList,
   argTypes: {
     sections: {
@@ -116,18 +116,6 @@ export default {
         },
       ],
     },
-    primaryAction: {
-      description: "You can set Primary action at bottom of Dropdown",
-      control: {
-        disable: true,
-      },
-    },
-    secondaryAction: {
-      description: "You can set Secondary action at bottom of Dropdown",
-      control: {
-        disable: true,
-      },
-    },
     open: {
       description: "Controls the Collapsible behaviour of ActionList",
       control: {
@@ -149,7 +137,7 @@ export default {
       },
       defaultValue: "250",
     },
-    popoverContainer: {
+    container: {
       description: "The Postion of Dropdown Either Near Element or Body",
       control: {
         type: "radio",
@@ -161,23 +149,11 @@ export default {
 };
 const Template = ({ ...rest }) => {
   const [active, setActive] = useState(false);
+  const toggleActive = useCallback(
+    () => setActive((active) => !active),
+    [active]
+  );
 
-  const primaryAction1 = {
-    loading: false,
-    content: "Proceed",
-    onClick: () => {
-      // alert("Conngratulations You Proceeded :)");
-      setActive(false);
-    },
-  };
-  const secondaryAction1 = {
-    loading: false,
-    content: "Cancel",
-    onClick: () => {
-      // alert("Oopps You Cancelled :)");
-      setActive(false);
-    },
-  };
   return (
     <div>
       <Card>
@@ -186,21 +162,20 @@ const Template = ({ ...rest }) => {
             <ActionList
               {...rest}
               dropDownheight={rest.dropDownheight}
+              onClose={toggleActive}
               activator={
                 <Button
                   type="Outlined"
+                  onClick={toggleActive}
                   icon={active ? <ChevronUp /> : <ChevronDown />}
                   iconAlign="right"
-                  onClick={() => setActive(!active)}
                 >
                   Action List
                 </Button>
               }
               open={active}
-              popoverContainer={rest.popoverContainer}
+              container={rest.container}
               sections={rest.sections}
-              primaryAction={primaryAction1}
-              secondaryAction={secondaryAction1}
             />
           </FlexChild>
         </FlexLayout>
@@ -210,3 +185,294 @@ const Template = ({ ...rest }) => {
 };
 
 export const Primary = Template.bind({});
+
+export const ActionList_with_Action_Only: any = Template.bind({});
+ActionList_with_Action_Only.decorators = [
+  () => {
+    const [active, setActive] = useState(false);
+    const toggleActive = useCallback(() => setActive((active) => !active), []);
+    return (
+      <Card>
+        <ActionList
+          onClose={toggleActive}
+          activator={
+            <Button
+              type="Outlined"
+              onClick={toggleActive}
+              icon={active ? <ChevronUp /> : <ChevronDown />}
+              iconAlign="right"
+            >
+              ActionList
+            </Button>
+          }
+          open={active}
+          sections={[
+            {
+              items: [
+                {
+                  content: "Action 1",
+                  onClick: () => alert("Hello 1"),
+                },
+                {
+                  content: "Action 1",
+                  onClick: () => alert("Hello 1"),
+                },
+                {
+                  content: "Action 1",
+                  onClick: () => alert("Hello 1"),
+                },
+              ],
+            },
+          ]}
+        />
+      </Card>
+    );
+  },
+];
+
+export const ActionList_with_Action_and_title: any = Template.bind({});
+ActionList_with_Action_and_title.decorators = [
+  () => {
+    const [active, setActive] = useState(false);
+    const toggleActive = useCallback(() => setActive((active) => !active), []);
+    return (
+      <Card>
+        <ActionList
+          onClose={toggleActive}
+          activator={
+            <Button
+              type="Outlined"
+              onClick={toggleActive}
+              icon={active ? <ChevronUp /> : <ChevronDown />}
+              iconAlign="right"
+            >
+              ActionList
+            </Button>
+          }
+          open={active}
+          sections={[
+            {
+              title: "Action List Title",
+              items: [
+                {
+                  content: "Action 1",
+                  onClick: () => alert("Hello 1"),
+                },
+                {
+                  content: "Action 1",
+                  onClick: () => alert("Hello 1"),
+                },
+                {
+                  content: "Action 1",
+                  onClick: () => alert("Hello 1"),
+                },
+              ],
+            },
+          ]}
+        />
+      </Card>
+    );
+  },
+];
+
+export const ActionList_with_Action_title_and_prefix_icon: any = Template.bind(
+  {}
+);
+ActionList_with_Action_title_and_prefix_icon.decorators = [
+  () => {
+    const [active, setActive] = useState(false);
+    const toggleActive = useCallback(() => setActive((active) => !active), []);
+    return (
+      <Card>
+        <ActionList
+          onClose={toggleActive}
+          activator={
+            <Button
+              type="Outlined"
+              onClick={toggleActive}
+              icon={active ? <ChevronUp /> : <ChevronDown />}
+              iconAlign="right"
+            >
+              ActionList
+            </Button>
+          }
+          open={active}
+          sections={[
+            {
+              title: "Action List Title with prefix Icon",
+              items: [
+                {
+                  content: "Action 1",
+                  prefixIcon: activity,
+                  onClick: () => alert("Hello 1"),
+                },
+                {
+                  content: "Action 1",
+                  prefixIcon: activity,
+                  onClick: () => alert("Hello 1"),
+                },
+                {
+                  content: "Action 1",
+                  prefixIcon: activity,
+                  onClick: () => alert("Hello 1"),
+                },
+              ],
+            },
+          ]}
+        />
+      </Card>
+    );
+  },
+];
+
+export const ActionList_with_Action_title_and_suffix_icon: any = Template.bind(
+  {}
+);
+ActionList_with_Action_title_and_suffix_icon.decorators = [
+  () => {
+    const [active, setActive] = useState(false);
+    const toggleActive = useCallback(() => setActive((active) => !active), []);
+    return (
+      <Card>
+        <ActionList
+          onClose={toggleActive}
+          activator={
+            <Button
+              type="Outlined"
+              onClick={toggleActive}
+              icon={active ? <ChevronUp /> : <ChevronDown />}
+              iconAlign="right"
+            >
+              ActionList
+            </Button>
+          }
+          open={active}
+          sections={[
+            {
+              title: "Action List Title with Suffix Icon",
+              items: [
+                {
+                  content: "Action 1",
+                  suffixIcon: activity,
+                  onClick: () => alert("Hello 1"),
+                },
+                {
+                  content: "Action 1",
+                  suffixIcon: activity,
+                  onClick: () => alert("Hello 1"),
+                },
+                {
+                  content: "Action 1",
+                  suffixIcon: activity,
+                  onClick: () => alert("Hello 1"),
+                },
+              ],
+            },
+          ]}
+        />
+      </Card>
+    );
+  },
+];
+
+export const ActionList_with_Action_title_and_description: any = Template.bind(
+  {}
+);
+ActionList_with_Action_title_and_description.decorators = [
+  () => {
+    const [active, setActive] = useState(false);
+    const toggleActive = useCallback(() => setActive((active) => !active), []);
+    return (
+      <Card>
+        <ActionList
+          onClose={toggleActive}
+          activator={
+            <Button
+              type="Outlined"
+              onClick={toggleActive}
+              icon={active ? <ChevronUp /> : <ChevronDown />}
+              iconAlign="right"
+            >
+              ActionList
+            </Button>
+          }
+          open={active}
+          sections={[
+            {
+              title: "Action List Title with Description",
+              items: [
+                {
+                  content: "Action 1",
+                  description: "Description text",
+                  onClick: () => alert("Hello 1"),
+                },
+                {
+                  content: "Action 1",
+                  description: "Description text",
+                  onClick: () => alert("Hello 1"),
+                },
+                {
+                  content: "Action 1",
+                  description: "Description text",
+                  onClick: () => alert("Hello 1"),
+                },
+              ],
+            },
+          ]}
+        />
+      </Card>
+    );
+  },
+];
+
+export const ActionList_with_Action_title_description_and_prefixIcon: any =
+  Template.bind({});
+ActionList_with_Action_title_description_and_prefixIcon.decorators = [
+  () => {
+    const [active, setActive] = useState(false);
+    const toggleActive = useCallback(() => setActive((active) => !active), []);
+    return (
+      <Card>
+        <ActionList
+          onClose={toggleActive}
+          activator={
+            <Button
+              type="Outlined"
+              onClick={toggleActive}
+              icon={active ? <ChevronUp /> : <ChevronDown />}
+              iconAlign="right"
+            >
+              ActionList
+            </Button>
+          }
+          open={active}
+          sections={[
+            {
+              title: "Action List Title with Description",
+              items: [
+                {
+                  content: "Action 1",
+                  description: "Description text",
+                  prefixIcon: activity,
+                  onClick: () => alert("Hello 1"),
+                },
+                {
+                  content: "Action 1",
+                  description: "Description text",
+                  prefixIcon: activity,
+                  onClick: () => alert("Hello 1"),
+                },
+                {
+                  content: "Action 1",
+                  description: "Description text",
+                  prefixIcon: activity,
+                  onClick: () => alert("Hello 1"),
+                },
+              ],
+            },
+          ]}
+        />
+      </Card>
+    );
+  },
+];

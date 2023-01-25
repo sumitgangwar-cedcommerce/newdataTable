@@ -20,6 +20,7 @@
 .inte-btn-disable {
   cursor: not-allowed;
 }
+
 /* Button Disabled End */
 
 /* Button Alignemtn */
@@ -297,6 +298,9 @@
 /* Button Loading End */
 
 /* Button With Only icon */
+.inte-btn.inte-btn--onlyIcon{
+  justify-content: center!important;
+}
 .inte-btn--onlyIcon.inte-btnLarge {
   height: 4.4rem !important;
   width: 4.4rem !important;

@@ -92,14 +92,14 @@ const Button = ({
           ? `inte-btn inte-btn-disable ${bType} ${iconClass} ${halignCss}  ${FullBtn ? "inte_btn--fullWidth" : ""} ${thicknessCss} ${
               loading ? "inte-btn--Loading" : ""
             } ${
-              props.content === undefined && props.children === undefined
+              props.content === undefined && props.children === undefined || props.content == "" || props.children == ""
                 ? "inte-btn--onlyIcon"
                 : ""
             }`
           : `inte-btn ${bType} ${iconClass} ${halignCss} ${FullBtn ? "inte_btn--fullWidth" : ""} ${thicknessCss} ${
               loading ? "inte-btn--Loading" : ""
             } ${
-              props.content === undefined && props.children === undefined
+              props.content === undefined && props.children === undefined || props.content == "" || props.children == ""
                 ? "inte-btn--onlyIcon"
                 : ""
             }`

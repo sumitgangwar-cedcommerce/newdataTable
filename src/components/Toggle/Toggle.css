@@ -1,9 +1,9 @@
-.inte__Switcher--Wrapper {
+.inte__Toggle--Wrapper {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 1.2rem;
 }
-.inte--switcher {
+.inte--Toggle {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -11,6 +11,7 @@
   cursor: pointer;
   height: 2rem;
   width: 3.8rem;
+  min-width: 3.8rem;
   border-radius: var(--radius-rounded-5);
   display: inline-block;
   position: relative;
@@ -18,10 +19,34 @@
   background-color: var(--inte-G90);
   overflow: hidden;
 }
-.inte--switcher:checked:hover{
+.inte__Toggle--Content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  align-items: flex-start;
+}
+.inte__Toggle-Text {
+  font-weight: var(--weight-normal);
+  font-size: 1.6rem;
+  color: var(--inte-G800);
+  line-height: 2.2rem;
+  position: relative;
+}
+.inte__Toggle--Required .inte__Toggle-Text:after {
+  content: "*";
+  position: absolute;
+  right: -0.8rem;
+  color: var(--inte-R200);
+}
+.inte__Toggle-Description {
+  color: var(--inte-G300);
+  font-size: 1.6rem;
+  line-height: 2.2rem;
+}
+.inte--Toggle:checked:hover{
   background: var(--inte-P1000);
 }
-.inte--switcher:after {
+.inte--Toggle:after {
   content: "";
   position: absolute;
   top: 0.2rem;
@@ -33,37 +58,33 @@
   box-shadow: 0.5px 0.5px 8px rgba(0, 0, 0, 0.25);
   transition: all 0.2s cubic-bezier(0.5, 0.1, 0.75, 1.35);
 }
-.inte--switcher:hover{
+.inte--Toggle:hover{
   background-color: var(--inte-G100);
 }
-.inte--switcher:focus {
+.inte--Toggle:focus {
   outline: 0;
   box-shadow: 0 0 0 0.1rem var(--inte-G0), 0 0 0 0.3rem var(--inte-B80);
 }
-.inte--switcher[disabled] {
+.inte--Toggle[disabled] {
   cursor: not-allowed;
   background: var(--inte-G40)!important;
 }
-.inte--switcher:checked[disabled] {
+.inte--Toggle:checked[disabled] {
   background: var(--inte-P40)!important;
 }
-.inte--switcher[disabled]:after {
+.inte--Toggle[disabled]:after {
  box-shadow: unset!important;
 }
-.inte--switcher:checked {
+.inte--Toggle:checked {
   background: var(--inte-P900);
 }
-.inte--switcher:checked:after {
+.inte--Toggle:checked:after {
   background: var(--inte-P900);
   transform: translatex(1.8rem);
   background-color: var(--inte-G0);
   box-shadow: -0.5px 0.5px 8px rgba(0, 0, 0, 0.5);
 }
-span.inte__Switcher-Text {
-  font-weight: var(--weight-bolder);
-  font-size: 1.6rem;
-  color: var(--inte-G800);
-}
+
 
 
 

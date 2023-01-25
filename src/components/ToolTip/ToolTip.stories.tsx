@@ -57,7 +57,7 @@ const Template = ({ ...rest }) => {
   return (
     <div style={{position:"relative",top:"50px"}}>
       <Card>
-      <FlexLayout valign="center" halign="center">
+      <FlexLayout valign="center" halign="start">
         <ToolTip open={false} helpText={rest.helpText} position={rest.position} {...rest}>
           <Button thickness="thin">{rest.button}</Button>
         </ToolTip>

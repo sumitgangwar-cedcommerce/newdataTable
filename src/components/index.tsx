@@ -29,7 +29,7 @@ export { default as FilterSheet } from "./Filter/FilterSheet";
 export { default as Progressbar } from "./Progress/Progressbar";
 export { default as ProgressCircle } from "./Progress/progressCircle";
 export { default as Loader } from "./Loader/Loader";
-export { default as Switcher } from "./Switcher/Switcher";
+export { default as Toggle } from "./Toggle/Toggle";
 export { default as Carousel} from "./Carousel/Carousel";
 export { default as AutoComplete } from "./AutoComplete/AutoComplete";
 export { default as Avatar } from "./Avatar/Avatar";
