@@ -40,18 +40,6 @@ const SelectNew = ({
     const dropdownListRef = useRef<HTMLUListElement>(null);
     const portalDropdownListRef = useRef<HTMLDivElement>(null);
 
-    // On blur calling
-    const onblur = (e: any) => {
-        // const { current: selectBox } = selectBoxRef;
-        // const { current: portalDropdownList } = portalDropdownListRef;
-        // const { current: dropdownList } = dropdownListRef;
-        // if (!portalDropdownList?.contains(e.target) && !dropdownList?.contains(e.target)) {
-        //     // props.onblur && props.onblur();
-        //     console.log("inside")
-        // }
-        // console.log(portalDropdownList?.contains(e.target))
-    };
-    // Adding the event listener
     useEffect(() => {
         window.addEventListener("click", clickingOutsideSelectBox, true);
         window.addEventListener("click", clickingInsideSelectBox, true);
@@ -408,7 +396,6 @@ const SelectNew = ({
                 position: "fixed",
                 zIndex: 99,
             }}
-            onBlur={onblur}
         >
             {selectDropdownCard(optionsToShow)}
         </div>
@@ -451,7 +438,6 @@ const SelectNew = ({
                 data-ellipsis={ellipsis ? "inte--ellipsis" : "inte--Noellipsis"}
                 onClick={() => insideSelectClickHandler()}
                 tabIndex={tabIndex}
-                onBlur={onblur}
             >
                 <div
                     className={`inte-formElemet--Inner-select inte-formElement inte-select inte-formElemet--Inner-select-Box 
@@ -626,7 +612,6 @@ export type SelectI = {
     options?: Array<ObjI>;
     onChange?: (value: string, obj?: ObjI) => void;
     helpIcon?: React.ReactNode | null;
-    onblur?: () => void;
     placeholder?: string;
     controlStates?: "Success" | "Warning" | "Error";
     disabled?: boolean;

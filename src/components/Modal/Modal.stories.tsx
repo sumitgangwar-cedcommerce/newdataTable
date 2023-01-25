@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Card } from "../Card";
 import { FlexLayout } from "../FlexLayout";
 import { FormElement } from "../FormElement";
-import { AlertOctagon, CheckCircle, Gitlab } from "react-feather";
+import { AlertOctagon, Gitlab } from "react-feather";
 import TextStyles from "../TextStyles/TextStyles";
 
 export default {
@@ -40,11 +40,19 @@ export default {
     primaryAction: {
       control: {
         type: "object",
+        disable:true
       },
     },
     secondaryAction: {
       control: {
         type: "object",
+        disable:true
+      },
+    },
+    tertiaryAction: {
+      control: {
+        type: "object",
+        disable:true
       },
     },
     modalSize: {

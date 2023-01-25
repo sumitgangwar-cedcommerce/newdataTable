@@ -169,7 +169,6 @@ const Template = ({ ...rest }) => {
                 }}
                 value={value1}
                 debounceTimer={rest.debounceTimer}
-                onblur={() => { alert("G") }}
                 tabIndex={rest.tabIndex}
                 customRef={customUserRef}
             />
@@ -219,7 +218,6 @@ const Select = ({ ...rest }) => {
                     onSelectChange(e);
                 }}
                 value={value1}
-                onblur={() => { alert() }}
                 tabIndex={rest.tabIndex}
                 customRef={customUserRef}
             />
@@ -318,7 +316,6 @@ ClearableSelect.decorators = [
             <Card>
                 <SelectNew
                     options={options}
-                    onblur={() => { }}
                     value={value1}
                     placeholder={"Select"}
                     clearable
@@ -342,7 +339,6 @@ DisabledSelect.decorators = [
             <Card>
                 <SelectNew
                     options={options}
-                    onblur={() => { }}
                     value={value1}
                     placeholder={"Select"}
                     disabled
@@ -365,7 +361,6 @@ SelectHavingError.decorators = [
         return (
             <Card>
                 <SelectNew
-                    onblur={() => { }}
                     value={value1}
                     placeholder={"Select"}
                     options={options}
@@ -390,7 +385,6 @@ SelectPopoverPosition.decorators = [
             <Card>
                 <SelectNew
                     options={options}
-                    onblur={() => { }}
                     value={value1}
                     placeholder={"Select"}
                     onChange={(e: any) => {
@@ -413,7 +407,6 @@ SingleSelect.decorators = [
             <Card>
                 <SelectNew
                     options={options}
-                    onblur={() => { }}
                     value={value1}
                     placeholder={"Select"}
                     onChange={(e: any) => {
@@ -436,7 +429,6 @@ MultiSelect.decorators = [
             <Card>
                 <SelectNew
                     options={options}
-                    onblur={() => { }}
                     value={value1}
                     multiSelect
                     placeholder={"Select"}
@@ -460,7 +452,6 @@ SearchEnableSelect.decorators = [
             <Card>
                 <SelectNew
                     options={options}
-                    onblur={() => { }}
                     value={value1}
                     searchable
                     placeholder={"Select"}
@@ -484,7 +475,6 @@ SelectWithLabel.decorators = [
             <Card>
                 <SelectNew
                     options={options}
-                    onblur={() => { }}
                     value={value1}
                     label="Label"
                     placeholder={"Select"}
@@ -508,7 +498,6 @@ SelectWithHelpTextAndIcon.decorators = [
             <Card>
                 <SelectNew
                     options={options}
-                    onblur={() => { }}
                     value={value1}
                     placeholder={"Select"}
                     onChange={(e: any) => {
@@ -533,7 +522,6 @@ SelectWithHelpTextAndWithoutIcon.decorators = [
             <Card>
                 <SelectNew
                     options={options}
-                    onblur={() => { }}
                     value={value1}
                     placeholder={"Select"}
                     onChange={(e: any) => {
