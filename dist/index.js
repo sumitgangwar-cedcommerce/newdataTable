@@ -33631,36 +33631,43 @@ var Modal = function (_a) {
                 return "inte-Modal-Dialog--Medium";
             case "large":
                 return "inte-Modal-Dialog--Large";
+            case "xLarge":
+                return "inte-Modal-Dialog--extraLarge";
             default:
                 return "";
         }
     }
     var modalWidth = checModalkWidth();
-    return reactDom_1(React.createElement(React.Fragment, null, props.open && (React.createElement(React.Fragment, null,
-        React.createElement("div", { id: "inte-Modal-".concat(id), className: "inte-Modal__Wrapper ".concat(extraClass) },
-            React.createElement("div", { className: "inte-Modal-Dialog__Container" },
-                React.createElement("div", { className: "inte-Modal-Dialog" },
-                    React.createElement("div", { className: "inte-Modal-Dialog__Modal ".concat(modalWidth) },
-                        heading.length > 0 && (React.createElement("div", { className: "inte-Modal-Header" },
-                            React.createElement("div", { className: "inte-Modal-Header__Title" },
-                                React.createElement(TextStyles, { type: "Subheading", subheadingTypes: "XS-1.6", lineHeight: "LH-1.6", fontweight: "bold" }, heading)),
-                            React.createElement(Button, { thickness: "thin", type: "Secondary", icon: React.createElement(X$1, { size: 20, color: "#2a2a2a" }), onClick: function () {
-                                    props.close();
-                                } }))),
-                        React.createElement("div", { className: "inte-Modal__BodyWrapper" },
-                            React.createElement("div", { className: "inte-Modal__Body inte-Scrollable inte-Scrollable--vertical" },
-                                React.createElement("div", { className: "inte-Modal-Section" }, props.children))),
-                        React.createElement(React.Fragment, null, renderFooter())))),
-            React.createElement("div", { onClick: function () {
-                    overlayClose ? props.close() : {};
-                }, className: "inte-Backdrop" }))))), document.body);
+    return reactDom_1(React.createElement(React.Fragment, null, props.open && (React.createElement("div", { id: "inte-Modal-".concat(id), className: "inte-Modal__Wrapper ".concat(extraClass) },
+        React.createElement("div", { className: "inte-Modal-Dialog__Container" },
+            React.createElement("div", { className: "inte-Modal-Dialog" },
+                React.createElement("div", { className: "inte-Modal-Dialog__Modal ".concat(modalWidth) },
+                    heading.length > 0 && (React.createElement("div", { className: "inte-Modal-Header" },
+                        React.createElement("div", { className: "inte-Modal-Header__Title ".concat(props.headingIcon
+                                ? "inte-Modal-Header__Title--hasIcon"
+                                : "") },
+                            props.headingIcon ? (React.createElement("span", { className: "inte-Modal-Header__Icon" }, props.headingIcon)) : (""),
+                            React.createElement(TextStyles, { type: "Subheading", subheadingTypes: "XS-1.6", lineHeight: "LH-1.6", fontweight: "extraBold" }, heading)),
+                        React.createElement(Button, { thickness: "thin", type: "Secondary", icon: React.createElement(X$1, { size: 20, color: "#2a2a2a" }), onClick: function () {
+                                props.close();
+                            } }))),
+                    React.createElement("div", { className: "inte-Modal__BodyWrapper" },
+                        React.createElement("div", { className: "inte-Modal__Body inte-Scrollable inte-Scrollable--vertical" },
+                            React.createElement("div", { className: "inte-Modal-Section" }, props.children))),
+                    React.createElement(React.Fragment, null, renderFooter())))),
+        React.createElement("div", { onClick: function () {
+                overlayClose ? props.close() : {};
+            }, className: "inte-Backdrop" })))), document.body);
     function renderFooter() {
-        if (props.primaryAction || props.secondaryAction) {
+        if (props.primaryAction || props.secondaryAction || props.tertiaryAction) {
             return (React.createElement("div", { className: "inte-Modal-Footer" },
                 React.createElement("div", { className: "inte-Modal-Footer__FooterContent" },
-                    React.createElement(FlexLayout, { halign: "end", spacing: "tight", halignMob: "start" },
-                        secondaryAction(),
-                        primaryAction()))));
+                    React.createElement(FlexLayout, { halign: props.tertiaryAction ? "fill" : "end", valign: "center", spacing: "tight", halignMob: "start" },
+                        tertiaryAction(),
+                        React.createElement(FlexChild, null,
+                            React.createElement(FlexLayout, { halign: "fill", spacing: "tight", halignMob: "start" },
+                                secondaryAction(),
+                                primaryAction()))))));
         }
     }
     function primaryAction() {
@@ -33673,6 +33680,12 @@ var Modal = function (_a) {
         if (props.secondaryAction) {
             var secondaryAction_1 = props.secondaryAction;
             return (React.createElement(Button, __assign({ thickness: "thin", content: secondaryAction_1.content ? secondaryAction_1.content : "Close" }, secondaryAction_1, { type: secondaryAction_1.type ? secondaryAction_1.type : "Outlined" })));
+        }
+    }
+    function tertiaryAction() {
+        if (props.tertiaryAction) {
+            var tertiaryAction_1 = props.tertiaryAction;
+            return (React.createElement(Button, __assign({ thickness: "thin", content: tertiaryAction_1.content ? tertiaryAction_1.content : "Close" }, tertiaryAction_1, { type: "TextButton" })));
         }
     }
 };
@@ -36567,13 +36580,13 @@ function FileUpload(_a) {
 }
 
 var List = function (_a) {
-    var _b = _a.children, children = _b === void 0 ? React.createElement(React.Fragment, null) : _b, type = _a.type, _c = _a.imageSrc, imageSrc = _c === void 0 ? "d" : _c;
+    var _b = _a.children, children = _b === void 0 ? React.createElement(React.Fragment, null) : _b, type = _a.type, _c = _a.src, src = _c === void 0 ? "" : _c;
     var childrens = React.Children.toArray(children);
     var newChildrens = childrens.map(function (children, index) {
         return React.createElement("li", { key: index }, children);
     });
     return (React.createElement(React.Fragment, null, type == "disc" || type == "circle" || type == "square" ? (React.createElement("ul", { style: { listStyleType: type, }, className: "inte__List" },
-        React.createElement(React.Fragment, null, newChildrens))) : type == "image" ? (React.createElement("ul", { style: { listStyleImage: "url('" + imageSrc + "')" }, className: "inte__List inte__List--WithImage" },
+        React.createElement(React.Fragment, null, newChildrens))) : type == "image" ? (React.createElement("ul", { style: { listStyleImage: "url('" + src + "')" }, className: "inte__List inte__List--WithImage" },
         React.createElement(React.Fragment, null, newChildrens))) : React.createElement("ol", { style: { listStyleType: type }, className: "inte__List" },
         React.createElement(React.Fragment, null, newChildrens))));
 };

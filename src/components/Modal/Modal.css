@@ -20,24 +20,39 @@
   width: 100%;
   max-height: calc(100vh - 6rem);
   background: var(--inte-G0);
-  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: var( --drop-Shadow);
   position: relative;
   z-index: 9999999;
+  border: 0.1rem solid var(--inte-G40);
 }
 .inte-Modal-Header {
   display: flex;
   align-items: center;
   flex-shrink: 0;
-  padding: 1.2rem 1.6rem;
-  border-bottom: 0.1rem solid var(--inte-G42);
+  padding: 1.6rem;
+  border-bottom: 0.1rem solid var(--inte-G40);
   position: relative;
   z-index: 1;
+}
+.inte-Modal-Header .inte-btn.inte-btn--Secondary {
+  background-color: var(--inte-G0);
+}
+.inte-Modal-Header .inte-btn.inte-btn--Secondary:hover {
+  background-color: var(--inte-G30);
 }
 .inte-Modal-Header__Title {
   word-wrap: break-word;
   word-break: break-word;
   overflow-wrap: break-word;
   flex: 1 1;
+}
+.inte-Modal-Header__Title--hasIcon {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+.inte-Modal-Header__Icon {
+  display: flex;
 }
 .inte-Modal-Header__Title h3 {
   line-height: 2.4rem;
@@ -76,14 +91,14 @@
 }
 .inte-Modal-Section {
   flex: 0 0 auto;
-  padding: 1.2rem 1.6rem;
+  padding: 1.8rem 1.6rem;
 }
 .inte-Modal-Footer {
   display: flex;
   align-self: flex-end;
   align-items: center;
   width: 100%;
-  padding: 1.2rem 1.6rem;
+  padding: 1.6rem;
   border-top: 0.1rem solid var(--color-pageBorder);
   position: relative;
   z-index: 1;
@@ -148,7 +163,7 @@
     align-items: center;
     width: 100%;
     padding: 1.2rem 1.6rem;
-    border-top: 0.1rem solid var(--inte-G42);
+    border-top: 0.1rem solid var(--inte-G40);
     position: relative;
     z-index: 1;
   }
@@ -157,6 +172,9 @@
   }
   .inte-Modal-Dialog--Large {
     max-width: 90rem;
+  }
+  .inte-Modal-Dialog--extraLarge {
+    max-width: 120rem;
   }
 }
 
@@ -173,7 +191,7 @@
 @keyframes ModalAnimation {
   100% {
     margin-top: 0;
-    -webkit-transform: scale(1,1);
+    -webkit-transform: scale(1, 1);
     transform: scale(1);
     -webkit-opacity: 1;
     opacity: 1;
@@ -181,7 +199,7 @@
   0% {
     margin-top: -10px;
 
-    -webkit-transform: scale(0.9,0.9);
+    -webkit-transform: scale(0.9, 0.9);
     transform: scale(0.9);
     -webkit-opacity: 0;
     opacity: 0;
@@ -190,14 +208,14 @@
 @-webkit-keyframes ModalAnimation {
   100% {
     margin-top: 0;
-    -webkit-transform: scale(1,1);
+    -webkit-transform: scale(1, 1);
     transform: scale(1);
     -webkit-opacity: 1;
     opacity: 1;
   }
   0% {
     margin-top: -10px;
-    -webkit-transform: scale(0.9,0.9);
+    -webkit-transform: scale(0.9, 0.9);
     transform: scale(0.9);
     -webkit-opacity: 0;
     opacity: 0;

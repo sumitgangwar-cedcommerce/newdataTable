@@ -12,16 +12,16 @@ export default {
       description:'set List Style Type',
       control: {
         type: "radio",
-        options: ["disc" , "square", "circle", "decimal", "lower-roman"],
+        options: ["disc" , "square", "circle", "decimal", "lower-roman","image"],
       },
       defaultValue: "disc"
     },
-    Image: {
+    src: {
       description:'set custom image for image Text',
       control: {
         type: "text",
       },
-      defaultValue: "www.w3schools.com/cssref/sqpurple.gif"
+      defaultValue: "https://www.w3schools.com/cssref/sqpurple.gif"
     },
   },
 }as ComponentMeta<any>;
@@ -111,7 +111,7 @@ export const List_with_Image: any = Template.bind({});
 List_with_Image.decorators = [
   () => (
     <Card>
-      <List type="image" imageSrc={"https://www.w3schools.com/cssref/sqpurple.gif"} >
+      <List type="image" src={"https://www.w3schools.com/cssref/sqpurple.gif"} >
         <TextStyles textcolor="light">List Style</TextStyles>
         <TextStyles textcolor="light">List Style</TextStyles>
         <TextStyles textcolor="light">List Style</TextStyles>

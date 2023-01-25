@@ -1396,8 +1396,9 @@ body {
   --inte-BL400: rgba(27, 27, 27, 1);
   --inte-BL500: rgba(10, 10, 10, 1);
   --inte-BL600: rgba(1, 1, 1, 1);
-
   --inte-transparet: transparent;
+
+  --drop-Shadow:0px 2px 8px 0px rgba(0, 0, 0, 0.15);
 
   /* New Color Declarations End */
 
@@ -30139,7 +30140,7 @@ div.ant-typography-edit-content.ant-typography-rtl {
   max-width: 35rem;
   z-index: 99999;
   padding: 1.2rem;
-  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: var( --drop-Shadow);
   transform-origin: top center;
   animation-name: popoverAnimation;
   animation-duration: 0.1s;
@@ -31513,24 +31514,39 @@ visibility: visible;
   width: 100%;
   max-height: calc(100vh - 6rem);
   background: var(--inte-G0);
-  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: var( --drop-Shadow);
   position: relative;
   z-index: 9999999;
+  border: 0.1rem solid var(--inte-G40);
 }
 .inte-Modal-Header {
   display: flex;
   align-items: center;
   flex-shrink: 0;
-  padding: 1.2rem 1.6rem;
-  border-bottom: 0.1rem solid var(--inte-G42);
+  padding: 1.6rem;
+  border-bottom: 0.1rem solid var(--inte-G40);
   position: relative;
   z-index: 1;
+}
+.inte-Modal-Header .inte-btn.inte-btn--Secondary {
+  background-color: var(--inte-G0);
+}
+.inte-Modal-Header .inte-btn.inte-btn--Secondary:hover {
+  background-color: var(--inte-G30);
 }
 .inte-Modal-Header__Title {
   word-wrap: break-word;
   word-break: break-word;
   overflow-wrap: break-word;
   flex: 1 1;
+}
+.inte-Modal-Header__Title--hasIcon {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+.inte-Modal-Header__Icon {
+  display: flex;
 }
 .inte-Modal-Header__Title h3 {
   line-height: 2.4rem;
@@ -31569,14 +31585,14 @@ visibility: visible;
 }
 .inte-Modal-Section {
   flex: 0 0 auto;
-  padding: 1.2rem 1.6rem;
+  padding: 1.8rem 1.6rem;
 }
 .inte-Modal-Footer {
   display: flex;
   align-self: flex-end;
   align-items: center;
   width: 100%;
-  padding: 1.2rem 1.6rem;
+  padding: 1.6rem;
   border-top: 0.1rem solid var(--color-pageBorder);
   position: relative;
   z-index: 1;
@@ -31635,7 +31651,7 @@ visibility: visible;
     align-items: center;
     width: 100%;
     padding: 1.2rem 1.6rem;
-    border-top: 0.1rem solid var(--inte-G42);
+    border-top: 0.1rem solid var(--inte-G40);
     position: relative;
     z-index: 1;
   }
@@ -31644,6 +31660,9 @@ visibility: visible;
   }
   .inte-Modal-Dialog--Large {
     max-width: 90rem;
+  }
+  .inte-Modal-Dialog--extraLarge {
+    max-width: 120rem;
   }
 }
 
@@ -31694,7 +31713,7 @@ visibility: visible;
   position: absolute;
   z-index: 99;
   min-width: 25rem;
-  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: var( --drop-Shadow);
   animation-name: ActionListAnimation;
   animation-duration: 0.1s;
   animation-fill-mode: both;
@@ -32583,6 +32602,88 @@ h3 + .inte-formElementTextfield ~ .inte-clear {
 .inte-form__Radio:focus .inte__Radio {
   border-color: var(--inte-G200);
 }
+
+.inte-form__RadioBtn + .inte-form__RadioBtn {
+  margin-top: 1rem;
+}
+.inte-form__RadioBtn input[type="radio"] {
+  height: 2rem;
+  width: 2rem;
+  margin-right: 1.2rem;
+  opacity: 0;
+}
+
+.inte-form__RadioBtn > label {
+  display: flex;
+  align-items: flex-start;
+  cursor: pointer;
+}
+.inte-form__RadioBtn >.inte-form__RadioBtn--Disabled {
+  cursor: default;
+}
+.inte__radioInput--Wrapper {
+  position: relative;
+}
+.inte-form__RadioBtn .inte__radio-Fake {
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  border: 0.1rem solid var(--inte-G90);
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  transition: 100ms all linear;
+}
+.inte-form__RadioBtn input[type="radio"]:hover + span {
+  border-color: var(--inte-P900);
+}
+.inte-form__RadioBtn input[type="radio"]:checked + span {
+  border-color: var(--inte-P900);
+}
+.inte-form__RadioBtn input[type="radio"]:checked:hover + span {
+  border-color: var(--inte-P1000);
+}
+.inte-form__RadioBtn input[type="radio"] + span:after {
+  content: "";
+  height: 10px;
+  width: 10px;
+  background-color: var(--inte-P900);
+  z-index: 1;
+  display: block;
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50% ,-50%) scale(0);
+  top: 50%;
+  transition: 100ms all linear;
+}
+.inte-form__RadioBtn input[type="radio"]:focus + span {
+  box-shadow: 0 0 0 0.1rem var(--inte-G0), 0 0 0 0.3rem var(--inte-B80);
+}
+.inte-form__RadioBtn input[type="radio"]:checked + span:after {
+  transform: translate(-50% ,-50%) scale(1);
+}
+.inte-form__RadioBtn input[type="radio"]:checked:hover + span:after {
+  background-color: var(--inte-P1000);
+}
+.inte-form__RadioBtn .inte__RadioDescription {
+  margin-left: 3.2rem;
+  font-size: 1.4rem;
+  color: var(--inte-G300);
+  margin-top: 0.4rem;
+}
+.inte-form__RadioBtn .inte-form__RadioBtn--Disabled .inte__radio-Fake,
+.inte-form__RadioBtn .inte-form__RadioBtn--Disabled input[type="radio"]:not(:checked):hover + .inte__radio-Fake {
+  border-color: var(--inte-G30);
+}
+.inte-form__RadioBtn .inte-form__RadioBtn--Disabled input[type="radio"]:checked + span {
+  border-color: var(--inte-P40);
+}
+.inte-form__RadioBtn .inte-form__RadioBtn--Disabled input[type="radio"]:checked + span:after {
+  background-color: var(--inte-P40);
+}
+/* Radio and checkbox end */
 .inte-select > h3 {
   margin-right: 8px !important;
   line-height: 2.2rem;
