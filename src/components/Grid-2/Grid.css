@@ -5,28 +5,43 @@
 .inte-Grid--wrapper {
   overflow: auto;
   box-sizing: border-box;
-  border: 0.1rem solid var(--grey);
+  border: 1px solid #E0E1E3;
+  border-radius: 8px;
   background: var(--inte-G0);
-  font-family: 'Inter';
-  font-style: normal;
-  font-size: 1.4rem;
-  line-height: 2rem;
 }
 
 .inte-Grid {
   width: 100%;
   border-spacing: 0;
   text-align: left;
+  margin: 0 -1px;
 }
 
 .inte-Grid__Cell {
-  font-family: 'Inter';
+  background-color: var(--inte-G0);
+  font-family: 'Averta CY';
   font-style: normal;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   line-height: 2rem;
-  z-index:0.1;
-  padding: 0.8rem;
-  background: var(--inte-G0);
+  padding: 1.2rem 0.8rem;
+  border-bottom: 1px solid var(--inte-G40);
+}
+
+.inte-Grid__HeaderCell {
+  background-color: var(--inte-G20);
+  font-weight: 600;
+  line-height: 2rem;
+  position: relative;
+}
+.inte-Grid__HeaderRow > th:not(.inte-Grid__Cell--Expand , .inte-Grid__Cell__Checkbox , :last-child)::before {
+  position: absolute;
+  top: 50%;
+  right:0.8rem;
+  width: 0px;
+  height: 1.6em;
+  transform: translateY(-50%);
+  border: 1px solid #D0C6EE;
+  content: "";
 }
 
 .inte-Grid__Cell--Fixedleft , .inte-Grid__Cell--Fixedright {
@@ -43,7 +58,7 @@
   transition: box-shadow 0.3s;
   content: '';
   pointer-events: none;
-  box-shadow: inset 10px 0 8px -8px rgb(0 0 0 / 15%);
+  box-shadow: inset 12px 0px 20px rgba(16, 24, 40, 0.1);
 }
 
 .shadowedRight::after {
@@ -56,7 +71,7 @@
   transition: box-shadow 0.3s;
   content: '';
   pointer-events: none;
-  box-shadow: inset -10px 0 8px -8px rgb(0 0 0 / 15%);
+  box-shadow: inset 12px 0px 20px rgba(16, 24, 40, 0.1);
 }
 
 .inte-Grid__Cell--Expand {
@@ -79,11 +94,30 @@
   margin: 0 -10px;
 }
 
-.inte-Grid__Row:hover > .inte-Grid__Cell {
-  background-color: rgb(243, 243, 243);
-}
-
-.inte-Grid__Row--Selected > .inte-Grid__Cell {
-  background-color: rgb(197, 199, 201) !important;
+.inte-Grid__Cell--sortable {
+  cursor: pointer;
 }
   
+.sortable--icon {
+  display: flex;
+  flex-direction: column;
+  gap: 0.667rem;
+}
+
+.sortable--icon > svg {
+  stroke:var(--inte-G800)
+}
+
+.sortedIcon__th {
+  display: flex;
+  gap: 1.6rem;
+  padding-right: 1.6rem
+}
+
+.inte--Grid__Cell--asec .sortable--icon > svg:first-child {
+  stroke: var(--inte-G90);
+}
+
+.inte--Grid__Cell--desc .sortable--icon > svg:last-child {
+  stroke: var(--inte-G90);
+}

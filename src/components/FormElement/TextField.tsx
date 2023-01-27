@@ -160,7 +160,7 @@ const TextField = ({
   };
 
   const numValur = numIncrement;
-  console.log(numValur);
+  // console.log(numValur);
 
   const getInput = () => (
     <>

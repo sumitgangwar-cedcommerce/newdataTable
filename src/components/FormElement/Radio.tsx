@@ -7,7 +7,7 @@ const Radio: React.FC<CheckBoxI> = ({
   checked,
   onClick, // This function working on the Radio button and set the value true of false
   value,
-  id,
+  id = (Math.random()*100).toString(),
   disabled,
   required,
   ...props

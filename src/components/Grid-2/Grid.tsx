@@ -10,8 +10,12 @@ export interface columnI {
     width?: number,
     align?: string,
     fixed?: string,
-    sortable?: boolean,
+    sortable?: {
+        comparator: (a: any, b: any, order: any) => number;
+    }
     render?: (item: any) => React.ReactNode
+    onCell?: (rowNum: number) => any
+    comparator?:any
 }
 
 export interface gridI {
@@ -48,13 +52,22 @@ const getCellByClassName = (arr: any, className: string) => {
     return t
 }
 
+const removeClassName = (arr: any , elements:any) => {
+    arr.map((item:any)=>{
+        elements.map((i:any) => {
+            item?.classList.remove(i)
+        })
+    })
+}
+
+
+
 
 const Grid = ({ columns = [], dataSource = [], fixedHeader = false, scrollX, scrollY, rowSelection, expandable, pagination, showHeader = true }: gridI) => {
     const [data, setData] = useState(dataSource)
     const [headerCheckboxChecked, setHeaderCheckboxChecked] = useState<boolean | 'indeterminate'>(false)
     const [selectedCheckbox, setSelectedCheckbox] = useState<string[]>(rowSelection?.selectedRowKeys ? rowSelection.selectedRowKeys : [])
     const [expandedRows, setExpandedRows] = useState<string[]>([])
-    const [sortOrder, setSortOrder] = useState('aesc')
 
     const PaginationRef = useRef<HTMLDivElement>(null)
     const GridWrapperRef = useRef<HTMLDivElement>(null)
@@ -112,16 +125,19 @@ const Grid = ({ columns = [], dataSource = [], fixedHeader = false, scrollX, scr
         setSelectedCheckbox(newSelectedCheckbox)
     }
 
-    const sortTheData = (key: string) => {
-        if (sortOrder === 'aesc') {
-            data.sort((a: any, b: any) => a[key].toLowerCase().localeCompare(b[key].toLowerCase()))
-            setSortOrder('desc')
+    const sortTheData = (key: string  , coordinate:number[] , comparatorFun:any) => {
+        let classList = tableCellRefs.current[coordinate[0]][coordinate[1]]?.classList
+        if(classList?.contains('inte--Grid__Cell--asec')) {
+            removeClassName(tableCellRefs.current[0] , ['inte--Grid__Cell--asec' , 'inte--Grid__Cell--desc'])
+            classList.add('inte--Grid__Cell--desc')
+            data.sort((a: any, b: any) => comparatorFun((key ? a[key] : a) , (key ? b[key] : b) ,  'asec'))
         }
         else {
-            data.sort((a: any, b: any) => b[key].toLowerCase().localeCompare(a[key].toLowerCase()))
-            setSortOrder('aesc')
+            removeClassName(tableCellRefs.current[0] , ['inte--Grid__Cell--asec' , 'inte--Grid__Cell--desc'])
+            classList?.add('inte--Grid__Cell--asec')
+            data.sort((a: any, b: any) => comparatorFun((key ? a[key] : a) , (key ? b[key] : b) , 'desc'))
         }
-        setData(data)
+        setData([...data])
     }
 
     const expandIconClickHandler = (key: string) => {
@@ -204,16 +220,16 @@ const Grid = ({ columns = [], dataSource = [], fixedHeader = false, scrollX, scr
 
     const makeGridHeaderRows = (columns: columnI[]) => {
         let columnNum = 0, rowNum = 0
-        return <tr className='inte-Grid__Row'>
+        return <tr className='inte-Grid__Row inte-Grid__HeaderRow'>
             {
                 expandable && <th
                     ref={(cell) => makeCellRefsArray(rowNum, columnNum++, cell)}
-                    className={`inte-Grid__Cell inte-Grid__Cell--Expand inte-Grid__Cell--Expand-spaced ${columns[0].fixed ? 'inte-Grid__Cell--Fixedleft' : ''}`}></th>
+                    className={`inte-Grid__HeaderCell inte-Grid__Cell inte-Grid__Cell--Expand inte-Grid__Cell--Expand-spaced ${columns[0].fixed ? 'inte-Grid__Cell--Fixedleft' : ''}`}></th>
             }
             {
                 rowSelection && <th
                     ref={(cell) => makeCellRefsArray(rowNum, columnNum++, cell)}
-                    className={`inte-Grid__Cell__Checkbox inte-Grid__Cell ${columns[0].fixed ? 'inte-Grid__Cell--Fixedleft' : ''}`}
+                    className={`inte-Grid__HeaderCell inte-Grid__Cell__Checkbox inte-Grid__Cell ${columns[0].fixed ? 'inte-Grid__Cell--Fixedleft' : ''}`}
                 >
                     <CheckBox2
                         onChange={headerCheckboxChangeHandler}
@@ -222,15 +238,29 @@ const Grid = ({ columns = [], dataSource = [], fixedHeader = false, scrollX, scr
                 </th>
             }
             {
-                columns.map((item) => {
+                columns.map((item , ind) => {
                     return (
                         <th
                             ref={(cell) => makeCellRefsArray(rowNum, columnNum++, cell)}
                             key={item.key ? item.key : Math.random() * 5000}
-                            className={`inte-Grid__Cell ${item.fixed ? `inte-Grid__Cell--Fixed` + item.fixed.toLowerCase() : ''} ${item.sortable ? 'inte-Grid__Cell--sortable' : ''}`}
-                            onClick={item.sortable ? () => sortTheData(item.dataIndex) : void (0)}
+                            className={`inte-Grid__Cell inte-Grid__HeaderCell ${item.fixed ? `inte-Grid__Cell--Fixed` + item.fixed.toLowerCase() : ''} ${item.sortable ? 'inte-Grid__Cell--sortable' : ''}` }
+                            onClick={item.sortable ? () => sortTheData(item.dataIndex , [rowNum ,ind+(expandable ? 1 : 0) + (rowSelection ? 1 : 0)]  , item.sortable?.comparator) : void (0)}
                         >
-                            {item.title}
+                            {
+                                item.sortable ?
+                                    <div className='sortedIcon__th'>
+                                        <p>{item.title}</p>
+                                        <div className='sortable--icon'>
+                                            <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M11.0007 6.66675L6.00048 1.66651L1.00024 6.66675"  strokeWidth="1.66674" strokeLinecap="round" strokeLinejoin="round" />
+                                            </svg>
+                                            <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M1.00024 1.33375L6.00048 6.33398L11.0007 1.33375"  strokeWidth="1.66674" strokeLinecap="round" strokeLinejoin="round" />
+                                            </svg>
+                                        </div>
+                                    </div> :
+                                    item.title
+                            }
                         </th>
                     )
                 })
@@ -243,7 +273,9 @@ const Grid = ({ columns = [], dataSource = [], fixedHeader = false, scrollX, scr
         const isRowSelected = selectedCheckbox.includes(item.key)
         const isRowExpandable = expandable?.rowExpandable ? expandable.rowExpandable(item) : true;
         const row = <>
-            <tr className={`inte-Grid__Row ${isRowSelected ? 'inte-Grid__Row--Selected' : ''}`}>
+            <tr
+                className={`inte-Grid__Row ${isRowSelected ? 'inte-Grid__Row--Selected' : ''}`}
+            >
                 {
                     expandable ? <td
                         ref={(cell) => makeCellRefsArray(rowNum, columnNum++, cell)}
@@ -267,15 +299,20 @@ const Grid = ({ columns = [], dataSource = [], fixedHeader = false, scrollX, scr
                     </td>
                 }
                 {
-                    columns.map((i: any) => {
+                    columns.map((i: any, ind: number) => {
+                        let span = i.onCell ? i.onCell(rowNum) : ''
+                        if (span === -1) { console.log(i); return null }
                         const displayI = i.render ? i.render(item[i.dataIndex]) : item[i.dataIndex]
                         return (
                             <td
+                                {...span}
                                 ref={(cell) => makeCellRefsArray(rowNum, columnNum++, cell)}
                                 className={`inte-Grid__Cell ${i.fixed ? `inte-Grid__Cell--Fixed` + i.fixed.toLowerCase() : ''}`}
                             >
+
                                 {displayI}
-                            </td>)
+                            </td>
+                        )
                     })
                 }
             </tr>

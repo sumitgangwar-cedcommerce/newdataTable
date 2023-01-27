@@ -53,29 +53,60 @@ const primaryColumns = [
     dataIndex: "id",
     key: "id",
     fixed: "left",
+    sortable: {
+      comparator: (a: any, b: any, order: any) => {
+        return order === 'asec' ? a - b : b - a
+      }
+    }
+
   },
   {
     title: "Name",
     dataIndex: "name",
     key: "name",
-    fixed:'left'
+    fixed: 'left',
+    sortable: {
+      comparator: (a: any, b: any, order: any) => {
+        // console.log(a  ,b);
+        a = a.toLowerCase();
+        b = b.toLowerCase();
+        return order === 'asec' ? a.localeCompare(b) : b.localeCompare(a)
+      }
+  }
+    // onCell:(rowNum:number) =>{
+    //   if(rowNum===1)  return ({colSpan:2})
+    // }
   },
   {
     title: "Email",
     dataIndex: "email",
     key: "email",
+    // onCell:(rowNum:number)  => {
+    //   if(rowNum===5)  return ({rowSpan:3})
+    //   if(rowNum===6)  return -1
+    //   if(rowNum===7)  return -1
+    //   if(rowNum===1)  return -1
+    // }
   },
   {
     title: "Phone",
     dataIndex: "phone",
     key: "phone",
+    // onCell:(rowNum:number) => {
+    //   if(rowNum===9)  return -1
+    //   if(rowNum===10) return -1
+    // }
   },
   {
     title: "Website",
     dataIndex: "website",
     key: "website",
     fixed: "right",
-    render: (item:any)=><a href={`http://${item}`}>{item}</a>,
+    render: (item: any) => <a href={`http://${item}`}>{item}</a>,
+    // onCell:(rowNum:number) => {
+    //   if(rowNum===9)  return ({rowSpan:2 , colSpan:2})
+    //   if(rowNum===10)  return -1
+    // }
   },
 ];
 
