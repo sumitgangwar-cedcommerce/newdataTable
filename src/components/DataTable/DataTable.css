@@ -1,23 +1,23 @@
-:root {
-  --grey : #ECEDEE;
+
+.inte-DataTable--container {
+  border: 1px solid var(--inte-G40);
+  border-radius: 8px;
 }
 
-.inte-Grid--wrapper {
+.inte-DataTable--wrapper {
   overflow: auto;
   box-sizing: border-box;
-  border: 1px solid #E0E1E3;
-  border-radius: 8px;
   background: var(--inte-G0);
 }
 
-.inte-Grid {
+.inte-DataTable {
   width: 100%;
   border-spacing: 0;
   text-align: left;
   margin: 0 -1px;
 }
 
-.inte-Grid__Cell {
+.inte-DataTable__Cell {
   background-color: var(--inte-G0);
   font-family: 'Averta CY';
   font-style: normal;
@@ -27,26 +27,35 @@
   border-bottom: 1px solid var(--inte-G40);
 }
 
-.inte-Grid__HeaderCell {
+.inte-DataTable__HeaderCell {
   background-color: var(--inte-G20);
   font-weight: 600;
   line-height: 2rem;
-  position: relative;
 }
-.inte-Grid__HeaderRow > th:not(.inte-Grid__Cell--Expand , .inte-Grid__Cell__Checkbox , :last-child)::before {
+
+.inte-DataTable__Cell--Fixedtop {
+  top:0;
+}
+
+.inte-DataTable__HeaderRow > th:not(.inte-DataTable__Cell--Expand , .inte-DataTable__Cell__Checkbox , :last-child)::before {
   position: absolute;
   top: 50%;
   right:0.8rem;
   width: 0px;
   height: 1.6em;
   transform: translateY(-50%);
-  border: 1px solid #D0C6EE;
+  border: 1px solid var(--inte-P50);
   content: "";
 }
 
-.inte-Grid__Cell--Fixedleft , .inte-Grid__Cell--Fixedright {
-  z-index:2;
+.inte-DataTable__Cell--Fixedleft , .inte-DataTable__Cell--Fixedright , .inte-DataTable__Cell--Fixedtop {
+  z-index:1;
+  position: sticky;
 }
+
+.inte-DataTable__Cell--Fixedleft.inte-DataTable__Cell--Fixedtop  , .inte-DataTable__Cell--Fixedtop.inte-DataTable__Cell--Fixedright {
+  z-index: 2;
+} 
 
 .shadowedLeft::after {
   position: absolute;
@@ -74,27 +83,16 @@
   box-shadow: inset 12px 0px 20px rgba(16, 24, 40, 0.1);
 }
 
-.inte-Grid__Cell--Expand {
+.inte-DataTable__Cell--Expand , .inte-DataTable__Cell--Expand > svg {
   cursor: pointer;
+  transition: transform 200ms ease-in;
 }
 
-.inte-Grid__Cell--Expand-spaced {
+.inte-DataTable__Cell--Expand-spaced {
   cursor:alias;
 }
 
-.extra  input {
-  padding: 0 !important;
-}
-
-.inte-Grid__Row--Fixed {
-  padding: 1.6rem;
-}
-
-.inte-Grid__Row--Fixed {
-  margin: 0 -10px;
-}
-
-.inte-Grid__Cell--sortable {
+.inte-DataTable__Cell--sortable {
   cursor: pointer;
 }
   
@@ -111,13 +109,25 @@
 .sortedIcon__th {
   display: flex;
   gap: 1.6rem;
-  padding-right: 1.6rem
+  padding-right: 1.6rem;
 }
 
-.inte--Grid__Cell--asec .sortable--icon > svg:first-child {
+.inte-DataTable__Cell--asec .sortable--icon > svg:first-child {
   stroke: var(--inte-G90);
 }
 
-.inte--Grid__Cell--desc .sortable--icon > svg:last-child {
+.inte-DataTable__Cell--desc .sortable--icon > svg:last-child {
   stroke: var(--inte-G90);
+}
+
+.inte-DataTable__Row--Fixed {
+  margin: 0 -10px;
+}
+
+.inte-DataTable__Cell-ExpandActive > svg {
+  transform: rotate(180deg);
+}
+
+.inte-DataTable__Pagination {
+  margin-top: 8px;
 }

@@ -29,8 +29,9 @@ const CheckBox2: React.FC<CheckBoxI> = ({
   }
 
   const checkboxClickHandler = () => {
-    toggleChecked(!checked);
     if(onChange)   onChange(!checked);
+    else toggleChecked(!checked);
+    
   }
 
   useEffect(() => {

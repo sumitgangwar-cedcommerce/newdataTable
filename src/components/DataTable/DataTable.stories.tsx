@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
+import { Card } from "../Card";
 import Pagination from "../Pagination/Pagination";
 import { dataSouce } from "./demo/DataSource";
-import Grid from "./Grid";;
-import './Grid.css'
+import DataTable from "./DataTable";;
+import './DataTable.css'
 
 
 export default {
-  title: 'Components/Grid-2',
-  component: Grid,
+  title: 'Components/DataTable',
+  component: DataTable,
   argTypes: {
     fixedHeader: {
       control: {
@@ -53,6 +54,7 @@ const primaryColumns = [
     dataIndex: "id",
     key: "id",
     fixed: "left",
+    width:100,
     sortable: {
       comparator: (a: any, b: any, order: any) => {
         return order === 'asec' ? a - b : b - a
@@ -102,7 +104,9 @@ const primaryColumns = [
     dataIndex: "website",
     key: "website",
     fixed: "right",
-    render: (item: any) => <a href={`http://${item}`}>{item}</a>,
+    render: (item: any) => {
+      return <a href={`http://${item}`}>{item}</a>
+    },
     // onCell:(rowNum:number) => {
     //   if(rowNum===9)  return ({rowSpan:2 , colSpan:2})
     //   if(rowNum===10)  return -1
@@ -110,133 +114,12 @@ const primaryColumns = [
   },
 ];
 
-
-// const dataSource = [
-//   {
-//     key: '1',
-//     campaign: 'Thanksgiving Promo',
-//     status: 'a',
-//     placement: 'Facebook',
-//     'start-date': 'MM/DD/YYYY',
-//     'end-date': 'MM/DD/YYYY',
-//     'daily-budget': '$150',
-//     'spend': '$4',
-//     'sales': '$0',
-//     action: '...'
-//   },
-//   {
-//     key: '2',
-//     campaign: 'Thanksgiving Promo',
-//     status: 'b',
-//     placement: 'Facebook',
-//     'start-date': 'MM/DD/YYYY',
-//     'end-date': 'MM/DD/YYYY',
-//     'daily-budget': '$150',
-//     'spend': '$9',
-//     'sales': '$1',
-//     action: '...'
-//   },
-//   {
-//     key: '3',
-//     campaign: 'Thanksgiving Promo',
-//     status: 'C',
-//     placement: 'Facebook',
-//     'start-date': 'MM/DD/YYYY',
-//     'end-date': 'MM/DD/YYYY',
-//     'daily-budget': '$150',
-//     'spend': '$7',
-//     'sales': '$2',
-//     action: '...'
-//   },
-//   {
-//     key: '4',
-//     campaign: 'Thanksgiving Promo',
-//     status: 'd',
-//     placement: 'Facebook',
-//     'start-date': 'MM/DD/YYYY',
-//     'end-date': 'MM/DD/YYYY',
-//     'daily-budget': '$150',
-//     'spend': '$6',
-//     'sales': '$3',
-//     action: '...'
-//   },
-//   {
-//     key: '5',
-//     campaign: 'Thanksgiving Promo',
-//     status: 'e',
-//     placement: 'Facebook',
-//     'start-date': 'MM/DD/YYYY',
-//     'end-date': 'MM/DD/YYYY',
-//     'daily-budget': '$150',
-//     'spend': '$5',
-//     'sales': '$4',
-//     action: '...'
-//   },
-//   {
-//     key: '6',
-//     campaign: 'Thanksgiving Promo',
-//     status: 'F',
-//     placement: 'Facebook',
-//     'start-date': 'MM/DD/YYYY',
-//     'end-date': 'MM/DD/YYYY',
-//     'daily-budget': '$150',
-//     'spend': '$8',
-//     'sales': '$5',
-//     action: '...'
-//   },
-//   {
-//     key: '7',
-//     campaign: 'Thanksgiving Promo',
-//     status: 'g',
-//     placement: 'Facebook',
-//     'start-date': 'MM/DD/YYYY',
-//     'end-date': 'MM/DD/YYYY',
-//     'daily-budget': '$150',
-//     'spend': '$3',
-//     'sales': '$6',
-//     action: '...'
-//   },
-//   {
-//     key: '8',
-//     campaign: 'Thanksgiving Promo',
-//     status: 'H',
-//     placement: 'Facebook',
-//     'start-date': 'MM/DD/YYYY',
-//     'end-date': 'MM/DD/YYYY',
-//     'daily-budget': '$150',
-//     'spend': '$2',
-//     'sales': '$7',
-//     action: '...'
-//   },
-//   {
-//     key: '9',
-//     campaign: 'Thanksgiving Promo',
-//     status: 'i',
-//     placement: 'Facebook',
-//     'start-date': 'MM/DD/YYYY',
-//     'end-date': 'MM/DD/YYYY',
-//     'daily-budget': '$150',
-//     'spend': '$1',
-//     'sales': '$8',
-//     action: '...'
-//   },
-//   {
-//     key: '10',
-//     campaign: 'Thanksgiving Promo',
-//     status: 'J  ',
-//     placement: 'Facebook',
-//     'start-date': 'MM/DD/YYYY',
-//     'end-date': 'MM/DD/YYYY',
-//     'daily-budget': '$150',
-//     'spend': '$0',
-//     'sales': '$9',
-//     action: '...'
-//   },
-// ];
-
 const Template = ({ ...rest }) => {
+  const [selectedRowKeys , setSelectedRowKeys] = useState([])
+
   return (
-    <Grid
+   <Card>
+     <DataTable
       dataSource={dataSouce}
       columns={primaryColumns}
       scrollX={rest.scrollX}
@@ -244,37 +127,41 @@ const Template = ({ ...rest }) => {
       showHeader={rest.showHeader}
       fixedHeader={rest.fixedHeader}
       rowSelection={{
-        onRowSelect: (item: any) => console.log(item),
+        selectedRowKeys: selectedRowKeys,
+        onSelectChange: (item: any) => {
+          console.log(item);
+          setSelectedRowKeys(item)
+        },
         rowSelectable: (item: any) => ![3].includes(item.key),
-        onBulkSelect: (item: any) => console.log(item)
       }}
       expandable={{
         rowExpandable: (item) => !['5', '8'].includes(item.key),
-        expandedRowRender: (item) => (<Grid
+        expandedRowRender: (item) => (<DataTable
+          scrollY={200}
           dataSource={dataSouce}
           columns={primaryColumns}
         />)
       }}
       pagination={<Pagination
-        currentPage={1}
+        currentPage={5}
         totalitem={200}
         totalPages={20}
         onNext={() => { }}
         onEnter={() => { alert("onenter") }}
         countPerPage={10}
-        simpleView={true}
       />}
     />
+   </Card>
   )
 }
 
 export const primary: any = Template.bind({})
 
-export const gridWithFixedHeader: any = Template.bind({})
-gridWithFixedHeader.decorators = [
+export const DataTableWithFixedHeader: any = Template.bind({})
+DataTableWithFixedHeader.decorators = [
   () => {
     return (
-      <Grid
+      <DataTable
         dataSource={dataSouce}
         columns={primaryColumns}
         fixedHeader={true}
@@ -284,11 +171,11 @@ gridWithFixedHeader.decorators = [
   }
 ]
 
-export const gridWithFixedColumns: any = Template.bind({})
-gridWithFixedColumns.decorators = [
+export const DataTableWithFixedColumns: any = Template.bind({})
+DataTableWithFixedColumns.decorators = [
   () => {
     return (
-      <Grid
+      <DataTable
         dataSource={dataSouce}
         columns={primaryColumns}
         fixedHeader={true}
@@ -298,29 +185,27 @@ gridWithFixedColumns.decorators = [
   }
 ]
 
-export const gridWithRowSelection: any = Template.bind({})
-gridWithRowSelection.decorators = [
+export const DataTableWithRowSelection: any = Template.bind({})
+DataTableWithRowSelection.decorators = [
   () => {
     return (
-      <Grid
+      <DataTable
         dataSource={dataSouce}
         columns={primaryColumns}
         rowSelection={{
-          onRowSelect: (item: any) => console.log(item),
           rowSelectable: (item: any) => !['3'].includes(item.key),
           selectedRowKeys: [],
-          onBulkSelect: (item: any) => console.log(item)
         }}
       />
     )
   }
 ]
 
-export const gridWithRowExpandable: any = Template.bind({})
-gridWithRowExpandable.decorators = [
+export const DataTableWithRowExpandable: any = Template.bind({})
+DataTableWithRowExpandable.decorators = [
   () => {
     return (
-      <Grid
+      <DataTable
         dataSource={dataSouce}
         columns={primaryColumns}
         expandable={{
@@ -332,11 +217,11 @@ gridWithRowExpandable.decorators = [
   }
 ]
 
-export const gridWithPagination: any = Template.bind({})
-gridWithPagination.decorators = [
+export const DataTableWithPagination: any = Template.bind({})
+DataTableWithPagination.decorators = [
   () => {
     return (
-      <Grid
+      <DataTable
         dataSource={dataSouce}
         columns={primaryColumns}
         expandable={{
@@ -350,7 +235,6 @@ gridWithPagination.decorators = [
           onNext={() => { }}
           onEnter={() => { alert("onenter") }}
           countPerPage={10}
-          simpleView={true}
         />}
       />
     )
