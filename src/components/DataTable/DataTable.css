@@ -1,20 +1,21 @@
 
 .inte-DataTable--container {
   border: 1px solid var(--inte-G40);
-  border-radius: 8px;
+  border-radius: 0.8rem;
+  background-color: var(--inte-G0);
 }
 
 .inte-DataTable--wrapper {
   overflow: auto;
   box-sizing: border-box;
-  background: var(--inte-G0);
 }
 
 .inte-DataTable {
   width: 100%;
   border-spacing: 0;
-  text-align: left;
-  margin: 0 -1px;
+  text-align: left; 
+  border-radius: 8px;
+  position: relative;
 }
 
 .inte-DataTable__Cell {
@@ -41,10 +42,10 @@
   position: absolute;
   top: 50%;
   right:0.8rem;
-  width: 0px;
+  width: 1px;
   height: 1.6em;
   transform: translateY(-50%);
-  border: 1px solid var(--inte-P50);
+  background-color: var(--inte-P50);
   content: "";
 }
 
@@ -57,30 +58,21 @@
   z-index: 2;
 } 
 
-.shadowedLeft::after {
+.shadowedLeft::after , .shadowedRight::after {
   position: absolute;
   top: 0;
-  right: 0;
   bottom: -0.1rem;
   width: 0.5rem;
-  transform: translateX(100%);
-  transition: box-shadow 0.3s;
   content: '';
-  pointer-events: none;
-  box-shadow: inset 12px 0px 20px rgba(16, 24, 40, 0.1);
+  box-shadow: inset 10px 0 8px -8px rgba(16, 24, 40, 0.1);
+}
+
+.shadowedLeft::after {
+  right: 0;
 }
 
 .shadowedRight::after {
-  position: absolute;
-  top: 0;
-  bottom: -0.1rem;
-  left: 0.2rem;
-  width: 0.5rem;
-  transform: translateX(-100%);
-  transition: box-shadow 0.3s;
-  content: '';
-  pointer-events: none;
-  box-shadow: inset 12px 0px 20px rgba(16, 24, 40, 0.1);
+  left: 0;
 }
 
 .inte-DataTable__Cell--Expand , .inte-DataTable__Cell--Expand > svg {
@@ -130,4 +122,5 @@
 
 .inte-DataTable__Pagination {
   margin-top: 8px;
+  padding: 0 8px;
 }

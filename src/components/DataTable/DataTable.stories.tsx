@@ -117,6 +117,8 @@ const primaryColumns = [
 const Template = ({ ...rest }) => {
   const [selectedRowKeys , setSelectedRowKeys] = useState([])
 
+  const [internalSelectedRowKeys , setInternalSelectedRowKeys] = useState([])
+
   return (
    <Card>
      <DataTable
@@ -132,14 +134,21 @@ const Template = ({ ...rest }) => {
           console.log(item);
           setSelectedRowKeys(item)
         },
-        rowSelectable: (item: any) => ![3].includes(item.key),
       }}
       expandable={{
         rowExpandable: (item) => !['5', '8'].includes(item.key),
-        expandedRowRender: (item) => (<DataTable
+        expandedRowRender: (item) => (
+        <DataTable
           scrollY={200}
           dataSource={dataSouce}
           columns={primaryColumns}
+          rowSelection={{
+            selectedRowKeys: internalSelectedRowKeys,
+            onSelectChange: (item: any) => {
+              console.log(item);
+              setInternalSelectedRowKeys(item)
+            },
+          }}
         />)
       }}
       pagination={<Pagination
@@ -166,6 +175,14 @@ DataTableWithFixedHeader.decorators = [
         columns={primaryColumns}
         fixedHeader={true}
         scrollY={200}
+        pagination={<Pagination
+          currentPage={3}
+          totalitem={200}
+          totalPages={20}
+          onNext={() => { }}
+          onEnter={() => { alert("onenter") }}
+          countPerPage={10}
+        />}
       />
     )
   }
@@ -179,7 +196,7 @@ DataTableWithFixedColumns.decorators = [
         dataSource={dataSouce}
         columns={primaryColumns}
         fixedHeader={true}
-        scrollX={300}
+        scrollX={500}
       />
     )
   }
@@ -193,7 +210,6 @@ DataTableWithRowSelection.decorators = [
         dataSource={dataSouce}
         columns={primaryColumns}
         rowSelection={{
-          rowSelectable: (item: any) => !['3'].includes(item.key),
           selectedRowKeys: [],
         }}
       />

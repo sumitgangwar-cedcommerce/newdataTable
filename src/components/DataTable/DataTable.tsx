@@ -36,7 +36,6 @@ export interface expandableI {
 
 export interface rowSelectionI {
     onSelectChange?: Function,
-    rowSelectable?: (item: any) => boolean,
     selectedRowKeys?: string[],
 }
 
@@ -68,7 +67,7 @@ const DataTable = ({ columns = [], dataSource = [], fixedHeader = false, scrollX
 
     const handelGridScroll = () => {
         if (!GridWrapperRef.current) return
-        let scrollBarWidth = GridWrapperRef.current.scrollLeft + GridWrapperRef.current.clientWidth + 1
+        let scrollBarWidth = GridWrapperRef.current.scrollLeft + GridWrapperRef.current.offsetWidth +1
         let ele = getCellByClassName(tableCellRefs.current, 'inte-DataTable__Cell--Fixedleft-last')
         if (GridWrapperRef.current.scrollLeft) {
             for (let i = 0; i < ele.length; i++) {
@@ -94,7 +93,6 @@ const DataTable = ({ columns = [], dataSource = [], fixedHeader = false, scrollX
             }
         }
     }
-
     const headerCheckboxChangeHandler = (state: any) => {
         if (state) {
             let t: any = []
@@ -117,7 +115,6 @@ const DataTable = ({ columns = [], dataSource = [], fixedHeader = false, scrollX
             setSelectedCheckbox(newSelectedCheckbox)
         }
     }
-
     const sortTheData = (key: string, coordinate: number[], comparatorFun: any) => {
         let classList = tableCellRefs.current[coordinate[0]][coordinate[1]]?.classList
         if (classList?.contains('inte-DataTable__Cell--asec')) {
@@ -132,7 +129,6 @@ const DataTable = ({ columns = [], dataSource = [], fixedHeader = false, scrollX
         }
         setData([...data])
     }
-
     const expandIconClickHandler = (key: string) => {
         if (expandedRows.includes(key)) setExpandedRows(prev => prev.filter(item => item !== key))
         else setExpandedRows(prev => [...prev, key])
@@ -144,25 +140,7 @@ const DataTable = ({ columns = [], dataSource = [], fixedHeader = false, scrollX
         if (!tableCellRefs.current[row][column]) tableCellRefs.current[row][column] = null
         tableCellRefs.current[row][column] = item
     }
-    const createFixedCells = (cells: (HTMLTableCellElement | null)[], pos: 'left' | 'right') => {
-        if (!GridWrapperRef.current) return
-        let prev: HTMLElement | null = null
-        let i = pos === 'left' ? 0 : cells.length - 1
-        let comp = pos === 'left' ? cells.length : -1
-        for (i; i !== comp; i = pos === 'left' ? i + 1 : i - 1) {
-            const ele = cells[i]
-            if (!ele) continue
-            ele.style[pos] = prev ? pos === 'left' ? prev.getBoundingClientRect().right - GridWrapperRef.current.getBoundingClientRect().left - 1.247 + 'px' : GridWrapperRef.current.getBoundingClientRect().right - prev.getBoundingClientRect().left - 6.2447 + 'px' : '0'
-            prev = ele
-        }
-        prev?.classList.add(`inte-DataTable__Cell--Fixed${pos}-last`)
-    }
-
-    useEffect(() => {
-        setData(dataSource)
-    }, [dataSource])
-
-    useEffect(() => {
+    const givePositionToFixedCells = () =>{
         for (let i = 0; i < tableCellRefs.current.length; i++) {
             let t = tableCellRefs.current[i].filter((item) => item?.classList.contains('inte-DataTable__Cell--Fixedleft'))
             let tR = tableCellRefs.current[i].filter((item) => item?.classList.contains('inte-DataTable__Cell--Fixedright'))
@@ -173,15 +151,49 @@ const DataTable = ({ columns = [], dataSource = [], fixedHeader = false, scrollX
                 createFixedCells(tR, 'right')
             }
         }
-        handelGridScroll();
-    }, [data, columns])
+    }
+    const createFixedCells = (cells: (HTMLTableCellElement | null)[], pos: 'left' | 'right') => {
+        if (!GridWrapperRef.current) return
+        let prev = 0
+        let i = pos === 'left' ? 0 : cells.length - 1
+        let comp = pos === 'left' ? cells.length : -1
+        for (i; i !== comp; i = pos === 'left' ? i + 1 : i - 1) {
+            const ele = cells[i]
+            if (!ele) continue
+            ele.style[pos] = prev + 'px'
+            prev = ele.clientWidth + prev
+
+        }
+
+        if(comp === -1) cells[0]?.classList.add('inte-DataTable__Cell--Fixedright-last')
+        else    cells[cells.length-1]?.classList.add('inte-DataTable__Cell--Fixedleft-last')
+    }
+    const handelResize = () =>{
+        givePositionToFixedCells()
+        handelGridScroll()
+    }
+
+    useEffect(() => {
+        setData(dataSource)
+    }, [dataSource])
+
+    useEffect(() => {
+        handelResize()
+    }, [data,columns,expandedRows])
 
     useEffect(() => {
         if (!rowSelection?.selectedRowKeys) return
         setSelectedCheckbox(rowSelection.selectedRowKeys)
     }, [rowSelection?.selectedRowKeys])
 
-    const makeGridHeaderRows = (columns: columnI[]) => {
+    useEffect(()=>{
+        window.addEventListener('resize' ,handelResize)
+        return ()=>{
+            window?.removeEventListener('resize' , handelResize)
+        }
+    },[])
+
+    const makeDataTableHeaderRows = (columns: columnI[]) => {
         let columnNum = 0, rowNum = 0
         return <tr className='inte-DataTable__Row inte-DataTable__HeaderRow'>
             {
@@ -232,7 +244,7 @@ const DataTable = ({ columns = [], dataSource = [], fixedHeader = false, scrollX
         </tr>
     }
 
-    const makeGridBodyRows = (item: any, index: number) => {
+    const makeDataTableBodyRows = (item: any, index: number) => {
         let rowNum = index + (showHeader ? 1 : 0), columnNum = 0;
         const isRowSelected = selectedCheckbox.includes(item.key)
         const isRowExpandable = expandable?.rowExpandable ? expandable.rowExpandable(item) : true;
@@ -289,8 +301,18 @@ const DataTable = ({ columns = [], dataSource = [], fixedHeader = false, scrollX
             {
                 expandedRows.includes(item.key.toString()) &&
                 <tr className='inte-DataTable__Row--appendWithExpand'>
-                    <td colSpan={columns.length + (expandable ? 1 : 0) + (rowSelection ? 1 : 0)} >
-                        <div className='inte-DataTable__Row--Fixed' style={{ position: 'sticky', left: '0', overflow: 'hidden', width: GridWrapperRef.current ? GridWrapperRef.current.offsetWidth + 'px' : '0px' }}>
+                    <td 
+                        colSpan={columns.length + (expandable ? 1 : 0) + (rowSelection ? 1 : 0)} 
+                    >
+                        <div 
+                            className='inte-DataTable__Row--Fixed' 
+                            style={{ 
+                                position: 'sticky', 
+                                left: '0', 
+                                // overflow: 'hidden', 
+                                width: GridWrapperRef.current ? GridWrapperRef.current.offsetWidth/10 + 'rem' : '0' 
+                            }}
+                        >
                             {
                                 expandable?.expandedRowRender ? expandable.expandedRowRender(item) : ''
                             }
@@ -301,7 +323,6 @@ const DataTable = ({ columns = [], dataSource = [], fixedHeader = false, scrollX
             </React.Fragment>
         return row
     }
-
 
     return (
         <div className='inte-DataTable--container' style={{ width: scrollX ? (scrollX) / 10 + 'rem' : 'auto', }}>
@@ -316,13 +337,13 @@ const DataTable = ({ columns = [], dataSource = [], fixedHeader = false, scrollX
                 <table className='inte-DataTable'>
                     <thead id='inte-DataTable__Header'>
                         {
-                            showHeader && makeGridHeaderRows(columns)
+                            showHeader && makeDataTableHeaderRows(columns)
                         }
                     </thead>
                     <tbody id='inte-DataTable__Body'>
                         {
                             data.map((item: any, index: number) => {
-                                return makeGridBodyRows(item, index)
+                                return makeDataTableBodyRows(item, index)
                             })
                         }
                     </tbody>
