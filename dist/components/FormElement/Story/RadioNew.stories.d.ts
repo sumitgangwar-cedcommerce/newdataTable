@@ -1,7 +1,6 @@
-import React from "react";
 declare const _default: {
     title: string;
-    component: React.FC<import("../RadioNew").CheckBoxI>;
+    component: any;
     argTypes: {
         label: {
             description: string;

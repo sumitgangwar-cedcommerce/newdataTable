@@ -54,7 +54,7 @@ const Pagination: React.FC<PaginationI> = ({
                 <Select
                   customClass="inte-Pagination--perPage"
                   options={optionPerPage}
-                  popoverContainer="body"
+                  container="body"
                   onChange={(e) => {
                     onCountChange(parseInt(e));
                   }}

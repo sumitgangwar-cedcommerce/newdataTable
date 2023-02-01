@@ -1,8 +1,10 @@
 import React from "react";
-import { Badge } from "..";
-import { BadgeI } from "./Badge";
 import Card from "../Card/Card";
 import FlexLayout from "../FlexLayout/FlexLayout";
+import Badge from "./Badge";
+import { Check } from "react-feather";
+import * as Icons from "../../storybook/Foundation/Icons/Icons";
+const allIcons: any = { ...Icons };
 
 export default {
   title: "Components/Media/Badge",
@@ -15,105 +17,126 @@ export default {
       },
       defaultValue: "Badge",
     },
+    dot: {
+      description: "Badge Change in Dot ",
+      control: {
+        type: "boolean",
+      },
+      defaultValue: false,
+    },
+
     type: {
       description: "Set type badge background color",
       control: {
         type: "radio",
-        options: [
-          "Positive-100",
-          "Positive-200",
-          "Positive-300",
-          "Negative-100",
-          "Negative-200",
-          "Negative-300",
-          "Warning-100",
-          "Warning-200",
-          "Warning-300",
-          "Info-100",
-          "Info-200",
-          "Info-300",
-          "Neutral-100-Border",
-          "Neutral-100",
-          "Neutral-200",
-          "Neutral-300",
-          "Neutral-400",
-        ],
+        options: ["Primary", "Secondary", "Success", "Error", "Warning"],
       },
-      defaultValue: "Positive-100",
-    },
-    size: {
-      description: "Set badge size",
-      control: {
-        type: "radio",
-        options: ["small", "large"],
-      },
-      defaultValue: "small",
-    },
-    badgeTextColor: {
-      description: "Set badge text color",
-      control: {
-        type: "radio",
-        options: ["dark", "light"],
-      },
-      defaultValue: "dark",
+      defaultValue: "Primary",
     },
     helpText: {
-      description: "Set Help Text For tooltip",
+      description: "Set help text string",
       control: {
         type: "text",
       },
-      defaultValue: "Tooltip Help Text",
+      defaultValue: "",
+    },
+    helpPosition: {
+      description: "Set position of help",
+      control: {
+        type: "radio",
+        options: ["left", "right", "top", "bottom"],
+      },
+      defaultValue: "bottom",
+    },
+    iconAlign: {
+      description: "Set Postion of Icon",
+      control: {
+        type: "radio",
+        options: ["left", "right"],
+      },
+      defaultValue: "left",
+    },
+    variant: {
+      description: "Choose variant of Badge",
+      control: {
+        type: "radio",
+        options: ["filled", "accent"],
+      },
+      defaultValue: "filled",
+    },
+    icon: {
+      description: "Set Badge  Icon",
+      control: {
+        type: "select",
+        options: Object.keys(allIcons),
+      },
+      defaultValue: "Search",
+    },
+    size: {
+      description: "Set Size of Badage",
+      control: {
+        type: "radio",
+        options: ["Large", "Medium", "Small"],
+      },
+      defaultValue: "Large",
     },
     customBgColor: {
       description: "Set Custom Bg Color",
       control: {
-        type: "text",
+        type: "color",
       },
+      defaultValue: "",
     },
-    position: {
-      description: "Set Postion of Tooltip from element",
+    badgeTextColor: {
+      description: "Set Custom Color",
       control: {
-        type: "radio",
-        options: ["bottom", "top", "left", "right"],
+        type: "color",
       },
-      defaultValue: "bottom",
+      defaultValue: "",
     },
   },
 };
 
-interface NewI extends BadgeI {
-  icon: "home";
-}
-
-const Template = (rest: NewI) => {
+const Template = ({ ...rest }) => {
   return (
     <Card>
-      <Badge type={rest.type} {...rest} />
+      <Badge
+        variant={rest.variant}
+        size={rest.size}
+        icon={allIcons[rest.icon]({
+          size: 16,
+          color: `${
+            rest.variant === "accent" && rest.type === "Primary"
+              ? "var(--inte-P900)"
+              : rest.variant === "accent" && rest.type == "Secondary"
+              ? "var(--inte-G800)"
+              : rest.variant === "accent" && rest.type == "Success"
+              ? "var(--inte-GR150)"
+              : rest.variant === "accent" && rest.type == "Error"
+              ? "var(--inte-R400)"
+              : rest.variant === "accent" && rest.type == "Warning"
+              ? "var(--inte-Y600)"
+              : "var(--inte-G0)"
+          }`,
+        })}
+        iconAlign={rest.iconAlign}
+        type={rest.type}
+        customBgColor={rest.customBgColor}
+        badgeTextColor={rest.badgeTextColor}
+        helpText={rest.helpText}
+        helpPosition={rest.helpPosition}
+        dot={rest.dot}
+      >
+        {rest.children}
+      </Badge>
     </Card>
   );
 };
 
 export const Primary: any = Template.bind({});
-//Types Variant
-const thickness = [
-  "Positive-100",
-  "Positive-200",
-  "Positive-300",
-  "Negative-100",
-  "Negative-200",
-  "Negative-300",
-  "Warning-100",
-  "Warning-200",
-  "Warning-300",
-  "Info-100",
-  "Info-200",
-  "Info-300",
-  "Neutral-100-Border",
-  "Neutral-100",
-  "Neutral-200",
-  "Neutral-300",
-  "Neutral-400",
-];
+
+//Types
+const thickness = ["Primary", "Secondary", "Success", "Error", "Warning"];
 export const Types: any = Template.bind({});
 Types.decorators = [
   () => (
@@ -126,32 +149,15 @@ Types.decorators = [
     </Card>
   ),
 ];
-//badgeTextColor
-const badgeTextColor = ["dark", "light"];
-export const Badge_Text_Color: any = Template.bind({});
-Badge_Text_Color.decorators = [
-  () => (
-    <Card>
-      <FlexLayout spacing="loose">
-        {badgeTextColor.map((variant: any) => (
-          <Badge badgeTextColor={variant} position="bottom" helpText="helpText">
-            Badge
-          </Badge>
-        ))}
-      </FlexLayout>
-    </Card>
-  ),
-];
-//size
-const size = ["small", ""];
+//Size
 export const Size: any = Template.bind({});
 Size.decorators = [
   () => (
     <Card>
       <FlexLayout spacing="loose">
-        {size.map((variant: any) => (
-          <Badge size={variant} position="bottom" helpText="helpText">
-            Badge
+        {["Small", "Medium", "Large"].map((variant: any) => (
+          <Badge size={variant} type={variant}>
+            {variant} Badge
           </Badge>
         ))}
       </FlexLayout>
@@ -159,46 +165,193 @@ Size.decorators = [
   ),
 ];
 
+// Badge with Filled Variant
+export const BadgeFilledVariant: any = Template.bind({});
+BadgeFilledVariant.decorators = [
+  () => (
+    <Card>
+      <FlexLayout spacing="loose">
+        {thickness.map((variant: any) => (
+          <Badge variant="filled" type={variant}>
+            {variant} Badge
+          </Badge>
+        ))}
+      </FlexLayout>
+    </Card>
+  ),
+];
+
+// Badge with Filled Variant with left and Right Icon Align
+export const BadgeFilledVariantWithLeftAndRightIconAlign: any = Template.bind(
+  {}
+);
+BadgeFilledVariantWithLeftAndRightIconAlign.decorators = [
+  () => (
+    <Card>
+      <FlexLayout spacing="loose">
+        {thickness.map((variant: any) => (
+          <FlexLayout direction="vertical" spacing="loose">
+            <Badge
+              variant="filled"
+              icon={<Check size={16} />}
+              iconAlign="left"
+              type={variant}
+            >
+              {variant} Badge
+            </Badge>
+            <Badge
+              variant="filled"
+              icon={<Check size={16} />}
+              iconAlign="right"
+              type={variant}
+            >
+              {variant} Badge
+            </Badge>
+          </FlexLayout>
+        ))}
+      </FlexLayout>
+    </Card>
+  ),
+];
+
+// Badge with Accent Variant
+export const BadgeAccentVariant: any = Template.bind({});
+BadgeAccentVariant.decorators = [
+  () => (
+    <Card>
+      <FlexLayout spacing="loose">
+        {thickness.map((variant: any) => (
+          <Badge variant="accent" type={variant}>
+            {variant} Badge
+          </Badge>
+        ))}
+      </FlexLayout>
+    </Card>
+  ),
+];
+
+// Badge with Accent Variant with left and Right Icon Align
+export const AccentFilledVariantWithLeftAndRightIconAlign: any = Template.bind(
+  {}
+);
+AccentFilledVariantWithLeftAndRightIconAlign.decorators = [
+  () => (
+    <Card>
+      <FlexLayout spacing="loose">
+        {thickness.map((variant: any) => (
+          <FlexLayout direction="vertical" spacing="loose">
+            <Badge
+              variant="accent"
+              icon={<Check size={16} />}
+              iconAlign="left"
+              type={variant}
+            >
+              {variant} Badge
+            </Badge>
+            <Badge
+              variant="accent"
+              icon={<Check size={16} />}
+              iconAlign="right"
+              type={variant}
+            >
+              {variant} Badge
+            </Badge>
+          </FlexLayout>
+        ))}
+      </FlexLayout>
+    </Card>
+  ),
+];
+
+// Badge with Dot Variant
+export const BadgeDotVariant: any = Template.bind({});
+BadgeDotVariant.decorators = [
+  () => (
+    <Card>
+      <FlexLayout spacing="loose">
+        {thickness.map((variant: any) => (
+          <Badge dot size="Large" type={variant}>
+            {variant} Badge
+          </Badge>
+        ))}
+      </FlexLayout>
+    </Card>
+  ),
+];
+
+// Badge with Left Icon
+export const BadgeIconLeftAlign: any = Template.bind({});
+BadgeIconLeftAlign.decorators = [
+  () => (
+    <Card>
+      <FlexLayout spacing="loose">
+        {thickness.map((variant: any) => (
+          <Badge icon={<Check size={16} />} iconAlign="left" type={variant}>
+            {variant} Badge
+          </Badge>
+        ))}
+      </FlexLayout>
+    </Card>
+  ),
+];
+// Badge with Right Icon
+export const BadgeIconRightAlign: any = Template.bind({});
+BadgeIconRightAlign.decorators = [
+  () => (
+    <Card>
+      <FlexLayout spacing="loose">
+        {thickness.map((variant: any) => (
+          <Badge icon={<Check size={16} />} iconAlign="right" type={variant}>
+            {variant} Badge
+          </Badge>
+        ))}
+      </FlexLayout>
+    </Card>
+  ),
+];
+// Badge with Only Icon
+export const BadgeWithOnlyIcon: any = Template.bind({});
+BadgeWithOnlyIcon.decorators = [
+  () => (
+    <Card>
+      <FlexLayout spacing="loose" direction="vertical">
+        {thickness.map((variant: any) => (
+          <FlexLayout spacing="loose">
+            <Badge size="Large" icon={<Check size={16} />} type={variant} />
+            <Badge size="Medium" icon={<Check size={16} />} type={variant} />
+            <Badge size="Small" icon={<Check size={16} />} type={variant} />
+          </FlexLayout>
+        ))}
+      </FlexLayout>
+    </Card>
+  ),
+];
+
+// Badge with CustomBgColor
+export const BadgeWithCustomBgcolorAndCustomColor: any = Template.bind({});
+BadgeWithCustomBgcolorAndCustomColor.decorators = [
+  () => (
+    <Card>
+      <Badge size="Large" customBgColor="#e6edfa" badgeTextColor="#3577f1">
+        Active
+      </Badge>
+    </Card>
+  ),
+];
+
+// Badge with Help Text
 export const BadgeWithHelpText: any = Template.bind({});
 BadgeWithHelpText.decorators = [
   () => (
     <Card>
-      <FlexLayout spacing="loose">
-        <Badge helpText="helpText" position="bottom">
-          Badge With HelpText
-        </Badge>
-      </FlexLayout>
-    </Card>
-  ),
-];
-
-export const BadgeWithOutHelpText: any = Template.bind({});
-BadgeWithOutHelpText.decorators = [
-  () => (
-    <Card>
-      <FlexLayout spacing="loose">
-        <Badge>Badge WithOut HelpText</Badge>
-      </FlexLayout>
-    </Card>
-  ),
-];
-
-const position = ["bottom", "top", "left", "right"];
-export const BadgeHelpTextPosition: any = Template.bind({});
-BadgeHelpTextPosition.decorators = [
-  () => (
-    <Card>
-      <FlexLayout spacing="loose">
-        {position.map((variant: any) => (
-          <Badge
-            size={variant}
-            position={variant}
-            helpText={`Badge position ${variant}`}
-          >
-            Badge position {variant}
-          </Badge>
-        ))}
-      </FlexLayout>
+      <Badge
+        helpText="Help tooltip"
+        size="Large"
+        customBgColor="#e6edfa"
+        badgeTextColor="#3577f1"
+      >
+        Active
+      </Badge>
     </Card>
   ),
 ];

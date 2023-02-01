@@ -1,13 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useState } from "react";
-import { ChevronDown } from "react-feather";
-import Button from "../Button";
-import "./ButtonDropdown.css";
+import Button from "../Button/Button";
+import "./Switcher.css";
 
-function ButtonDropdown({
+function Switcher({
   list,
-  icon = <ChevronDown height={22} width={22} color="#ffffff" />,
-  iconAlign = "right",
+  icon,
+  direction="left",
   ...props
 }: ButtonDropdownI): JSX.Element {
   const [toggle, setToggle] = useState(false);
@@ -17,7 +16,7 @@ function ButtonDropdown({
     const getPath: EventTarget[] = event.composedPath();
     let flag = true;
     getPath.forEach((element: any) => {
-      if (element.id === "inte-btn--Dropdown" + div_id) {
+      if (element.id === "inte--Switcher" + div_id) {
         flag = false;
       }
     });
@@ -35,19 +34,19 @@ function ButtonDropdown({
 
   return (
     <div
-      id={"inte-btn--Dropdown" + div_id}
+      id={"inte--Switcher" + div_id}
       className={
         toggle
-          ? "inte-btn--Dropdown inte-btn--Dropdown-Open"
-          : "inte-btn--Dropdown"
+          ? "inte--Switcher inte--Switcher-Open"
+          : "inte--Switcher"
       }
     >
       <Button
-        type={props.type}
+        type={"Outlined"}
         disable={props.disable}
         loading={props.loading}
         icon={icon}
-        iconAlign={iconAlign}
+        iconAlign={"left"}
         thickness={props.thickness}
         onClick={() => {
           setToggle(!toggle);
@@ -56,7 +55,7 @@ function ButtonDropdown({
         {props.title}
       </Button>
       <ul
-        className="inte-btn--Dropdown__Popover"
+        className={`inte--Switcher__Popover ${"inte--Switcher__Popover--"+direction}`}
         style={{ display: toggle ? "block" : "none" }}
       >
         {list.map((e: any, key: number) => (
@@ -81,14 +80,13 @@ function ButtonDropdown({
     </div>
   );
 }
-ButtonDropdown.defaultProps = {
+Switcher.defaultProps = {
   children: "",
 };
 export interface ButtonDropdownI {
   title: string;
   list: any;
   children?: string | React.ReactNode | JSX.Element | any;
-  content?: string;
   type?:
     | "Primary"
     | "Danger"
@@ -102,6 +100,6 @@ export interface ButtonDropdownI {
   onClick?: () => void;
   loading?: boolean;
   disable?: boolean;
-  iconAlign?: "left" | "right";
+  direction?: "left"| "right";
 }
-export default ButtonDropdown;
+export default Switcher;

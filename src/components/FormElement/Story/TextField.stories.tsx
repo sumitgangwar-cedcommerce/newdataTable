@@ -4,6 +4,8 @@ import { TextField, Card, FlexLayout, Select } from "../..";
 import Button from "../../Button/Button";
 import FormChild from "../FormChild";
 import FormElement from "../FormElement";
+import * as Icon from "../../../storybook/Foundation/Icons/Icons";
+const allIcons: any = { ...Icon };
 
 export default {
   title: "Components/Form/TextField",
@@ -117,12 +119,13 @@ export default {
       defaultValue: "200",
     },
     helpIcon: {
+      description: "set icon beside help text",
       control: {
-        description: "You can pass any help icon or anything beside helptext",
-        type: "text",
+          type: "select",
+          options: Object.keys(allIcons),
       },
-      defaultValue: "",
-    },
+      defaultValue: "Search"
+  },
     required: {
       control: {
         type: "boolean",
@@ -218,7 +221,7 @@ const Template = ({ ...rest }) => {
             controlStates={rest.controlStates}
             prefix={rest.prefix}
             suffix={rest.suffix}
-            helpIcon={rest.helpIcon}
+            helpIcon={allIcons[rest.helpIcon]({ size: 20, color: `${rest.controlStates == "Error" ? "var(--inte-R200)" : "var(--inte-G90)"}` })}
           />
         </FormChild>
       </FormElement>
@@ -487,6 +490,7 @@ ConnectedField.decorators = [
                 onChange={(e) => {
                   onSelectChange(e);
                 }}
+                placeholder="Kg"
                 value={value1}
                 options={options}
               />
@@ -513,6 +517,7 @@ ConnectedField.decorators = [
                 onChange={(e) => {
                   onSelectChange2(e);
                 }}
+                placeholder="Kg"
                 value={value2}
                 options={options}
               />

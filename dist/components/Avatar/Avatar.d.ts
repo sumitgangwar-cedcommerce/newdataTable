@@ -9,5 +9,6 @@ export interface AvatarI {
     size?: "small" | "medium" | "large" | "X-large";
     image?: string;
     children?: React.ReactNode | any;
+    badge?: boolean;
 }
 export default Avatar;

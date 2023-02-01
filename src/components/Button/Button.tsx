@@ -4,7 +4,7 @@ import "./Button.css";
 
 const Button = ({
   type,
-  FullBtn=false,
+  FullBtn = false,
   thickness = "thin",
   halign = "Center",
   loading = false,
@@ -73,7 +73,7 @@ const Button = ({
     iconClass = "inte-btn--hasIcon";
 
     iconAlign !== "left" ? { paddingLeft: "1rem" } : { paddingRight: "1rem" };
-    
+
     icon = (
       <span className={`inte-btn__icon`}>
         {props.icon}
@@ -121,13 +121,13 @@ export interface ButtonI {
   children?: string | React.ReactNode | JSX.Element | any;
   content?: string;
   type?:
-    | "Primary"
-    | "Danger"
-    | "DangerOutlined"
-    | "Secondary"
-    | "Outlined"
-    | "DangerPlain"
-    | "TextButton";
+  | "Primary"
+  | "Danger"
+  | "DangerOutlined"
+  | "Secondary"
+  | "Outlined"
+  | "DangerPlain"
+  | "TextButton";
   FullBtn?: boolean;
   thickness?: "extraThin" | "thin" | "large";
   halign?: "Equal" | "End" | "Start" | "Between" | "Center";

@@ -78,7 +78,7 @@ const Modal: React.FC<ModalI> = ({
                       <Button
                         thickness="thin"
                         type="Secondary"
-                        icon={<X size={20} color={"#2a2a2a"} />}
+                        icon={<X size={24} color={"#2a2a2a"} />}
                         onClick={() => {
                           props.close();
                         }}

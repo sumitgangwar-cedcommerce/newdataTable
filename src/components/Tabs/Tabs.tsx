@@ -58,7 +58,7 @@ const Tabs: React.FC<TabsI> = ({
             </span>
             {tab.badge ? (
               <div className="inteTab--Status">
-                <Badge
+                <Badge 
                   customBgColor={tab.customBgColors}
                   badgeTextColor={tab.badgeTextColor}
                 >

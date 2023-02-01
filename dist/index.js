@@ -1,6 +1,6 @@
-import { __rest, __assign, __extends } from 'tslib';
-import React, { useState, useEffect, useRef, useMemo, Component, useLayoutEffect, Children, useCallback } from 'react';
-import { ChevronDown, ChevronUp, X as X$1, Info, Menu, ChevronsRight, CheckCircle, AlertTriangle, AlertOctagon, Search, ChevronLeft, ChevronRight, Check, Copy, PlusCircle, Eye, EyeOff, ArrowLeft, HelpCircle, MoreVertical } from 'react-feather';
+import { __rest, __assign, __extends, __spreadArray } from 'tslib';
+import React, { useRef, useState, useEffect, useMemo, Component, useLayoutEffect, Children, useCallback } from 'react';
+import { ChevronUp, ChevronDown as ChevronDown$1, X as X$1, Menu, ChevronsRight, Info, CheckCircle, AlertTriangle, AlertOctagon, Search as Search$1, ChevronLeft, ChevronRight, Check as Check$1, Copy, PlusCircle, Eye, EyeOff, ArrowLeft, HelpCircle, MoreVertical } from 'react-feather';
 import { DatePicker, Space, Upload, Slider as Slider$1, Steps, Table } from 'antd';
 import Slider from 'react-slick';
 import Lottie from 'lottie-react';
@@ -70,10 +70,10 @@ var Button = function (_a) {
     }
     var content = props.content ? props.content : props.children;
     return (React.createElement("button", { disabled: disable, tabIndex: props.tabIndex, className: disable
-            ? "inte-btn inte-btn-disable ".concat(bType, " ").concat(iconClass, " ").concat(halignCss, "  ").concat(FullBtn ? "inte_btn--fullWidth" : "", " ").concat(thicknessCss, " ").concat(loading ? "inte-btn--Loading" : "", " ").concat(props.content === undefined && props.children === undefined
+            ? "inte-btn inte-btn-disable ".concat(bType, " ").concat(iconClass, " ").concat(halignCss, "  ").concat(FullBtn ? "inte_btn--fullWidth" : "", " ").concat(thicknessCss, " ").concat(loading ? "inte-btn--Loading" : "", " ").concat(props.content === undefined && props.children === undefined || props.content == "" || props.children == ""
                 ? "inte-btn--onlyIcon"
                 : "")
-            : "inte-btn ".concat(bType, " ").concat(iconClass, " ").concat(halignCss, " ").concat(FullBtn ? "inte_btn--fullWidth" : "", " ").concat(thicknessCss, " ").concat(loading ? "inte-btn--Loading" : "", " ").concat(props.content === undefined && props.children === undefined
+            : "inte-btn ".concat(bType, " ").concat(iconClass, " ").concat(halignCss, " ").concat(FullBtn ? "inte_btn--fullWidth" : "", " ").concat(thicknessCss, " ").concat(loading ? "inte-btn--Loading" : "", " ").concat(props.content === undefined && props.children === undefined || props.content == "" || props.children == ""
                 ? "inte-btn--onlyIcon"
                 : ""), onClick: function () {
             if (!loading && !disable && props.onAction)
@@ -93,41 +93,6 @@ var ButtonGroup = function (_a) {
     return (React.createElement("div", { className: " ".concat(segmented ? "inte-ButtonGroup--Segmented" : "", "  ").concat(vertical ? "inte-ButtonGroup--Vertical" : "inte-ButtonGroup") }, children));
 };
 
-function ButtonDropdown(_a) {
-    var list = _a.list, _b = _a.icon, icon = _b === void 0 ? React.createElement(ChevronDown, { height: 22, width: 22, color: "#ffffff" }) : _b, _c = _a.iconAlign, iconAlign = _c === void 0 ? "right" : _c, props = __rest(_a, ["list", "icon", "iconAlign"]);
-    var _d = useState(false), toggle = _d[0], setToggle = _d[1];
-    var div_id = useState(function () { return "-" + Math.floor(Math.random() * 1000); })[0];
-    function myFun(event) {
-        var getPath = event.composedPath();
-        var flag = true;
-        getPath.forEach(function (element) {
-            if (element.id === "inte-btn--Dropdown" + div_id) {
-                flag = false;
-            }
-        });
-        if (flag)
-            setToggle(false);
-    }
-    useEffect(function () {
-        if (toggle) {
-            window.addEventListener("click", myFun, false);
-        }
-        return function () {
-            window.removeEventListener("click", myFun, false);
-        };
-    }, [toggle]);
-    return (React.createElement("div", { id: "inte-btn--Dropdown" + div_id, className: toggle
-            ? "inte-btn--Dropdown inte-btn--Dropdown-Open"
-            : "inte-btn--Dropdown" },
-        React.createElement(Button, { type: props.type, disable: props.disable, loading: props.loading, icon: icon, iconAlign: iconAlign, thickness: props.thickness, onClick: function () {
-                setToggle(!toggle);
-            } }, props.title),
-        React.createElement("ul", { className: "inte-btn--Dropdown__Popover", style: { display: toggle ? "block" : "none" } }, list.map(function (e, key) { return (React.createElement("li", { key: key, onClick: function () { return setToggle(!toggle); } }, e.icon != undefined ? (React.createElement(Button, { type: "Outlined", icon: e.icon, onClick: e.onClick, iconAlign: "left" }, e.label)) : (React.createElement(Button, { type: "Outlined", onClick: e.onClick }, e.label)))); }))));
-}
-ButtonDropdown.defaultProps = {
-    children: "",
-};
-
 var Accordion = function (_a) {
     var _b = _a.children, children = _b === void 0 ? "" : _b, _c = _a.active, active = _c === void 0 ? false : _c, _d = _a.icon, icon = _d === void 0 ? true : _d, _e = _a.boxed, boxed = _e === void 0 ? true : _e, _f = _a.title, title = _f === void 0 ? "" : _f, _g = _a.iconAlign, iconAlign = _g === void 0 ? "left" : _g, _h = _a.onClick, onClick = _h === void 0 ? function () {
         //That's onClick function apply accordion title
@@ -139,10 +104,10 @@ var Accordion = function (_a) {
         React.createElement("div", { onClick: onClick, className: "inte-flex intel-flex--align-center inte-flex--noWrap inte__accordionHeader ".concat(iconAlign == "right"
                 ? "intel-flex--distribute-spaceBetween inte__accordion--IconRight"
                 : "") },
-            icon && iconAlign == "left" ? (React.createElement("div", { className: "inte-flex__item" }, active ? (React.createElement(ChevronUp, { size: 20, color: "#2c127a" })) : (React.createElement(ChevronDown, { size: 20, color: "#3b424f" })))) : (""),
+            icon && iconAlign == "left" ? (React.createElement("div", { className: "inte-flex__item" }, active ? (React.createElement(ChevronUp, { size: 20, color: "#2c127a" })) : (React.createElement(ChevronDown$1, { size: 20, color: "#3b424f" })))) : (""),
             React.createElement("div", { className: "inte-flex__item" }, typeof title === "string" ? (React.createElement("div", { className: "inte__cardTitle" },
                 React.createElement("h3", null, title))) : (title)),
-            icon && iconAlign == "right" ? (React.createElement("div", { className: "inte-flex__item" }, active ? (React.createElement(ChevronUp, { size: 20, color: "#2c127a" })) : (React.createElement(ChevronDown, { size: 20, color: "#3b424f" })))) : ("")),
+            icon && iconAlign == "right" ? (React.createElement("div", { className: "inte-flex__item" }, active ? (React.createElement(ChevronUp, { size: 20, color: "#2c127a" })) : (React.createElement(ChevronDown$1, { size: 20, color: "#3b424f" })))) : ("")),
         React.createElement("div", { className: active
                 ? "inte__accordion--active inte__accordionBody"
                 : "inte__accordionBody" },
@@ -152,10 +117,10 @@ var Accordion = function (_a) {
         React.createElement("div", { onClick: onClick, className: "inte-flex intel-flex--align-center inte-flex--noWrap inte__accordionHeader ".concat(iconAlign == "right"
                 ? "intel-flex--distribute-spaceBetween inte__accordion--IconRight"
                 : "") },
-            icon && iconAlign == "left" ? (React.createElement("div", { className: "inte-flex__item" }, active ? (React.createElement(ChevronUp, { size: 20, color: "#2c127a" })) : (React.createElement(ChevronDown, { size: 20, color: "#3b424f" })))) : (""),
+            icon && iconAlign == "left" ? (React.createElement("div", { className: "inte-flex__item" }, active ? (React.createElement(ChevronUp, { size: 20, color: "#2c127a" })) : (React.createElement(ChevronDown$1, { size: 20, color: "#3b424f" })))) : (""),
             React.createElement("div", { className: "inte-flex__item" }, typeof title === "string" ? (React.createElement("div", { className: "inte__cardTitle" },
                 React.createElement("h3", null, title))) : (title)),
-            icon && iconAlign == "right" ? (React.createElement("div", { className: "inte-flex__item" }, active ? (React.createElement(ChevronUp, { size: 20, color: "#2c127a" })) : (React.createElement(ChevronDown, { size: 20, color: "#3b424f" })))) : ("")),
+            icon && iconAlign == "right" ? (React.createElement("div", { className: "inte-flex__item" }, active ? (React.createElement(ChevronUp, { size: 20, color: "#2c127a" })) : (React.createElement(ChevronDown$1, { size: 20, color: "#3b424f" })))) : ("")),
         React.createElement("div", { className: active
                 ? "inte__accordion--active inte__accordionBody"
                 : "inte__accordionBody" },
@@ -31301,7 +31266,7 @@ function ToolTip(_a) {
         // dyPos();
     }
     useEffect(function () {
-        var ParentEle = getScrollParent$5(document.getElementById("inte-Tooltip-Parent_" + id));
+        var ParentEle = getScrollParent$4(document.getElementById("inte-Tooltip-Parent_" + id));
         function watchScroll() {
             window.addEventListener("scroll", logit);
             ParentEle === null || ParentEle === void 0 ? void 0 : ParentEle.addEventListener("scroll", logit);
@@ -31376,7 +31341,7 @@ function ToolTip(_a) {
             React.createElement("div", { className: "inte__ToolTip-message" }, helpText))),
         React.createElement("span", { className: "inte__ToolTip-trigger" }, children)));
 }
-var getScrollParent$5 = function (node) {
+var getScrollParent$4 = function (node) {
     var regex = /(auto|scroll)/;
     var parents = function (_node, ps) {
         if (_node.parentNode === null) {
@@ -31410,106 +31375,109 @@ var getScrollParent$5 = function (node) {
 };
 
 var Badge = function (_a) {
-    var _b = _a.type, type = _b === void 0 ? "Positive-100" : _b, _c = _a.size, size = _c === void 0 ? "small" : _c, children = _a.children, helpText = _a.helpText, badgeTextColor = _a.badgeTextColor, customBgColor = _a.customBgColor, position = _a.position;
+    var _b = _a.type, type = _b === void 0 ? "Primary" : _b, _c = _a.size, size = _c === void 0 ? "Medium" : _c, children = _a.children, customBgColor = _a.customBgColor, _d = _a.variant, variant = _d === void 0 ? "filled" : _d, badgeTextColor = _a.badgeTextColor, _e = _a.helpPosition, helpPosition = _e === void 0 ? "bottom" : _e, props = __rest(_a, ["type", "size", "children", "customBgColor", "variant", "badgeTextColor", "helpPosition"]);
     var checkBadgeType = function () {
         switch (type) {
-            case "Positive-100":
-                return "inte__BadgePositive--100";
-            case "Positive-200":
-                return "inte__BadgePositive--200";
-            case "Positive-300":
-                return "inte__BadgePositive--300";
-            case "Negative-100":
-                return "inte__BadgeNegative--100";
-            case "Negative-200":
-                return "inte__BadgeNegative--200";
-            case "Negative-300":
-                return "inte__BadgeNegative--300";
-            case "Warning-100":
-                return "inte__BadgeWarning--100";
-            case "Warning-200":
-                return "inte__BadgeWarning--200";
-            case "Warning-300":
-                return "inte__BadgeWarning--300";
-            case "Info-100":
-                return "inte__BadgeInfo--100";
-            case "Info-200":
-                return "inte__BadgeInfo--200";
-            case "Info-300":
-                return "inte__BadgeInfo--300";
-            case "Neutral-100-Border":
-                return "inte__BadgeNeutral--100-Border";
-            case "Neutral-100":
-                return "inte__BadgeNeutral--100";
-            case "Neutral-200":
-                return "inte__BadgeNeutral--200";
-            case "Neutral-300":
-                return "inte__BadgeNeutral--300";
-            case "Neutral-400":
-                return "inte__BadgeNeutral--400";
+            case "Primary":
+                return "inte__BadgePrimary";
+            case "Secondary":
+                return "inte__BadgeSeconadary";
+            case "Success":
+                return "inte__BadgeSuccess";
+            case "Error":
+                return "inte__BadgeError";
+            case "Warning":
+                return "inte__BadgeWarning";
             default:
-                return "inte__BadgeNeutral--100";
+                return "inte__BadgePrimary";
+        }
+    };
+    var checkBadgeAccentType = function () {
+        switch (type) {
+            case "Primary":
+                return "inte__accentBadgePrimary";
+            case "Secondary":
+                return "inte__accentBadgeSeconadary";
+            case "Success":
+                return "inte__accentBadgeSuccess";
+            case "Error":
+                return "inte__accentBadgeError";
+            case "Warning":
+                return "inte__accentBadgeWarning";
+            default:
+                return "inte__accentBadgePrimary";
         }
     };
     var checkSize = function () {
         switch (size) {
-            case "small":
-                return "inte--BadgeNarrow";
+            case "Large":
+                return "inte--BadgeLarge";
+            case "Medium":
+                return "inte--BadgeMedium";
+            case "Small":
+                return "inte--BadgeSmall";
             default:
-                return "";
+                return "inte--BadgeMedium";
         }
     };
-    var checkBadgeColor = function () {
-        switch (badgeTextColor) {
-            case "light":
-                return "inte--BadgeLight";
-            case "dark":
-                return "inte--BadgeDark";
+    var checkDotSize = function () {
+        switch (size) {
+            case "Large":
+                return "inte--BadgeDotLarge";
+            case "Medium":
+                return "inte--BadgeDotMedium";
+            case "Small":
+                return "inte--BadgeDotSmall";
             default:
-                return "";
+                return "inte--BadgeDotSmall";
         }
     };
     var typeValue = checkBadgeType();
+    var accenttypeValue = checkBadgeAccentType();
+    var sizeDotsValue = checkDotSize();
     var sizeValue = checkSize();
-    var badgeColor = checkBadgeColor();
-    return (React.createElement("div", { style: { backgroundColor: customBgColor }, className: "inte--Badge ".concat(typeValue, " ").concat(sizeValue, " ").concat(badgeColor) },
-        React.createElement("div", { className: "inte--Badge-content" },
-            React.createElement("span", null, children),
-            helpText ? (React.createElement(ToolTip, { open: false, helpText: helpText, position: position },
-                React.createElement(Info, { color: badgeTextColor == "light" ? "#fafafb" : "#3b424f", size: 16 }))) : null)));
-};
-Badge.defaultProps = {
-    children: "Badge",
-    badgeTextColor: "dark",
+    var icon = React.createElement(React.Fragment, null);
+    var iconClass = "";
+    var _f = props.iconAlign, iconAlign = _f === void 0 ? "left" : _f;
+    if (props.icon) {
+        iconClass = "inte-badge--hasIcon";
+        icon = (React.createElement("span", { className: "inte-badge__icon" }, props.icon));
+    }
+    return (React.createElement("div", { style: { backgroundColor: customBgColor, color: badgeTextColor }, className: props.dot ? "inte--Badgedot ".concat(sizeDotsValue, "  ").concat(typeValue, " ")
+            : variant && "inte--Badge ".concat(sizeValue, " ").concat(iconClass, " ").concat(variant == "accent" ? "".concat(accenttypeValue) : "".concat(typeValue), " ").concat(children === undefined ? "inte-badge--onlyIcon" : "", " ").concat(props.helpText ? "inte--Badge--hasHelp" : "") }, props.dot ? React.createElement(React.Fragment, null) : variant && React.createElement(React.Fragment, null,
+        iconAlign === "left" && icon,
+        children ? React.createElement("div", { className: "inte--Badge-content" }, !props.helpText ? React.createElement("span", null, children) : React.createElement(ToolTip, { open: false, position: helpPosition, helpText: props.helpText },
+            React.createElement("span", null, children))) : "",
+        iconAlign === "right" && icon)));
 };
 
 var Tag = function (_a) {
     var destroy = _a.destroy, // This function destroy  or remove  cross icon in tag
-    children = _a.children, popover = _a.popover, count = _a.count, toggle = _a.toggle, _b = _a.togglePopup, togglePopup = _b === void 0 ? function () {
+    children = _a.children, popover = _a.popover, count = _a.count, toggle = _a.toggle, disabled = _a.disabled, _b = _a.togglePopup, togglePopup = _b === void 0 ? function () {
         //That's onClick function apply accordion title
     } : _b;
     var currentRef = useRef(null);
     var checkOnDismiss = function () {
         if (destroy) {
             return (React.createElement("button", { onClick: destroy },
-                React.createElement(X$1, { size: 16, color: "#3b424f" })));
+                React.createElement(X$1, { size: 14, color: disabled ? "var(--inte-G50)" : "#1C2433" })));
         }
         return null;
     };
-    return (React.createElement("div", __assign({ ref: currentRef, className: "inte--Tag ".concat(popover && "inte--Tag-hasPopover", " ").concat(toggle && "inte--Tag-ActivePopover"), onClick: function () {
+    return (React.createElement("div", __assign({ ref: currentRef, className: "inte--Tag ".concat(popover ? "inte--Tag-hasPopover" : "", " ").concat(toggle ? "inte--Tag-ActivePopover" : "", " ").concat(disabled ? 'inte-Tag--disabled' : ''), onClick: function () {
             togglePopup();
-        } }, (popover ? { tabIndex: 0 } : {})), checkOnDismiss() ? (React.createElement("div", { className: "inte--Tag__Dismissible" },
+        } }, (popover ? { tabIndex: 0 } : {})), checkOnDismiss() ? (React.createElement("div", { className: "inte--Tag__Dismissible ".concat(disabled ? "inte--Tag__Dismissible--disabled" : "") },
         React.createElement("div", { className: "inte--Tag-content" },
             React.createElement("span", null, children)),
         popover && (React.createElement("div", { className: "inte--Tag--Popover-Wrapper" },
             React.createElement("span", { className: "inte--Tag-Count" }, count),
-            toggle ? (React.createElement(ChevronUp, { size: 16, color: "#3B424F" })) : (React.createElement(ChevronDown, { size: 16, color: "#3B424F" })))),
+            toggle ? (React.createElement(ChevronUp, { size: 16, color: "#3B424F" })) : (React.createElement(ChevronDown$1, { size: 16, color: "#3B424F" })))),
         checkOnDismiss())) : (React.createElement(React.Fragment, null,
         React.createElement("div", { className: "inte--Tag-content" },
             React.createElement("span", null, children)),
         popover && (React.createElement("div", { className: "inte--Tag--Popover-Wrapper" },
             React.createElement("span", { className: "inte--Tag-Count" }, count),
-            toggle ? (React.createElement(ChevronUp, { size: 16, color: "#3B424F" })) : (React.createElement(ChevronDown, { size: 16, color: "#3B424F" }))))))));
+            toggle ? (React.createElement(ChevronUp, { size: 16, color: "#3B424F" })) : (React.createElement(ChevronDown$1, { size: 16, color: "#3B424F" }))))))));
 };
 
 var Dots = function (_a) {
@@ -32119,21 +32087,17 @@ var LRLayout = function (_a) {
 };
 
 var Avatar = function (_a) {
-    var _b = _a.text, text = _b === void 0 ? "Jon Doe" : _b, _c = _a.type, type = _c === void 0 ? "circle" : _c, _d = _a.color, color = _d === void 0 ? "black" : _d, _e = _a.size, size = _e === void 0 ? "large" : _e, image = _a.image, _f = _a.zoom, zoom = _f === void 0 ? false : _f;
+    var _b = _a.text, text = _b === void 0 ? "Jon Doe" : _b, _c = _a.type, type = _c === void 0 ? "circle" : _c, _d = _a.color, color = _d === void 0 ? "black" : _d, _e = _a.size, size = _e === void 0 ? "small" : _e, image = _a.image, _f = _a.badge, badge = _f === void 0 ? false : _f, _g = _a.zoom, zoom = _g === void 0 ? false : _g;
     var width = "";
     var font = "";
     var radius = "";
     switch (size) {
-        case "X-large":
-            width = "48px";
-            font = "24px";
-            break;
         case "large":
-            width = "40px";
+            width = "48px";
             font = "20px";
             break;
         case "medium":
-            width = "32px";
+            width = "36px";
             font = "14px";
             break;
         default:
@@ -32169,7 +32133,8 @@ var Avatar = function (_a) {
                 width: "100%",
                 height: "100%",
                 objectFit: "cover",
-            }, src: image.toString(), alt: "Avatar" }))) : (React.createElement("div", { className: zoom ? "inte--Avatar inte--Avatar__Zoom" : "inte--Avatar", style: {
+            }, src: image.toString(), alt: "Avatar" }),
+        badge && React.createElement(Badge, { type: "Success", dot: true, size: "Small" }))) : (React.createElement("div", { className: zoom ? "inte--Avatar inte--Avatar__Zoom" : "inte--Avatar", style: {
             borderRadius: radius,
             display: "flex",
             justifyContent: "center",
@@ -32181,7 +32146,9 @@ var Avatar = function (_a) {
             fontWeight: "bolder",
             lineHeight: "normal",
             fontSize: font,
-        } }, typeof text == "string" ? displayText.toUpperCase() : React.createElement("div", null)))));
+        } },
+        typeof text == "string" ? displayText.toUpperCase() : React.createElement("div", null),
+        badge && React.createElement(Badge, { type: "Success", dot: true, size: "Small" })))));
 };
 
 var Popover = function (_a) {
@@ -32244,8 +32211,8 @@ var Popover = function (_a) {
         // dyPos();
     }
     useEffect(function () {
-        var ParentEle = getScrollParent$4(document.getElementById("pop_parent_" + id));
-        var GrandParentEle = getScrollParent$4(ParentEle);
+        var ParentEle = getScrollParent$3(document.getElementById("pop_parent_" + id));
+        var GrandParentEle = getScrollParent$3(ParentEle);
         function watchScroll() {
             window.addEventListener("scroll", logit);
             ParentEle === null || ParentEle === void 0 ? void 0 : ParentEle.addEventListener("scroll", logit);
@@ -32315,7 +32282,7 @@ var Popover = function (_a) {
             ? showElement("body")
             : showElement("element")));
 };
-var getScrollParent$4 = function (node) {
+var getScrollParent$3 = function (node) {
     var regex = /(auto|scroll)/;
     var parents = function (_node, ps) {
         if (_node.parentNode === null) {
@@ -33691,51 +33658,27 @@ var Modal = function (_a) {
 };
 
 var ActionList = function (_a) {
-    var sections = _a.sections, activator = _a.activator, _b = _a.direction, direction = _b === void 0 ? "left" : _b, _c = _a.popoverContainer, popoverContainer = _c === void 0 ? "body" : _c, _d = _a.open, open = _d === void 0 ? false : _d, onClose = _a.onClose, primaryAction = _a.primaryAction, _e = _a.dropDownheight, dropDownheight = _e === void 0 ? 250 : _e, secondaryAction = _a.secondaryAction;
+    var sections = _a.sections, activator = _a.activator, _b = _a.container, container = _b === void 0 ? "body" : _b, _c = _a.open, open = _c === void 0 ? false : _c, _d = _a.onClose, onClose = _d === void 0 ? function () {
+        //
+    } : _d, _e = _a.dropDownheight, dropDownheight = _e === void 0 ? 250 : _e;
     var id = useState(function () { return Math.floor(Math.random() * 1000); })[0];
     var _f = useState(false), openState = _f[0], setOpenState = _f[1];
     var myRef = useRef();
     var myReff = useRef();
-    function renderPrimaryAction() {
-        if (primaryAction) {
-            return (React.createElement(Button, __assign({ thickness: "extraThin", content: primaryAction.content ? primaryAction.content : "Submit" }, primaryAction, { type: primaryAction.type ? primaryAction.type : "Primary" })));
-        }
-    }
-    function renderSecondaryAction() {
-        if (secondaryAction) {
-            return (React.createElement(Button, __assign({ thickness: "extraThin", content: secondaryAction.content ? secondaryAction.content : "Close" }, secondaryAction, { type: secondaryAction.type ? secondaryAction.type : "Outlined" })));
-        }
-    }
-    function renderFooter() {
-        if (primaryAction || secondaryAction) {
-            return (React.createElement("div", { className: "inte-ActionList--Footer" },
-                React.createElement(FlexLayout, { halign: "end", spacing: "tight" },
-                    renderSecondaryAction(),
-                    renderPrimaryAction())));
-        }
-    }
-    var checkAlignment = function () {
-        switch (direction) {
-            case "left":
-                return "inte-ActionList--Left";
-            case "right":
-                return "inte-ActionList--Right";
-        }
-    };
-    function myFun(event) {
+    var myFun = function (event) {
         var getPath = event.composedPath();
         var flag = true;
         for (var i = 0; i < getPath.length; i++) {
-            var element = getPath[i];
-            if (element.id == "inte-ActionList--Container_".concat(id) ||
-                element.id === "inte-ActionList--Wrapper".concat(id)) {
+            var element_1 = getPath[i];
+            if (element_1.id == "inte-ActionList--Container_".concat(id) ||
+                element_1.id === "inte-ActionList--Wrapper".concat(id)) {
                 flag = false;
             }
         }
         if (flag && open) {
-            onClose === null || onClose === void 0 ? void 0 : onClose();
+            onClose();
         }
-    }
+    };
     useEffect(function () {
         if (openState) {
             window.addEventListener("click", myFun, false);
@@ -33744,6 +33687,11 @@ var ActionList = function (_a) {
             window.removeEventListener("click", myFun, false);
         };
     }, [openState]);
+    useEffect(function () {
+        if (myReff && myReff.current) {
+            logit();
+        }
+    }, [myReff]);
     useEffect(function () {
         setOpenState(open);
     }, [open]);
@@ -33761,99 +33709,166 @@ var ActionList = function (_a) {
             : 10;
         setpositionObject(post);
     }
-    useLayoutEffect(function () {
-        var ParentEle = getScrollParent$3(document.getElementById("inte-ActionList--Container_" + id));
-        var GrandParentEle = getScrollParent$3(ParentEle);
+    useEffect(function () {
+        var ParentEle = getScrollParent$2(document.getElementById("inte-ActionList--Container_" + id));
+        var GrandParentEle = getScrollParent$2(ParentEle);
         function watchScroll() {
             window.addEventListener("scroll", logit);
             ParentEle === null || ParentEle === void 0 ? void 0 : ParentEle.addEventListener("scroll", logit);
             GrandParentEle === null || GrandParentEle === void 0 ? void 0 : GrandParentEle.addEventListener("scroll", logit);
         }
+        function watchResize() {
+            window.addEventListener("resize", logit);
+            ParentEle === null || ParentEle === void 0 ? void 0 : ParentEle.addEventListener("resize", logit);
+            GrandParentEle === null || GrandParentEle === void 0 ? void 0 : GrandParentEle.addEventListener("resize", logit);
+        }
         watchScroll();
+        watchResize();
         return function () {
             window.removeEventListener("scroll", logit);
             ParentEle === null || ParentEle === void 0 ? void 0 : ParentEle.removeEventListener("scroll", logit);
             GrandParentEle === null || GrandParentEle === void 0 ? void 0 : GrandParentEle.removeEventListener("scroll", logit);
+            window.removeEventListener("resize", logit);
+            ParentEle === null || ParentEle === void 0 ? void 0 : ParentEle.removeEventListener("resize", logit);
+            GrandParentEle === null || GrandParentEle === void 0 ? void 0 : GrandParentEle.removeEventListener("resize", logit);
         };
     });
     function dyPos() {
-        var windowWidths = window.innerWidth;
-        var remainingrightWidth = windowWidths - positionObject.right;
-        var eleWidth = positionObject.right - positionObject.x;
-        if (remainingrightWidth > positionObject.width) {
-            var x = "inte-ActionList--Left";
+        var _a, _b;
+        var windowheight = window.innerHeight; //Window Height
+        var windowWidth = window.innerWidth; //Window Width
+        var posactivator = positionObject.bottom; // position of elemet from Top
+        var remainingBottomheight = windowheight - posactivator; // Remaining Bottom Space When Portal Opens
+        var portalHeight = (_b = (_a = myReff.current) === null || _a === void 0 ? void 0 : _a.offsetHeight) !== null && _b !== void 0 ? _b : 0; // Portal Element Height scroll bottom to top
+        if (portalHeight > remainingBottomheight) {
+            var x = "inte-ActionList--top";
+            if (windowWidth > positionObject.left + 250) {
+                return {
+                    class: x,
+                    style: {
+                        left: positionObject.left,
+                        top: positionObject.top - portalHeight - 5,
+                    },
+                };
+            }
+            else {
+                if (windowWidth > positionObject.left + 250) {
+                    return {
+                        class: x,
+                        style: {
+                            left: positionObject.left,
+                            top: positionObject.top - portalHeight - 5,
+                        },
+                    };
+                }
+                else {
+                    if (positionObject.left + positionObject.width <= 250) {
+                        return {
+                            class: x,
+                            style: {
+                                left: positionObject.left - (250 - positionObject.width) / 2 + 2,
+                                top: positionObject.top - portalHeight - 5,
+                            },
+                        };
+                    }
+                    else {
+                        return {
+                            class: x,
+                            style: {
+                                left: positionObject.left + positionObject.width - 250,
+                                top: positionObject.top - portalHeight - 5,
+                            },
+                        };
+                    }
+                }
+            }
+        }
+        else {
+            var x = "inte-ActionList--bottom";
+            if (windowWidth > positionObject.left + 250) {
+                return {
+                    class: x,
+                    style: {
+                        left: positionObject.left,
+                        top: positionObject.top + positionObject.height + 5,
+                    },
+                };
+            }
+            else {
+                if (positionObject.left + positionObject.width <= 250) {
+                    return {
+                        class: x,
+                        style: {
+                            left: positionObject.left - (250 - positionObject.width) / 2 + 2,
+                            top: positionObject.top + positionObject.height + 5,
+                        },
+                    };
+                }
+                else {
+                    return {
+                        class: x,
+                        style: {
+                            left: positionObject.left + positionObject.width - 250,
+                            top: positionObject.top + positionObject.height + 5,
+                        },
+                    };
+                }
+            }
+        }
+    }
+    var element = function () {
+        var windowWidth = window.innerWidth;
+        if (windowWidth >= positionObject.left + 250) {
+            var left = "inte-ActionList--Left";
             return {
-                class: x,
-                style: {
-                    left: positionObject.right - eleWidth,
-                    top: positionObject.top + positionObject.height + 5,
-                },
+                class: left,
             };
         }
         else {
-            var x = "inte-ActionList--Right";
+            var right = "inte-ActionList--Right";
             return {
-                class: x,
-                style: {
-                    left: positionObject.right - 250,
-                    top: positionObject.top + positionObject.height + 5,
-                },
+                class: right,
             };
         }
-    }
+    };
     var pp = dyPos();
-    var popoverdirection = checkAlignment();
-    var bodyPortal = (React.createElement("div", { ref: myReff, className: "inte-ActionList--Wrapper ".concat(pp.class), id: "inte-ActionList--Wrapper" + id, style: __assign(__assign({ width: positionObject.width, position: "fixed" }, pp.style), { zIndex: 99999 }) },
-        React.createElement("ul", { style: { maxHeight: dropDownheight + "px" }, className: "inte-ActionList-section-container" }, sections === null || sections === void 0 ? void 0 : sections.map(function (items, indexs) {
-            var _a;
-            return (React.createElement("li", { key: indexs, className: "inte-ActionList-group-section" },
-                items.title && (React.createElement("div", { className: "inte-ActionList__Heading" }, items.title)),
-                React.createElement("ul", { className: "inte-ActionList-group-container" }, (_a = items.items) === null || _a === void 0 ? void 0 : _a.map(function (item, index) {
-                    return (React.createElement("li", { key: index, className: "inte-ActionList-group ".concat(item.destructive ? "inte-ActionList--Destrctive" : ""), onClick: function () {
-                            item.onClick();
-                            // setOpenState(false);
-                        } },
-                        React.createElement("div", { className: "inte-ActionList__Content" },
-                            item.prefixIcon && (React.createElement("div", { className: "inte-ActionList__icon inte-ActionList__iconPrefix" }, item.prefixIcon)),
-                            React.createElement("div", { className: "inte-ActionList__ContentText" },
-                                React.createElement("p", { className: "inte-ActionList__Title" }, item.content),
-                                item.description && (React.createElement("p", { className: "inte-ActionList__Description" }, item.description))),
-                            item.suffixIcon && (React.createElement("div", { className: "inte-ActionList__icon inte-ActionList__iconSuffix" }, item.suffixIcon)))));
-                }))));
-        })),
-        renderFooter()));
-    var elementPortal = (React.createElement("div", { ref: myReff, className: "inte-ActionList--Wrapper", id: "inte-ActionList--Wrapper" + id },
-        React.createElement("ul", { style: { maxHeight: dropDownheight + "px" }, className: "inte-ActionList-section-container" }, sections === null || sections === void 0 ? void 0 : sections.map(function (items, indexs) {
-            var _a;
-            return (React.createElement("li", { key: indexs, className: "inte-ActionList-group-section" },
-                items.title && (React.createElement("div", { className: "inte-ActionList__Heading" }, items.title)),
-                React.createElement("ul", { className: "inte-ActionList-group-container" }, (_a = items.items) === null || _a === void 0 ? void 0 : _a.map(function (item, index) {
-                    return (React.createElement("li", { key: index, className: "inte-ActionList-group ".concat(item.destructive ? "inte-ActionList--Destrctive" : ""), onClick: function () {
-                            item.onClick();
-                            // setOpenState(false);
-                        } },
-                        React.createElement("div", { className: "inte-ActionList__Content" },
-                            item.prefixIcon && (React.createElement("div", { className: "inte-ActionList__icon inte-ActionList__iconPrefix" },
-                                React.createElement(React.Fragment, null, item.prefixIcon))),
-                            React.createElement("div", { className: "inte-ActionList__ContentText" },
-                                React.createElement("p", { className: "inte-ActionList__Title" }, item.content),
-                                item.description && (React.createElement("p", { className: "inte-ActionList__Description" }, item.description)))),
-                        item.suffixIcon && (React.createElement("div", { className: "inte-ActionList__icon inte-ActionList__iconSuffix" },
-                            React.createElement(React.Fragment, null, item.suffixIcon)))));
-                }))));
-        })),
-        renderFooter()));
-    return (React.createElement("div", { ref: myRef, id: "inte-ActionList--Container_" + id, className: "inte-ActionList--Container ".concat(popoverdirection), onClick: function () {
+    var ele = element();
+    var dropdownItem = (React.createElement("ul", { style: { maxHeight: dropDownheight + "px" }, className: "inte-ActionList-section-container" }, sections === null || sections === void 0 ? void 0 : sections.map(function (items, indexs) {
+        var _a;
+        return (React.createElement("li", { key: indexs, className: "inte-ActionList-group-section" },
+            items.title && (React.createElement("div", { className: "inte-ActionList__Heading" }, items.title)),
+            React.createElement("ul", { className: "inte-ActionList-group-container" }, (_a = items.items) === null || _a === void 0 ? void 0 : _a.map(function (item, index) {
+                return (React.createElement("li", { key: index, className: "inte-ActionList-group ".concat(item.destructive ? "inte-ActionList--Destrctive" : ""), onClick: function () {
+                        item.onClick();
+                        // setOpenState(false);
+                    } },
+                    React.createElement("div", { className: "inte-ActionList__Content" },
+                        item.prefixIcon && (React.createElement("div", { className: "inte-ActionList__icon inte-ActionList__iconPrefix" }, item.prefixIcon)),
+                        React.createElement("div", { className: "inte-ActionList__ContentText" },
+                            React.createElement("p", { className: "inte-ActionList__Title" }, item.content),
+                            item.description && (React.createElement("p", { className: "inte-ActionList__Description" }, item.description))),
+                        item.suffixIcon && (React.createElement("div", { className: "inte-ActionList__icon inte-ActionList__iconSuffix" }, item.suffixIcon)))));
+            }))));
+    })));
+    var bodyPortal = (React.createElement("div", { ref: myReff, className: "inte-ActionList--Wrapper  ".concat(pp.class, " "), id: "inte-ActionList--Wrapper" + id, style: __assign(__assign({ visibility: "".concat(openState ? "visible" : "hidden"), 
+            // width: positionObject.width,
+            position: "fixed" }, pp.style), { zIndex: 99999 }) }, dropdownItem));
+    var elementPortal = (React.createElement("div", { ref: myReff, className: "inte-ActionList--Wrapper ".concat(ele.class), id: "inte-ActionList--Wrapper" + id, style: {
+            display: "".concat(openState ? "block" : "none"),
+        } }, dropdownItem));
+    return (React.createElement("div", { ref: myRef, id: "inte-ActionList--Container_" + id, className: "inte-ActionList--Container", onClick: function () {
             logit();
         } },
         activator,
         !openState
-            ? null
-            : popoverContainer == "body"
+            ? container == "element"
+                ? elementPortal
+                : bodyPortal
+            : container == "body"
                 ? reactDom_1(bodyPortal, document.body)
                 : elementPortal));
 };
-var getScrollParent$3 = function (node) {
+var getScrollParent$2 = function (node) {
     var regex = /(auto|scroll)/;
     var parents = function (_node, ps) {
         if (_node.parentNode === null) {
@@ -33883,6 +33898,41 @@ var getScrollParent$3 = function (node) {
         return document.scrollingElement || document.documentElement;
     };
     return scrollParent(node);
+};
+
+function Switcher(_a) {
+    var list = _a.list, icon = _a.icon, _b = _a.direction, direction = _b === void 0 ? "left" : _b, props = __rest(_a, ["list", "icon", "direction"]);
+    var _c = useState(false), toggle = _c[0], setToggle = _c[1];
+    var div_id = useState(function () { return "-" + Math.floor(Math.random() * 1000); })[0];
+    function myFun(event) {
+        var getPath = event.composedPath();
+        var flag = true;
+        getPath.forEach(function (element) {
+            if (element.id === "inte--Switcher" + div_id) {
+                flag = false;
+            }
+        });
+        if (flag)
+            setToggle(false);
+    }
+    useEffect(function () {
+        if (toggle) {
+            window.addEventListener("click", myFun, false);
+        }
+        return function () {
+            window.removeEventListener("click", myFun, false);
+        };
+    }, [toggle]);
+    return (React.createElement("div", { id: "inte--Switcher" + div_id, className: toggle
+            ? "inte--Switcher inte--Switcher-Open"
+            : "inte--Switcher" },
+        React.createElement(Button, { type: "Outlined", disable: props.disable, loading: props.loading, icon: icon, iconAlign: "left", thickness: props.thickness, onClick: function () {
+                setToggle(!toggle);
+            } }, props.title),
+        React.createElement("ul", { className: "inte--Switcher__Popover ".concat("inte--Switcher__Popover--" + direction), style: { display: toggle ? "block" : "none" } }, list.map(function (e, key) { return (React.createElement("li", { key: key, onClick: function () { return setToggle(!toggle); } }, e.icon != undefined ? (React.createElement(Button, { type: "Outlined", icon: e.icon, onClick: e.onClick, iconAlign: "left" }, e.label)) : (React.createElement(Button, { type: "Outlined", onClick: e.onClick }, e.label)))); }))));
+}
+Switcher.defaultProps = {
+    children: "",
 };
 
 /** @license React v16.13.1
@@ -35282,8 +35332,7 @@ var TextField = function (_a) {
         var a = React.createElement(React.Fragment, null, props.value);
         return a;
     };
-    var numValur = numIncrement;
-    console.log(numValur);
+    // console.log(numValur);
     var getInput = function () { return (React.createElement(React.Fragment, null,
         React.createElement("input", { style: {
                 paddingLeft: innerPreIConWidth + "px",
@@ -35319,7 +35368,7 @@ var TextField = function (_a) {
                 React.createElement("span", { onClick: numIncrement, className: "inte-formElement-SpinnerTop" },
                     React.createElement(ChevronUp, { size: 20, color: "#1c2433" })),
                 React.createElement("span", { className: "inte-formElement-SpinnerBottom" },
-                    React.createElement(ChevronDown, { size: 20, color: "#1c2433" })))) : (""))),
+                    React.createElement(ChevronDown$1, { size: 20, color: "#1c2433" })))) : (""))),
         props.showHelp && (React.createElement("span", { className: "inte-form__itemHelp ".concat(helpIcon ? "inte-form__itemHelp--HasHelpIcon" : "") },
             helpIcon && React.createElement("span", { style: { display: "flex" } }, helpIcon),
             React.createElement("span", null, props.showHelp)))));
@@ -35367,39 +35416,259 @@ var TextArea = function (_a) {
         showHelp ? (React.createElement("span", { className: "inte-form__itemHelp" }, showHelp)) : ("")));
 };
 
-function Select(_a) {
-    var _b = _a.options, options = _b === void 0 ? [] : _b, _c = _a.onChange, onChange = _c === void 0 ? function () { return null; } : _c, _d = _a.value, value = _d === void 0 ? "" : _d, selectHelp = _a.selectHelp, _e = _a.name, name = _e === void 0 ? "" : _e, _f = _a.placeholder, placeholder = _f === void 0 ? "Select" : _f, _g = _a.disabled, disabled = _g === void 0 ? false : _g, _h = _a.searchEable, searchEable = _h === void 0 ? false : _h, _j = _a.loading, loading = _j === void 0 ? false : _j, _k = _a.ellipsis, ellipsis = _k === void 0 ? true : _k, helpIcon = _a.helpIcon, controlStates = _a.controlStates, _l = _a.position, position = _l === void 0 ? "bottom" : _l, _m = _a.popoverContainer, popoverContainer = _m === void 0 ? "body" : _m, _o = _a.required, required = _o === void 0 ? false : _o, _p = _a.customClass, customClass = _p === void 0 ? "" : _p, props = __rest(_a, ["options", "onChange", "value", "selectHelp", "name", "placeholder", "disabled", "searchEable", "loading", "ellipsis", "helpIcon", "controlStates", "position", "popoverContainer", "required", "customClass"]);
-    var _q = useState(false), displayMenu = _q[0], setdisplayMenu = _q[1];
-    var id = useState(function () { return "-" + Math.floor(Math.random() * 1000); })[0];
-    var _r = useState(""), searchValue = _r[0], updateSearch = _r[1];
-    var _s = useState([]), setClick = _s[0], setClicked = _s[1];
-    var myRef = useRef();
-    var myReff = useRef();
-    var listRef = useRef();
+var Search = function (props) {
+    var _a;
+    return (React.createElement("svg", { width: props.size, height: props.size, viewBox: "0 0 24 25", fill: "none", xmlns: "http://www.w3.org/2000/svg" },
+        React.createElement("path", { d: "M21 21.9365L16.65 17.5865M19 11.9365C19 16.3548 15.4183 19.9365 11 19.9365C6.58172 19.9365 3 16.3548 3 11.9365C3 7.51825 6.58172 3.93652 11 3.93652C15.4183 3.93652 19 7.51825 19 11.9365Z", stroke: (_a = props.color) !== null && _a !== void 0 ? _a : "#1C2433", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" })));
+};
+var ChevronDown = function (props) {
+    var _a;
+    return (React.createElement("svg", { width: props.size, height: props.size, viewBox: "0 0 24 25", fill: "none", xmlns: "http://www.w3.org/2000/svg" },
+        React.createElement("path", { d: "M6 9.93652L12 15.9365L18 9.93652", stroke: (_a = props.color) !== null && _a !== void 0 ? _a : "#1C2433", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" })));
+};
+var Check = function (props) {
+    var _a;
+    return (React.createElement("svg", { width: props.size, height: props.size, viewBox: "0 0 24 25", fill: "none", xmlns: "http://www.w3.org/2000/svg" },
+        React.createElement("path", { d: "M20 6.93652L9 17.9365L4 12.9365", stroke: (_a = props.color) !== null && _a !== void 0 ? _a : "#1C2433", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" })));
+};
+
+var Select = function (_a) {
+    var _b, _c;
+    var helperText = _a.helperText, label = _a.label, _d = _a.options, options = _d === void 0 ? [] : _d, multiSelect = _a.multiSelect, searchable = _a.searchable, _e = _a.required, required = _e === void 0 ? false : _e, helpIcon = _a.helpIcon, _f = _a.loading, loading = _f === void 0 ? false : _f, controlStates = _a.controlStates, _g = _a.disabled, disabled = _g === void 0 ? false : _g, _h = _a.clearable, clearable = _h === void 0 ? false : _h, _j = _a.container, container = _j === void 0 ? "body" : _j, placeholder = _a.placeholder, _k = _a.ellipsis, ellipsis = _k === void 0 ? true : _k, _l = _a.customClass, customClass = _l === void 0 ? "" : _l, _m = _a.debounceTimer, debounceTimer = _m === void 0 ? 500 : _m; _a.onChange; var // customRef,
+    tabIndex = _a.tabIndex; __rest(_a, ["helperText", "label", "options", "multiSelect", "searchable", "required", "helpIcon", "loading", "controlStates", "disabled", "clearable", "container", "placeholder", "ellipsis", "customClass", "debounceTimer", "onChange", "tabIndex"]);
+    var _p = useState(options), optionsToShow = _p[0], setOptionsToShow = _p[1];
+    var _q = useState(""), inputValue = _q[0], setInputValue = _q[1];
+    var _r = useState(false), dropdownActive = _r[0], setDropdownActive = _r[1];
+    var _s = useState([]), selectedOptions = _s[0], setSelectedOptions = _s[1];
+    var _t = useState(false), isLoading = _t[0], setisLoading = _t[1];
+    var userInputRef = useRef(null);
+    var selectBoxRef = useRef(null);
+    var clearBtnRef = useRef(null);
+    var dropdownListRef = useRef(null);
+    var portalDropdownListRef = useRef(null);
+    var customRef = useRef(null);
     useEffect(function () {
-        console.log(listRef.current);
+        window.addEventListener("click", clickingOutsideSelectBox, true);
+        window.addEventListener("click", clickingInsideSelectBox, true);
+        window.addEventListener("scroll", scrollWindow, true);
+        window.addEventListener("resize", scrollWindow, true);
+        scrollWindow();
+        return function () {
+            window.removeEventListener("click", clickingOutsideSelectBox, true);
+            window.removeEventListener("click", clickingInsideSelectBox, true);
+            window.removeEventListener("scroll", scrollWindow, true);
+            window.removeEventListener("resize", scrollWindow, true);
+        };
     }, []);
-    var parentRef = useRef(null);
-    useEffect(function () {
-        if (parentRef && parentRef.current) {
-            logit();
-        }
-    }, [parentRef]);
-    var onblur = function () {
-        if (props.onblur) {
-            props.onblur();
+    // Clicking outside of select box
+    var clickingOutsideSelectBox = function (e) {
+        var _a, _b;
+        !((_a = selectBoxRef.current) === null || _a === void 0 ? void 0 : _a.contains(e.target)) &&
+            !((_b = portalDropdownListRef.current) === null || _b === void 0 ? void 0 : _b.contains(e.target)) &&
+            setDropdownActive(false);
+    };
+    /*Clicking on select box block starts*/
+    // Clicking inside of select box
+    var clickingInsideSelectBox = function (e) {
+        var selectBox = selectBoxRef.current;
+        var clearBtn = clearBtnRef.current;
+        var dropdownList = dropdownListRef.current;
+        if ((selectBox === null || selectBox === void 0 ? void 0 : selectBox.contains(e.target)) && !(clearBtn === null || clearBtn === void 0 ? void 0 : clearBtn.contains(e.target)) && !(dropdownList === null || dropdownList === void 0 ? void 0 : dropdownList.contains(e.target))) {
+            setDropdownActive(function (prev) { return !prev; });
         }
     };
-    function getPosition() {
-        switch (position) {
-            case "top":
-                return "inte-select--top";
-            case "bottom":
-                return "inte-select-bottom";
-            default:
-                return "";
-        }
+    // Clicking on select box for disable and loading
+    var insideSelectClickHandler = function () {
+        var _a;
+        searchable && !disabled && ((_a = userInputRef.current) === null || _a === void 0 ? void 0 : _a.focus());
+        disabled && setDropdownActive(false);
+    };
+    // Group Options
+    function MoldGroupOptions(group) {
+        return group.map(function (option) {
+            var isSelectedOption = selectedOptions.includes("".concat(option.label, ".").concat(option.value))
+                ? true
+                : false;
+            return (React.createElement("li", { className: "inte-Select__Select--Item inte-Select__Select--Item-List ".concat(isSelectedOption
+                    ? !multiSelect
+                        ? "inte-select-box__dropdown-card__item--active"
+                        : ""
+                    : "", " ").concat(multiSelect && "inte-Select__Select--Item-DescList"), key: option.value, value: option.value, onClick: function () { return dropdownItemClickHandler(option); } },
+                multiSelect && (React.createElement("span", { style: { visibility: isSelectedOption ? "visible" : "hidden" } },
+                    React.createElement(Check, { size: "20", color: "#413BBC" }))),
+                React.createElement(TextStyles, { utility: isSelectedOption
+                        ? "".concat(!multiSelect
+                            ? "inte-Select__Select--ItemHeading-active"
+                            : "inte-Select__Select--ItemHeading")
+                        : "inte-Select__Select--ItemHeading", textcolor: "dark" }, option.label)));
+        });
     }
+    // Render group data like label , group
+    var renderGroupData = function (item, index) {
+        return (React.createElement("li", { className: item.group
+                ? "inte-Select__Select--Item inte-Select__Select--ItemGrouped"
+                : "inte-Select__Select--Item", key: "".concat(item.label, ".").concat(item.value, ".").concat(index) },
+            React.createElement(FlexLayout, { halign: "fill" },
+                React.createElement(TextStyles, { utility: "inte-Select__Select--ItemHeading", textcolor: "light" }, item.label),
+                React.createElement(Badge, { badgeTextColor: "light", size: "Small", customBgColor: "var(--inte-P900)" }, item.group.length)),
+            React.createElement("ol", { className: "inte-Select__Select--ItemGroupItem" }, MoldGroupOptions(item.group))));
+    };
+    // Render simple data like label,value
+    var renderSimpleData = function (item, index) {
+        var isSelectedOption = selectedOptions.includes("".concat(item.label, ".").concat(item.value))
+            ? true
+            : false;
+        return (React.createElement("li", { className: "inte-Select__Select--Item inte-Select__Select--Item-List ".concat(isSelectedOption
+                ? !multiSelect
+                    ? "inte-select-box__dropdown-card__item--active"
+                    : ""
+                : "", " ").concat(multiSelect && "inte-Select__Select--Item-DescList"), key: "".concat(item.label, ".").concat(item.value, ".").concat(index), onClick: function () { return dropdownItemClickHandler(item); } },
+            multiSelect && (React.createElement("span", { style: {
+                    visibility: isSelectedOption ? "visible" : "hidden",
+                } },
+                React.createElement(Check, { size: "20", color: "#413BBC" }))),
+            React.createElement("div", null,
+                React.createElement(TextStyles, { utility: isSelectedOption
+                        ? "".concat(!multiSelect
+                            ? "inte-Select__Select--ItemHeading-active"
+                            : "inte-Select__Select--ItemHeading")
+                        : "inte-Select__Select--ItemHeading", textcolor: "dark" }, item.label),
+                item.description && (React.createElement(TextStyles, { utility: isSelectedOption
+                        ? "".concat(!multiSelect
+                            ? "inte-Select__Select--ItemDesc-active"
+                            : "inte-Select__Select--ItemDesc")
+                        : "inte-Select__Select--ItemDesc" }, item.description)))));
+    };
+    // Rendering the dropdown
+    var selectDropdownCard = function (opts) {
+        if (opts === void 0) { opts = options; }
+        return (React.createElement("ul", { style: { maxHeight: 25 + "rem" }, "aria-label": "inte-select-options", className: "inte-select-options", ref: dropdownListRef }, isLoading || loading ? (React.createElement("div", { className: "inte-select-options__loading" },
+            React.createElement(FlexLayout, { direction: "vertical", spacing: "tight" },
+                React.createElement(FlexLayout, { direction: "vertical", spacing: "extraTight" },
+                    React.createElement(Skeleton, { height: "12px", line: 1, rounded: "0%", type: "custom", width: "35%" }),
+                    React.createElement(Skeleton, { height: "12px", line: 1, rounded: "0%", type: "custom", width: "75%" })),
+                React.createElement(FlexLayout, { direction: "vertical", spacing: "extraTight" },
+                    React.createElement(Skeleton, { height: "12px", line: 1, rounded: "0%", type: "custom", width: "35%" }),
+                    React.createElement(Skeleton, { height: "12px", line: 1, rounded: "0%", type: "custom", width: "75%" }))))) : (opts === null || opts === void 0 ? void 0 : opts.length) !== 0 ? (opts === null || opts === void 0 ? void 0 : opts.map(function (item, index) {
+            return item.group
+                ? renderGroupData(item, index)
+                : renderSimpleData(item, index);
+        })) : (React.createElement("li", null,
+            React.createElement("div", { className: "inte-select-box__no-options-container" },
+                React.createElement(FlexLayout, { direction: "vertical", valign: "center" },
+                    React.createElement(FlexLayout, { halign: "center", spacing: "mediumTight" },
+                        React.createElement(Search, { size: "20", color: "var(--inte-G90)" }),
+                        React.createElement(TextStyles, { utility: "inte-select-box__no-options" }, "No result Found!")),
+                    React.createElement("div", { className: "inte-select-box__no-options-SearchTerm" },
+                        "Check your search term \"",
+                        inputValue,
+                        "\"")))))));
+    };
+    // Clicking on dropdown list items
+    var dropdownItemClickHandler = function (item, selected) {
+        if (selected === void 0) { selected = selectedOptions; }
+        var selectingOption = "".concat(item.label, ".").concat(item.value);
+        multiSelect
+            ? setSelectedOptions(function (prev) {
+                return prev.includes(selectingOption)
+                    ? prev.filter(function (data) { return data !== selectingOption; })
+                    : __spreadArray(__spreadArray([], prev, true), [selectingOption], false);
+            })
+            : setSelectedOptions(selected.find(function (data) { return data === selectingOption; }) ? [] : [selectingOption]);
+        !multiSelect && setDropdownActive(false);
+        setInputValue("");
+    };
+    /* Clicking on select box block ends*/
+    // Clicking on cut button og tag multiSelect
+    var tagCrossButtonClickHandler = function (data) {
+        setDropdownActive(function (prev) { return !prev; });
+        setSelectedOptions(function (prev) {
+            return prev.filter(function (item) { return item.split(".")[0] !== data[0]; });
+        });
+    };
+    // Checking if backspace key is pressed by user
+    var inputKeyPressHandler = function (e) {
+        e.key === "Backspace" && inputValue === "" && selectedOptions.length && setSelectedOptions(function (prev) { return prev.filter(function (item, i) { return i !== prev.length - 1; }); });
+    };
+    // Resize the input box width
+    function resizeInputBox() {
+        this.style.width = this.value.length + "ch";
+    }
+    // Searching implementation and input box width resize
+    var memoizedEffect = useCallback(function () {
+        var _a;
+        // Calling resize input function
+        (_a = userInputRef.current) === null || _a === void 0 ? void 0 : _a.addEventListener("input", resizeInputBox);
+        searchable && resizeInputBox.call(userInputRef.current);
+        inputValue.length > 0 ? setisLoading(true) : setisLoading(false);
+        // Searching from list
+        if (inputValue !== "") {
+            setDropdownActive(true);
+            var isFound = options.some(function (element) {
+                return "group" in element ? true : false;
+            });
+            if (isFound) {
+                var getData_1 = setTimeout(function () {
+                    // Making a deep copy of array , so that it does not mutted the main array
+                    var filteredArray = JSON.parse(JSON.stringify(options));
+                    filteredArray = filteredArray.filter(function (item) {
+                        item.group = item.group.filter(function (obj) {
+                            return obj.label.toLowerCase().includes(inputValue.toLowerCase());
+                        });
+                        return item.group.length > 0;
+                    });
+                    setOptionsToShow(filteredArray);
+                    setisLoading(false);
+                }, debounceTimer);
+                return function () { return clearTimeout(getData_1); };
+            }
+            else {
+                var getData_2 = setTimeout(function () {
+                    var newOpts = options === null || options === void 0 ? void 0 : options.filter(function (item) {
+                        return item.label.toLowerCase().includes(inputValue.toLowerCase());
+                    });
+                    setOptionsToShow(newOpts);
+                    setisLoading(false);
+                }, debounceTimer);
+                return function () { return clearTimeout(getData_2); };
+            }
+        }
+        else {
+            setOptionsToShow(options);
+        }
+    }, [inputValue, selectedOptions]);
+    useEffect(function () {
+        memoizedEffect();
+    }, [memoizedEffect]);
+    // Calling scroll window function
+    var memoizedScrollWindow = useCallback(function () {
+        scrollWindow();
+    }, [dropdownActive, selectedOptions, inputValue]);
+    // If Popover container body
+    useEffect(function () {
+        container === "body" && memoizedScrollWindow();
+    }, [container, memoizedScrollWindow]);
+    var scrollWindow = function () {
+        if (!selectBoxRef.current || !portalDropdownListRef.current)
+            return;
+        var clientHeight = document.documentElement.clientHeight;
+        var selectBox = selectBoxRef.current.getBoundingClientRect();
+        var portalDropdown = portalDropdownListRef.current.getBoundingClientRect();
+        portalDropdownListRef.current.style.width = "".concat((selectBox.width - 2) / 10, "rem");
+        portalDropdownListRef.current.style.left = "".concat((selectBox.left + 1) / 10, "rem");
+        if (clientHeight - selectBox.bottom > portalDropdown.height) {
+            portalDropdownListRef.current.style.top = "".concat((selectBox.bottom + 3) / 10, "rem");
+        }
+        else {
+            portalDropdownListRef.current.style.top = "".concat((selectBox.top - portalDropdown.height - 3) / 10, "rem");
+        }
+    };
+    var portalDropDownList = (React.createElement("div", { ref: portalDropdownListRef, className: "inte-select inte-select--Fixed ".concat(customClass), style: {
+            position: "fixed",
+            zIndex: 99,
+        } }, selectDropdownCard(optionsToShow)));
+    // Getting different states like warning , success
+    var controlStatesVal = controlStates && getcontrolStates(controlStates);
     function getcontrolStates(controlStates) {
         switch (controlStates) {
             case "Success":
@@ -35412,230 +35681,57 @@ function Select(_a) {
                 return "";
         }
     }
-    var controlStatesVal = getcontrolStates(controlStates);
-    function myFun(event) {
-        var getPath = event.composedPath();
-        var flag = true;
-        getPath.forEach(function (element) {
-            if (element.id === "ced-li-componenet" + id ||
-                element.id === "ced-select-componenet" + id) {
-                flag = false;
-            }
-        });
-        if (flag)
-            setdisplayMenu(false);
-    }
-    useEffect(function () {
-        if (displayMenu) {
-            window.addEventListener("click", myFun, false);
-        }
-        return function () {
-            window.removeEventListener("click", myFun, false);
-        };
-    }, [displayMenu]);
-    function showDropdownMenu() {
-        setdisplayMenu(!displayMenu);
-    }
-    function MoldGroupOptions(group) {
-        return group.filter(itWillSearchForYou).map(function (option, index) {
-            return (React.createElement("li", { ref: listRef, key: option.value, value: option.value, onClick: function (event) {
-                    onChange(option.value, option);
-                    {
-                        props.multiSelect ? setdisplayMenu(true) : setdisplayMenu(false);
-                    }
-                    updateSearch("");
-                    setClicked(index);
-                    event.stopPropagation();
-                }, className: setClick === index ? "hello" : "", id: "ced-li-componenet" + id },
-                React.createElement(TextStyles, { textcolor: "light" }, option.label)));
-        });
-    }
-    var itWillSearchForYou = function (_a) {
-        var label = _a.label, _b = _a.group, group = _b === void 0 ? [] : _b;
-        var flag = false;
-        if (Object.keys(group).length > 0) {
-            flag = group.filter(itWillSearchForYou).length > 0;
-        }
-        if (flag)
-            return true;
-        return typeof label === "string"
-            ? label.toLowerCase().search(searchValue.toLowerCase()) > -1
-            : true ;
-    };
-    function moldOptions() {
-        return options.filter(itWillSearchForYou).map(function (option) {
-            return (React.createElement("li", { className: option.group
-                    ? "inte-Select__Select--Item inte-Select__Select--ItemGrouped"
-                    : "inte-Select__Select--Item", onClick: function (e) {
-                    // onChange(option.value, option);
-                    e.stopPropagation();
-                    {
-                        props.multiSelect ? setdisplayMenu(true) : setdisplayMenu(true);
-                    }
-                    updateSearch("");
-                }, key: option.value, id: "ced-li-componenet" + id, value: option.value },
-                React.createElement(TextStyles, { utility: "inte-Select__Select--ItemHeading", textcolor: "light" }, option.label),
-                option.group ? React.createElement("ol", { className: "inte-Select__Select--ItemGroupItem" }, MoldGroupOptions(option.group)) : null));
-        });
-    }
-    var elePosition = getPosition();
-    var checkSelectedID = function () {
-        var valueNew = (React.createElement("div", { className: "inte-select-placeholder" }, placeholder));
-        options.map(function (option) {
-            if (option.value === value)
-                valueNew = option.label;
-            if (option.group)
-                option.group.map(function (e) {
-                    if (e.value === value)
-                        valueNew = e.label;
-                });
-        });
-        return valueNew;
-    };
-    var renderSearch = function () {
-        return (React.createElement("div", { className: "inte-formElement-Search", onClick: function (e) {
-                e.stopPropagation();
-                showDropdownMenu();
-            } },
-            React.createElement(TextField, { value: searchValue, autoFocus: true, onChange: function (e) {
-                    var reg = /[!@#$%^*()+\-=\[\]{};':"\\|<>\?]/g;
-                    !reg.test(e) && updateSearch(e);
-                } })));
-    };
-    var positionObjectMemo = useMemo(function () {
-        var _a, _b;
-        return ((_a = myRef.current) === null || _a === void 0 ? void 0 : _a.getBoundingClientRect())
-            ? (_b = myRef.current) === null || _b === void 0 ? void 0 : _b.getBoundingClientRect()
-            : 10;
-    }, []);
-    var _t = useState(positionObjectMemo), positionObject = _t[0], setpositionObject = _t[1];
-    function dyPos() {
-        var _a, _b;
-        var windowheight = window.innerHeight;
-        var remainingBottomheight = windowheight - positionObject.bottom;
-        var portalHeight = (_b = (_a = myReff.current) === null || _a === void 0 ? void 0 : _a.offsetHeight) !== null && _b !== void 0 ? _b : 0;
-        if (remainingBottomheight < portalHeight) {
-            var x = "select-top";
-            return {
-                class: x,
-                style: {
-                    left: positionObject.left,
-                    top: positionObject.top - portalHeight - 3,
-                },
-            };
-        }
-        else {
-            var x = "select-bottom";
-            return {
-                class: x,
-                style: {
-                    top: positionObject.top + positionObject.height + 3,
-                    left: positionObject.left,
-                },
-            };
-        }
-    }
-    var pp = dyPos();
-    var ulEle = (React.createElement("div", { ref: myReff, className: "inte-select inte-select--Fixed ".concat(pp.class, " ").concat(customClass), id: "inte-select" + id, style: __assign(__assign({ width: positionObject.width, position: "fixed" }, pp.style), { zIndex: 9999999 }) },
-        React.createElement("ul", { style: { maxHeight: 250 + "px" }, "aria-label": "inte-select-options", className: "inte-select-options" }, moldOptions())));
-    var ulElel = (React.createElement("ul", { style: { maxHeight: 250 + "px" }, id: "inte-select" + id, "aria-label": "inte-select-options", className: "".concat(searchEable
-            ? "inte__Search-Enabled inte-select-options"
-            : "inte-select-options") }, searchEable ? (React.createElement("li", { className: "inte-search--options" },
-        React.createElement("ul", null, moldOptions()))) : (moldOptions())));
-    useEffect(function () {
-        setdisplayMenu(false);
-        logit();
-    }, [open]);
-    function logit() {
-        var _a, _b;
-        var post = ((_a = myRef.current) === null || _a === void 0 ? void 0 : _a.getBoundingClientRect())
-            ? (_b = myRef.current) === null || _b === void 0 ? void 0 : _b.getBoundingClientRect()
-            : 10;
-        setpositionObject(post);
-    }
-    useEffect(function () {
-        var ParentEle = getScrollParent$2(document.getElementById("ced-select-componenet" + id));
-        var GrandParentEle = getScrollParent$2(ParentEle);
-        function watchScroll() {
-            window.addEventListener("scroll", logit);
-            ParentEle === null || ParentEle === void 0 ? void 0 : ParentEle.addEventListener("scroll", logit);
-            GrandParentEle === null || GrandParentEle === void 0 ? void 0 : GrandParentEle.addEventListener("scroll", logit);
-        }
-        function watchResize() {
-            window.addEventListener("resize", logit);
-            ParentEle === null || ParentEle === void 0 ? void 0 : ParentEle.addEventListener("resize", logit);
-            GrandParentEle === null || GrandParentEle === void 0 ? void 0 : GrandParentEle.addEventListener("resize", logit);
-        }
-        watchScroll();
-        watchResize();
-        return function () {
-            window.removeEventListener("scroll", logit);
-            ParentEle === null || ParentEle === void 0 ? void 0 : ParentEle.removeEventListener("scroll", logit);
-            GrandParentEle === null || GrandParentEle === void 0 ? void 0 : GrandParentEle.removeEventListener("scroll", logit);
-            window.removeEventListener("resize", logit);
-            ParentEle === null || ParentEle === void 0 ? void 0 : ParentEle.removeEventListener("resize", logit);
-            GrandParentEle === null || GrandParentEle === void 0 ? void 0 : GrandParentEle.removeEventListener("resize", logit);
-        };
-    });
-    return (React.createElement(React.Fragment, null,
-        React.createElement("div", { "aria-expanded": displayMenu ? "true" : "false", "data-ellipsis": ellipsis ? "inte--ellipsis" : "inte--Noellipsis", className: "inte-formElement--Wrap ".concat(controlStatesVal, "  ").concat(displayMenu ? "inte-formElement--Focus" : "") },
-            name ? (React.createElement(TextStyles, { utility: required ? "inte--Required inte-Label--Text" : "inte-Label--Text" }, name)) : null,
-            React.createElement("div", { className: "inte-formElemet--Inner" },
-                React.createElement("div", { ref: myRef, onClick: function () {
-                        if (disabled || loading)
-                            return;
-                        dyPos();
-                        showDropdownMenu();
-                        logit();
-                    }, onBlur: onblur, style: { opacity: disabled || loading ? "0.6" : "1" }, id: "ced-select-componenet" + id, className: "inte-formElement inte-select  ".concat(elePosition, " ").concat(disabled ? "inte-select--Disabled" : "") },
-                    React.createElement(React.Fragment, null,
-                        React.createElement("span", { className: "inte__Select--Selected" }, props.multiSelect ? React.createElement(Tag, { destroy: function () { return alert("destryed"); }, children: checkSelectedID() }) : React.createElement(React.Fragment, null, checkSelectedID())),
-                        searchEable && renderSearch(),
-                        React.createElement("div", { className: "inte-formElemet__Arrow" },
-                            React.createElement(ChevronDown, { size: 20, strokeWidth: 2.5, color: "currentColor" }))),
-                    !displayMenu ? (React.createElement("div", { ref: myReff, className: "inte-select inte-select--Fixed inte-select--Fake", id: "inte-select" + id, style: {
-                            width: positionObject.width,
-                            position: "fixed",
-                            zIndex: 999,
-                            visibility: "hidden",
-                            opacity: 0,
-                        } },
-                        React.createElement("ul", { style: { maxHeight: 250 + "px" }, "aria-label": "inte-select-options", className: "inte-select-options" }, moldOptions()))) : popoverContainer == "body" ? (reactDom_1(ulEle, document.body)) : (ulElel),
-                    loading ? React.createElement("div", { className: "inte-loading" }) : null)),
-            selectHelp && (React.createElement("span", { className: "inte-form__itemHelp ".concat(helpIcon && "inte-form__itemHelp--HasHelpIcon") },
-                helpIcon && React.createElement("span", { style: { display: "flex" } }, helpIcon),
-                React.createElement("span", null, selectHelp))))));
-}
-var getScrollParent$2 = function (node) {
-    var regex = /(auto|scroll)/;
-    var parents = function (_node, ps) {
-        if (_node.parentNode === null) {
-            return ps;
-        }
-        return parents(_node.parentNode, ps.concat([_node]));
-    };
-    var style = function (_node, prop) {
-        return getComputedStyle(_node, null).getPropertyValue(prop);
-    };
-    var overflow = function (_node) {
-        return style(_node, "overflow") +
-            style(_node, "overflow-y") +
-            style(_node, "overflow-x");
-    };
-    var scroll = function (_node) { return regex.test(overflow(_node)); };
-    var scrollParent = function (_node) {
-        if (!(_node instanceof HTMLElement || _node instanceof SVGElement)) {
-            return;
-        }
-        var ps = parents(_node.parentNode, []);
-        for (var i = 0; i < ps.length; i += 1) {
-            if (scroll(ps[i])) {
-                return ps[i];
-            }
-        }
-        return document.scrollingElement || document.documentElement;
-    };
-    return scrollParent(node);
+    return (React.createElement("div", { className: "inte-formElement--Wrap", "aria-expanded": dropdownActive ? "true" : "false" },
+        label && (React.createElement(TextStyles, { utility: required ? "inte--Required inte-Label--Text" : "inte-Label--Text" }, label)),
+        React.createElement("div", { className: "inte-formElemet--Inner ".concat(controlStates ? controlStatesVal : "", " ").concat(dropdownActive ? "inte-formElement--Focus" : ""), ref: selectBoxRef, "data-ellipsis": ellipsis ? "inte--ellipsis" : "inte--Noellipsis", onClick: function () { return insideSelectClickHandler(); }, tabIndex: tabIndex },
+            React.createElement("div", { className: "inte-formElemet--Inner-select inte-formElement inte-select inte-formElemet--Inner-select-Box \n                    ".concat(multiSelect
+                    ? controlStates === "Error"
+                        ? "inte-formElemet--Inner-select-multi-error"
+                        : "inte-formElemet--Inner-select-multi"
+                    : controlStates === "Error"
+                        ? "inte-formElemet--Inner-select-single-error"
+                        : "inte-formElemet--Inner-select-single", " ").concat(disabled ? "inte-select--Disabled" : ""), ref: customRef },
+                !multiSelect ? (React.createElement("span", { className: "inte__Select--Selected" },
+                    searchable && (React.createElement("input", { className: "inte-select-box__input ".concat(disabled ? "inte-select--Disabled" : ""), style: { minWidth: "0.1rem" }, autoComplete: "off", onKeyDown: function (e) { return inputKeyPressHandler(e); }, type: "text", ref: userInputRef, value: inputValue, onChange: function (e) {
+                            setInputValue(e.target.value);
+                        }, disabled: disabled })),
+                    inputValue === "" ? (selectedOptions.length === 0 ? (React.createElement("span", { className: "".concat(disabled
+                            ? "inte-select--PlaceholderDisabled"
+                            : "inte-select-placeholder") }, placeholder)) : ((_b = selectedOptions[0]) === null || _b === void 0 ? void 0 : _b.split(".")[0])) : (!searchable && ((_c = selectedOptions[0]) === null || _c === void 0 ? void 0 : _c.split(".")[0])))) : (React.createElement("div", { className: "inte__Select--Selected_tags ".concat(disabled
+                        ? "inte__Select--Selected_tags inte__Select--Selected_tags--disabled"
+                        : "") },
+                    selectedOptions.map(function (item, index) { return (React.createElement(Tag, { key: index, destroy: function () {
+                            return !disabled && tagCrossButtonClickHandler(item.split("."));
+                        }, children: item.split(".")[0], disabled: disabled })); }),
+                    React.createElement("div", null,
+                        searchable && (React.createElement("input", { className: "inte-select-box__input ".concat(disabled ? "inte-select--Disabled" : ""), style: { minWidth: "0.1rem" }, autoComplete: "off", onKeyDown: function (e) { return inputKeyPressHandler(e); }, type: "text", ref: userInputRef, value: inputValue, onChange: function (e) {
+                                setInputValue(e.target.value);
+                            }, disabled: disabled })),
+                        selectedOptions.length === 0 && inputValue.length === 0 && (React.createElement("span", { className: "".concat(disabled
+                                ? "inte-select--PlaceholderDisabled"
+                                : "inte-select-placeholder"), onClick: function () { return setDropdownActive(function (prev) { return !prev; }); } }, placeholder))))),
+                React.createElement("div", { className: "inte-select-box__controls" },
+                    loading && (React.createElement("div", { className: "inte-loading inte-select-loading" })),
+                    selectedOptions.length > 0 && (React.createElement("button", { className: "inte-select-box__input--clear", onClick: function () {
+                            setSelectedOptions([]);
+                        }, style: {
+                            visibility: clearable ? "visible" : "hidden",
+                        }, ref: clearBtnRef },
+                        React.createElement("svg", { width: "18", height: "18", viewBox: "0 0 18 18", fill: "none", xmlns: "http://www.w3.org/2000/svg" },
+                            React.createElement("rect", { x: "0.671143", y: "0.666992", width: "16.666", height: "16.6667", rx: "8.33302", fill: "#E0E1E3" }),
+                            React.createElement("path", { fillRule: "evenodd", clipRule: "evenodd", d: "M5.88298 5.87957C6.1664 5.59613 6.62591 5.59613 6.90933 5.87957L9.00362 7.97393L11.0979 5.87957C11.3813 5.59613 11.8408 5.59613 12.1243 5.87957C12.4077 6.163 12.4077 6.62253 12.1243 6.90596L10.03 9.00032L12.1243 11.0947C12.4077 11.3781 12.4077 11.8377 12.1243 12.1211C11.8408 12.4045 11.3813 12.4045 11.0979 12.1211L9.00362 10.0267L6.90933 12.1211C6.62591 12.4045 6.1664 12.4045 5.88298 12.1211C5.59956 11.8377 5.59956 11.3781 5.88298 11.0947L7.97726 9.00032L5.88298 6.90596C5.59956 6.62253 5.59956 6.163 5.88298 5.87957Z", fill: "#1C2433" })))),
+                    React.createElement("div", { className: "inte-formElemet__Arrow" },
+                        React.createElement(ChevronDown, { size: "20", color: dropdownActive
+                                ? "#1C2433"
+                                : "".concat(disabled ? "#E0E1E3" : "#8C9098") }))),
+                dropdownActive
+                    ? container === "element"
+                        ? selectDropdownCard(optionsToShow)
+                        : reactDom_1(portalDropDownList, document.body)
+                    : null)),
+        !dropdownActive && helperText && (React.createElement("span", { className: "inte-form__itemHelp ".concat(helpIcon ? "inte-form__itemHelp--HasHelpIcon" : "") },
+            helpIcon && React.createElement("span", { style: { display: "flex" } }, helpIcon),
+            React.createElement("span", { style: { color: "".concat(controlStates === "Error" ? "#C4281C" : "") } }, helperText)))));
 };
 
 function ChoiceList(_a) {
@@ -35718,7 +35814,7 @@ function ChoiceList(_a) {
     }
     var renderSearch = function () {
         return (React.createElement("div", { id: "ced-li-componenet" + id, onClick: function (e) { return e.stopPropagation(); } },
-            React.createElement(TextField, { prefix: React.createElement(Search, { size: 20, color: "#70747e" }), value: searchValue, placeHolder: "Search", autoFocus: true, onChange: function (e) {
+            React.createElement(TextField, { prefix: React.createElement(Search$1, { size: 20, color: "#70747e" }), value: searchValue, placeHolder: "Search", autoFocus: true, onChange: function (e) {
                     var reg = /[!@#$%^&*()+\-=\[\]{};':"\\|<>\/?]/g;
                     !reg.test(e) && updateSearch(e);
                 } })));
@@ -35847,7 +35943,7 @@ function ChoiceList(_a) {
                     showBadges ? React.createElement(React.Fragment, null, checkSelectedID()) : null,
                     React.createElement("div", { className: "inte-formElemet--Inner" }, placeholder ? React.createElement(TextStyles, null, placeholder) : ""),
                     React.createElement("div", { className: "inte-formElemet__Arrow" },
-                        React.createElement(ChevronDown, { size: 20, strokeWidth: 2.5, color: "#3b424f" })),
+                        React.createElement(ChevronDown$1, { size: 20, strokeWidth: 2.5, color: "#3b424f" })),
                     !displayMenu ? (React.createElement("div", { ref: myReff, className: "inte-select inte-select--Fixed  inte-select--Fake", id: "inte-select" + id, style: {
                             width: positionObject.width,
                             position: "fixed",
@@ -35938,7 +36034,7 @@ var Pagination = function (_a) {
                 React.createElement(FlexLayout, { spacing: "mediumTight", valign: "center" },
                     React.createElement(TextStyles, null, "Items : "),
                     React.createElement("div", { className: "inte-Pagination-perPage--Sorter" },
-                        React.createElement(Select, { customClass: "inte-Pagination--perPage", options: optionPerPage, popoverContainer: "body", onChange: function (e) {
+                        React.createElement(Select, { customClass: "inte-Pagination--perPage", options: optionPerPage, container: "body", onChange: function (e) {
                                 onCountChange(parseInt(e));
                             }, placeholder: countPerPage, value: countPerPage })),
                     React.createElement(TextStyles, { textcolor: "light" },
@@ -36108,7 +36204,7 @@ var RenderFilters = function (_a, index) {
                 } },
                 React.createElement(FlexLayout, { halign: "fill", valign: "center" },
                     React.createElement(TextStyles, null, name),
-                    active ? (React.createElement(ChevronUp, { size: 20, color: "#2a2a2a" })) : (React.createElement(ChevronDown, { size: 20, color: "#2a2a2a" }))))),
+                    active ? (React.createElement(ChevronUp, { size: 20, color: "#2a2a2a" })) : (React.createElement(ChevronDown$1, { size: 20, color: "#2a2a2a" }))))),
         active ? (React.createElement("div", { className: "inte__accordion--active inte__accordion" },
             React.createElement("div", { className: "inte-FilterSheet--BodyAccordion-Body" }, children))) : null));
 };
@@ -36212,15 +36308,16 @@ var Loader = function (_a) {
     return (React.createElement(React.Fragment, null, type === "Loader3" ? (React.createElement(Loader3, null)) : type === "Loader2" ? (React.createElement(Loader2, null)) : (React.createElement(Loader1, null))));
 };
 
-function Switcher(_a) {
+function Toggle(_a) {
     var checked = _a.checked, _b = _a.onChange, onChange = _b === void 0 ? function () {
         // Use / Click This function and switcher ON or OFF / true or false
         // The onclick event occurs when the user clicks on an element.
-    } : _b, name = _a.name, _c = _a.disabled, disabled = _c === void 0 ? false : _c, _d = _a.textAligh, textAligh = _d === void 0 ? "left" : _d, className = _a.className;
-    return (React.createElement("div", { className: "inte__Switcher--Wrapper ".concat(className) },
-        name && textAligh === "left" ? (React.createElement("span", { className: "inte__Switcher-Text" }, name)) : null,
-        React.createElement("input", { disabled: disabled, type: "checkbox", className: "inte--switcher", checked: checked, onChange: onChange }),
-        name && textAligh === "right" ? (React.createElement("span", { className: "inte__Switcher-Text" }, name)) : null));
+    } : _b, label = _a.label, description = _a.description, _c = _a.disabled, disabled = _c === void 0 ? false : _c, required = _a.required, _d = _a.className, className = _d === void 0 ? "" : _d;
+    return (React.createElement("div", { className: "inte__Toggle--Wrapper ".concat(className, " ").concat(required ? "inte__Toggle--Required" : "") },
+        React.createElement("input", { disabled: disabled, type: "checkbox", className: "inte--Toggle", checked: checked, onChange: onChange }),
+        label || description ? (React.createElement("div", { className: "inte__Toggle--Content" },
+            label && React.createElement("span", { className: "inte__Toggle-Text" }, label),
+            description && (React.createElement("span", { className: "inte__Toggle-Description" }, description)))) : null));
 }
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -36265,7 +36362,7 @@ var Carousel = function (_a) {
 };
 
 function AutoComplete(_a) {
-    var options = _a.options, _b = _a.value, value = _b === void 0 ? "" : _b, onChange = _a.onChange, onClick = _a.onClick, onEnter = _a.onEnter, name = _a.name, _c = _a.prefix, prefix = _c === void 0 ? React.createElement(Search, { size: 20, color: "#7e828b" }) : _c, suffix = _a.suffix, showHelp = _a.showHelp, setHiglighted = _a.setHiglighted, placeHolder = _a.placeHolder, _d = _a.loading, loading = _d === void 0 ? false : _d, extraClass = _a.extraClass, _e = _a.popoverPosition, popoverPosition = _e === void 0 ? "right" : _e, props = __rest(_a, ["options", "value", "onChange", "onClick", "onEnter", "name", "prefix", "suffix", "showHelp", "setHiglighted", "placeHolder", "loading", "extraClass", "popoverPosition"]);
+    var options = _a.options, _b = _a.value, value = _b === void 0 ? "" : _b, onChange = _a.onChange, onClick = _a.onClick, onEnter = _a.onEnter, name = _a.name, _c = _a.prefix, prefix = _c === void 0 ? React.createElement(Search$1, { size: 20, color: "#7e828b" }) : _c, suffix = _a.suffix, showHelp = _a.showHelp, setHiglighted = _a.setHiglighted, placeHolder = _a.placeHolder, _d = _a.loading, loading = _d === void 0 ? false : _d, extraClass = _a.extraClass, _e = _a.popoverPosition, popoverPosition = _e === void 0 ? "right" : _e, props = __rest(_a, ["options", "value", "onChange", "onClick", "onEnter", "name", "prefix", "suffix", "showHelp", "setHiglighted", "placeHolder", "loading", "extraClass", "popoverPosition"]);
     var _f = useState(true), showList = _f[0], setShowList = _f[1];
     var _g = useState(false), showList1 = _g[0], setShowList1 = _g[1];
     var _h = useState(false), show = _h[0], setShow = _h[1];
@@ -36466,7 +36563,7 @@ function AutoComplete(_a) {
                                     React.createElement("div", { className: "inte-AutoComplet--Popover-Inner" }, values.popoverContent))), document.body)));
                 })))) : (React.createElement(React.Fragment, null, showList1 && value.length > 0 && value.trim() && show ? (React.createElement("ul", { ref: myReff, className: "inte-popover-container inte-popover-container--Empty ".concat(extraClass) },
                 React.createElement(FlexLayout, { spacing: "extraTight", direction: "vertical", valign: loading ? undefined : "center", desktopWidth: loading ? "100" : "" },
-                    loading ? ("") : (React.createElement(Search, { height: 20, size: 20, color: "#7e828b" })),
+                    loading ? ("") : (React.createElement(Search$1, { height: 20, size: 20, color: "#7e828b" })),
                     loading ? (React.createElement(Skeleton, { line: 3, type: "line", height: "20px" })) : (React.createElement(FlexLayout, { spacing: "tight", halign: "center", direction: "vertical", valign: "center" },
                         React.createElement(TextStyles, { textcolor: "light" }, "No Results Found"),
                         React.createElement("h3", { style: { textAlign: "center" }, className: "inte__text  inte__text--light none inte__font--normal" },
@@ -36553,7 +36650,7 @@ var CopyClipboard = function (_a) {
     return (React.createElement(React.Fragment, null,
         React.createElement(FlexLayout, { halign: align, valign: "center", spacing: "none" },
             React.createElement(TextStyles, null, label),
-            React.createElement(Button, { type: "Outlined", thickness: "extraThin", icon: active ? React.createElement(Check, null) : React.createElement(Copy, { size: 20 }), onClick: function () {
+            React.createElement(Button, { type: "Outlined", thickness: "extraThin", icon: active ? React.createElement(Check$1, null) : React.createElement(Copy, { size: 20 }), onClick: function () {
                     copyText();
                     setstatus(!status);
                     !status && setactive(!active);
@@ -39483,14 +39580,14 @@ function PageHeader(_a) {
                     secondaryAction && secondaryAction.length < 2 ? (secondaryAction.map(function (item, index) {
                         var _a, _b;
                         return (React.createElement(Button, __assign({ type: "Outlined" }, secondaryAction, { content: (_a = secondaryAction[index]) === null || _a === void 0 ? void 0 : _a.content, icon: (_b = secondaryAction[index]) === null || _b === void 0 ? void 0 : _b.icon })));
-                    })) : (React.createElement(ActionList, { direction: "right", open: active, onClose: toggleActive, activator: React.createElement(Button, { type: "Outlined", icon: React.createElement(ChevronDown, null), iconAlign: "right", onClick: toggleActive, content: "More Action" }), sections: [
+                    })) : (React.createElement(ActionList, { open: active, onClose: toggleActive, activator: React.createElement(Button, { type: "Outlined", icon: React.createElement(ChevronDown$1, null), iconAlign: "right", onClick: toggleActive, content: "More Action" }), sections: [
                             {
                                 items: secondaryAction,
                             },
                         ] })),
                     primaryAction ? (React.createElement(Button, __assign({ type: "Primary" }, primaryAction, { content: primaryAction === null || primaryAction === void 0 ? void 0 : primaryAction.content, icon: React.createElement(React.Fragment, null, primaryAction === null || primaryAction === void 0 ? void 0 : primaryAction.icon) }))) : (""))),
                 (primaryAction || secondaryAction) && windowSize <= 767 && (React.createElement("div", { className: "inte-PageHeader-Action inte-PageHeader-ActionMobile" },
-                    secondaryAction ? (React.createElement(ActionList, { direction: "right", popoverContainer: "element", open: active, onClose: toggleActive, activator: React.createElement(Button, { type: "Outlined", icon: React.createElement(MoreVertical, null), onClick: toggleActive }), sections: [
+                    secondaryAction ? (React.createElement(ActionList, { container: "element", open: active, onClose: toggleActive, activator: React.createElement(Button, { type: "Outlined", icon: React.createElement(MoreVertical, null), onClick: toggleActive }), sections: [
                             {
                                 items: secondaryAction,
                             },
@@ -39674,4 +39771,4 @@ var BodyLayout = function (_a) {
         React.createElement("div", { className: "inte__Main-Inner ".concat(Layout == "Full" ? "inte__Main-Inner--LayoutFull" : "inte__Main-Inner--LayoutBoxed") }, children)));
 };
 
-export { Accordion, ActionList, AdvanceFilter, AdvanceFilterSheet, Alert, AnnouncementBar, AppWrapper, AutoComplete, Avatar, Badge, BarChart, BodyHeader, BodyLayout, Breadcrumb, BrokenPage, Button, ButtonDropdown, ButtonGroup, Callicon, Card, CardFooter, CardHeader, CardHelp, Carousel, CheckBox, ChevDownCircle, ChevUpCircle, ChoiceList, Contact, CopyClipboard, Datepicker, Dots, DoughnutCharts, EmptyAccount, Faq, FileUpload, Filter, FilterSheet, FlexChild, FlexLayout, FormChild, FormElement, Grid, Help, LRLayout, LineCharts, List, Loader, LoginPage, LoginSimple, MailIcon, MainLayout, MinusIcon, Modal, NewSidebars as NewSidebar, NoNotification, NoProduct as Noproduct, Notification, Onboard, OverlappingImages, PageFooter, PageHeader, PagenotFound, Pagination, PieCharts, PlusIcon, Popover, ProgressCircle, Progressbar, Radio, RangeSlider, ResetPassword, RightArrow, Select, SessionExpired, Sidebar, Skeleton, SkypeIcon, StepWizard, Switcher, Tabs, Tag, TextArea, TextField, TextStyles, Toast, ToastWrapper, ToolTip, Topbar, Wysiwyg, activity, bag, bell, box, cross, down, downArrow, facebook, facebook2, filterIcon, home, icon404, insta, lock, logout, note, pageNext, pagePrev, play, refresh, setting, spread, ticked, upArrow };
+export { Accordion, ActionList, AdvanceFilter, AdvanceFilterSheet, Alert, AnnouncementBar, AppWrapper, AutoComplete, Avatar, Badge, BarChart, BodyHeader, BodyLayout, Breadcrumb, BrokenPage, Button, ButtonGroup, Callicon, Card, CardFooter, CardHeader, CardHelp, Carousel, CheckBox, ChevDownCircle, ChevUpCircle, ChoiceList, Contact, CopyClipboard, Datepicker, Dots, DoughnutCharts, EmptyAccount, Faq, FileUpload, Filter, FilterSheet, FlexChild, FlexLayout, FormChild, FormElement, Grid, Help, LRLayout, LineCharts, List, Loader, LoginPage, LoginSimple, MailIcon, MainLayout, MinusIcon, Modal, NewSidebars as NewSidebar, NoNotification, NoProduct as Noproduct, Notification, Onboard, OverlappingImages, PageFooter, PageHeader, PagenotFound, Pagination, PieCharts, PlusIcon, Popover, ProgressCircle, Progressbar, Radio, RangeSlider, ResetPassword, RightArrow, Select, SessionExpired, Sidebar, Skeleton, SkypeIcon, StepWizard, Switcher, Tabs, Tag, TextArea, TextField, TextStyles, Toast, ToastWrapper, Toggle, ToolTip, Topbar, Wysiwyg, activity, bag, bell, box, cross, down, downArrow, facebook, facebook2, filterIcon, home, icon404, insta, lock, logout, note, pageNext, pagePrev, play, refresh, setting, spread, ticked, upArrow };

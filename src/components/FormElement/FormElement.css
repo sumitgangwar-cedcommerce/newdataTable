@@ -248,6 +248,7 @@ h3 + .inte-formElementTextfield ~ .inte-clear {
 /* Error case */
 .inte-formElement--Error .inte-formElement {
   border: 1px solid var(--inte-R300) !important;
+  background-color: var(--inte-R30);
 }
 .inte-formElement--Error .inte-formElement:focus {
   box-shadow: 0px 0px 0px 3px var(--inte-R50);
@@ -336,9 +337,9 @@ h3 + .inte-formElementTextfield ~ .inte-clear {
   right: 0;
   max-height: 200px;
 }
-.inte-Select__Select--Item:not(.inte-Select__Select--ItemGrouped):hover {
+/* .inte-Select__Select--Item:not(.inte-Select__Select--ItemGrouped):hover {
   background-color: var(--inte-G30);
-}
+} */
 
 .inte-Select__Select--Item:not(.inte-Select__Select--ItemGrouped) {
   padding: 0.8rem 1.6rem;
@@ -444,6 +445,7 @@ h3 + .inte-formElementTextfield ~ .inte-clear {
   line-height: 1.429;
   min-height: 3.8rem;
   border: 0.1rem solid var(--inte-G40);
+  min-width: 10rem;
 }
 .inte-formElement--Success.inte-formElement--Focus .inte-select {
   box-shadow: 0 0 0 0.4rem var(--inte-GR50) !important;
@@ -456,6 +458,10 @@ h3 + .inte-formElementTextfield ~ .inte-clear {
 }
 
 /* Select New Css Starts */
+.inte-formElemet--Inner:focus,
+.inte-formElemet--Inner:active {
+  outline: none;
+}
 .inte-formElement.inte-select.inte-formElemet--Inner-select-single {
   height: 4.4rem;
   padding: 1.2rem 1.6rem !important;
@@ -466,21 +472,21 @@ h3 + .inte-formElementTextfield ~ .inte-clear {
   padding: 0.8rem 1.6rem !important;
 }
 
-.inte-formElement.inte-select.inte-formElemet--Inner-select-single-error {
+/* .inte-formElement.inte-select.inte-formElemet--Inner-select-single-error {
   max-height: 4.4rem;
   padding: 1.2rem 1.6rem !important;
   background-color: var(--inte-R30);
-}
+} */
 
-.inte-formElement.inte-select.inte-formElemet--Inner-select-multi-error {
+/* .inte-formElement.inte-select.inte-formElemet--Inner-select-multi-error {
   min-height: 4.4rem;
   padding: 0.8rem 1.6rem !important;
   background-color: var(--inte-R30);
-}
+} */
 
-.inte-Select__Select--Item.inte-Select__Select--Item-List:hover {
+/* .inte-Select__Select--Item.inte-Select__Select--Item-List:hover {
   background-color: var(--inte-P20);
-}
+} */
 
 .inte-Select__Select--Item.inte-Select__Select--Item-List:active {
   background-color: var(--inte-P30);

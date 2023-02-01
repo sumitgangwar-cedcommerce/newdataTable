@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Filter as Filters } from "react-feather";
 import { CheckBox, Select, TextField, FlexLayout } from "..";
+import { Card } from "../Card";
 import { FormElement } from "../FormElement";
 import AdvanceFilter from "./AdvanceFilter";
 
@@ -44,24 +45,21 @@ export default {
       defaultValue: true,
     },
     onApply: {
-      description:
-        "Manage onApply Function",
+      description: "Manage onApply Function",
       control: {
         type: "function",
         disable: true,
       },
     },
     onClose: {
-      description:
-        "Manage onClose Function",
+      description: "Manage onClose Function",
       control: {
         type: "function",
         disable: true,
       },
     },
     resetFilter: {
-      description:
-        "Manage resetFilter Function",
+      description: "Manage resetFilter Function",
       control: {
         type: "function",
         disable: true,
@@ -73,20 +71,29 @@ export default {
         disable: true,
       },
     },
-
+    filterType: {
+      description: "You can set type of Button of filter component",
+      control: {
+        type: "radio",
+        options: [
+          "Sheet",
+          "Popover",
+        ],
+      },
+      defaultValue: "Sheet",
+    },
     type: {
       description: "You can set type of Button of filter component",
       control: {
         type: "radio",
         options: [
           "Primary",
-          "Plain",
           "Danger",
+          "DangerOutlined",
           "Secondary",
-          "PlainDark",
-          "Small",
           "Outlined",
-          "none",
+          "DangerPlain",
+          "TextButton",
         ],
       },
       defaultValue: "Outlined",
@@ -96,30 +103,31 @@ export default {
 
 const filtersObj = [
   {
-    name: "Select Filter",
+    name: "Status Hello",
     badgeCount: 5,
     children: <SelectRender />,
   },
   {
-    name: "Select & Text Filter",
+    name: "Sales hello",
+    badgeCount: 5,
     children: (
       <>
         <FormElement>
-          <SelectRender />
+          <SelectRender  />
           <TextFieldRender />
         </FormElement>
       </>
     ),
   },
   {
-    name: "Checkbox Filter",
+    name: "Metrics hello",
     children: (
-      <FlexLayout spacing="tight" direction="vertical">
+      <FormElement>
         <CheckBoxRender labelVal="Finished" />
         <CheckBoxRender labelVal="Warning" />
         <CheckBoxRender labelVal="Error" />
         <CheckBoxRender labelVal="Pending" />
-      </FlexLayout>
+        </FormElement>
     ),
   },
 ];
@@ -175,9 +183,10 @@ function CheckBoxRender({ labelVal }: any) {
 
 const Template = ({ ...rest }) => {
   return (
-    <>
+    <Card>
       <AdvanceFilter
         {...rest}
+        filterType={rest.filterType}
         disableReset={rest.disableReset}
         disableApply={rest.disableApply}
         filters={filtersObj}
@@ -186,7 +195,7 @@ const Template = ({ ...rest }) => {
         button={rest.button}
         icon={<Filters color="#2a2a2a" size={16} />}
       />
-    </>
+    </Card>
   );
 };
 
@@ -195,14 +204,16 @@ export const AdvanceFilterwithAllProps: any = Template.bind({});
 AdvanceFilterwithAllProps.decorators = [
   () => {
     return (
-      <AdvanceFilter
-        filters={filtersObj}
-        heading="Filters"
-        type={"Outlined"}
-        onClose={() => {}}
-        button={"More Filter"}
-        icon={<Filters color="#2a2a2a" size={16} />}
-      />
+      <Card>
+        <AdvanceFilter
+          filters={filtersObj}
+          heading="Filters"
+          type={"Outlined"}
+          onClose={() => {}}
+          button={"More Filter"}
+          icon={<Filters color="#2a2a2a" size={16} />}
+        />
+      </Card>
     );
   },
 ];

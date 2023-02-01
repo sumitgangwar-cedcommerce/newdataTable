@@ -4,37 +4,33 @@ import Card from "../Card/Card";
 import { Button } from "..";
 import { FlexLayout } from "../FlexLayout";
 import TextStyles from "../TextStyles/TextStyles";
-import ToolTipA from "./TooltipA";
 
 export default {
   title: "Components/Overlays/ToolTip",
   component: ToolTip,
   argTypes: {
     children: {
-      control: {
-        type: "element",
-      },
-    },
-    helpText: {
-      description: "Help Text Accepts string value",
+      description: "Help Text Button string value",
       control: {
         type: "text",
       },
-      defaultValue: "Lorem ipsum dolaaler isseu is going to migrate from a new place to another placeLorem ipsum dolaaler isseu is going to migrate from a new place to another placeLorem ipsum dolaaler isseu is going to migrate from a new place to another place",
+      defaultValue: "Tooltip",
+    },
+    helpText: {
+      description: "Help Text Accepts string value or React Node",
+      control: {
+        type: "text",
+      },
+      defaultValue:
+        "Lorem ipsum dolaaler isseu is going to migrate from a new place to another placeLorem ipsum dolaaler isseu is going to migrate from a new place to another placeLorem ipsum dolaaler isseu is going to migrate from a new place to another place",
     },
     position: {
+      description: "This position work only element case",
       control: {
         type: "radio",
         options: ["bottom", "top", "left", "right"],
       },
       defaultValue: "bottom",
-    },
-    type: {
-      control: {
-        type: "radio",
-        options: ["light", "dark"],
-      },
-      defaultValue: "dark",
     },
     popoverContainer: {
       control: {
@@ -43,26 +39,31 @@ export default {
       },
       defaultValue: "body",
     },
-    button: {
-      description: "Help Text Button string value",
+    extraClass: {
+      description: "Add Extra Class in Popover",
       control: {
         type: "text",
       },
-      defaultValue: "Tooltip",
     },
   },
 };
 
 const Template = ({ ...rest }) => {
   return (
-    <div style={{position:"relative",top:"50px"}}>
+    <div style={{ position: "relative", top: "50px", paddingRight: "64px" }}>
       <Card>
-      <FlexLayout valign="center" halign="start">
-        <ToolTip open={false} helpText={rest.helpText} position={rest.position} {...rest}>
-          <Button thickness="thin">{rest.button}</Button>
-        </ToolTip>
-      </FlexLayout>
-    </Card>
+        <FlexLayout halign="start">
+          <ToolTip
+            open={false}
+            helpText={rest.helpText}
+            position={rest.position}
+            popoverContainer="body"
+            {...rest}
+          >
+            <Button thickness="thin">{rest.children}</Button>
+          </ToolTip>
+        </FlexLayout>
+      </Card>
     </div>
   );
 };
@@ -95,25 +96,6 @@ Tooltip_position.decorators = [
   },
 ];
 
-// Tooltip Type
-export const Tooltip_type: any = Template.bind({});
-Tooltip_type.decorators = [
-  () => {
-    return (
-      <Card>
-        <FlexLayout spacing="loose">
-          {["light","dark"].map((item:any,index)=>{
-              return(
-                <ToolTip key={index} position="bottom" open={false} popoverContainer="body" helpText={<TextStyles textcolor={item=="dark" ? "light" : "dark" }>Hello</TextStyles>} type={item}>
-                  <Button>Tooltip {item}</Button>
-                </ToolTip>
-              )
-          })}
-        </FlexLayout>
-      </Card>
-    );
-  },
-];
 
 // Tooltip Container
 export const Tooltip_Body_container: any = Template.bind({});
@@ -122,15 +104,25 @@ Tooltip_Body_container.decorators = [
     return (
       <Card>
         <FlexLayout spacing="loose">
-        <ToolTip position="top" open={false} popoverContainer="body" helpText={<TextStyles textcolor="dark">lorem ipsul dollar issue going to be false and poor for rest not of life <Button>Click Here</Button></TextStyles>}>
-          <Button>Body Container element with Dark tooltip</Button>
-        </ToolTip>
-        <ToolTip extraClass="hello" open={false} type="light" popoverContainer="body" helpText={<TextStyles textcolor="dark">lorem ipsul dollar issue going to be false and poor for rest not of life</TextStyles>}>
-          <Button>Body Container element With Light Tooltip</Button>
-        </ToolTip>
-        <ToolTipA open={false} type="light" popoverContainer="body" helpText={<TextStyles textcolor="dark">lorem ipsul dollar issue going to be false and poor for rest not of life <Button>Click Here</Button></TextStyles>}>
-          <Button>Body Container element With Light TooltipA</Button>
-        </ToolTipA>
+          <ToolTip
+            open={false}
+            popoverContainer="body"
+            helpText={
+              "lorem ipsul dollar issue going to be false and poor for rest not of life"
+            }
+          >
+            <Button>Body Container Tooltip</Button>
+          </ToolTip>
+          <ToolTip
+            position="bottom"
+            open={false}
+            popoverContainer="element"
+            helpText={
+              "lorem ipsul dollar issue going to be false and poor for rest not of life"
+            }
+          >
+            <Button>Elelemt Container Tooltip</Button>
+          </ToolTip>
         </FlexLayout>
       </Card>
     );

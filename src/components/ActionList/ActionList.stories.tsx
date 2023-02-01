@@ -129,7 +129,6 @@ export default {
         disable: true,
       },
     },
-
     dropDownheight: {
       description: "Manage the Dropdown Height",
       control: {

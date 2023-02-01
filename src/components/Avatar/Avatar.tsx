@@ -1,28 +1,30 @@
 import React, { FC } from "react";
+import Badge from "../Badge/Badge";
 import "./Avatar.css";
 const Avatar: FC<AvatarI> = ({
   text = "Jon Doe",
   type = "circle",
   color = "black",
-  size = "large",
+  size = "Small",
   image,
+  badge = false,
   zoom = false,
 }: AvatarI) => {
   let width = "";
   let font = "";
   let radius = "";
   switch (size) {
-    case "X-large":
+    case "Large":
       width = "48px";
-      font = "24px";
-      break;
-    case "large":
-      width = "40px";
       font = "20px";
       break;
-    case "medium":
+    case "Medium":
       width = "32px";
       font = "14px";
+      break;
+    case "Small":
+      width = "24px";
+      font = "13px";
       break;
     default:
       width = "24px";
@@ -70,6 +72,21 @@ const Avatar: FC<AvatarI> = ({
             src={image.toString()}
             alt={"Avatar"}
           />
+          {badge && (
+            <Badge
+              type="Success"
+              dot
+              size={`${
+                size === "Small"
+                  ? "Small"
+                  : size === "Large"
+                  ? "Large"
+                  : size === "Medium"
+                  ? "Medium"
+                  : "Small"
+              }`}
+            ></Badge>
+          )}
         </div>
       ) : (
         <div
@@ -89,6 +106,21 @@ const Avatar: FC<AvatarI> = ({
           }}
         >
           {typeof text == "string" ? displayText.toUpperCase() : <div></div>}
+          {badge && (
+            <Badge
+              type="Success"
+              dot
+              size={`${
+                size === "Small"
+                  ? "Small"
+                  : size === "Large"
+                  ? "Large"
+                  : size === "Medium"
+                  ? "Medium"
+                  : "Small"
+              }`}
+            ></Badge>
+          )}
         </div>
       )}
     </React.Fragment>
@@ -100,8 +132,9 @@ export interface AvatarI {
   zoom?: boolean;
   type?: "square" | "circle" | "rounded";
   color?: "black" | "red" | "yellow" | "green" | "blue" | "purple";
-  size?: "small" | "medium" | "large" | "X-large";
+  size?: "Small" | "Medium" | "Large";
   image?: string;
   children?: React.ReactNode | any;
+  badge?: boolean;
 }
 export default Avatar;

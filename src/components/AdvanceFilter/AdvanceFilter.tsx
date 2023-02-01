@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Button from "../Button/Button";
 import "./AdvanceFilter.css";
 import AdvanceFilterSheet from "./AdvanceFilterSheet";
 
 const AdvanceFilter: React.FC<Filter1> = ({
   onClose = () => {},
+  filterType = "Sheet",
   ...props
 }: Filter1) => {
   const [active, handleToggle] = useState(false);
@@ -12,6 +13,20 @@ const AdvanceFilter: React.FC<Filter1> = ({
   const toggle = () => {
     handleToggle(!active);
   };
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: any) => {
+      if (ref.current && !ref.current.contains(event.target)) {
+        handleToggle(false);
+      }
+    };
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, [ref]);
+
   useEffect(() => {
     if (active) {
       document.body.style.overflow = "hidden";
@@ -23,7 +38,7 @@ const AdvanceFilter: React.FC<Filter1> = ({
   }, [active]);
 
   return (
-    <div className="inte-Filter--Advance">
+    <div className="inte-Filter--Advance" ref={ref}>
       <div className={"inte-Filter"}>
         <Button
           icon={props.icon}
@@ -37,8 +52,16 @@ const AdvanceFilter: React.FC<Filter1> = ({
       <div
         className={
           active
-            ? "inte_sheetActive inte_FilterSheetWrapper"
-            : "inte_FilterSheetWrapper"
+            ? `inte_Filter--Active  ${
+                filterType == "Sheet"
+                  ? "inte_FilterSheetWrapper"
+                  : "inte_FilterPopoverWrapper"
+              }`
+            : `${
+                filterType == "Sheet"
+                  ? "inte_FilterSheetWrapper"
+                  : "inte_FilterPopoverWrapper"
+              }`
         }
       >
         <AdvanceFilterSheet
@@ -48,12 +71,14 @@ const AdvanceFilter: React.FC<Filter1> = ({
           }}
           onClose={onClose}
         ></AdvanceFilterSheet>
-        <div
-          onClick={() => {
-            onClose(), toggle();
-          }}
-          className="inte-Backdrop"
-        ></div>
+        {filterType === "Sheet" ? (
+          <div
+            onClick={() => {
+              onClose(), toggle();
+            }}
+            className="inte-Backdrop"
+          ></div>
+        ) : null}
       </div>
     </div>
   );
@@ -79,6 +104,7 @@ export interface Filter1 {
   resetFilter?: () => void;
   disableReset?: boolean;
   disableApply?: boolean;
+  filterType?: "Sheet" | "Popover";
 }
 export interface FI {
   name: string;

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { ChevronRight, X } from "react-feather";
+import { X } from "react-feather";
 import { TextStyles, Button, FlexLayout } from "..";
+import Badge from "../Badge/Badge";
 import { FI } from "./AdvanceFilter";
 import "./AdvanceFilter.css";
 
@@ -12,7 +13,6 @@ const AdvanceFilterSheet: React.FC<FilterSheetI> = ({
   filters,
   disableReset = true,
   disableApply = true,
-  badgeCounter,
   resetFilter = () => {
     return ""; // Click This function Reset page or form
   },
@@ -22,11 +22,11 @@ const AdvanceFilterSheet: React.FC<FilterSheetI> = ({
   onClose = () => {},
 }: FilterSheetI) => {
   const showCross = () => (
-    <div className={"inte-FilterSheet--Header"}>
+    <div className={"inte-Filter--Header"}>
       <FlexLayout halign="fill" valign="center" wrap="noWrap">
         <TextStyles
-          type="Paragraph"
-          paragraphTypes="LG-1.5"
+          type="subHeading"
+          subheadingTypes="XS-1.6"
           lineHeight="LH-1.6"
           fontweight="bold"
         >
@@ -36,9 +36,9 @@ const AdvanceFilterSheet: React.FC<FilterSheetI> = ({
           onClick={() => {
             onClose(), handleToggle();
           }}
-          type="Outlined"
+          type="Secondary"
           thickness="thin"
-          icon={<X color="#2a2a2a" size={20} />}
+          icon={<X color="#2a2a2a" size={24} />}
           iconAlign="right"
         ></Button>
       </FlexLayout>
@@ -46,7 +46,7 @@ const AdvanceFilterSheet: React.FC<FilterSheetI> = ({
   );
 
   const showFooter = () => (
-    <div className={"inte-FilterSheet--Footer"}>
+    <div className={"inte-Filter--Footer"}>
       <FlexLayout
         halign={"start"}
         valign="center"
@@ -64,7 +64,7 @@ const AdvanceFilterSheet: React.FC<FilterSheetI> = ({
           thickness="thin"
           type="Outlined"
         >
-          Reset
+          Clear All
         </Button>
         <Button
           FullBtn={true}
@@ -83,55 +83,41 @@ const AdvanceFilterSheet: React.FC<FilterSheetI> = ({
   );
   const [currentIndexs, setCurrentIndexs] = useState(0);
   return (
-    <div className={"inte-FilterSheet"}>
+    <div className={"inte-Filter--Wrapper"}>
       {showCross()}
-      <div className={"inte-FilterSheet--Body"}>
-        <div className="inte-FilterSheet--BodyLeft">
+      <div className={"inte-Filter--Body"}>
+        <div className="inte-Filter--BodyLeft">
           {filters.map((items: any, index: any) => {
             return (
               <div
                 className={
                   currentIndexs === index
-                    ? "inte-FilterSheet--BodyAccordion-Header inte-FilterSheet--BodyAccordion-HeaderActive"
-                    : "inte-FilterSheet--BodyAccordion-Header"
+                    ? "inte-Filter--BodyAccordion-Header inte-Filter--BodyAccordion-HeaderActive"
+                    : "inte-Filter--BodyAccordion-Header"
                 }
                 key={index}
                 onClick={() => setCurrentIndexs(index)}
               >
                 <span>
-                  <FlexLayout
-                    halign="fill"
-                    valign="center"
-                    wrap="noWrap"
-                    spacing="tight"
-                  >
-                    <FlexLayout spacing="tight" valign="center">
-                      <TextStyles>{items.name}</TextStyles>
-                      {badgeCounter && (
-                        <span className="inte-FilterSheet--Counter">
-                          {items.badgeCounter}
-                        </span>
-                      )}
-                    </FlexLayout>
-
-                    <ChevronRight
-                      style={{ display: "flex" }}
-                      size={20}
-                      color={currentIndexs === index ? "#2C127A" : "#70747E"}
-                    />
+                  <FlexLayout spacing="tight" valign="center" halign="fill" wrap="noWrap">
+                    <TextStyles>{items.name}</TextStyles>
+                    {!items.badgeCount ? null : (
+                      <Badge size="Small" type={currentIndexs === index ? "Primary" : "Secondary"}>{items.badgeCount}</Badge>
+                     
+                    )}
                   </FlexLayout>
                 </span>
               </div>
             );
           })}
         </div>
-        <div className="inte-FilterSheet--BodyRight">
+        <div className="inte-Filter--BodyRight">
           {filters.map((items: any, index: any) => {
             return (
               <React.Fragment key={index}>
                 {currentIndexs === index && (
                   <div
-                    className={"inte-FilterSheet--BodyAccordion-Body"}
+                    className={"inte-Filter--BodyAccordion-Body"}
                     key={index}
                   >
                     {items.children}

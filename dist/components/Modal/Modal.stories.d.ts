@@ -31,11 +31,19 @@ declare const _default: {
         primaryAction: {
             control: {
                 type: string;
+                disable: boolean;
             };
         };
         secondaryAction: {
             control: {
                 type: string;
+                disable: boolean;
+            };
+        };
+        tertiaryAction: {
+            control: {
+                type: string;
+                disable: boolean;
             };
         };
         modalSize: {

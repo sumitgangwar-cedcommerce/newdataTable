@@ -296,7 +296,7 @@ const ActionList: FC<ActionListI> = ({
         ? container == "element"
           ? elementPortal
           : bodyPortal
-        : container == "body"
+          : container == "body"
         ? createPortal(bodyPortal, document.body)
         : elementPortal}
     </div>

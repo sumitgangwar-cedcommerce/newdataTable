@@ -19,6 +19,9 @@
   max-width: 10rem;
   width: auto;
 }
+.inte-Pagination .inte-formElement .inte-formElemet__Arrow {
+  border-left: unset;
+}
 .inte-Pagination--Simple .inte-formElementTextfield {
   min-width: unset;
   border: 0;

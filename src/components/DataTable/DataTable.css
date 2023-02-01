@@ -1,0 +1,126 @@
+
+.inte-DataTable--container {
+  border: 1px solid var(--inte-G40);
+  border-radius: 0.8rem;
+  background-color: var(--inte-G0);
+}
+
+.inte-DataTable--wrapper {
+  overflow: auto;
+  box-sizing: border-box;
+}
+
+.inte-DataTable {
+  width: 100%;
+  border-spacing: 0;
+  text-align: left; 
+  border-radius: 8px;
+  position: relative;
+}
+
+.inte-DataTable__Cell {
+  background-color: var(--inte-G0);
+  font-family: 'Averta CY';
+  font-style: normal;
+  font-size: 1.6rem;
+  line-height: 2rem;
+  padding: 1.2rem 0.8rem;
+  border-bottom: 1px solid var(--inte-G40);
+}
+
+.inte-DataTable__HeaderCell {
+  background-color: var(--inte-G20);
+  font-weight: 600;
+  line-height: 2rem;
+}
+
+.inte-DataTable__Cell--Fixedtop {
+  top:0;
+}
+
+.inte-DataTable__HeaderRow > th:not(.inte-DataTable__Cell--Expand , .inte-DataTable__Cell__Checkbox , :last-child)::before {
+  position: absolute;
+  top: 50%;
+  right:0.8rem;
+  width: 1px;
+  height: 1.6em;
+  transform: translateY(-50%);
+  background-color: var(--inte-P50);
+  content: "";
+}
+
+.inte-DataTable__Cell--Fixedleft , .inte-DataTable__Cell--Fixedright , .inte-DataTable__Cell--Fixedtop {
+  z-index:1;
+  position: sticky;
+}
+
+.inte-DataTable__Cell--Fixedleft.inte-DataTable__Cell--Fixedtop  , .inte-DataTable__Cell--Fixedtop.inte-DataTable__Cell--Fixedright {
+  z-index: 2;
+} 
+
+.shadowedLeft::after , .shadowedRight::after {
+  position: absolute;
+  top: 0;
+  bottom: -0.1rem;
+  width: 0.5rem;
+  content: '';
+  box-shadow: inset 10px 0 8px -8px rgba(16, 24, 40, 0.1);
+}
+
+.shadowedLeft::after {
+  right: 0;
+}
+
+.shadowedRight::after {
+  left: 0;
+}
+
+.inte-DataTable__Cell--Expand , .inte-DataTable__Cell--Expand > svg {
+  cursor: pointer;
+  transition: transform 200ms ease-in;
+}
+
+.inte-DataTable__Cell--Expand-spaced {
+  cursor:alias;
+}
+
+.inte-DataTable__Cell--sortable {
+  cursor: pointer;
+}
+  
+.sortable--icon {
+  display: flex;
+  flex-direction: column;
+  gap: 0.667rem;
+}
+
+.sortable--icon > svg {
+  stroke:var(--inte-G800)
+}
+
+.sortedIcon__th {
+  display: flex;
+  gap: 1.6rem;
+  padding-right: 1.6rem;
+}
+
+.inte-DataTable__Cell--asec .sortable--icon > svg:first-child {
+  stroke: var(--inte-G90);
+}
+
+.inte-DataTable__Cell--desc .sortable--icon > svg:last-child {
+  stroke: var(--inte-G90);
+}
+
+.inte-DataTable__Row--Fixed {
+  margin: 0 -10px;
+}
+
+.inte-DataTable__Cell-ExpandActive > svg {
+  transform: rotate(180deg);
+}
+
+.inte-DataTable__Pagination {
+  margin-top: 8px;
+  padding: 0 8px;
+}

@@ -1,14 +1,11 @@
 import React from "react";
 import { useState } from "react";
-import * as Icon from "../../../Icon/Icon";
-import { ButtonDropdown } from "../..";
-import { Card } from "../../Card";
-import { activity ,logout, down } from "../../../Icon/Icon";
-const iconMap = { ...Icon };
+import Switcher from "./Switcher";
+import Card from "../Card/Card";
 
 export default {
-  title: "Components/Actions/ButtonDropdown",
-  component: ButtonDropdown,
+  title: "Components/Actions/Switcher",
+  component: Switcher,
   argTypes: {
     children: {
       control: {
@@ -93,14 +90,6 @@ export default {
       },
       defaultValue: false,
     },
-    icon: {
-      description: "Set Button icon",
-      control: {
-        type: "select",
-        options: Object.keys(iconMap),
-        disable:true,
-      },
-    },
     onClick: {
       description: "Button Buttondropdown onClick function",
       control: {
@@ -118,35 +107,40 @@ export default {
 };
 
 const Template = ({ ...rest }) => {
+  const icon= <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path fillRule="evenodd" clipRule="evenodd" d="M0 0.5H20V15.5H0V0.5Z" fill="white"/>
+  <path fillRule="evenodd" clipRule="evenodd" d="M0 5.5H20V15.5H0V5.5Z" fill="#0039A6"/>
+  <path fillRule="evenodd" clipRule="evenodd" d="M0 10.5H20V15.5H0V10.5Z" fill="#D52B1E"/>
+  </svg>
+  
   const [buttonText, setButtonText] = useState("More Actions");
-  const [buttonIcon, setButtonIcon] = useState(activity);
+  const [buttonIcon, setButtonIcon] = useState(icon);
   const changeText = (text: any) => setButtonText(text);
   const changeIcon = (text: any) => setButtonIcon(text);
 
   return (
-    <Card title={"Button Dropdown"}>
-        <ButtonDropdown
+    <Card title={"Switcher"}>
+        <Switcher
           {...rest}
           title={rest.title}
-          icon={buttonIcon}
+          icon={<>{buttonIcon}</>}
           type={rest.type}
-          content={rest.content}
           thickness={rest.thickness}
           list={[
             {
-              label: "Dropdown Item 1",
-              onClick: () => {changeText("Dropdown Item 1"),changeIcon(activity)},
-              icon: activity,
+              label: "Country 1",
+              onClick: () => {changeText("Country 1"),changeIcon(<>{buttonIcon}</>)},
+              icon: <>{buttonIcon}</>,
             },
             {
-              label: "Dropdown Item 2",
-              onClick: () => {changeText("Dropdown Item 2"),changeIcon(logout)},
-              icon: logout,
+              label: "Country 2",
+              onClick: () => {changeText("Country 2"),changeIcon(<>{buttonIcon}</>)},
+              icon: <>{buttonIcon}</>,
             },
             {
-              label: "Dropdown Item 3",
-              icon: down,
-              onClick: () => {changeText("Dropdown Item 3"),changeIcon(down)},
+              label: "Country 3",
+              icon: <>{buttonIcon}</>,
+              onClick: () => {changeText("Country 3"),changeIcon(<>{buttonIcon}</>)},
             },
           ]}
         />

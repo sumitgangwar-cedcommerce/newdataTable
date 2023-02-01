@@ -3,6 +3,10 @@
     display: inline-flex;
     gap: 1.2rem;
 }
+.inte-ButtonGroup--Segmented > .inte-btn:active,
+.inte-ButtonGroup--Segmented > .inte-btn:focus {
+    z-index: 1;
+}
 .inte-ButtonGroup--Segmented {
     gap: 0;
 }

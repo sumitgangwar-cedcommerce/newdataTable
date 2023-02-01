@@ -99,7 +99,7 @@
   align-items: center;
   width: 100%;
   padding: 1.6rem;
-  border-top: 0.1rem solid var(--color-pageBorder);
+  border-top: 0.1rem solid var(--inte-G40);
   position: relative;
   z-index: 1;
 }
@@ -162,8 +162,7 @@
     align-self: flex-end;
     align-items: center;
     width: 100%;
-    padding: 1.2rem 1.6rem;
-    border-top: 0.1rem solid var(--inte-G40);
+    padding:1.6rem;
     position: relative;
     z-index: 1;
   }
@@ -178,15 +177,6 @@
   }
 }
 
-@media screen and (max-width: 768px) {
-  .inte-Modal-Footer,
-  .inte-Modal-Header {
-    padding: 1rem;
-  }
-  .inte-Modal-Section {
-    padding: 1rem;
-  }
-}
 /*Modal end*/
 @keyframes ModalAnimation {
   100% {

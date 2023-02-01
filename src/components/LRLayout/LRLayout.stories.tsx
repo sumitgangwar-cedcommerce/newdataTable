@@ -94,7 +94,7 @@ const Template = ({ ...rest }) => {
             onChange={(e) => setValue2(e)}
           ></TextField>
           <Select
-            name="Label 3"
+            label="Label 3"
             value={value3}
             options={optionsArr}
             onChange={(e) => {
@@ -173,7 +173,7 @@ export const LR_Layout_with_simple_help_text = () => {
         ></TextField>
 
         <Select
-          name="Label "
+          label="Label "
           value={value2}
           options={optionsArr}
           onChange={(e) => {
@@ -254,7 +254,7 @@ export const LR_Layout_with_custom_help_text = () => {
         ></TextField>
 
         <Select
-          name="Label "
+          label="Label "
           value={value2}
           options={optionsArr}
           onChange={(e) => {
@@ -339,7 +339,7 @@ export const LR_Layout_with_Card_Header_and_Action = () => {
         ></TextField>
 
         <Select
-          name="Label "
+          label="Label "
           value={value2}
           options={optionsArr}
           onChange={(e) => {

@@ -223,11 +223,9 @@ function AutoComplete({
             onEnter(value);
           }
         }}
-        className={`inte__AutoComplete ${
-          name ? "inte__AutoComplete--hasName" : false
-        } ${props.showPopover && "inte__AutoComplete--HasPopover"} ${
-          props.showPopover && "inte__AutoComplete-Position" + popoverPosition
-        }`}
+        className={`inte__AutoComplete ${name ? "inte__AutoComplete--hasName" : false
+          } ${props.showPopover && "inte__AutoComplete--HasPopover"} ${props.showPopover && "inte__AutoComplete-Position" + popoverPosition
+          }`}
       >
         <TextField
           type="text"
@@ -249,9 +247,9 @@ function AutoComplete({
         />
 
         {renderStatementResult &&
-        filteredName.length > 0 &&
-        show &&
-        value.trim() ? (
+          filteredName.length > 0 &&
+          show &&
+          value.trim() ? (
           <ul className={`inte-popover-container ${extraClass}`}>
             <>
               {filteredName.map((values: any, index: any) => {

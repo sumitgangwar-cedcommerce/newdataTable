@@ -1,8 +1,8 @@
-.inte-btn--Dropdown {
+.inte--Switcher {
   position: relative;
   display: inline-block;
 }
-ul.inte-btn--Dropdown__Popover {
+.inte--Switcher__Popover {
   position: absolute;
   width: 23rem;
   list-style: none;
@@ -25,17 +25,22 @@ ul.inte-btn--Dropdown__Popover {
   animation-fill-mode: both;
   transform-origin: top center;
 }
-.inte-btn--Dropdown li button {
+.inte--Switcher__Popover.inte--Switcher__Popover--left {
+  left: 0;
+  right: unset;
+}
+.inte--Switcher__Popover.inte--Switcher__Popover--right {
+  left: unset;
+  right: 0;
+}
+.inte--Switcher li button {
   display: block;
   padding: 0.8rem;
   width: 100%;
   text-align: left;
   color: var(--inte-G450);
 }
-.inte-btn--Dropdown .inte-btn.inte-btn--Outlined svg {
-  stroke: #2a2a2a;
-}
-.inte-btn--Dropdown li button:hover {
+.inte--Switcher li button:hover {
   background-color: var(--inte-G30);
   color: var(--G800);
 }
@@ -43,22 +48,11 @@ ul.inte-btn--Dropdown__Popover .inte-btn.inte-btn--hasIcon {
   justify-content: flex-start;
   align-items: center;
 }
-.inte-btn--Dropdown .inte-btn--Secondary .inte-btn__icon svg path,
-.inte-btn--Dropdown .inte-plain-dark-btn .inte-btn__icon svg path {
-  fill: #333;
-  stroke: #333;
-}
-.inte-btn--Dropdown .inte-btn--Outlined .inte-btn__icon svg path {
-  fill: #0b0a1f;
-  stroke: #0b0a1f;
-}
-.inte-btn--Dropdown span.inte-btn__icon {
+.inte--Switcher span.inte-btn__icon {
   transition: 200ms all linear;
 }
-.inte-btn--Dropdown.inte-btn--Dropdown-Open > button span.inte-btn__icon {
-  transform: rotate(-180deg);
-}
-.inte-btn--Dropdown li button span.inte__text {
+
+.inte--Switcher li button span.inte__text {
   font-size: 1.4rem !important;
   display: block;
   margin-top: 0;

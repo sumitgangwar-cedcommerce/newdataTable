@@ -7,7 +7,8 @@ import { FlexLayout } from "../FlexLayout";
 import { FormElement } from "../FormElement";
 import { AlertOctagon, Gitlab } from "react-feather";
 import TextStyles from "../TextStyles/TextStyles";
-
+import * as Icons from "../../storybook/Foundation/Icons/Icons";
+const allIcons: any = { ...Icons };
 export default {
   title: "Components/Overlays/Modal",
   component: Modal,
@@ -32,6 +33,21 @@ export default {
       },
       defaultValue: "Modal Title",
     },
+    extraClass: {
+      description: "Modal extra Class ",
+      control: {
+        type: "text",
+      },
+      defaultValue: "",
+    },
+    headingIcon: {
+      description: "Set Heading Icon",
+      control: {
+        type: "select",
+        options: Object.keys(allIcons),
+      },
+      defaultValue: "Gitlab",
+    },
     children: {
       control: {
         type: "any",
@@ -40,19 +56,19 @@ export default {
     primaryAction: {
       control: {
         type: "object",
-        disable:true
+        disable: true,
       },
     },
     secondaryAction: {
       control: {
         type: "object",
-        disable:true
+        disable: true,
       },
     },
     tertiaryAction: {
       control: {
         type: "object",
-        disable:true
+        disable: true,
       },
     },
     modalSize: {
@@ -91,7 +107,7 @@ const Template = ({ ...rest }) => {
   const tertiaryAction1 = {
     content: "Read More",
     onClick: () => {
-      alert("Read More Action triggred")
+      alert("Read More Action triggred");
     },
   };
   return (
@@ -102,7 +118,12 @@ const Template = ({ ...rest }) => {
         </FlexLayout>
       </Card>
       <Modal
+        headingIcon={allIcons[rest.headingIcon]({
+          size: `24`,
+          color: `var(--inte-G800)`,
+        })}
         modalSize={rest.modalSize}
+        extraClass={rest.extraClass}
         open={!open1 || rest.open}
         heading={rest.heading}
         overlayClose={rest.overlayClose}
@@ -116,8 +137,8 @@ const Template = ({ ...rest }) => {
         <FormElement>
           <Datepicker name="Choose Date" placeholder="Date PlaceHolder" />
           <Select
-            name="Select Options"
-            popoverContainer="body"
+            label="Select Options"
+            container="body"
             options={[
               {
                 label: "Option 1",
@@ -229,8 +250,14 @@ MoadalSize.decorators = [
           <FlexLayout spacing="loose" valign="start" wrap="noWrap">
             <AlertOctagon size={20} color={"rgb(178, 140, 53)"} />
             <FlexLayout spacing="extraTight">
-              <TextStyles type="SubHeading" subheadingTypes="SM-1.8" fontweight="extraBold">A short modal heading</TextStyles>
-              <TextStyles>
+              <TextStyles
+                type="SubHeading"
+                subheadingTypes="SM-1.8"
+                fontweight="normal"
+              >
+                Small Modal Size
+              </TextStyles>
+              <TextStyles textcolor="light">
                 Lorem Ipsum is simply dummy text of the printing and typesetting
                 industry. Lorem Ipsum has been the industry's standard dummy
                 text ever since the 1500s, when an unknown printer took a galley
@@ -249,11 +276,17 @@ MoadalSize.decorators = [
             toggleModal2(!open2);
           }}
         >
-         <FlexLayout spacing="loose" valign="start" wrap="noWrap">
+          <FlexLayout spacing="loose" valign="start" wrap="noWrap">
             <AlertOctagon size={20} color={"rgb(178, 140, 53)"} />
             <FlexLayout spacing="extraTight">
-              <TextStyles type="SubHeading" subheadingTypes="SM-1.8" fontweight="extraBold">A short modal heading</TextStyles>
-              <TextStyles>
+              <TextStyles
+                type="SubHeading"
+                subheadingTypes="SM-1.8"
+                fontweight="normal"
+              >
+                Modal Size Medium
+              </TextStyles>
+              <TextStyles textcolor="light">
                 Lorem Ipsum is simply dummy text of the printing and typesetting
                 industry. Lorem Ipsum has been the industry's standard dummy
                 text ever since the 1500s, when an unknown printer took a galley
@@ -272,11 +305,17 @@ MoadalSize.decorators = [
             toggleModal3(!open3);
           }}
         >
-         <FlexLayout spacing="loose" valign="start" wrap="noWrap">
+          <FlexLayout spacing="loose" valign="start" wrap="noWrap">
             <AlertOctagon size={20} color={"rgb(178, 140, 53)"} />
             <FlexLayout spacing="extraTight">
-              <TextStyles type="SubHeading" subheadingTypes="SM-1.8" fontweight="extraBold">A short modal heading</TextStyles>
-              <TextStyles>
+              <TextStyles
+                type="SubHeading"
+                subheadingTypes="SM-1.8"
+                fontweight="normal"
+              >
+                Modal Size Large
+              </TextStyles>
+              <TextStyles textcolor="light">
                 Lorem Ipsum is simply dummy text of the printing and typesetting
                 industry. Lorem Ipsum has been the industry's standard dummy
                 text ever since the 1500s, when an unknown printer took a galley
@@ -295,11 +334,17 @@ MoadalSize.decorators = [
             toggleModal4(!open4);
           }}
         >
-         <FlexLayout spacing="loose" valign="start" wrap="noWrap">
+          <FlexLayout spacing="loose" valign="start" wrap="noWrap">
             <AlertOctagon size={20} color={"rgb(178, 140, 53)"} />
             <FlexLayout spacing="extraTight">
-              <TextStyles type="SubHeading" subheadingTypes="SM-1.8" fontweight="extraBold">A short modal heading</TextStyles>
-              <TextStyles>
+              <TextStyles
+                type="SubHeading"
+                subheadingTypes="SM-1.8"
+                fontweight="normal"
+              >
+                Modal Size Extra Large
+              </TextStyles>
+              <TextStyles textcolor="light">
                 Lorem Ipsum is simply dummy text of the printing and typesetting
                 industry. Lorem Ipsum has been the industry's standard dummy
                 text ever since the 1500s, when an unknown printer took a galley
@@ -340,8 +385,14 @@ MoadalWithPrimaryAction.decorators = [
           <FlexLayout spacing="loose" valign="start" wrap="noWrap">
             <AlertOctagon size={20} color={"rgb(178, 140, 53)"} />
             <FlexLayout spacing="extraTight">
-              <TextStyles type="SubHeading" subheadingTypes="SM-1.8" fontweight="extraBold">Modal With Primary Action Only</TextStyles>
-              <TextStyles>
+              <TextStyles
+                type="SubHeading"
+                subheadingTypes="SM-1.8"
+                fontweight="normal"
+              >
+                Modal With Primary Action Only
+              </TextStyles>
+              <TextStyles textcolor="light">
                 Lorem Ipsum is simply dummy text of the printing and typesetting
                 industry. Lorem Ipsum has been the industry's standard dummy
                 text ever since the 1500s, when an unknown printer took a galley
@@ -378,8 +429,60 @@ MoadalWithSecondaryAction.decorators = [
           <FlexLayout spacing="loose" valign="start" wrap="noWrap">
             <AlertOctagon size={20} color={"rgb(178, 140, 53)"} />
             <FlexLayout spacing="extraTight">
-              <TextStyles type="SubHeading" subheadingTypes="SM-1.8" fontweight="extraBold">Modal with Secondary Action</TextStyles>
-              <TextStyles>
+              <TextStyles
+                type="SubHeading"
+                subheadingTypes="SM-1.8"
+                fontweight="normal"
+              >
+                Modal with Secondary Action
+              </TextStyles>
+              <TextStyles textcolor="light">
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy
+                text ever since the 1500s, when an unknown printer took a galley
+                of type and scrambled it to make a type specimen book.
+              </TextStyles>
+            </FlexLayout>
+          </FlexLayout>
+        </Modal>
+      </Card>
+    );
+  },
+];
+//TertiaryAction
+export const MoadalWithTertiaryAction: any = Template.bind({});
+MoadalWithTertiaryAction.decorators = [
+  () => {
+    const [open3, toggleModal3] = useState(true);
+    const tertiaryAction1 = {
+      content: "Read More",
+      onClick: () => {
+        alert("Read More Action triggred");
+      },
+    };
+    return (
+      <Card>
+        <Button onClick={() => toggleModal3(!open3)}> Modal</Button>
+        <Modal
+          modalSize="large"
+          open={!open3}
+          heading={"Modal with Tertiary Action"}
+          tertiaryAction={tertiaryAction1}
+          close={() => {
+            toggleModal3(!open3);
+          }}
+        >
+          <FlexLayout spacing="loose" valign="start" wrap="noWrap">
+            <AlertOctagon size={20} color={"rgb(178, 140, 53)"} />
+            <FlexLayout spacing="extraTight">
+              <TextStyles
+                type="SubHeading"
+                subheadingTypes="SM-1.8"
+                fontweight="normal"
+              >
+                Modal with Secondary Action
+              </TextStyles>
+              <TextStyles textcolor="light">
                 Lorem Ipsum is simply dummy text of the printing and typesetting
                 industry. Lorem Ipsum has been the industry's standard dummy
                 text ever since the 1500s, when an unknown printer took a galley
@@ -408,11 +511,17 @@ MoadalWithoutFooter.decorators = [
             toggleModal3(!open3);
           }}
         >
-         <FlexLayout spacing="loose" valign="start" wrap="noWrap">
+          <FlexLayout spacing="loose" valign="start" wrap="noWrap">
             <AlertOctagon size={20} color={"rgb(178, 140, 53)"} />
             <FlexLayout spacing="extraTight">
-              <TextStyles type="SubHeading" subheadingTypes="SM-1.8" fontweight="extraBold">Modal Without Footer</TextStyles>
-              <TextStyles>
+              <TextStyles
+                type="SubHeading"
+                subheadingTypes="SM-1.8"
+                fontweight="normal"
+              >
+                Modal Without Footer
+              </TextStyles>
+              <TextStyles textcolor="light">
                 Lorem Ipsum is simply dummy text of the printing and typesetting
                 industry. Lorem Ipsum has been the industry's standard dummy
                 text ever since the 1500s, when an unknown printer took a galley
@@ -448,11 +557,17 @@ MoadalWithoutHeader.decorators = [
           }}
           secondaryAction={secondaryAction3}
         >
-         <FlexLayout spacing="loose" valign="start" wrap="noWrap">
+          <FlexLayout spacing="loose" valign="start" wrap="noWrap">
             <AlertOctagon size={20} color={"rgb(178, 140, 53)"} />
             <FlexLayout spacing="extraTight">
-              <TextStyles type="SubHeading" subheadingTypes="SM-1.8" fontweight="extraBold">Modal Without Header</TextStyles>
-              <TextStyles>
+              <TextStyles
+                type="SubHeading"
+                subheadingTypes="SM-1.8"
+                fontweight="normal"
+              >
+                Modal Without Header
+              </TextStyles>
+              <TextStyles textcolor="light">
                 Lorem Ipsum is simply dummy text of the printing and typesetting
                 industry. Lorem Ipsum has been the industry's standard dummy
                 text ever since the 1500s, when an unknown printer took a galley
@@ -502,8 +617,14 @@ MoadalWithTitleAndIcon.decorators = [
           <FlexLayout spacing="loose" valign="start" wrap="noWrap">
             <AlertOctagon size={20} color={"rgb(178, 140, 53)"} />
             <FlexLayout spacing="extraTight">
-              <TextStyles type="SubHeading" subheadingTypes="SM-1.8" fontweight="extraBold">Modal With Header Icon</TextStyles>
-              <TextStyles>
+              <TextStyles
+                type="SubHeading"
+                subheadingTypes="SM-1.8"
+                fontweight="normal"
+              >
+                Modal With Header Icon
+              </TextStyles>
+              <TextStyles textcolor="light">
                 Lorem Ipsum is simply dummy text of the printing and typesetting
                 industry. Lorem Ipsum has been the industry's standard dummy
                 text ever since the 1500s, when an unknown printer took a galley
@@ -529,7 +650,7 @@ MoadalWithDangerAction.decorators = [
         toggleModal3(!open3);
       },
     };
-    const primaryAction3:ButtonI = {
+    const primaryAction3: ButtonI = {
       content: "Delete",
       type: "Danger",
       loading: false,
@@ -540,30 +661,37 @@ MoadalWithDangerAction.decorators = [
     return (
       <Card>
         <FlexLayout>
-        <Button onClick={() => toggleModal3(!open3)}> Modal</Button>
-        <Modal
-          heading="Modal With danger Action"
-          modalSize="small"
-          open={!open3}
-          close={() => {
-            toggleModal3(!open3);
-          }}
-          secondaryAction={secondaryAction3}
-          primaryAction={primaryAction3}
-        >
-          <FlexLayout spacing="loose" valign="start" wrap="noWrap">
-            <AlertOctagon size={20} color={"rgb(178, 140, 53)"} />
-            <FlexLayout spacing="extraTight">
-              <TextStyles type="SubHeading" subheadingTypes="SM-1.8" fontweight="extraBold">Modal with Danger Action</TextStyles>
-              <TextStyles>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book.
-              </TextStyles>
+          <Button onClick={() => toggleModal3(!open3)}> Modal</Button>
+          <Modal
+            heading="Modal With danger Action"
+            modalSize="small"
+            open={!open3}
+            close={() => {
+              toggleModal3(!open3);
+            }}
+            secondaryAction={secondaryAction3}
+            primaryAction={primaryAction3}
+          >
+            <FlexLayout spacing="loose" valign="start" wrap="noWrap">
+              <AlertOctagon size={20} color={"rgb(178, 140, 53)"} />
+              <FlexLayout spacing="extraTight">
+                <TextStyles
+                  type="SubHeading"
+                  subheadingTypes="SM-1.8"
+                  fontweight="normal"
+                >
+                  Modal with Danger Action
+                </TextStyles>
+                <TextStyles textcolor="light">
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum has been the industry's
+                  standard dummy text ever since the 1500s, when an unknown
+                  printer took a galley of type and scrambled it to make a type
+                  specimen book.
+                </TextStyles>
+              </FlexLayout>
             </FlexLayout>
-          </FlexLayout>
-        </Modal>
+          </Modal>
         </FlexLayout>
       </Card>
     );

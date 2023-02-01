@@ -8,5 +8,6 @@ export interface TagI {
     count?: any;
     togglePopup?: (() => void) | any;
     toggle?: boolean;
+    disabled?: boolean;
 }
 export default Tag;
