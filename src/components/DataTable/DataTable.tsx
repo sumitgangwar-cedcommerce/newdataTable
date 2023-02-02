@@ -62,7 +62,7 @@ const DataTable = ({ columns = [], dataSource = [], fixedHeader = false, scrollX
     const [selectedCheckbox, setSelectedCheckbox] = useState<string[]>(rowSelection?.selectedRowKeys ? rowSelection.selectedRowKeys : [])
     const [expandedRows, setExpandedRows] = useState<string[]>([])
 
-    const GridWrapperRef = useRef<HTMLDivElement>(null)
+    const GridWrapperRef = useRef<HTMLDivElement>(null);
     const tableCellRefs = useRef<Array<Array<HTMLTableCellElement | null>>>([[]])
 
     const handelGridScroll = () => {
