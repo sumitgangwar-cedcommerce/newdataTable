@@ -16,8 +16,11 @@ const AdvanceFilter: React.FC<Filter1> = ({
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+
     const handleClickOutside = (event: any) => {
-      if (ref.current && !ref.current.contains(event.target)) {
+      let path = event.composedPath();
+      const classExists = path.some((el: any) => el.classList && el.classList.contains("inte-select-options"));
+      if (!classExists && ref.current && !ref.current.contains(event.target)) {
         handleToggle(false);
       }
     };

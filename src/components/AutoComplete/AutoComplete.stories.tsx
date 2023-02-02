@@ -57,6 +57,13 @@ export default {
       },
       defaultValue: "Search Your Items",
     },
+    label: {
+      description: "Show Label",
+      control: {
+        type: "text",
+      },
+      defaultValue: "Label",
+    },
     extraClass: {
       description: "Set Any custom class to dropdown to manage your Custom design needs",
       control: {
@@ -464,7 +471,7 @@ const Template = ({ ...rest }) => {
             <AutoComplete
               {...rest}
               options={names}
-              name={rest.name}
+              label={rest.label}
               showHelp={rest.showHelp}
               value={value}
               onChange={onChangex}
@@ -529,7 +536,7 @@ autocomplete_with_popover_position.decorators = [
               <AutoComplete
                 options={names}
                 key={index}
-                name={item + " " + "Popover Position"}
+                label={item + " " + "Popover Position"}
                 placeHolder="Autocomplete without Heighlighted Text"
                 showHelp="You can search Your Term"
                 value={value[index]}

@@ -16,7 +16,7 @@ function AutoComplete({
   onChange,
   onClick,
   onEnter,
-  name,
+  label,
   prefix = <Search size={20} color="#7e828b" />,
   suffix,
   showHelp,
@@ -223,7 +223,7 @@ function AutoComplete({
             onEnter(value);
           }
         }}
-        className={`inte__AutoComplete ${name ? "inte__AutoComplete--hasName" : false
+        className={`inte__AutoComplete ${label ? "inte__AutoComplete--hasName" : false
           } ${props.showPopover && "inte__AutoComplete--HasPopover"} ${props.showPopover && "inte__AutoComplete-Position" + popoverPosition
           }`}
       >
@@ -231,7 +231,7 @@ function AutoComplete({
           type="text"
           value={value}
           showHelp={showHelp}
-          label={name}
+          label={label}
           prefix={prefix}
           suffix={suffix}
           placeHolder={placeHolder}
@@ -410,7 +410,7 @@ export const getScrollParent = (node: any) => {
 export interface SearchI {
   options?: any;
   value?: string;
-  name?: string;
+  label?: string;
   onEnter?: ((e: string) => void) | any;
   onChange?: ((e: string) => void) | any;
   onClick?: ((e: string) => void) | any;

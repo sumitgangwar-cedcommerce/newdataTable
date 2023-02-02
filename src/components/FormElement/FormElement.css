@@ -998,6 +998,9 @@ ul.inte-choiceList--options {
 .inte-Modal--Open > .inte-select {
   z-index: 99999999 !important;
 }
+.inte-Filter--Open .inte-select.inte-select--Fixed{
+  z-index: 999999!important;
+}
 .inte-select.inte-select--Fixed {
   padding: 0 !important;
 }

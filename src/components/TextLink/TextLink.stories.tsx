@@ -20,7 +20,13 @@ export default {
             },
             defaultValue: "Text Link",
         },
-
+        extraClass: {
+            description: "You can add any extraClass",
+            control: {
+                type: "text",
+            },
+            defaultValue: "extraClass",
+        },
         disabled: {
             description: "Make text link disabled",
             control: {
