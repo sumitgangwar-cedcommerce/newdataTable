@@ -9,7 +9,8 @@ export default {
   argTypes: {
     text: {
       name: "Text",
-      description: "A String which is used to set Profile name or any other usage, Not work with Image",
+      description:
+        "A String which is used to set Profile name or any other usage, Not work with Image",
       defaultValue: "Jon Doe",
       control: {
         type: "text",
@@ -45,16 +46,16 @@ export default {
       control: {
         type: "text",
       },
-      defaultValue : ""
+      defaultValue: "",
     },
     size: {
       name: "Size",
       description: "Manage and Controls the Size of Avatar",
       control: {
         type: "radio",
-        options: ["small", "medium", "large"],
+        options: ["Small", "Medium", "Large"],
       },
-      defaultValue: "large",
+      defaultValue: "Large",
     },
   },
 };
@@ -106,7 +107,7 @@ Color.decorators = [
   ),
 ];
 
-const size = ["small", "medium", "large"];
+const size = ["Small", "Medium", "Large"];
 export const Size: any = Template.bind({});
 Size.decorators = [
   () => (
@@ -124,8 +125,34 @@ export const Avatar_with_Image: any = Template.bind({});
 Avatar_with_Image.decorators = [
   () => (
     <Card>
-          <Avatar size="medium" image="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg" />
+      <Avatar
+        size="Medium"
+        image="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"
+      />
     </Card>
   ),
 ];
 
+export const Avatar_with_Badge: any = Template.bind({});
+Avatar_with_Badge.decorators = [
+  () => (
+    <Card title={"Avatar With Badges"}>
+      <FlexLayout direction="vertical" spacing="loose">
+        <FlexLayout spacing="loose">
+          {size.map((variant: any) => (
+            <Avatar badge size={variant} text="Jon Doe" />
+          ))}
+        </FlexLayout>
+        <FlexLayout spacing="loose">
+          {size.map((variant: any) => (
+            <Avatar
+              badge
+              size={variant}
+              image="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"
+            />
+          ))}
+        </FlexLayout>
+      </FlexLayout>
+    </Card>
+  ),
+];

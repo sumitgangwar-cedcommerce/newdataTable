@@ -31,11 +31,19 @@ declare const _default: {
         primaryAction: {
             control: {
                 type: string;
+                disable: boolean;
             };
         };
         secondaryAction: {
             control: {
                 type: string;
+                disable: boolean;
+            };
+        };
+        tertiaryAction: {
+            control: {
+                type: string;
+                disable: boolean;
             };
         };
         modalSize: {
@@ -62,3 +70,5 @@ export declare const MoadalWithPrimaryAction: any;
 export declare const MoadalWithSecondaryAction: any;
 export declare const MoadalWithoutFooter: any;
 export declare const MoadalWithoutHeader: any;
+export declare const MoadalWithTitleAndIcon: any;
+export declare const MoadalWithDangerAction: any;

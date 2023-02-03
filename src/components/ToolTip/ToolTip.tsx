@@ -7,39 +7,17 @@ function ToolTip({
   helpText,
   position = "top",
   open = false,
-  popoverContainer = "element",
-  type = "dark",
+  popoverContainer = "body",
   extraClass,
 }: ToolTipI): JSX.Element {
-  // Tooltip Portal code
   const [id] = useState(() => Math.floor(Math.random() * 1000));
-  const [openState, setOpenState] = useState(false);
+  const [openState, setOpenState] = useState(open);
   const myRef: any = useRef();
   const myReff: any = useRef();
 
-  function myFun(event: Event) {
-    const getPath: EventTarget[] = event.composedPath();
-    let flag = true;
-    getPath.forEach((element: any) => {
-      if (element.id === "inte-Tooltip-Parent_" + id) {
-        flag = false;
-      }
-    });
-    if (flag && open) {
-      // onClose();
-    }
-  }
-
   useEffect(() => {
-    if (myReff && myReff.current) {
-      logit();
-    }
-  }, [myReff, children]);
-
-  useEffect(() => {
-    setOpenState(open);
     logit();
-  }, [open]);
+  }, [myReff, children]);
 
   const positionObjectMemo = useMemo(() => {
     return myRef.current?.getBoundingClientRect()
@@ -54,7 +32,6 @@ function ToolTip({
       ? myRef.current?.getBoundingClientRect()
       : 10;
     setpositionObject(post);
-    // dyPos();
   }
 
   useEffect(() => {
@@ -80,52 +57,167 @@ function ToolTip({
     };
   });
 
-  useEffect(() => {
-    if (openState) {
-      const rootDiv = document.getElementById("root");
-      if (!rootDiv) return;
-      rootDiv.addEventListener("MouseOver", myFun, false);
-    }
-    return () => {
-      const rootDiv = document.getElementById("root");
-      if (!rootDiv) return;
-      rootDiv.removeEventListener("MouseOver", myFun, false);
-    };
-  }, [openState]);
-
-  function dyPos() {
+  const dyPos = () => {
     const windowheight = window.innerHeight; //Window Height
     const posactivator = positionObject.bottom; // position of elemet from Top
-    const posactivatortop = positionObject.top; // top remaining space
     const remainingBottomheight = windowheight - posactivator; // Remaining Bottom Space When Portal Opens
     const portalHeight = myReff.current?.offsetHeight ?? 0; // Portal Element Height
-    const eleWidth = positionObject.right - positionObject.left;
+    const popoverlWidth = myReff.current?.offsetWidth ?? 0; // Portal Element Width
+    const windowWidth = window.innerWidth; // get window inner width
+    const halfWidth = positionObject.width / 2; // get object half width
 
     if (portalHeight > remainingBottomheight) {
       const x = "tooltip-top";
-      return {
-        class: x,
-        style: {
-          left: positionObject.left + eleWidth / 2,
-          top: positionObject.top - portalHeight - 4,
-        },
-      };
+      if (popoverlWidth / 2 > positionObject.left + halfWidth) {
+        return {
+          class: x,
+          style: {
+            left: positionObject.left,
+            top: positionObject.top - portalHeight,
+            svgTopIndex: halfWidth,
+          },
+        };
+      } else if (
+        windowWidth >=
+        positionObject.right + popoverlWidth / 2 - halfWidth
+      ) {
+        return {
+          class: x,
+          style: {
+            left: positionObject.left + halfWidth - popoverlWidth / 2,
+            top: positionObject.top - portalHeight,
+            svgTopIndex: popoverlWidth / 2,
+          },
+        };
+      } else {
+        return {
+          class: x,
+          style: {
+            left: positionObject.left + positionObject.width - popoverlWidth,
+            top: positionObject.top - portalHeight,
+            svgTopIndex: popoverlWidth - halfWidth,
+          },
+        };
+      }
     } else {
       const x = "tooltip-bottom";
-      return {
-        class: x,
-        style: {
-          left: positionObject.left + eleWidth / 2,
-          top: positionObject.top + positionObject.height,
-        },
-      };
+      if (popoverlWidth / 2 > positionObject.left + halfWidth) {
+        return {
+          class: x,
+          style: {
+            left: positionObject.left,
+            top: positionObject.top + positionObject.height,
+            svgBottomIndex: halfWidth,
+          },
+        };
+      } else if (
+        windowWidth >=
+        positionObject.right + popoverlWidth / 2 - halfWidth
+      ) {
+        return {
+          class: x,
+          style: {
+            left: positionObject.left + halfWidth - popoverlWidth / 2,
+            top: positionObject.top + positionObject.height,
+            svgBottomIndex: popoverlWidth / 2,
+          },
+        };
+      } else {
+        return {
+          class: x,
+          style: {
+            left: positionObject.left + positionObject.width - popoverlWidth,
+            top: positionObject.top + positionObject.height,
+            svgBottomIndex: popoverlWidth - positionObject.width / 2,
+          },
+        };
+      }
     }
-  }
+  };
 
   const pp = dyPos();
 
+  const bottom = {
+    left: pp.style.svgBottomIndex,
+    top: "0px",
+    transform: "rotate(90deg) translateY(50%)",
+    padding: "0 0 0.9rem 0",
+  };
+  const top = {
+    left: pp.style.svgTopIndex,
+    bottom: "0px",
+    padding: "0.9rem 0 0 0",
+    transform: "rotate(270deg) translateY(-50%)",
+  };
+
+  const bodyPortal = (
+    <div
+      ref={myReff}
+      style={{
+        ...pp.style,
+        position: "fixed",
+        padding: pp.class == "tooltip-bottom" ? top.padding : bottom.padding,
+        visibility: `${openState ? "visible" : "hidden"}`,
+      }}
+      className={`inte__ToolTip-dark ${pp.class} ${extraClass} `}
+    >
+      <span
+        className={`inte__ToolTip-pointer`}
+        style={{
+          position: "absolute",
+          display: "inline-flex",
+          top: pp.class == "tooltip-bottom" ? bottom.top : "",
+          bottom: pp.class == "tooltip-top" ? top.bottom : "",
+          left: pp.class == "tooltip-bottom" ? bottom.left : top.left,
+          transform:
+            pp.class == "tooltip-bottom" ? bottom.transform : top.transform,
+        }}
+      >
+        <svg
+          width="6"
+          height="12"
+          viewBox="0 0 6 12"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M6 0V12L0 6L6 0Z"
+            fill={"black"}
+          />
+        </svg>
+      </span>
+
+      <div className="inte__ToolTip-message">{helpText}</div>
+    </div>
+  );
+  const elementPortal = (
+    <div
+      className={`inte__ToolTip-bubble inte__ToolTip-${position} inte__ToolTip-dark ${extraClass}`}
+      style={{
+        display: `${openState ? "" : "none"}`,
+      }}
+    >
+      <span className="inte__ToolTip-pointer">
+        <svg
+          width="6"
+          height="12"
+          viewBox="0 0 6 12"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M6 0V12L0 6L6 0Z"
+            fill={"black"}
+          />
+        </svg>
+      </span>
+      <div className="inte__ToolTip-message">{helpText}</div>
+    </div>
+  );
+
   // Tooltip portal code end
   return (
+    <>
     <span
       id={"inte-Tooltip-Parent_" + id}
       ref={myRef}
@@ -137,34 +229,17 @@ function ToolTip({
         setOpenState(false);
       }}
     >
-      {" "}
-      {!openState ? null : popoverContainer == "body" ? (
-        createPortal(
-          <>
-            <div
-              ref={myReff}
-              style={{
-                ...pp.style,
-                position: "fixed",
-                transform: "translateX(-50%)",
-              }}
-              className={`inte__ToolTip-bubble  ${pp.class} inte__Tooltip-bubble-Portal inte__ToolTip-${type} ${extraClass}`}
-            >
-              <div className="inte__ToolTip-message">{helpText}</div>
-            </div>
-          </>,
-          document.body
-        )
-      ) : (
-        <div
-          ref={myReff}
-          className={`inte__ToolTip-bubble inte__ToolTip-${position} inte__ToolTip-${type} ${extraClass}`}
-        >
-          <div className="inte__ToolTip-message">{helpText}</div>
-        </div>
-      )}
+      {!openState
+        ? popoverContainer == "element"
+          ? elementPortal
+          : createPortal(bodyPortal, document.body)
+        : popoverContainer == "body"
+        ? createPortal(bodyPortal, document.body)
+        : elementPortal}
+
       <span className="inte__ToolTip-trigger">{children}</span>
     </span>
+    </>
   );
 }
 
@@ -211,7 +286,6 @@ export interface ToolTipI {
   position?: "top" | "bottom" | "left" | "right";
   open: boolean;
   popoverContainer?: "body" | "element";
-  type?: "light" | "dark";
   extraClass?: string;
 }
 

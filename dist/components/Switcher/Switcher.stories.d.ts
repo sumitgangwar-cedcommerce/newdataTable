@@ -1,30 +1,35 @@
-import Switcher from "./Switcher";
 declare const _default: {
     title: string;
-    component: typeof Switcher;
+    component: any;
     argTypes: {
-        checked: {
-            description: string;
+        children: {
             control: {
                 type: string;
             };
-            defaultValue: boolean;
+            defaultValue: string;
         };
-        name: {
+        title: {
             description: string;
             control: {
                 type: string;
             };
             defaultValue: string;
         };
-        className: {
+        content: {
             description: string;
             control: {
+                disable: boolean;
                 type: string;
             };
             defaultValue: string;
         };
-        textAligh: {
+        list: {
+            description: string;
+            control: {
+                disable: boolean;
+            };
+        };
+        type: {
             description: string;
             control: {
                 type: string;
@@ -32,20 +37,66 @@ declare const _default: {
             };
             defaultValue: string;
         };
-        disabled: {
+        thickness: {
+            description: string;
+            control: {
+                type: string;
+                options: string[];
+            };
+            defaultValue: string;
+        };
+        halign: {
+            description: string;
+            control: {
+                type: string;
+                options: string[];
+            };
+            defaultValue: string;
+        };
+        iconAlign: {
+            description: string;
+            control: {
+                type: string;
+                options: string[];
+            };
+            defaultValue: string;
+        };
+        loading: {
             description: string;
             control: {
                 type: string;
             };
             defaultValue: boolean;
         };
+        disable: {
+            description: string;
+            control: {
+                type: string;
+            };
+            defaultValue: boolean;
+        };
+        icon: {
+            description: string;
+            control: {
+                type: string;
+                options: string[];
+                disable: boolean;
+            };
+        };
+        onClick: {
+            description: string;
+            control: {
+                type: string;
+            };
+        };
+        onAction: {
+            description: string;
+            control: {
+                type: string;
+                disable: boolean;
+            };
+        };
     };
 };
 export default _default;
-export declare const Primary: ({ ...rest }: {
-    [x: string]: any;
-}) => JSX.Element;
-export declare const Disabled: any;
-export declare const Text_Aligh_Left: any;
-export declare const Text_Aligh_Right: any;
-export declare const Without_Name: any;
+export declare const Primary: any;

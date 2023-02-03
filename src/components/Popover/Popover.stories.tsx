@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Popover from "./Popover";
 import { Card, Button } from "..";
-import { TextField } from "../FormElement";
+import { Select, TextField } from "../FormElement";
 import { FlexChild, FlexLayout } from "../FlexLayout";
 import { ChevronDown } from "react-feather";
 import Avatar from "../Avatar/Avatar";
 import TextStyles from "../TextStyles/TextStyles";
-
 
 export default {
   title: "Components/Overlays/Popover",
@@ -56,7 +55,7 @@ const Template = ({ ...rest }) => {
   useEffect(() => {
     togglePopover1(rest.open1);
   }, [rest.open1]);
-   
+
   const activator = (
     <Button onClick={togglePop}>Popover With Simple Form</Button>
   );
@@ -83,6 +82,7 @@ const Template = ({ ...rest }) => {
     temp[index] = data;
     setvalue(temp);
   };
+  const [selval, setVal] = useState("");
   return (
     <>
       <Card>
@@ -110,6 +110,22 @@ const Template = ({ ...rest }) => {
                   />
                 );
               })}
+              <Select
+                value={selval}
+                onChange={(e) => {
+                  setVal(e);
+                }}
+                options={[
+                  {
+                    label: "Option 1",
+                    value: "valuedf",
+                  },
+                  {
+                    label: "Option 2",
+                    value: "value",
+                  },
+                ]}
+              />
               <FlexLayout halign="end" spacing="mediumTight">
                 <Button thickness="extraThin" type="Secondary">
                   Cancel
@@ -128,10 +144,21 @@ const Template = ({ ...rest }) => {
           >
             <FlexLayout wrap="noWrap" spacing="loose">
               <FlexChild>
-                <Avatar image="https://cdn-icons-png.flaticon.com/512/147/147144.png" size="medium"></Avatar>
+                <Avatar
+                  image="https://cdn-icons-png.flaticon.com/512/147/147144.png"
+                  size="Medium"
+                ></Avatar>
               </FlexChild>
               <FlexChild>
-              <TextStyles>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est, inventore ipsam maxime nihil, commodi molestias labore earum blanditiis asperiores quos facere fugiat in sit nostrum ipsa necessitatibus veritatis sed tenetur. <Button type="TextButton" onClick={()=>alert("clicked")}>Click here</Button></TextStyles>
+                <TextStyles>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Est,
+                  inventore ipsam maxime nihil, commodi molestias labore earum
+                  blanditiis asperiores quos facere fugiat in sit nostrum ipsa
+                  necessitatibus veritatis sed tenetur.{" "}
+                  <Button type="TextButton" onClick={() => alert("clicked")}>
+                    Click here
+                  </Button>
+                </TextStyles>
               </FlexChild>
             </FlexLayout>
           </Popover>

@@ -180,8 +180,8 @@ const Popover: React.FC<PopoverI> = ({
     >
       {activator}
       {popoverContainer == "body"
-          ? showElement("body")
-          : showElement("element")}
+        ? showElement("body")
+        : showElement("element")}
 
       {/* {!openState ? (
         <div

@@ -4,33 +4,51 @@ declare const _default: {
     component: React.FC<import("./ActionList").ActionListI>;
     argTypes: {
         sections: {
-            table: {
-                disable: boolean;
-            };
-        };
-        sections1: {
-            table: {
-                disable: boolean;
-            };
-        };
-        primaryAction: {
-            description: string;
-            control: {
-                disable: boolean;
-            };
-        };
-        secondaryAction: {
-            description: string;
-            control: {
-                disable: boolean;
-            };
-        };
-        ActionList: {
-            description: string;
             control: {
                 type: string;
             };
-            defaultValue: string;
+            defaultValue: ({
+                title: string;
+                items: ({
+                    destructive: boolean;
+                    content: string;
+                    onClick: () => void;
+                } | {
+                    content: string;
+                    onClick: () => void;
+                    destructive?: undefined;
+                })[];
+            } | {
+                title: string;
+                items: {
+                    prefixIcon: JSX.Element;
+                    content: string;
+                    onClick: () => void;
+                }[];
+            } | {
+                title: string;
+                items: {
+                    content: string;
+                    description: string;
+                    onClick: () => void;
+                }[];
+            } | {
+                title: string;
+                items: {
+                    content: string;
+                    description: string;
+                    prefixIcon: JSX.Element;
+                    onClick: () => void;
+                }[];
+            } | {
+                title: string;
+                items: {
+                    content: string;
+                    description: string;
+                    suffixIcon: JSX.Element;
+                    onClick: () => void;
+                }[];
+            })[];
         };
         open: {
             description: string;
@@ -45,15 +63,6 @@ declare const _default: {
                 disable: boolean;
             };
         };
-        ActionListContent: {
-            name: string;
-            description: string;
-            control: {
-                type: string;
-                disable: boolean;
-            };
-            defaultValue: string;
-        };
         dropDownheight: {
             description: string;
             control: {
@@ -61,15 +70,7 @@ declare const _default: {
             };
             defaultValue: string;
         };
-        popoverContainer: {
-            description: string;
-            control: {
-                type: string;
-                options: string[];
-            };
-            defaultValue: string;
-        };
-        direction: {
+        container: {
             description: string;
             control: {
                 type: string;

@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Filter as Filters } from "react-feather";
 import { CheckBox, Select, TextField, FlexLayout } from "..";
+import { Card } from "../Card";
 import { FormElement } from "../FormElement";
 import AdvanceFilter from "./AdvanceFilter";
+import AdvanceFilter2 from "./AdvanceFilter2";
 
 export default {
   title: "Components/Overlays/AdvanceFilter",
@@ -44,24 +46,21 @@ export default {
       defaultValue: true,
     },
     onApply: {
-      description:
-        "Manage onApply Function",
+      description: "Manage onApply Function",
       control: {
         type: "function",
         disable: true,
       },
     },
     onClose: {
-      description:
-        "Manage onClose Function",
+      description: "Manage onClose Function",
       control: {
         type: "function",
         disable: true,
       },
     },
     resetFilter: {
-      description:
-        "Manage resetFilter Function",
+      description: "Manage resetFilter Function",
       control: {
         type: "function",
         disable: true,
@@ -73,20 +72,29 @@ export default {
         disable: true,
       },
     },
-
+    filterType: {
+      description: "You can set type of Button of filter component",
+      control: {
+        type: "radio",
+        options: [
+          "Sheet",
+          "Popover",
+        ],
+      },
+      defaultValue: "Sheet",
+    },
     type: {
       description: "You can set type of Button of filter component",
       control: {
         type: "radio",
         options: [
           "Primary",
-          "Plain",
           "Danger",
+          "DangerOutlined",
           "Secondary",
-          "PlainDark",
-          "Small",
           "Outlined",
-          "none",
+          "DangerPlain",
+          "TextButton",
         ],
       },
       defaultValue: "Outlined",
@@ -96,12 +104,13 @@ export default {
 
 const filtersObj = [
   {
-    name: "Select Filter",
+    name: "Status Hello",
     badgeCount: 5,
     children: <SelectRender />,
   },
   {
-    name: "Select & Text Filter",
+    name: "Sales hello",
+    badgeCount: 5,
     children: (
       <>
         <FormElement>
@@ -112,14 +121,14 @@ const filtersObj = [
     ),
   },
   {
-    name: "Checkbox Filter",
+    name: "Metrics hello",
     children: (
-      <FlexLayout spacing="tight" direction="vertical">
+      <FormElement>
         <CheckBoxRender labelVal="Finished" />
         <CheckBoxRender labelVal="Warning" />
         <CheckBoxRender labelVal="Error" />
         <CheckBoxRender labelVal="Pending" />
-      </FlexLayout>
+      </FormElement>
     ),
   },
 ];
@@ -137,11 +146,21 @@ function TextFieldRender() {
     />
   );
 }
-function SelectRender() {
+
+interface SelectRenderI {
+  onChangeFun?:Function
+}
+
+function SelectRender({onChangeFun}:SelectRenderI) {
   const [selval, setVal] = useState("");
+
+
   return (
     <Select
+      tabIndex={0}
       value={selval}
+      placeholder="Select Value"
+      // container="element"
       onChange={(e) => {
         setVal(e);
       }}
@@ -174,19 +193,56 @@ function CheckBoxRender({ labelVal }: any) {
 }
 
 const Template = ({ ...rest }) => {
+
+  const [badgeCount , setBadgeCount] = useState({status : 0 , sales : 0 , metrics : 0})
+
+  const filtersObj = [
+    {
+      name: "Status Hello",
+      badgeCount: badgeCount.status,
+      children: <SelectRender onChangeFun={() => setBadgeCount(prev => ({...prev , status:badgeCount.status ? 0 : 1}))}/>,
+    },
+    {
+      name: "Sales hello",
+      badgeCount: badgeCount.sales,
+      children: (
+        <>
+          <FormElement>
+            <SelectRender />
+            <TextFieldRender />
+          </FormElement>
+        </>
+      ),
+    },
+    {
+      name: "Metrics hello",
+      badgeCount:badgeCount.metrics,
+      children: (
+        <FormElement>
+          <CheckBoxRender labelVal="Finished" />
+          <CheckBoxRender labelVal="Warning" />
+          <CheckBoxRender labelVal="Error" />
+          <CheckBoxRender labelVal="Pending" />
+        </FormElement>
+      ),
+    },
+  ];
+
+
   return (
-    <>
-      <AdvanceFilter
+    <Card>
+      <AdvanceFilter2
         {...rest}
+        filterType={rest.filterType}
         disableReset={rest.disableReset}
         disableApply={rest.disableApply}
         filters={filtersObj}
         type={rest.type}
-        onClose={() => {}}
+        onClose={() => { }}
         button={rest.button}
         icon={<Filters color="#2a2a2a" size={16} />}
       />
-    </>
+    </Card>
   );
 };
 
@@ -195,14 +251,16 @@ export const AdvanceFilterwithAllProps: any = Template.bind({});
 AdvanceFilterwithAllProps.decorators = [
   () => {
     return (
-      <AdvanceFilter
-        filters={filtersObj}
-        heading="Filters"
-        type={"Outlined"}
-        onClose={() => {}}
-        button={"More Filter"}
-        icon={<Filters color="#2a2a2a" size={16} />}
-      />
+      <Card>
+        <AdvanceFilter
+          filters={filtersObj}
+          heading="Filters"
+          type={"Outlined"}
+          onClose={() => { }}
+          button={"More Filter"}
+          icon={<Filters color="#2a2a2a" size={16} />}
+        />
+      </Card>
     );
   },
 ];

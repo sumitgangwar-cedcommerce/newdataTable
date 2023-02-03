@@ -41,7 +41,7 @@ const Topbar: React.FC<TopbarI> = ({
                 </div>
               ) : (
                 <div className="inte__Accounts-Avatar">
-                  <Avatar size="medium" type="circle" text={account.name}>
+                  <Avatar size="Medium" type="circle" text={account.name}>
                     {account.name}
                   </Avatar>
                 </div>

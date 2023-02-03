@@ -139,7 +139,7 @@ Page_header_with_title_and_metaData.decorators = [
   () => (
     <Card>
       <PageHeader
-        metaData={<Badge type="Positive-100" children={"Connected"} />}
+        metaData={<Badge type="Primary" children={"Connected"} />}
         title="Page Header"
         description="Page Description"
         onClick={() => {
@@ -174,7 +174,7 @@ Page_header_with_all_faetures.decorators = [
       <Card>
         <PageHeader
           reverseNavigation
-          metaData={<Badge type="Positive-100" children={"Connected"} />}
+          metaData={<Badge type="Primary" children={"Connected"} />}
           title="Page Header"
           description="A product can be a service or an item. It can be physical or in virtual or cyber form. Every product is made at a cost and each is sold at a price."
           primaryAction={primaryAction1}

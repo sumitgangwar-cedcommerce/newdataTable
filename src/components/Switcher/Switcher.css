@@ -1,69 +1,81 @@
-.inte__Switcher--Wrapper {
-  display: flex;
-  align-items: center;
-  gap: 1.2rem;
-}
-.inte--switcher {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  -webkit-tap-highlight-color: transparent;
-  cursor: pointer;
-  height: 2rem;
-  width: 3.8rem;
-  border-radius: var(--radius-rounded-5);
-  display: inline-block;
+.inte--Switcher {
   position: relative;
-  transition: all 0.3s ease;
-  background-color: var(--inte-G90);
-  overflow: hidden;
+  display: inline-block;
 }
-.inte--switcher:checked:hover{
-  background: var(--inte-P1000);
-}
-.inte--switcher:after {
-  content: "";
+.inte--Switcher__Popover {
   position: absolute;
-  top: 0.2rem;
-  left: 0.2rem;
-  width: 1.6rem;
-  height: 1.6rem;
-  border-radius: var(--radius-rounded-4);
-  background: var(--inte-G0);
-  box-shadow: 0.5px 0.5px 8px rgba(0, 0, 0, 0.25);
-  transition: all 0.2s cubic-bezier(0.5, 0.1, 0.75, 1.35);
-}
-.inte--switcher:hover{
-  background-color: var(--inte-G100);
-}
-.inte--switcher:focus {
-  outline: 0;
-  box-shadow: 0 0 0 0.1rem var(--inte-G0), 0 0 0 0.3rem var(--inte-B80);
-}
-.inte--switcher[disabled] {
-  cursor: not-allowed;
-  background: var(--inte-G40)!important;
-}
-.inte--switcher:checked[disabled] {
-  background: var(--inte-P40)!important;
-}
-.inte--switcher[disabled]:after {
- box-shadow: unset!important;
-}
-.inte--switcher:checked {
-  background: var(--inte-P900);
-}
-.inte--switcher:checked:after {
-  background: var(--inte-P900);
-  transform: translatex(1.8rem);
+  width: 23rem;
+  list-style: none;
+  text-align: left;
+  padding: 0.8rem;
+  margin: 0;
   background-color: var(--inte-G0);
-  box-shadow: -0.5px 0.5px 8px rgba(0, 0, 0, 0.5);
+  top: calc(100% + 8px);
+  right: 0;
+  transition: 100ms all linear;
+  border-radius: var(--radius-rounded-4);
+  max-height: 280px;
+  overflow: auto;
+  overflow-x: hidden;
+  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.15);
+  animation-name: ButtonDropdownAnimation;
+  -webkit-animation-duration: 0.1s;
+  animation-duration: 0.1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  transform-origin: top center;
 }
-span.inte__Switcher-Text {
-  font-weight: var(--weight-bolder);
-  font-size: 1.6rem;
-  color: var(--inte-G800);
+.inte--Switcher__Popover.inte--Switcher__Popover--left {
+  left: 0;
+  right: unset;
+}
+.inte--Switcher__Popover.inte--Switcher__Popover--right {
+  left: unset;
+  right: 0;
+}
+.inte--Switcher li button {
+  display: block;
+  padding: 0.8rem;
+  width: 100%;
+  text-align: left;
+  color: var(--inte-G450);
+}
+.inte--Switcher li button:hover {
+  background-color: var(--inte-G30);
+  color: var(--G800);
+}
+ul.inte-btn--Dropdown__Popover .inte-btn.inte-btn--hasIcon {
+  justify-content: flex-start;
+  align-items: center;
+}
+.inte--Switcher span.inte-btn__icon {
+  transition: 200ms all linear;
 }
 
+.inte--Switcher li button span.inte__text {
+  font-size: 1.4rem !important;
+  display: block;
+  margin-top: 0;
+  line-height: 1.429;
+}
+@keyframes ButtonDropdownAnimation {
+  100% {
+    -webkit-transform: scale(1, 1);
+    transform: scale(1);
+  }
+  0% {
+    -webkit-transform: scale(0.95, 0.95);
+    transform: scale(0.95);
+  }
+}
 
-
+@-webkit-keyframes ButtonDropdownAnimation {
+  100% {
+    -webkit-transform: scale(1, 1);
+    transform: scale(1);
+  }
+  0% {
+    -webkit-transform: scale(0.95, 0.95);
+    transform: scale(0.95);
+  }
+}

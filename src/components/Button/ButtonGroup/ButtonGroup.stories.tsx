@@ -93,7 +93,6 @@ SegmentedWithActionList.decorators = [
           <Button type="Secondary">Button</Button>
           <Button type="Secondary">Button</Button>
           <ActionList
-            direction="left"
             onClose={toggleActive}
             activator={
               <Button
@@ -144,7 +143,6 @@ VertcialSegmentedWithActionList.decorators = [
           <Button type="Secondary">Button</Button>
           <Button type="Secondary">Button</Button>
           <ActionList
-            direction="left"
             onClose={toggleActive1}
             activator={
               <Button

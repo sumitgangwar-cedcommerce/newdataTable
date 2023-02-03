@@ -1,49 +1,126 @@
 import React, { useCallback, useState } from "react";
 import ActionList from "./ActionList";
-import { ChevronDown, ChevronUp } from "react-feather";
+import { ChevronDown, ChevronUp, Delete, Upload } from "react-feather";
 import Button from "../Button/Button";
 import { activity } from "../../Icon/Icon";
 import { Card } from "../Card";
 import { FlexChild, FlexLayout } from "../FlexLayout";
 
 export default {
-  title: "Components/Actions/ActionList",
+  title: "Components/Actions/ActionLists",
   component: ActionList,
   argTypes: {
     sections: {
-      table: {
-        disable: true,
-      },
-    },
-    sections1: {
-      table: {
-        disable: true,
-      },
-    },
-    primaryAction: {
-      description: "You can set Primary action at bottom of Dropdown",
       control: {
-        disable: true,
+        type: "array",
       },
-    },
-    secondaryAction: {
-      description: "You can set Secondary action at bottom of Dropdown",
-      control: {
-        disable: true,
-      },
-    },
-    ActionList: {
-      description: "Change Action list button name",
-      control: {
-        type: "text",
-      },
-      defaultValue: "Action List",
+      defaultValue: [
+        {
+          title: "Action List With title Only",
+          items: [
+            {
+              destructive: true,
+              content: "Action List content",
+              onClick: () => alert("Hello 1"),
+            },
+            {
+              content: "Action List content",
+              onClick: () => alert("Hello 2"),
+            },
+            {
+              content: "Action List content",
+              onClick: () => alert("Hello 3"),
+            },
+          ],
+        },
+        {
+          title: "Action List With Icon and Title Only",
+          items: [
+            {
+              prefixIcon: <Upload size={20} />,
+              content: "Action List content",
+              onClick: () => alert("Hello 1"),
+            },
+            {
+              prefixIcon: activity,
+              content: "Action List content",
+              onClick: () => alert("Hello 1"),
+            },
+            {
+              prefixIcon: activity,
+              content: "Action List content",
+              onClick: () => alert("Hello 1"),
+            },
+          ],
+        },
+        {
+          title: "Action List With Content And Description",
+          items: [
+            {
+              content: "Action List content",
+              description:
+                "Lorem Ipsumm dollar imset gona fine touch for well eing",
+              onClick: () => alert("Hello 1"),
+            },
+            {
+              content: "Action List content",
+              description:
+                "Lorem Ipsumm dollar imset gona fine touch for well eing",
+              onClick: () => alert("Hello 1"),
+            },
+            {
+              content: "Action List content",
+              description:
+                "Lorem Ipsumm dollar imset gona fine touch for well eing",
+              onClick: () => alert("Hello 1"),
+            },
+          ],
+        },
+        {
+          title: "Action List with Prefix Icon and Content",
+          items: [
+            {
+              content: "Action List content",
+              description:
+                "Lorem Ipsumm dollar imset gona fine touch for well eing",
+              prefixIcon: <Delete size={20} />,
+              onClick: () => alert("Hello 1"),
+            },
+            {
+              content: "Single-line item",
+              description:
+                "Lorem Ipsumm dollar imset gona fine touch for well eing",
+              prefixIcon: activity,
+              onClick: () => alert("Hello 1"),
+            },
+          ],
+        },
+        {
+          title: "Action List with Suffix Icon and Content",
+          items: [
+            {
+              content: "Action List content",
+              description:
+                "Lorem Ipsumm dollar imset gona fine touch for well eing",
+              suffixIcon: activity,
+              onClick: () => alert("Hello 1"),
+            },
+            {
+              content: "Single-line item",
+              description:
+                "Lorem Ipsumm dollar imset gona fine touch for well eing",
+              suffixIcon: activity,
+              onClick: () => alert("Hello 1"),
+            },
+          ],
+        },
+      ],
     },
     open: {
       description: "Controls the Collapsible behaviour of ActionList",
       control: {
         type: "boolean",
-        disable:true
+        disable: true,
       },
     },
     activator: {
@@ -52,15 +129,6 @@ export default {
         disable: true,
       },
     },
-    ActionListContent: {
-      name: "Content",
-      description: "Change Action list content name",
-      control: {
-        type: "text",
-        disable:true,
-      },
-      defaultValue: "Action List content",
-    },
     dropDownheight: {
       description: "Manage the Dropdown Height",
       control: {
@@ -68,21 +136,13 @@ export default {
       },
       defaultValue: "250",
     },
-    popoverContainer: {
+    container: {
       description: "The Postion of Dropdown Either Near Element or Body",
       control: {
         type: "radio",
         options: ["body", "element"],
       },
       defaultValue: "body",
-    },
-    direction: {
-      description: "This Works with Element Container and Manages the Open Direction of dropdown",
-      control: {
-        type: "radio",
-        options: ["left", "right"],
-      },
-      defaultValue: "left",
     },
   },
 };
@@ -93,22 +153,6 @@ const Template = ({ ...rest }) => {
     [active]
   );
 
-  const primaryAction1 = {
-    loading: false,
-    content: "Proceed",
-    onClick: () => {
-      alert("Conngratulations You Proceeded :)");
-      toggleActive();
-    },
-  };
-  const secondaryAction1 = {
-    loading: false,
-    content: "Cancel",
-    onClick: () => {
-      alert("Oopps You Cancelled :)");
-      toggleActive();
-    },
-  };
   return (
     <div>
       <Card>
@@ -116,7 +160,6 @@ const Template = ({ ...rest }) => {
           <FlexChild>
             <ActionList
               {...rest}
-              direction={rest.direction}
               dropDownheight={rest.dropDownheight}
               onClose={toggleActive}
               activator={
@@ -126,120 +169,12 @@ const Template = ({ ...rest }) => {
                   icon={active ? <ChevronUp /> : <ChevronDown />}
                   iconAlign="right"
                 >
-                  {rest.ActionList}
+                  Action List
                 </Button>
               }
               open={active}
-              popoverContainer={rest.popoverContainer}
-              sections={[
-                {
-                  title: "Action List With title Only",
-                  items: [
-                    {
-                      destructive:true,
-                      content: rest.ActionListContent,
-                      description: false,
-                      onClick: () => alert("Hello 1"),
-                    },
-                    {
-                      content: rest.ActionListContent,
-                      description: false,
-                      onClick: () => alert("Hello 2"),
-                    },
-                    {
-                      content: rest.ActionListContent,
-                      description: false,
-                      onClick: () => alert("Hello 3"),
-                    },
-                  ],
-                },
-                {
-                  title: "Action List With Icon and Title Only",
-                  items: [
-                    {
-                      prefixIcon: activity,
-                      content: rest.ActionListContent,
-                      description: false,
-                      onClick: () => alert("Hello 1"),
-                    },
-                    {
-                      prefixIcon: activity,
-                      content: rest.ActionListContent,
-                      description: false,
-                      onClick: () => alert("Hello 1"),
-                    },
-                    {
-                      prefixIcon: activity,
-                      content: rest.ActionListContent,
-                      description: false,
-                      onClick: () => alert("Hello 1"),
-                    },
-                  ],
-                },
-                {
-                  title: "Action List With Content And Description",
-                  items: [
-                    {
-                      content: rest.ActionListContent,
-                      description:
-                        "Lorem Ipsumm dollar imset gona fine touch for well eing",
-                      onClick: () => alert("Hello 1"),
-                    },
-                    {
-                      content: rest.ActionListContent,
-                      description:
-                        "Lorem Ipsumm dollar imset gona fine touch for well eing",
-                      onClick: () => alert("Hello 1"),
-                    },
-                    {
-                      content: rest.ActionListContent,
-                      description:
-                        "Lorem Ipsumm dollar imset gona fine touch for well eing",
-                      onClick: () => alert("Hello 1"),
-                    },
-                  ],
-                },
-                {
-                  title: "Action List with Prefix Icon and Content",
-                  items: [
-                    {
-                      content: rest.ActionListContent,
-                      description:
-                        "Lorem Ipsumm dollar imset gona fine touch for well eing",
-                      prefixIcon: activity,
-                      onClick: () => alert("Hello 1"),
-                    },
-                    {
-                      content: "Single-line item",
-                      description:
-                        "Lorem Ipsumm dollar imset gona fine touch for well eing",
-                      prefixIcon: activity,
-                      onClick: () => alert("Hello 1"),
-                    },
-                  ],
-                },
-                {
-                  title: "Action List with Suffix Icon and Content",
-                  items: [
-                    {
-                      content: rest.ActionListContent,
-                      description:
-                        "Lorem Ipsumm dollar imset gona fine touch for well eing",
-                      suffixIcon: activity,
-                      onClick: () => alert("Hello 1"),
-                    },
-                    {
-                      content: "Single-line item",
-                      description:
-                        "Lorem Ipsumm dollar imset gona fine touch for well eing",
-                      suffixIcon: activity,
-                      onClick: () => alert("Hello 1"),
-                    },
-                  ],
-                },
-              ]}
-              // primaryAction={primaryAction1}
-              // secondaryAction={secondaryAction1}
+              container={rest.container}
+              sections={rest.sections}
             />
           </FlexChild>
         </FlexLayout>
@@ -258,7 +193,6 @@ ActionList_with_Action_Only.decorators = [
     return (
       <Card>
         <ActionList
-          direction="left"
           onClose={toggleActive}
           activator={
             <Button
@@ -303,7 +237,6 @@ ActionList_with_Action_and_title.decorators = [
     return (
       <Card>
         <ActionList
-          direction="left"
           onClose={toggleActive}
           activator={
             <Button
@@ -351,7 +284,6 @@ ActionList_with_Action_title_and_prefix_icon.decorators = [
     return (
       <Card>
         <ActionList
-          direction="left"
           onClose={toggleActive}
           activator={
             <Button
@@ -402,7 +334,6 @@ ActionList_with_Action_title_and_suffix_icon.decorators = [
     return (
       <Card>
         <ActionList
-          direction="left"
           onClose={toggleActive}
           activator={
             <Button
@@ -453,7 +384,6 @@ ActionList_with_Action_title_and_description.decorators = [
     return (
       <Card>
         <ActionList
-          direction="left"
           onClose={toggleActive}
           activator={
             <Button
@@ -461,7 +391,6 @@ ActionList_with_Action_title_and_description.decorators = [
               onClick={toggleActive}
               icon={active ? <ChevronUp /> : <ChevronDown />}
               iconAlign="right"
-            
             >
               ActionList
             </Button>
@@ -504,7 +433,6 @@ ActionList_with_Action_title_description_and_prefixIcon.decorators = [
     return (
       <Card>
         <ActionList
-          direction="left"
           onClose={toggleActive}
           activator={
             <Button
@@ -547,81 +475,3 @@ ActionList_with_Action_title_description_and_prefixIcon.decorators = [
     );
   },
 ];
-
-// export const ActionList_with_Action_and_footer_Actions: any = Template.bind({});
-// ActionList_with_Action_and_footer_Actions.decorators = [
-//   () => {
-//     const [active, setActive] = useState(false);
-//     const toggleActive = useCallback(() => setActive((active) => !active), []);
-//     const primaryAction1 = {
-//       loading: false,
-//       content: "Proceed",
-//       onClick: () => {
-//         alert("Conngratulations You proceeded :)");
-//       },
-//     };
-//     const secondaryAction1 = {
-//       loading: false,
-//       content: "Cancel",
-//       onClick: () => {
-//         alert("Conngratulations You proceeded :)");
-//       },
-//     };
-//     return (
-//       <Card>
-//         <ActionList
-//           direction="left"
-//           onClose={toggleActive}
-//           activator={
-//             <Button
-//               type="Outlined"
-//               onClick={toggleActive}
-//               icon={active ? <ChevronUp /> : <ChevronDown />}
-//               iconAlign="right"
-//               iconRound={false}
-//             >
-//               ActionList
-//             </Button>
-//           }
-//           open={active}
-//           sections={[
-//             {
-//               items: [
-//                 {
-//                   content: "Action 1",
-//                   onClick: () => alert("Hello 1"),
-//                 },
-//                 {
-//                   content: "Action 1",
-//                   onClick: () => alert("Hello 1"),
-//                 },
-//                 {
-//                   content: "Action 1",
-//                   onClick: () => alert("Hello 1"),
-//                 },
-//                 {
-//                   content: "Action 1",
-//                   onClick: () => alert("Hello 1"),
-//                 },
-//                 {
-//                   content: "Action 1",
-//                   onClick: () => alert("Hello 1"),
-//                 },
-//                 {
-//                   content: "Action 1",
-//                   onClick: () => alert("Hello 1"),
-//                 },
-//                 {
-//                   content: "Action 1",
-//                   onClick: () => alert("Hello 1"),
-//                 },
-//               ],
-//             },
-//           ]}
-//           primaryAction={primaryAction1}
-//           secondaryAction={secondaryAction1}
-//         />
-//       </Card>
-//     );
-//   },
-// ];

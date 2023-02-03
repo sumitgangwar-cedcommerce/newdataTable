@@ -1,0 +1,33 @@
+.icon-inner {
+  min-width: 15rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  outline: none;
+  gap: 2rem;
+}
+
+.icon-inners:hover {
+  box-shadow: rgb(0 0 0 / 10%) 0px 4px 6px -1px, rgb(0 0 0 / 6%) 0px 2px 4px -1px;
+}
+
+.inte__icons--IconsLength {
+  font-size: 20px;
+  font-weight: bold;
+  color: #888A85;
+}
+
+.icon-inner > span {
+  text-align: center;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.icon-inner svg {
+  transition: 200ms all linear;
+}
+
+/* .inte__icons-card {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, auto));
+  gap: 10px;
+} */

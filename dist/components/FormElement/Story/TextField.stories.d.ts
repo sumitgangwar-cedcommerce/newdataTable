@@ -110,9 +110,10 @@ declare const _default: {
             defaultValue: string;
         };
         helpIcon: {
+            description: string;
             control: {
-                description: string;
                 type: string;
+                options: string[];
             };
             defaultValue: string;
         };

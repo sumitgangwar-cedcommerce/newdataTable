@@ -30,13 +30,13 @@ export interface gridI {
 }
 
 export interface expandableI {
-    expandedRowRender: (item: any) => React.ReactNode,
+    expandedRowRender: React.FC,
     rowExpandable?: (item: any) => boolean
 }
 
 export interface rowSelectionI {
     onSelectChange?: Function,
-    selectedRowKeys?: string[],
+    selectedRowKeys?: {},
 }
 
 const getCellByClassName = (arr: any, className: string) => {
@@ -59,7 +59,7 @@ const removeClassName = (arr: any, elements: any) => {
 
 const DataTable = ({ columns = [], dataSource = [], fixedHeader = false, scrollX, scrollY, rowSelection, expandable, pagination, showHeader = true }: gridI) => {
     const [data, setData] = useState(dataSource)
-    const [selectedCheckbox, setSelectedCheckbox] = useState<string[]>(rowSelection?.selectedRowKeys ? rowSelection.selectedRowKeys : [])
+    const [selectedCheckbox, setSelectedCheckbox] = useState<{}>(rowSelection?.selectedRowKeys ? rowSelection.selectedRowKeys : {})
     const [expandedRows, setExpandedRows] = useState<string[]>([])
 
     const GridWrapperRef = useRef<HTMLDivElement>(null);
@@ -95,20 +95,23 @@ const DataTable = ({ columns = [], dataSource = [], fixedHeader = false, scrollX
     }
     const headerCheckboxChangeHandler = (state: any) => {
         if (state) {
-            let t: any = []
-            data.map((item: any) => {
-                t = [...t, item.key]
+            Object.keys(selectedCheckbox).map(key => {
+                selectedCheckbox[key] = true
             })
-            if (rowSelection?.onSelectChange) rowSelection.onSelectChange(t)
-            else setSelectedCheckbox(t)
+            if (rowSelection?.onSelectChange) rowSelection.onSelectChange(selectedCheckbox)
+            else setSelectedCheckbox(selectedCheckbox)
         }
         else {
-            if (rowSelection?.onSelectChange) rowSelection.onSelectChange([])
-            else setSelectedCheckbox([])
+            Object.keys(selectedCheckbox).map(key => {
+                selectedCheckbox[key] = false
+            })
+            if (rowSelection?.onSelectChange) rowSelection.onSelectChange(selectedCheckbox)
+            else setSelectedCheckbox(selectedCheckbox)
         }
     }
+
     const rowCheckboxChangeHandler = (item: any, state: any) => {
-        let newSelectedCheckbox = state === false ? [...selectedCheckbox.filter(i => i !== item.key)] : [...selectedCheckbox, item.key]
+        let newSelectedCheckbox = {...selectedCheckbox , [item.key] : state}
         if (rowSelection?.onSelectChange) rowSelection.onSelectChange(newSelectedCheckbox)
 
         else {
@@ -173,6 +176,15 @@ const DataTable = ({ columns = [], dataSource = [], fixedHeader = false, scrollX
         handelGridScroll()
     }
 
+    const giveHeaderCheckboxState = () => {
+        if(!Object.values(selectedCheckbox).length)    return false
+        let res:any = 'indeterminate'
+        if(Object.values(selectedCheckbox).every(item => item === true))    res =  true
+        else if(Object.values(selectedCheckbox).every(item => item === false)) res =  false
+        return res
+    }
+
+
     useEffect(() => {
         setData(dataSource)
     }, [dataSource])
@@ -208,7 +220,7 @@ const DataTable = ({ columns = [], dataSource = [], fixedHeader = false, scrollX
                 >
                     <CheckBox2
                         onChange={headerCheckboxChangeHandler}
-                        checked={!selectedCheckbox.length ? false : selectedCheckbox.length === data.length ? true : 'indeterminate'}
+                        checked={giveHeaderCheckboxState()}
                     />
                 </th>
             }
@@ -246,7 +258,7 @@ const DataTable = ({ columns = [], dataSource = [], fixedHeader = false, scrollX
 
     const makeDataTableBodyRows = (item: any, index: number) => {
         let rowNum = index + (showHeader ? 1 : 0), columnNum = 0;
-        const isRowSelected = selectedCheckbox.includes(item.key)
+        const isRowSelected = selectedCheckbox[item.key]
         const isRowExpandable = expandable?.rowExpandable ? expandable.rowExpandable(item) : true;
         const row = 
             <React.Fragment key={index}>
@@ -299,7 +311,7 @@ const DataTable = ({ columns = [], dataSource = [], fixedHeader = false, scrollX
                 }
                 </tr>
             {
-                expandedRows.includes(item.key.toString()) &&
+                expandedRows.includes(item.key) &&
                 <tr className='inte-DataTable__Row--appendWithExpand'>
                     <td 
                         colSpan={columns.length + (expandable ? 1 : 0) + (rowSelection ? 1 : 0)} 
@@ -308,13 +320,12 @@ const DataTable = ({ columns = [], dataSource = [], fixedHeader = false, scrollX
                             className='inte-DataTable__Row--Fixed' 
                             style={{ 
                                 position: 'sticky', 
-                                left: '0', 
-                                // overflow: 'hidden', 
+                                left: '0',  
                                 width: GridWrapperRef.current ? GridWrapperRef.current.offsetWidth/10 + 'rem' : '0' 
                             }}
                         >
                             {
-                                expandable?.expandedRowRender ? expandable.expandedRowRender(item) : ''
+                                expandable?.expandedRowRender && <expandable.expandedRowRender dataKey={item.key} selectedRowKeys={selectedCheckbox} />
                             }
                         </div>
                     </td>

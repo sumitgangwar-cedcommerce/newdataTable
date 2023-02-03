@@ -1,11 +1,13 @@
-/*Collapsible*/
-
-.inte-Filter--Advance .inte-FilterSheet--Body .inte__accordionHeader {
+.inte-Filter--Advance {
+  position: relative;
+  display: inline-block;
+}
+.inte-Filter--Advance .inte-Filter--Body .inte__accordionHeader {
   cursor: pointer;
   position: relative;
 }
 .inte-Filter--Advance
-  .inte-FilterSheet--Body
+  .inte-Filter--Body
   .inte__accordionHeader
   .inte-flex__item:nth-child(2) {
   position: absolute;
@@ -13,7 +15,7 @@
   top: 50%;
   transform: translateY(-50%);
 }
-.inte-Filter--Advance .inte-FilterSheet--Body .inte__accordionBody {
+.inte-Filter--Advance .inte-Filter--Body .inte__accordionBody {
   height: 0;
   opacity: 0;
   visibility: hidden;
@@ -21,17 +23,9 @@
   transition: all 0.2s ease-out;
   overflow: hidden;
 }
-.inte-Filter--Advance .inte-FilterSheet--BodyAccordion-Body {
+.inte-Filter--Advance .inte-Filter--BodyAccordion-Body {
   padding: 1.6rem;
 }
-.inte-Filter--Advance .inte-FilterSheet--BodyAccordion-Header {
-  border-bottom: 0.1rem solid var(--inte-G42);
-}
-.inte-Filter--Advance .inte-FilterSheet--BodyAccordion-Header:last-child {
-  border-bottom: 0;
-}
-/*Collapsible end*/
-
 /*Sheet*/
 .inte-Filter--Advance .inte-Filter--Open {
   overflow: hidden;
@@ -39,8 +33,7 @@
 .inte-Filter--Advance .inte-Filter--Open .inte-select--Fixed {
   z-index: 999999 !important;
 }
-
-.inte-Filter--Advance .inte-FilterSheet {
+.inte-Filter--Advance .inte_FilterSheetWrapper .inte-Filter--Wrapper{
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -54,108 +47,152 @@
 .inte-Filter--Advance .inte_FilterSheetWrapper .inte-Backdrop {
   display: none;
 }
-.inte-Filter--Advance .inte_FilterSheetWrapper.inte_sheetActive .inte-Backdrop {
+.inte-Filter--Advance .inte_FilterSheetWrapper.inte_Filter--Active .inte-Backdrop {
   display: block;
   z-index: 99999;
   backdrop-filter: blur(1px);
 }
-.inte-Filter--Advance .inte_sheetActive .inte-FilterSheet {
-  transform: translate(0);
+
+.inte-Filter--Advance .inte-Filter--Header .inte-btn.inte-btn--Secondary {
+  background-color: var(--inte-G0);
 }
-.inte-Filter--Advance .inte-FilterSheet--Header {
+.inte-Filter--Advance .inte-Filter--Header .inte-btn.inte-btn--Secondary:hover {
+  background-color: var(--inte-G30);
+}
+.inte-Filter--Advance .inte-Filter--Header {
   width: 100%;
-  padding: 1.2rem 1.6rem;
+  padding: 1.6rem;
   border-bottom: 0.1rem solid var(--inte-G42);
   box-sizing: border-box;
 }
-.inte-Filter--Advance .inte-FilterSheet--Header h3 {
+.inte-Filter--Advance .inte-Filter--Header h3 {
   margin: 0;
   font-weight: var(--weight-bolder) !important;
   color: var(--inte-G800);
 }
-.inte-Filter--Advance .inte-FilterSheet--Body {
+.inte-Filter--BodyAccordion-Header {
+  margin-bottom: 0.4rem;
+  transition: 100ms all linear;
+}
+.inte-Filter--BodyAccordion-Header:hover {
+  background-color: var(--inte-P20);
+}
+.inte-Filter--Advance .inte-Filter--Body {
   width: 100%;
   height: calc(100% - 12.8rem);
   position: relative;
   display: flex;
 }
-.inte-Filter--Advance .inte-FilterSheet--BodyAccordion-HeaderActive {
-  box-shadow: 0 2px 0 0 var(--inte-P1000);
-  border-bottom: 0.1rem solid transparent !important;
+.inte-Filter--Advance .inte-Filter--BodyAccordion-HeaderActive {
+  background: var(--inte-P30);
 }
 .inte-Filter--Advance
-  .inte-FilterSheet--BodyAccordion-Header.inte-FilterSheet--BodyAccordion-HeaderActive
+  .inte-Filter--BodyAccordion-Header.inte-Filter--BodyAccordion-HeaderActive
   h3 {
-  color: var(--inte-P1000) !important;
+  color: var(--inte-P900) !important;
 }
-.inte-Filter--Advance .inte-FilterSheet--BodyLeft {
+.inte-Filter--Advance .inte-Filter--BodyLeft {
   width: 45%;
   border-right: 0.1rem solid var(--inte-G42);
   height: 100%;
   overflow: auto;
   padding-bottom: 0.2rem;
 }
-.inte-Filter--Advance .inte-FilterSheet--BodyRight {
+.inte-Filter--Advance .inte-Filter--BodyRight {
   width: 55%;
   height: 100%;
   overflow: auto;
 }
-.inte-Filter--Advance .inte-FilterSheet--BodyAccordion-Header > span {
+.inte-Filter--Advance .inte-Filter--BodyAccordion-Header > span {
   cursor: pointer;
-  padding: 1.6rem;
+  padding: 1.2rem 1.6rem;
   transition: 100ms all linear;
   display: block;
 }
-.inte-Filter--Advance .inte-FilterSheet--Header .inte-btn.inte__plain-btn {
+.inte-Filter--Advance .inte-Filter--Header .inte-btn.inte__plain-btn {
   padding: 0.4rem;
   border: 0;
   min-height: unset;
 }
 .inte-Filter--Advance
-  .inte-FilterSheet--Header
+  .inte-Filter--Header
   .inte-btn.inte__plain-btn:hover {
   background-color: rgba(0, 0, 0, 0.1);
 }
-.inte-Filter--Advance .inte-FilterSheet--BodyAccordion-Header h3 {
+.inte-Filter--Advance .inte-Filter--BodyAccordion-Header h3 {
   margin: 0;
   color: var(--inte-G800);
   width: 100%;
   text-overflow: ellipsis;
   overflow: hidden;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   display: -webkit-box;
+  line-height: 2.2rem;
 }
-.inte-Filter--Advance span.inte-FilterSheet--Counter {
-  background-color: var(--inte-P900);
-  height: 18px;
-  width: 18px;
-  color: var(--inte-G0);
-  border-radius: var(--radius-rounded-4);
-  font-size: 12px;
-  display: inline-block;
-  vertical-align: middle;
-  text-align: center;
-  line-height: 20px;
-}
-.inte-Filter--Advance .inte-FilterSheet--Footer {
-  padding: 1.2rem 1.6rem;
+.inte-Filter--Advance .inte-Filter--Footer {
+  padding: 1.6rem;
   border-top: 0.1rem solid var(--inte-G42);
+  box-sizing: border-box;
+}
+.inte-Filter--Advance .inte_Filter--Active.inte_FilterSheetWrapper .inte-Filter--Wrapper{
+  transform: translate(0);
+}
+/* Popover Case */
+.inte_FilterPopoverWrapper {
+  display: none;
+  box-shadow: 0px 10px 15px -3px rgba(16, 24, 40, 0.1), 0px 4px 6px -4px rgba(16, 24, 40, 0.1);
+  border-radius: var(--radius-rounded-8);
+  border: 0.1rem solid var(--inte-G40);
+  position: absolute;
+  background-color: var(--inte-G0);
+  top: calc(100% + 0.3rem);
+  width: 35rem;
+}
+.inte_Filter--Active.inte_FilterPopoverWrapper {
+  display: block;
+}
+.inte_FilterPopoverWrapper .inte-Filter--Body {
+  flex-direction: column;
+  padding: 1.2rem 1.6rem;
+}
+
+.inte_FilterPopoverWrapper .inte-Filter--BodyLeft {
+  width: 100%;
+  display: flex;
+  border-right: 0;
+  border-bottom: 0.1rem solid var(--inte-G42);
+  gap: 1.6rem;
+}
+.inte_FilterPopoverWrapper .inte-Filter--BodyAccordion-Header {
+  border-top-right-radius: 0.8rem;
+  border-top-left-radius: 0.8rem;
+  margin: 0;
+  flex-grow: 1;
+}
+.inte_FilterPopoverWrapper .inte-Filter--BodyAccordion-Header> span {
+  padding: 1.2rem 1rem;
+}
+.inte_FilterPopoverWrapper  .inte-Filter--BodyRight {
+  width: 100%;
+  max-height: 20rem;
+  overflow: auto;
+}
+.inte_FilterPopoverWrapper .inte-Filter--BodyAccordion-Body {
+  padding-left: 0;
+  padding-right: 0;
 }
 @media screen and (max-width: 768px) {
-  .inte-Filter--Advance .inte-FilterSheet {
+  .inte-Filter--Advance .inte_FilterSheetWrapper .inte-Filter--Wrapper{
     transform: translateY(calc(100% + 2rem));
   }
-  .inte-Filter--Advance .inte-FilterSheet--Footer {
+  .inte-Filter--Advance .inte-Filter--Footer {
     width: 100%;
-    padding: 1.2rem 1.6rem;
-    border-top: 0.1rem solid var(--inte-G42);
-    box-sizing: border-box;
   }
 }
 /*Sheet End*/
 @media screen and (min-width: 768px) {
-  .inte-Filter--Advance .inte-FilterSheet {
+  .inte-Filter--Advance .inte_FilterSheetWrapper .inte-Filter--Wrapper{
     width: 48rem;
     transform: translateX(calc(100% + 2rem));
   }
@@ -168,9 +205,9 @@
 /* DARK THEME */
 [data-theme="dark"]
   .inte-Filter--Advance
-  .inte-FilterSheet--BodyAccordion-Header:hover,
+  .inte-Filter--BodyAccordion-Header:hover,
 [data-theme="dark"]
   .inte-Filter--Advance
-  .inte-FilterSheet--BodyAccordion-Header.inte-FilterSheet--BodyAccordion-HeaderActive {
+  .inte-Filter--BodyAccordion-Header.inte-Filter--BodyAccordion-HeaderActive {
   background-color: var(--btn-grey) !important;
 }

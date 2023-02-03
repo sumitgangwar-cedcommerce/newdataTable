@@ -245,13 +245,10 @@ const TextField = ({
 
   return (
     <div
-      className={`inte-formElement--Wrap ${connectLeftRight} ${
-        props.loading ? "inte-formElement--Loading" : ""
-      } ${
-        clearButton ? "inte-formElement--hasClear" : ""
-      } ${controlStatesVal} ${innerPreIconClass} ${innerSufIconClass} ${
-        disabled ? "inte-formElement--disabled" : ""
-      }`}
+      className={`inte-formElement--Wrap ${connectLeftRight} ${props.loading ? "inte-formElement--Loading" : ""
+        } ${clearButton ? "inte-formElement--hasClear" : ""
+        } ${controlStatesVal} ${innerPreIconClass} ${innerSufIconClass} ${disabled ? "inte-formElement--disabled" : ""
+        }`}
     >
       {label ? (
         <TextStyles
@@ -301,9 +298,8 @@ const TextField = ({
 
       {props.showHelp && (
         <span
-          className={`inte-form__itemHelp ${
-            helpIcon ? "inte-form__itemHelp--HasHelpIcon" : ""
-          }`}
+          className={`inte-form__itemHelp ${helpIcon ? "inte-form__itemHelp--HasHelpIcon" : ""
+            }`}
         >
           {helpIcon && <span style={{ display: "flex" }}>{helpIcon}</span>}
           <span>{props.showHelp}</span>

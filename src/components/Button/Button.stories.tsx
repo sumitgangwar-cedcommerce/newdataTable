@@ -1,6 +1,5 @@
 import React from "react";
 import { Button } from "..";
-import * as Icon from "../../Icon/Icon";
 import { ButtonI } from "./Button";
 import { Meta } from "@storybook/react";
 import { Card } from "../Card";
@@ -8,7 +7,8 @@ import { Home, Settings } from "react-feather";
 import FlexLayout from "../FlexLayout/FlexLayout";
 import ToolTip from "../ToolTip/ToolTip";
 import { DocData } from "./BtnDocData";
-const iconMap = { ...Icon };
+import * as Icons from "../../storybook/Foundation/Icons/Icons";
+const allIcons: any = { ...Icons };
 import "../../storybook.css";
 import AccordionStory from "../../storybook/AccordionStory";
 export default {
@@ -24,11 +24,11 @@ export default {
   },
   argTypes: {
     children: {
-      description: "Button Children",
+      description: "Button Content",
       control: {
         type: "text",
+        disable: true
       },
-      defaultValue: "",
     },
     content: {
       description: "Button Content",
@@ -38,11 +38,12 @@ export default {
       defaultValue: "Button",
     },
     icon: {
-      description: "Set Button icon",
+      description: "Set Button Icon",
       control: {
         type: "select",
-        options: Object.keys(iconMap),
+        options: Object.keys(allIcons),
       },
+      defaultValue: "Search",
     },
     type: {
       description: "Button bg color type",
@@ -134,14 +135,50 @@ interface NewI extends ButtonI {
 
 const Template = (rest: NewI) => {
   // retrieves the appropriate icon passes it as a component prop
-  const selectedIcon = iconMap[rest["icon"]];
 
   return (
     <Card cardType="Default" title={"Button"}>
       <Button
         {...rest}
         onClick={() => {}}
-        icon={selectedIcon}
+        icon={allIcons[rest.icon]({
+          size: `${
+            rest.thickness == "large"
+              ? 20
+              : rest.thickness == "thin"
+              ? 20
+              : rest.thickness == "extraThin"
+              ? 16
+              : 20
+          }`,
+          color: `${
+             rest.type == "Primary" 
+              ? "var(--inte-G0)"
+              : rest.type == "Danger"
+              ? "var(--inte-G0)"
+              : rest.type == "DangerOutlined" && !rest.disable
+              ? "var(--inte-R200)"
+              : rest.type == "DangerOutlined" && rest.disable
+              ? "var(--inte-R55)"
+              : rest.type == "Secondary" && !rest.disable
+              ? "var(--inte-G800)"
+              : rest.type == "Secondary" && rest.disable
+              ? "var(--inte-G50)"
+              : rest.type == "Outlined" && !rest.disable
+              ? "var(--inte-G800)"
+              : rest.type == "Outlined" && rest.disable
+              ? "var(--inte-G40)"
+              : rest.type == "DangerPlain" && !rest.disable
+              ? "var(--inte-R200)"
+              : rest.type == "DangerPlain" && rest.disable
+              ? "var(--inte-R55)"
+              : rest.type == "TextButton" && !rest.disable
+              ? "var(--inte-G200)"
+              : rest.type == "TextButton" && rest.disable
+              ? "var(--inte-G50)"
+              : "var(--inte-G0)"
+          }`,
+        })}
         FullBtn={rest.FullBtn}
       />
     </Card>
@@ -174,7 +211,7 @@ Types.decorators = [
     <Card cardType="Default" title={"Button Type Options"}>
       <FlexLayout spacing="loose" valign="center">
         {types.map((variant: any) => (
-          <Button thickness="large" content={variant} type={variant} />
+          <Button thickness="large" type={variant}>{variant}</Button>
         ))}
       </FlexLayout>
     </Card>
@@ -196,9 +233,8 @@ Length.decorators = [
       <FlexLayout spacing="extraLoose" direction="vertical">
         <Button
           thickness="large"
-          content={"Full Width Button"}
           FullBtn={true}
-        />
+        >"Full Width Button</Button>
       </FlexLayout>
     </Card>
   ),
@@ -222,14 +258,14 @@ Thickness.decorators = [
         <Card title={"Large"}>
           <FlexLayout spacing="tight" valign="center">
             {typesthickness.map((variant: any) => (
-              <Button type={variant} content={variant} thickness={"large"} />
+              <Button type={variant}  thickness={"large"}>{variant}</Button>
             ))}
           </FlexLayout>
         </Card>
         <Card title={"Thin"}>
           <FlexLayout spacing="tight" valign="center">
             {typesthickness.map((variant: any) => (
-              <Button type={variant} content={variant} thickness={"thin"} />
+              <Button type={variant}  thickness={"thin"}>{variant}</Button>
             ))}
           </FlexLayout>
         </Card>
@@ -238,9 +274,8 @@ Thickness.decorators = [
             {typesthickness.map((variant: any) => (
               <Button
                 type={variant}
-                content={variant}
                 thickness={"extraThin"}
-              />
+              >{variant}</Button>
             ))}
           </FlexLayout>
         </Card>
@@ -264,9 +299,8 @@ Halign.decorators = [
             thickness="large"
             icon={<Home size={20} color="#ffffff" />}
             FullBtn={true}
-            content={variant}
             halign={variant}
-          />
+          >{variant}</Button>
         ))}
       </FlexLayout>
     </Card>
@@ -283,10 +317,9 @@ Icon_Align.decorators = [
         {iconAlign.map((variant: any) => (
           <Button
             thickness="large"
-            content={variant}
             iconAlign={variant}
             icon={<Home color="#ffffff" size={20} />}
-          />
+          >{variant}</Button>
         ))}
       </FlexLayout>
     </Card>
@@ -304,9 +337,8 @@ Disable.decorators = [
           <Button
             thickness="large"
             type={variant}
-            content="Disabled button"
             disable={true}
-          />
+          >Disabled button</Button>
         ))}
       </FlexLayout>
     </Card>
@@ -323,9 +355,8 @@ Loading.decorators = [
           <Button
             thickness="large"
             type={variant}
-            content={variant}
             loading={true}
-          />
+          >{variant}</Button>
         ))}
       </FlexLayout>
     </Card>

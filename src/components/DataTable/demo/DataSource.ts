@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-export const dataSouce = [
+export const dataSource = [
   {
       "id": 1,
       "name": "Leanne Graham",

@@ -1,0 +1,39 @@
+.inte-TextLink {
+    display: inline-block;
+}
+.inte-TextLink--Label{
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    font-size: 16px;
+    transition: 0.3s all;
+    color: var(--inte-B80);
+}
+.inte-TextLink--Label:hover {
+    color: var(--inte-B90);
+    text-decoration: underline;
+}
+
+.inte-TextLink--Label:active {
+    color: var(--inte-P1100) !important;
+    text-decoration: underline;
+}
+.inte--TextLink-disabled .inte-TextLink--Label,
+.inte--TextLink-disabled .inte-TextLink--Label:hover,
+.inte--TextLink-disabled .inte-TextLink--Label:active {
+    text-decoration: none;
+    color: var(--inte-B70) !important;
+}
+.inte-TextLink.inte--TextLink-disabled{
+    position: relative
+}
+.inte-TextLink.inte--TextLink-disabled::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 9;
+    cursor: not-allowed;
+}

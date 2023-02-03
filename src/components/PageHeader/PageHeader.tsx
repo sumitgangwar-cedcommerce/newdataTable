@@ -84,7 +84,6 @@ function PageHeader({
                 })
               ) : (
                 <ActionList
-                  direction="right"
                   open={active}
                   onClose={toggleActive}
                   activator={
@@ -120,8 +119,7 @@ function PageHeader({
             <div className="inte-PageHeader-Action inte-PageHeader-ActionMobile">
               {secondaryAction ? (
                 <ActionList
-                  direction="right"
-                  popoverContainer="element"
+                  container="element"
                   open={active}
                   onClose={toggleActive}
                   activator={

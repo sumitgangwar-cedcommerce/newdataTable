@@ -129,7 +129,7 @@ Shape.decorators = [
 
 const src = [
   "https://www.constructionweekonline.com/cloud/2021/07/06/IMG-Worlds-of-Legends-Rendering.jpg",
-  "image.jpg",
+  "https://freepngimg.com/save/37470-pikachu-transparent-background/1254x1254",
 ];
 export const Fallback: any = Template.bind({});
 Fallback.decorators = [
@@ -141,7 +141,7 @@ Fallback.decorators = [
             <Image
               height={100}
               width={100}
-              radius={variant}
+              radius={"circle"}
               fit="cover"
               src={variant}
               alt="Image Data not found"
